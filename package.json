@@ -2,6 +2,7 @@
   "name": "hsk-learning-fullstack",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.9.0",
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
@@ -14,9 +15,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@prisma/adapter-neon": "^7.8.0",
     "@prisma/client": "^6.19.3",
-    "@react-router/node": "latest",
-    "@react-router/serve": "latest",
+    "@react-router/node": "^7.15.1",
+    "@react-router/serve": "^7.15.1",
     "@vercel/remix": "^2.16.7",
     "bcryptjs": "latest",
     "dotenv": "^17.4.2",
@@ -24,13 +27,12 @@
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-router": "latest",
+    "react-router": "^7.15.1",
+    "ws": "^8.21.0",
     "zod": "latest"
   },
   "devDependencies": {
-    "@neondatabase/serverless": "^1.1.0",
-    "@prisma/adapter-neon": "^7.8.0",
-    "@react-router/dev": "latest",
+    "@react-router/dev": "^7.15.1",
     "@tailwindcss/vite": "latest",
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.15",
