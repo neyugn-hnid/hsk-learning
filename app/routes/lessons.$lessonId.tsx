@@ -1,5 +1,5 @@
 import type { Route } from "./+types/lessons.$lessonId";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { data } from "react-router";
 import {
   ChevronLeft,
@@ -38,9 +38,20 @@ function shuffleItems<T>(items: T[]): T[] {
 function speakChinese(text: string) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
+
+  // Safari workaround: pause/resume to wake up speechSynthesis
+  window.speechSynthesis.pause();
+  window.speechSynthesis.resume();
+
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "zh-CN";
   utterance.rate = 0.85;
+
+  // Safari workaround: explicitly set a Chinese voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const zhVoice = voices.find((v) => v.lang.startsWith("zh"));
+  if (zhVoice) utterance.voice = zhVoice;
+
   window.speechSynthesis.speak(utterance);
 }
 
@@ -60,6 +71,14 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   // Shuffle 1 lần, giống nhau giữa server và client để tránh hydration error
   const [shuffledVocab] = useState(() => shuffleItems(lesson.vocabularies));
   const [shuffledQuizzes] = useState(() => shuffleItems(lesson.quizzes));
+
+  // Safari: warm-up speechSynthesis + tải voices
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+    window.speechSynthesis.cancel();
+  }, []);
 
   const generatedQuizzes = useMemo(() => {
     return shuffledVocab.map((vocab) => {
@@ -172,15 +191,15 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   {activeTab === "quiz" ? `Câu ${quizIndex + 1}/${activeCount}` : `${vocabIndex + 1}/${activeCount}`}
                 </p>
               </div>
-              {/* Tab row - horizontal scroll mobile, flex-wrap desktop */}
-              <div className="-mx-1 flex justify-center overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+              {/* Tab row */}
+              <div className="-mx-1 flex flex-wrap justify-center gap-1">
                 {(["vocabulary", "translation", "hanzi", "quiz"] as StudyTab[]).map((tab) => (
                   <button
                     key={tab}
                     type="button"
                     onClick={() => switchTab(tab)}
                     disabled={!shuffledVocab.length && tab !== "quiz"}
-                    className={`mx-1 shrink-0 rounded-full px-4 py-2 text-xs font-bold transition sm:rounded-2xl sm:px-5 sm:py-2.5 sm:text-sm ${
+                    className={`rounded-full px-3 py-1.5 text-[11px] font-bold transition sm:rounded-2xl sm:px-5 sm:py-2.5 sm:text-sm ${
                       activeTab === tab ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"
                     } disabled:cursor-not-allowed disabled:opacity-40`}
                   >
@@ -255,7 +274,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
                     <input value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-xl font-semibold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => { if (e.key === "Enter") setCheckedHanzi(true); }} />
                   </div>
                   {!checkedHanzi ? (
@@ -274,7 +293,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 shadow-sm sm:rounded-[2rem] sm:p-6">
                 <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 shadow-md sm:rounded-[2rem] sm:p-6">
                   {/* Quiz mode pills */}
-                  <div className="-mx-1 mb-4 flex overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+                  <div className="-mx-1 mb-4 flex justify-center overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
                     {(["meaning", "pinyin", "recognition", "listening"] as const).map((m) => (
                       <button key={m} onClick={() => setQuizMode(m)}
                         className={`mx-1 shrink-0 rounded-full px-3 py-1.5 text-xs font-bold transition sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${quizMode === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}>
