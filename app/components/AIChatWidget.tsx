@@ -616,7 +616,7 @@ export function AIChatWidget() {
                       ? "Nói hoặc gõ tiếng Trung..."
                       : 'Hỏi từ vựng hoặc gõ "luyện tập"...'
                 }
-                className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100"
+                className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-base outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100"
                 disabled={loading}
               />
               <button
