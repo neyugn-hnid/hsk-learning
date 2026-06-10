@@ -38,20 +38,12 @@ function shuffleItems<T>(items: T[]): T[] {
 function speakChinese(text: string) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
-
-  // Safari workaround: pause/resume to wake up speechSynthesis
-  window.speechSynthesis.pause();
-  window.speechSynthesis.resume();
-
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "zh-CN";
   utterance.rate = 0.85;
-
-  // Safari workaround: explicitly set a Chinese voice if available
   const voices = window.speechSynthesis.getVoices();
   const zhVoice = voices.find((v) => v.lang.startsWith("zh"));
   if (zhVoice) utterance.voice = zhVoice;
-
   window.speechSynthesis.speak(utterance);
 }
 
@@ -72,11 +64,11 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [shuffledVocab] = useState(() => shuffleItems(lesson.vocabularies));
   const [shuffledQuizzes] = useState(() => shuffleItems(lesson.quizzes));
 
-  // Safari: warm-up speechSynthesis + tải voices
+  // Warm-up speechSynthesis cho lần phát đầu tiên
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     window.speechSynthesis.getVoices();
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(" "));
     window.speechSynthesis.cancel();
   }, []);
 
