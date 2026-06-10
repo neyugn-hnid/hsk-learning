@@ -19,6 +19,7 @@
     "@react-router/serve": "latest",
     "@vercel/remix": "^2.16.7",
     "bcryptjs": "latest",
+    "dotenv": "^17.4.2",
     "isbot": "latest",
     "lucide-react": "latest",
     "react": "latest",
