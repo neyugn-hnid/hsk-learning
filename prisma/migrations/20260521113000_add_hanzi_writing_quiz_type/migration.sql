@@ -1,0 +1,1 @@
+ALTER TYPE "public"."QuizType" ADD VALUE 'HANZI_WRITING';

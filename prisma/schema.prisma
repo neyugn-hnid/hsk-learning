@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+  // Dùng Neon:
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum LessonStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum QuizType {
+  MEANING
+  PINYIN
+  CHAR_RECOGNITION
+  HANZI_WRITING
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  progress UserProgress[]
+  attempts QuizAttempt[]
+}
+
+model Lesson {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  level       String
+  source      String       @default("HSK20")
+  orderNo     Int          @default(1)
+  status      LessonStatus @default(PUBLISHED)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  vocabularies Vocabulary[]
+  grammars      Grammar[]
+  quizzes       QuizQuestion[]
+  progress      UserProgress[]
+}
+
+model RoadmapItem {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  phase       String   @default("Giai đoạn 1")
+  weekLabel   String?
+  level       String?
+  orderNo     Int      @default(1)
+  duration    String?
+  objectives  Json?
+  materials   Json?
+  vocabulary  Json?
+  phrases     Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Vocabulary {
+  id             String   @id @default(cuid())
+  chinese        String
+  pinyin         String
+  meaningVi      String
+  meaningEn      String?
+  exampleChinese String?
+  examplePinyin  String?
+  exampleMeaning String?
+  level          String
+  lessonId       String
+  createdAt      DateTime @default(now())
+
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Grammar {
+  id          String @id @default(cuid())
+  title       String
+  structure   String
+  explanation String
+  example     String?
+  meaning     String?
+  lessonId    String
+
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model QuizQuestion {
+  id            String   @id @default(cuid())
+  type          QuizType @default(MEANING)
+  question      String
+  promptMeaning String?
+  promptPinyin  String?
+  options       Json
+  answer        String
+  lessonId      String
+
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model UserProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  progress  Int      @default(0)
+  completed Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  score     Int
+  total     Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
