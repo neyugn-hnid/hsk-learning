@@ -42,7 +42,10 @@ function speakChinese(text: string) {
   utterance.lang = "zh-CN";
   utterance.rate = 0.85;
   const voices = window.speechSynthesis.getVoices();
-  const zhVoice = voices.find((v) => v.lang.startsWith("zh"));
+  // Ưu tiên giọng nữ (Ting-Ting, Mei-Jia, Yu-Xiao…)
+  const zhVoice = voices
+    .filter((v) => v.lang.startsWith("zh"))
+    .sort((a) => (a.name.toLowerCase().includes("chen") ? 1 : -1))[0];
   if (zhVoice) utterance.voice = zhVoice;
   window.speechSynthesis.speak(utterance);
 }

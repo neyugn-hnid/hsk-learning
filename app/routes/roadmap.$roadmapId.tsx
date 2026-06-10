@@ -109,7 +109,10 @@ function speakChinese(text: string) {
   u.lang = "zh-CN";
   u.rate = 0.85;
   const voices = window.speechSynthesis.getVoices();
-  const zhVoice = voices.find((v) => v.lang.startsWith("zh"));
+  // Ưu tiên giọng nữ (Ting-Ting, Mei-Jia, Yu-Xiao…)
+  const zhVoice = voices
+    .filter((v) => v.lang.startsWith("zh"))
+    .sort((a) => (a.name.toLowerCase().includes("chen") ? 1 : -1))[0];
   if (zhVoice) u.voice = zhVoice;
   window.speechSynthesis.speak(u);
 }
@@ -279,7 +282,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     : `${vocabIndex + 1}/${cnt}`}
                 </p>
               </div>
-              <div className="-mx-1 flex justify-center overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+              <div className="-mx-1 flex flex-wrap justify-center gap-1">
                 {(
                   ["vocabulary", "translation", "hanzi", "quiz"] as StudyTab[]
                 ).map((t) => (
@@ -287,7 +290,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     key={t}
                     onClick={() => sw(t)}
                     disabled={!sVocab.length && t !== "quiz"}
-                    className={`mx-1 shrink-0 rounded-full px-4 py-2 text-xs font-bold sm:rounded-2xl sm:px-5 sm:py-2.5 sm:text-sm ${activeTab === t ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"} disabled:cursor-not-allowed disabled:opacity-40`}
+                    className={`rounded-full px-3 py-1.5 text-[11px] font-bold sm:rounded-2xl sm:px-5 sm:py-2.5 sm:text-sm ${activeTab === t ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"} disabled:cursor-not-allowed disabled:opacity-40`}
                   >
                     {t === "vocabulary"
                       ? "Từ Vựng"
@@ -430,14 +433,14 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
             {activeTab === "quiz" && cQuiz && (
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 sm:rounded-[2rem] sm:p-6">
                 <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 shadow-md sm:rounded-[2rem] sm:p-6">
-                  <div className="-mx-1 mb-4 flex justify-center overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+                  <div className="-mx-1 mb-4 flex flex-wrap justify-center gap-1">
                     {(
                       ["meaning", "pinyin", "recognition", "listening"] as const
                     ).map((m) => (
                       <button
                         key={m}
                         onClick={() => setQzM(m)}
-                        className={`mx-1 shrink-0 rounded-full px-3 py-1.5 text-xs font-bold sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${qzM === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}
+                        className={`rounded-full px-3 py-1.5 text-[11px] font-bold sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${qzM === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}
                       >
                         {m === "meaning"
                           ? "Nghĩa"
