@@ -44,8 +44,5 @@
     "postcss-import": "^16.1.1",
     "tsx": "latest",
     "typescript": "latest"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }
