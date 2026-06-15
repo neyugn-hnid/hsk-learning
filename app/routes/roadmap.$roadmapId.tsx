@@ -132,8 +132,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("meaning");
 
-  const [sVocab] = useState(() => shuffleItems(lesson.vocabularies));
-  const [sQuiz] = useState(() => shuffleItems(lesson.quizzes));
+  const sVocab = lesson.vocabularies;
 
   // Warm-up speechSynthesis cho lần phát đầu tiên
   useEffect(() => {
@@ -187,7 +186,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const cQuiz = genQ[qzI];
   const tlOK =
     tlC &&
-    tlA.trim().toLowerCase() === (cVocab?.meaningVi || "").trim().toLowerCase();
+    tlA.trim().length > 0;
   const hzOK = hzC && hzA.trim() === (cVocab?.chinese || "").trim();
   const qzHas = qzR.trim().length > 0;
   const qzOK = qzHas && qzR.trim() === (cQuiz?.answer || "").trim();
@@ -215,21 +214,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
       speakChinese(cQuiz.answer as string);
   }, [qzI, qzM, activeTab, cQuiz?.answer]);
 
-  const randomOther = (current: number, total: number) => {
-    if (total <= 1) return 0;
-    let next: number;
-    do {
-      next = Math.floor(Math.random() * total);
-    } while (next === current);
-    return next;
-  };
   const sw = (t: StudyTab) => {
     if (!sVocab.length && t !== "quiz") return;
     setActiveTab(t);
   };
   const nV = () => {
     if (!sVocab.length) return;
-    setVocabIndex(randomOther(vocabIndex, sVocab.length));
+    setVocabIndex((vocabIndex + 1) % sVocab.length);
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
@@ -238,7 +229,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const pV = () => {
     if (!sVocab.length) return;
-    setVocabIndex(randomOther(vocabIndex, sVocab.length));
+    setVocabIndex((vocabIndex - 1 + sVocab.length) % sVocab.length);
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
@@ -247,11 +238,11 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const nQ = () => {
     if (!genQ.length) return;
-    setQzI(randomOther(qzI, genQ.length));
+    setQzI((qzI + 1) % genQ.length);
   };
   const pQ = () => {
     if (!genQ.length) return;
-    setQzI(randomOther(qzI, genQ.length));
+    setQzI((qzI - 1 + genQ.length) % genQ.length);
   };
 
   const title =
@@ -380,6 +371,16 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       Kiểm tra
                     </button>
                   ) : null}
+                  {tlC ? (
+                    <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
+                      <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+                        Đáp án tham khảo
+                      </p>
+                      <p className="mt-1 text-base font-extrabold text-slate-900">
+                        {cVocab.meaningVi}
+                      </p>
+                    </div>
+                  ) : null}
                   <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
                     <Nb onClick={pV} label="Trước" />
                     <Nb onClick={nV} label="Tiếp" next />
@@ -422,6 +423,16 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       <Check size={18} />
                       Kiểm tra
                     </button>
+                  ) : null}
+                  {hzC ? (
+                    <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
+                      <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+                        Đáp án
+                      </p>
+                      <p className="mt-1 text-2xl font-black text-red-600">
+                        {cVocab.chinese}
+                      </p>
+                    </div>
                   ) : null}
                   <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
                     <Nb onClick={pV} label="Trước" />

@@ -1,5 +1,5 @@
 import type { Route } from "./+types/lessons.$lessonId";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { data } from "react-router";
 import {
   ChevronLeft,
@@ -63,9 +63,8 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [quizResponse, setQuizResponse] = useState("");
   const [quizMode, setQuizMode] = useState<QuizMode>("meaning");
 
-  // Shuffle 1 lần, giống nhau giữa server và client để tránh hydration error
-  const [shuffledVocab] = useState(() => shuffleItems(lesson.vocabularies));
-  const [shuffledQuizzes] = useState(() => shuffleItems(lesson.quizzes));
+  const vocabItems = lesson.vocabularies;
+  const quizItems = lesson.quizzes;
 
   // Warm-up speechSynthesis cho lần phát đầu tiên
   useEffect(() => {
@@ -76,8 +75,8 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   }, []);
 
   const generatedQuizzes = useMemo(() => {
-    return shuffledVocab.map((vocab) => {
-      const distractors = shuffledVocab
+    return vocabItems.map((vocab) => {
+      const distractors = vocabItems
         .filter((v) => v.chinese !== vocab.chinese)
         .map((v) => {
           if (quizMode === "pinyin") return v.pinyin;
@@ -101,16 +100,14 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
         promptPinyin: vocab.pinyin,
       };
     });
-  }, [quizMode, shuffledVocab]);
+  }, [quizMode, vocabItems]);
 
-  const practiceQuestions = shuffledQuizzes.length && quizMode === "meaning" ? shuffledQuizzes : generatedQuizzes;
-  const currentVocab = shuffledVocab[vocabIndex];
+  const practiceQuestions = quizItems.length && quizMode === "meaning" ? quizItems : generatedQuizzes;
+  const currentVocab = vocabItems[vocabIndex];
   const currentQuiz = practiceQuestions[quizIndex];
 
   const normalizedUserMeaning = translationAnswer.trim().toLowerCase();
-  const normalizedCorrectMeaning = (currentVocab?.meaningVi || "").trim().toLowerCase();
-  const translationCorrect = checkedTranslation && normalizedUserMeaning.length > 0 &&
-    (normalizedUserMeaning === normalizedCorrectMeaning || normalizedCorrectMeaning.includes(normalizedUserMeaning) || normalizedUserMeaning.includes(normalizedCorrectMeaning));
+  const translationCorrect = checkedTranslation && normalizedUserMeaning.length > 0;
 
   const normalizedUserHanzi = hanziAnswer.trim();
   const normalizedCorrectHanzi = (currentVocab?.chinese || "").trim();
@@ -139,34 +136,28 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   }, [quizIndex, quizMode, activeTab, currentQuiz?.answer]);
 
   const switchTab = (tab: StudyTab) => {
-    if (!shuffledVocab.length && tab !== "quiz") return;
-    if (tab === "quiz" && !shuffledVocab.length && !shuffledQuizzes.length) return;
+    if (!vocabItems.length && tab !== "quiz") return;
+    if (tab === "quiz" && !vocabItems.length && !quizItems.length) return;
     setActiveTab(tab);
   };
 
-  const randomOther = (current: number, total: number) => {
-    if (total <= 1) return 0;
-    let next: number;
-    do { next = Math.floor(Math.random() * total); } while (next === current);
-    return next;
-  };
   const nextVocab = () => {
-    if (!shuffledVocab.length) return;
-    setVocabIndex(randomOther(vocabIndex, shuffledVocab.length));
+    if (!vocabItems.length) return;
+    setVocabIndex((vocabIndex + 1) % vocabItems.length);
     setShowMeaning(false); setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
   };
   const prevVocab = () => {
-    if (!shuffledVocab.length) return;
-    setVocabIndex(randomOther(vocabIndex, shuffledVocab.length));
+    if (!vocabItems.length) return;
+    setVocabIndex((vocabIndex - 1 + vocabItems.length) % vocabItems.length);
     setShowMeaning(false); setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
   };
-  const nextQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex(randomOther(quizIndex, practiceQuestions.length)); setQuizResponse(""); };
-  const prevQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex(randomOther(quizIndex, practiceQuestions.length)); setQuizResponse(""); };
+  const nextQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex((quizIndex + 1) % practiceQuestions.length); setQuizResponse(""); };
+  const prevQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex((quizIndex - 1 + practiceQuestions.length) % practiceQuestions.length); setQuizResponse(""); };
 
   const tabTitle = activeTab === "vocabulary" ? "Học từ vựng" : activeTab === "translation" ? "Dịch nghĩa" : activeTab === "hanzi" ? "Chữ Hán" : "Luyện tập";
-  const activeCount = activeTab === "quiz" ? practiceQuestions.length : shuffledVocab.length;
+  const activeCount = activeTab === "quiz" ? practiceQuestions.length : vocabItems.length;
 
   return (
     <SiteLayout user={loaderData.user}>
@@ -193,7 +184,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                     key={tab}
                     type="button"
                     onClick={() => switchTab(tab)}
-                    disabled={!shuffledVocab.length && tab !== "quiz"}
+                    disabled={!vocabItems.length && tab !== "quiz"}
                     className={`rounded-full px-3 py-1.5 text-[11px] font-bold transition sm:rounded-2xl sm:px-5 sm:py-2.5 sm:text-sm ${
                       activeTab === tab ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"
                     } disabled:cursor-not-allowed disabled:opacity-40`}
@@ -252,6 +243,12 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   {!checkedTranslation ? (
                     <button onClick={() => setCheckedTranslation(true)} disabled={!translationAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>
                   ) : null}
+                  {checkedTranslation ? (
+                    <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
+                      <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Đáp án tham khảo</p>
+                      <p className="mt-1 text-base font-extrabold text-slate-900">{currentVocab.meaningVi}</p>
+                    </div>
+                  ) : null}
                   <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
                     <NavBtn onClick={prevVocab} label="Trước" />
                     <NavBtn onClick={nextVocab} label="Tiếp" next />
@@ -274,6 +271,12 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   </div>
                   {!checkedHanzi ? (
                     <button onClick={() => setCheckedHanzi(true)} disabled={!hanziAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>
+                  ) : null}
+                  {checkedHanzi ? (
+                    <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
+                      <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Đáp án</p>
+                      <p className="mt-1 text-2xl font-black text-red-600">{currentVocab.chinese}</p>
+                    </div>
                   ) : null}
                   <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
                     <NavBtn onClick={prevVocab} label="Trước" />

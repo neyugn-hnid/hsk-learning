@@ -201,11 +201,143 @@ Quy tắc:
 - Luôn khuyến khích và tạo động lực học tập.
 - Nếu câu hỏi không liên quan đến tiếng Trung, nhẹ nhàng gợi ý quay lại chủ đề học tập.`;
 
+type ChatMode = "chat" | "conversation";
+
+function asJsonArray(value: unknown): Record<string, unknown>[] {
+  return Array.isArray(value)
+    ? value.filter(
+        (item): item is Record<string, unknown> =>
+          Boolean(item) && typeof item === "object",
+      )
+    : [];
+}
+
+function formatJsonVocabulary(value: unknown) {
+  return asJsonArray(value)
+    .map((item) => {
+      const chinese = String(item.chinese || "").trim();
+      const pinyin = String(item.pinyin || "").trim();
+      const meaning = String(item.meaningVi || item.meaning || "").trim();
+      if (!chinese || !meaning) return "";
+      return `- ${chinese}${pinyin ? ` (${pinyin})` : ""}: ${meaning}`;
+    })
+    .filter(Boolean);
+}
+
+async function buildStudyContext(lessonIds: string[] = [], roadmapId?: string) {
+  const lines: string[] = [];
+
+  if (lessonIds.length > 0) {
+    const lessons = await prisma.lesson.findMany({
+      where: { id: { in: lessonIds } },
+      select: {
+        title: true,
+        description: true,
+        level: true,
+        vocabularies: {
+          select: {
+            chinese: true,
+            pinyin: true,
+            meaningVi: true,
+            exampleChinese: true,
+            examplePinyin: true,
+            exampleMeaning: true,
+          },
+          take: 80,
+        },
+        grammars: {
+          select: {
+            title: true,
+            structure: true,
+            explanation: true,
+            example: true,
+            meaning: true,
+          },
+          take: 20,
+        },
+      },
+    });
+
+    for (const lesson of lessons) {
+      lines.push(`Bài học: ${lesson.title} (${lesson.level})`);
+      if (lesson.description) lines.push(`Mô tả: ${lesson.description}`);
+      if (lesson.vocabularies.length) {
+        lines.push("Từ vựng:");
+        lines.push(
+          ...lesson.vocabularies.map((vocab) => {
+            const example = vocab.exampleChinese
+              ? ` Ví dụ: ${vocab.exampleChinese}${
+                  vocab.examplePinyin ? ` (${vocab.examplePinyin})` : ""
+                }${vocab.exampleMeaning ? ` = ${vocab.exampleMeaning}` : ""}.`
+              : "";
+            return `- ${vocab.chinese} (${vocab.pinyin}): ${vocab.meaningVi}.${example}`;
+          }),
+        );
+      }
+      if (lesson.grammars.length) {
+        lines.push("Ngữ pháp:");
+        lines.push(
+          ...lesson.grammars.map(
+            (grammar) =>
+              `- ${grammar.title}: ${grammar.structure}. ${grammar.explanation}${
+                grammar.example ? ` Ví dụ: ${grammar.example}` : ""
+              }${grammar.meaning ? ` = ${grammar.meaning}` : ""}`,
+          ),
+        );
+      }
+    }
+  }
+
+  if (roadmapId) {
+    const roadmap = await prisma.roadmapItem.findUnique({
+      where: { id: roadmapId },
+    });
+    if (roadmap) {
+      lines.push(`Buổi học: ${roadmap.title}`);
+      if (roadmap.level) lines.push(`Trình độ: ${roadmap.level}`);
+      if (roadmap.description) lines.push(`Mô tả: ${roadmap.description}`);
+      const vocab = formatJsonVocabulary(roadmap.vocabulary);
+      const phrases = formatJsonVocabulary(roadmap.phrases);
+      if (vocab.length) lines.push("Từ vựng:", ...vocab.slice(0, 80));
+      if (phrases.length) lines.push("Mẫu câu:", ...phrases.slice(0, 60));
+    }
+  }
+
+  return lines.join("\n").slice(0, 12000);
+}
+
+function buildSystemPrompt(studyContext: string, mode: ChatMode = "chat") {
+  const base = `Bạn là trợ lý AI học tiếng Trung, chuyên giúp người dùng học từ vựng, ngữ pháp, phát âm và luyện thi HSK.
+
+Quy tắc:
+- Trả lời bằng tiếng Việt, ngắn gọn, dễ hiểu.
+- Khi giải thích từ vựng: đưa chữ Hán, pinyin, nghĩa tiếng Việt và ví dụ.
+- Khi giải thích ngữ pháp: đưa cấu trúc, ví dụ có pinyin và nghĩa.
+- Khi người dùng hỏi về cách viết chữ Hán: hướng dẫn thứ tự nét cơ bản.
+- Ưu tiên dữ liệu trong "Ngữ cảnh bài đang học" nếu có.
+- Nếu không chắc, nói rõ là chưa thấy trong bài hiện tại rồi đưa gợi ý học tiếp.
+- Nếu câu hỏi không liên quan đến tiếng Trung, nhẹ nhàng gợi ý quay lại chủ đề học tập.`;
+
+  const conversation = `\n\nChế độ hội thoại:
+- Đóng vai bạn luyện nói tiếng Trung.
+- Trả lời 1-3 câu ngắn.
+- Sửa lỗi tiếng Trung của người học nếu có.
+- Ưu tiên dùng từ vựng trong bài hiện tại.
+- Với câu tiếng Trung, kèm pinyin và nghĩa tiếng Việt ngắn.`;
+
+  const context = studyContext
+    ? `\n\nNgữ cảnh bài đang học:\n${studyContext}`
+    : "\n\nNgữ cảnh bài đang học: chưa có bài cụ thể.";
+
+  return `${base}${mode === "conversation" ? conversation : ""}${context}`;
+}
+
 export async function action({ request }: Route.ActionArgs) {
   const user = await requireUser(request);
   const body = (await request.json()) as {
     intent?: "chat" | "practice_generate" | "practice_check";
     messages?: ChatMessage[];
+    mode?: ChatMode;
     lessonIds?: string[];
     roadmapId?: string;
     previousWords?: string[];
@@ -224,8 +356,9 @@ export async function action({ request }: Route.ActionArgs) {
     }
 
     try {
+      const studyContext = await buildStudyContext(body.lessonIds || [], body.roadmapId);
       const content = await callAI([
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: buildSystemPrompt(studyContext, body.mode || "chat") },
         ...messages.slice(-20),
       ]);
       return data({ reply: content });

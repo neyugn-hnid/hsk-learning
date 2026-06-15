@@ -42,6 +42,12 @@ type Pages = {
   "/dashboard": {
     params: {};
   };
+  "/ai-assistant": {
+    params: {};
+  };
+  "/ai-practice": {
+    params: {};
+  };
   "/admin": {
     params: {};
   };
@@ -91,10 +97,19 @@ type Pages = {
   "/api/ai/chat": {
     params: {};
   };
+  "/api/ai/practice": {
+    params: {};
+  };
+  "/api/ai/split-lessons": {
+    params: {};
+  };
   "/api/ai/tts": {
     params: {};
   };
   "/api/admin/lesson-import": {
+    params: {};
+  };
+  "/api/admin/lesson-import-status": {
     params: {};
   };
 };
@@ -102,7 +117,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/admin" | "/login" | "/register" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/tts" | "/api/admin/lesson-import";
+    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/admin" | "/login" | "/register" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
@@ -139,6 +154,14 @@ type RouteFiles = {
   "routes/dashboard.tsx": {
     id: "routes/dashboard";
     page: "/dashboard";
+  };
+  "routes/ai-assistant.tsx": {
+    id: "routes/ai-assistant";
+    page: "/ai-assistant";
+  };
+  "routes/ai-practice.tsx": {
+    id: "routes/ai-practice";
+    page: "/ai-practice";
   };
   "routes/admin.tsx": {
     id: "routes/admin";
@@ -200,6 +223,14 @@ type RouteFiles = {
     id: "routes/api.ai.chat";
     page: "/api/ai/chat";
   };
+  "routes/api.ai.practice.ts": {
+    id: "routes/api.ai.practice";
+    page: "/api/ai/practice";
+  };
+  "routes/api.ai.split-lessons.ts": {
+    id: "routes/api.ai.split-lessons";
+    page: "/api/ai/split-lessons";
+  };
   "routes/api.ai.tts.ts": {
     id: "routes/api.ai.tts";
     page: "/api/ai/tts";
@@ -207,6 +238,10 @@ type RouteFiles = {
   "routes/api.admin.lesson-import.ts": {
     id: "routes/api.admin.lesson-import";
     page: "/api/admin/lesson-import";
+  };
+  "routes/api.admin.lesson-import-status.ts": {
+    id: "routes/api.admin.lesson-import-status";
+    page: "/api/admin/lesson-import-status";
   };
 };
 
@@ -221,6 +256,8 @@ type RouteModules = {
   "routes/roadmap.$roadmapId": typeof import("./app/routes/roadmap.$roadmapId.tsx");
   "routes/profile": typeof import("./app/routes/profile.tsx");
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
+  "routes/ai-assistant": typeof import("./app/routes/ai-assistant.tsx");
+  "routes/ai-practice": typeof import("./app/routes/ai-practice.tsx");
   "routes/admin": typeof import("./app/routes/admin.tsx");
   "routes/login": typeof import("./app/routes/login.tsx");
   "routes/register": typeof import("./app/routes/register.tsx");
@@ -236,6 +273,9 @@ type RouteModules = {
   "routes/api.mobile.roadmap.$roadmapId": typeof import("./app/routes/api.mobile.roadmap.$roadmapId.ts");
   "routes/api.vocabularies.import": typeof import("./app/routes/api.vocabularies.import.ts");
   "routes/api.ai.chat": typeof import("./app/routes/api.ai.chat.ts");
+  "routes/api.ai.practice": typeof import("./app/routes/api.ai.practice.ts");
+  "routes/api.ai.split-lessons": typeof import("./app/routes/api.ai.split-lessons.ts");
   "routes/api.ai.tts": typeof import("./app/routes/api.ai.tts.ts");
   "routes/api.admin.lesson-import": typeof import("./app/routes/api.admin.lesson-import.ts");
+  "routes/api.admin.lesson-import-status": typeof import("./app/routes/api.admin.lesson-import-status.ts");
 };

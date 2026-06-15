@@ -159,7 +159,7 @@ async function importLessons(form: FormData) {
             level: String(w.level || level),
           };
         })
-        .filter(Boolean);
+        .filter((v): v is NonNullable<typeof v> => v != null);
 
       if (!vocabularies.length) continue;
 

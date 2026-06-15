@@ -10,6 +10,8 @@ export default [
   route("roadmap/:roadmapId", "routes/roadmap.$roadmapId.tsx"),
   route("profile", "routes/profile.tsx"),
   route("dashboard", "routes/dashboard.tsx"),
+  route("ai-assistant", "routes/ai-assistant.tsx"),
+  route("ai-practice", "routes/ai-practice.tsx"),
   route("admin", "routes/admin.tsx"),
   route("login", "routes/login.tsx"),
   route("register", "routes/register.tsx"),
@@ -25,6 +27,9 @@ export default [
   route("api/mobile/roadmap/:roadmapId", "routes/api.mobile.roadmap.$roadmapId.ts"),
   route("api/vocabularies/import", "routes/api.vocabularies.import.ts"),
   route("api/ai/chat", "routes/api.ai.chat.ts"),
+  route("api/ai/practice", "routes/api.ai.practice.ts"),
+  route("api/ai/split-lessons", "routes/api.ai.split-lessons.ts"),
   route("api/ai/tts", "routes/api.ai.tts.ts"),
   route("api/admin/lesson-import", "routes/api.admin.lesson-import.ts"),
+  route("api/admin/lesson-import-status", "routes/api.admin.lesson-import-status.ts"),
 ] satisfies RouteConfig;

@@ -59,7 +59,7 @@ export async function action({ request }: Route.ActionArgs) {
             level: String(w.level || level),
           };
         })
-        .filter(Boolean);
+        .filter((v): v is NonNullable<typeof v> => v != null);
 
       if (!vocabularies.length) continue;
 
