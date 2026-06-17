@@ -62,6 +62,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [quizIndex, setQuizIndex] = useState(0);
   const [quizResponse, setQuizResponse] = useState("");
   const [quizMode, setQuizMode] = useState<QuizMode>("meaning");
+  const [lastAnswers, setLastAnswers] = useState<string[]>([]);
 
   const vocabItems = lesson.vocabularies;
   const quizItems = lesson.quizzes;
@@ -122,9 +123,10 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     setHanziAnswer(""); setCheckedHanzi(false);
     setQuizIndex(0); setQuizResponse("");
     setQuizMode("meaning");
+    setLastAnswers([]);
   }, [activeTab]);
 
-  useEffect(() => { setQuizIndex(0); setQuizResponse(""); }, [quizMode]);
+  useEffect(() => { setQuizIndex(0); setQuizResponse(""); setLastAnswers([]); }, [quizMode]);
 
   // Reset quizResponse khi chuyển câu hỏi
   useEffect(() => { setQuizResponse(""); }, [quizIndex]);
@@ -153,11 +155,61 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     setShowMeaning(false); setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
   };
-  const nextQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex((quizIndex + 1) % practiceQuestions.length); setQuizResponse(""); };
-  const prevQuiz = () => { if (!practiceQuestions.length) return; setQuizIndex((quizIndex - 1 + practiceQuestions.length) % practiceQuestions.length); setQuizResponse(""); };
+  const nextQuiz = () => {
+    if (!practiceQuestions.length) return;
+    if (currentQuiz?.answer) {
+      setLastAnswers((prev) => {
+        const next = [...prev, currentQuiz.answer as string];
+        return next.slice(-3);
+      });
+    }
+    setQuizIndex((quizIndex + 1) % practiceQuestions.length);
+    setQuizResponse("");
+  };
+  const prevQuiz = () => {
+    if (!practiceQuestions.length) return;
+    if (currentQuiz?.answer) {
+      setLastAnswers((prev) => {
+        const next = [...prev, currentQuiz.answer as string];
+        return next.slice(-3);
+      });
+    }
+    setQuizIndex((quizIndex - 1 + practiceQuestions.length) % practiceQuestions.length);
+    setQuizResponse("");
+  };
 
   const tabTitle = activeTab === "vocabulary" ? "Học từ vựng" : activeTab === "translation" ? "Dịch nghĩa" : activeTab === "hanzi" ? "Chữ Hán" : "Luyện tập";
   const activeCount = activeTab === "quiz" ? practiceQuestions.length : vocabItems.length;
+
+  // Build dynamic options: current answer + last 3 answers as wrong options
+  const currentOptions = useMemo(() => {
+    if (!currentQuiz?.answer) return [];
+    const answer = currentQuiz.answer as string;
+    const distractorSet = [...new Set(lastAnswers.filter((a) => a !== answer))].slice(-3);
+    let opts = [answer, ...distractorSet];
+    if (opts.length < 4) {
+      const rest = vocabItems
+        .filter((v) => {
+          const val =
+            quizMode === "pinyin"
+              ? v.pinyin
+              : quizMode === "recognition" || quizMode === "listening"
+                ? v.chinese
+                : v.meaningVi;
+          return val && val !== answer && !opts.includes(val);
+        })
+        .map((v) =>
+          quizMode === "pinyin"
+            ? v.pinyin
+            : quizMode === "recognition" || quizMode === "listening"
+              ? v.chinese
+              : v.meaningVi,
+        )
+        .filter(Boolean);
+      opts = [...opts, ...shuffleItems(rest)].slice(0, 4);
+    }
+    return shuffleItems([...new Set(opts)]);
+  }, [currentQuiz, lastAnswers, quizMode, vocabItems]);
 
   return (
     <SiteLayout user={loaderData.user}>
@@ -306,7 +358,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                     </button>
                   ) : null}
                   <div className="mt-4 grid gap-2">
-                    {(Array.isArray(currentQuiz.options) ? currentQuiz.options.map((o: unknown) => String(o)) : []).map((option: string) => {
+                    {currentOptions.map((option: string) => {
                       const isSelected = quizResponse === option;
                       const isCorrectOpt = option === currentQuiz.answer;
                       return (

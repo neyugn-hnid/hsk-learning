@@ -201,7 +201,7 @@ Quy tắc:
 - Luôn khuyến khích và tạo động lực học tập.
 - Nếu câu hỏi không liên quan đến tiếng Trung, nhẹ nhàng gợi ý quay lại chủ đề học tập.`;
 
-type ChatMode = "chat" | "conversation";
+type ChatMode = "chat" | "conversation" | "translate";
 
 function asJsonArray(value: unknown): Record<string, unknown>[] {
   return Array.isArray(value)
@@ -325,17 +325,27 @@ Quy tắc:
 - Ưu tiên dùng từ vựng trong bài hiện tại.
 - Với câu tiếng Trung, kèm pinyin và nghĩa tiếng Việt ngắn.`;
 
+  const translate = `\n\nChế độ dịch:
+- Người dùng nhập tiếng Việt, bạn hãy PHÂN TÍCH và DỊCH sang tiếng Trung.
+- Phân tích theo cấu trúc:
+  1. Chữ Hán (kết quả dịch)
+  2. Pinyin
+  3. Nghĩa tiếng Việt của từng từ/cụm từ chính
+  4. Ví dụ câu ngắn bằng tiếng Trung (kèm pinyin và nghĩa tiếng Việt)
+- Nếu người dùng nhập một từ đơn: giải thích từ đó, đưa các cách dùng và ví dụ.
+- Nếu người dùng nhập cả câu: dịch toàn bộ câu, phân tích từ vựng chính trong câu.`;
+
   const context = studyContext
     ? `\n\nNgữ cảnh bài đang học:\n${studyContext}`
     : "\n\nNgữ cảnh bài đang học: chưa có bài cụ thể.";
 
-  return `${base}${mode === "conversation" ? conversation : ""}${context}`;
+  return `${base}${mode === "conversation" ? conversation : mode === "translate" ? translate : ""}${context}`;
 }
 
 export async function action({ request }: Route.ActionArgs) {
   const user = await requireUser(request);
   const body = (await request.json()) as {
-    intent?: "chat" | "practice_generate" | "practice_check";
+    intent?: "chat" | "practice_generate" | "practice_check" | "hanzi_sentence" | "hanzi_check";
     messages?: ChatMessage[];
     mode?: ChatMode;
     lessonIds?: string[];
@@ -344,6 +354,7 @@ export async function action({ request }: Route.ActionArgs) {
     userAnswer?: string;
     question?: string;
     correctAnswer?: string;
+    sentence?: { chinese: string; pinyin: string; meaningVi: string };
   };
 
   const intent = body.intent || "chat";
@@ -484,6 +495,119 @@ Hãy đưa ra phản hồi khuyến khích.`,
       return data({
         correct: isCorrect,
         feedback: feedback || (isCorrect ? "Chính xác! 🎉" : `Đáp án đúng: ${correctAnswer}`),
+      });
+    } catch {
+      return data({ correct: isCorrect, feedback: "" });
+    }
+  }
+
+  // ===== HANZI SENTENCE =====
+  if (intent === "hanzi_sentence") {
+    const lessonIds = body.lessonIds || [];
+    const roadmapId = body.roadmapId;
+    let vocabData: { chinese: string; pinyin: string; meaningVi: string }[] = [];
+
+    if (lessonIds.length > 0) {
+      vocabData = await prisma.vocabulary.findMany({
+        where: { lessonId: { in: lessonIds } },
+        select: { chinese: true, pinyin: true, meaningVi: true },
+        take: 50,
+      });
+    }
+
+    if (vocabData.length === 0 && roadmapId) {
+      const roadmap = await prisma.roadmapItem.findUnique({ where: { id: roadmapId } });
+      if (roadmap) {
+        const rawVocab = (roadmap.vocabulary as any[]) || [];
+        const rawPhrases = (roadmap.phrases as any[]) || [];
+        vocabData = [...rawVocab, ...rawPhrases].map((v: any) => ({
+          chinese: v.chinese || "",
+          pinyin: v.pinyin || "",
+          meaningVi: v.meaningVi || v.meaning || "",
+        }));
+      }
+    }
+
+    if (vocabData.length === 0) {
+      vocabData = await prisma.vocabulary.findMany({
+        select: { chinese: true, pinyin: true, meaningVi: true },
+        take: 40,
+        orderBy: { createdAt: "desc" },
+      });
+    }
+
+    const shuffled = shuffleArray(vocabData);
+    const vocabList = shuffled
+      .map((v) => `${v.chinese} (${v.pinyin}) = ${v.meaningVi}`)
+      .join("\n");
+
+    const prompt = `Bạn là giáo viên tiếng Trung. Dựa vào danh sách từ vựng sau, hãy tạo MỘT CÂU tiếng Trung ngắn (không phải từ đơn) sử dụng các từ trong danh sách.
+Yêu cầu:
+- Câu phải có ý nghĩa, tự nhiên, ngắn gọn (5-15 từ).
+- Kèm pinyin và nghĩa tiếng Việt.
+- Chỉ trả về JSON thuần, không markdown.
+Định dạng:
+{"chinese":"câu tiếng Trung","pinyin":"pinyin","meaningVi":"nghĩa tiếng Việt"}
+
+Danh sách từ:
+${vocabList}`;
+
+    try {
+      const content = await callAI([
+        { role: "system", content: "Trả về JSON thuần, không markdown." },
+        { role: "user", content: prompt },
+      ], 1.0);
+
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) return data({ error: "AI không tạo được câu." }, { status: 502 });
+
+      const s = JSON.parse(jsonMatch[0]);
+      if (!s.chinese || !s.pinyin || !s.meaningVi) {
+        return data({ error: "AI trả về định dạng không hợp lệ." }, { status: 502 });
+      }
+
+      return data({ sentence: { chinese: s.chinese, pinyin: s.pinyin, meaningVi: s.meaningVi } });
+    } catch {
+      return data({ error: "AI trả về định dạng không hợp lệ." }, { status: 502 });
+    }
+  }
+
+  // ===== HANZI CHECK =====
+  if (intent === "hanzi_check") {
+    const { userAnswer, sentence } = body;
+    if (!userAnswer?.trim() || !sentence?.chinese) {
+      return data({ error: "Thiếu thông tin." }, { status: 400 });
+    }
+
+    const normalize = (s: string) =>
+      s.trim().replace(/[\s,，。.!！?？;；：、]/g, "").toLowerCase();
+    const userNorm = normalize(userAnswer);
+    const correctNorm = normalize(sentence.chinese);
+    const isCorrect = userNorm === correctNorm;
+
+    try {
+      const feedback = await callAI([
+        {
+          role: "system",
+          content:
+            "Bạn là giáo viên tiếng Trung. Phản hồi ngắn 1-2 câu bằng tiếng Việt, kiểm tra chữ Hán người dùng viết có đúng không. Nếu sai, chỉ ra lỗi và nhắc đáp án đúng. Khuyến khích học viên.",
+        },
+        {
+          role: "user",
+          content: `Câu đúng: "${sentence.chinese}" (${sentence.pinyin}) = ${sentence.meaningVi}
+Học viên viết: "${userAnswer}"
+Kết quả: ${isCorrect ? "ĐÚNG" : "SAI"}
+Hãy đưa ra phản hồi.`,
+        },
+      ]);
+
+      return data({
+        correct: isCorrect,
+        feedback:
+          feedback ||
+          (isCorrect
+            ? "Chính xác! 🎉"
+            : `Chưa đúng. Câu đúng là: ${sentence.chinese}`),
       });
     } catch {
       return data({ correct: isCorrect, feedback: "" });

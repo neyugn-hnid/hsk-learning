@@ -131,6 +131,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [qzI, setQzI] = useState(0);
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("meaning");
+  const [lastAnswers, setLastAnswers] = useState<string[]>([]);
 
   const sVocab = lesson.vocabularies;
 
@@ -188,6 +189,36 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     tlC &&
     tlA.trim().length > 0;
   const hzOK = hzC && hzA.trim() === (cVocab?.chinese || "").trim();
+  // Build dynamic options: current answer + last 3 answers as wrong options
+  const currentOptions = useMemo(() => {
+    if (!cQuiz?.answer) return [];
+    const answer = cQuiz.answer as string;
+    const distractorSet = [...new Set(lastAnswers.filter((a) => a !== answer))].slice(-3);
+    let opts = [answer, ...distractorSet];
+    if (opts.length < 4) {
+      const rest = sVocab
+        .filter((v) => {
+          const val =
+            qzM === "pinyin"
+              ? v.pinyin
+              : qzM === "recognition" || qzM === "listening"
+                ? v.chinese
+                : v.meaningVi;
+          return val && val !== answer && !opts.includes(val);
+        })
+        .map((v) =>
+          qzM === "pinyin"
+            ? v.pinyin
+            : qzM === "recognition" || qzM === "listening"
+              ? v.chinese
+              : v.meaningVi,
+        )
+        .filter(Boolean);
+      opts = [...opts, ...shuffleItems(rest)].slice(0, 4);
+    }
+    return shuffleItems([...new Set(opts)]);
+  }, [cQuiz, lastAnswers, qzM, sVocab]);
+
   const qzHas = qzR.trim().length > 0;
   const qzOK = qzHas && qzR.trim() === (cQuiz?.answer || "").trim();
 
@@ -201,10 +232,12 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     setQzI(0);
     setQzR("");
     setQzM("meaning");
+    setLastAnswers([]);
   }, [activeTab]);
   useEffect(() => {
     setQzI(0);
     setQzR("");
+    setLastAnswers([]);
   }, [qzM]);
   useEffect(() => {
     setQzR("");
@@ -238,10 +271,22 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const nQ = () => {
     if (!genQ.length) return;
+    if (cQuiz?.answer) {
+      setLastAnswers((prev) => {
+        const next = [...prev, cQuiz.answer as string];
+        return next.slice(-3);
+      });
+    }
     setQzI((qzI + 1) % genQ.length);
   };
   const pQ = () => {
     if (!genQ.length) return;
+    if (cQuiz?.answer) {
+      setLastAnswers((prev) => {
+        const next = [...prev, cQuiz.answer as string];
+        return next.slice(-3);
+      });
+    }
     setQzI((qzI - 1 + genQ.length) % genQ.length);
   };
 
@@ -476,10 +521,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     </button>
                   ) : null}
                   <div className="mt-4 grid gap-2">
-                    {(Array.isArray(cQuiz.options)
-                      ? cQuiz.options.map((o: unknown) => String(o))
-                      : []
-                    ).map((opt: string) => {
+                    {currentOptions.map((opt: string) => {
                       const s = qzR === opt;
                       const c = opt === cQuiz.answer;
                       return (
