@@ -117,23 +117,60 @@ function speakChinese(text: string) {
   window.speechSynthesis.speak(u);
 }
 
+function playSound(correct: boolean) {
+  if (typeof window === "undefined") return;
+  try {
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    if (correct) {
+      // Âm "ding" vui tai: 2 nốt cao ngắn
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(880, ctx.currentTime);        // A5
+      osc.frequency.setValueAtTime(1100, ctx.currentTime + 0.1); // C#6
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.3);
+    } else {
+      // Âm "buzz" trầm ngắn
+      osc.type = "square";
+      osc.frequency.setValueAtTime(200, ctx.currentTime);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.25);
+    }
+  } catch { /* bỏ qua nếu không hỗ trợ */ }
+}
+
 export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const { lesson } = loaderData;
   const [activeTab, setActiveTab] = useState<StudyTab>(
     lesson.vocabularies.length ? "vocabulary" : "quiz",
   );
-  const [vocabIndex, setVocabIndex] = useState(0);
+  const [vocabPos, setVocabPos] = useState(0);
+  const [vocabSk, setVocabSk] = useState(0);
   const [showMeaning, setShowMeaning] = useState(false);
   const [tlA, setTlA] = useState("");
   const [tlC, setTlC] = useState(false);
   const [hzA, setHzA] = useState("");
   const [hzC, setHzC] = useState(false);
-  const [qzI, setQzI] = useState(0);
+  const [quizPos, setQuizPos] = useState(0);
+  const [quizSk, setQuizSk] = useState(0);
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("meaning");
-  const [lastAnswers, setLastAnswers] = useState<string[]>([]);
 
   const sVocab = lesson.vocabularies;
+
+  // Trộn thứ tự: đi hết 1 vòng mới trộn lại
+  const vocabOrder = useMemo(
+    () => shuffleItems([...Array(sVocab.length).keys()]),
+    [sVocab.length, vocabSk],
+  );
+  const vocabIdx = vocabOrder[vocabPos] ?? 0;
 
   // Warm-up speechSynthesis cho lần phát đầu tiên
   useEffect(() => {
@@ -161,6 +198,9 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
           : qzM === "recognition" || qzM === "listening"
             ? v.chinese
             : v.meaningVi;
+      // Lấy ngẫu nhiên 3 đáp án từ câu khác làm đáp án sai
+      const uniqueD = [...new Set(d.filter((x) => x !== a))];
+      const randomD = shuffleItems(uniqueD).slice(0, 3);
       return {
         type:
           qzM === "pinyin"
@@ -176,76 +216,58 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
               : qzM === "recognition"
                 ? `Chữ Hán nào có pinyin "${v.pinyin}"?`
                 : `"${v.chinese}" nghĩa là gì?`,
-        options: shuffleItems([...new Set([a, ...d])].slice(0, 4)),
+        options: shuffleItems([a, ...randomD]),
         answer: a,
         promptPinyin: v.pinyin,
       };
     });
   }, [qzM, sVocab]);
 
-  const cVocab = sVocab[vocabIndex];
-  const cQuiz = genQ[qzI];
+  const quizOrder = useMemo(
+    () => shuffleItems([...Array(genQ.length).keys()]),
+    [genQ.length, quizSk],
+  );
+  const quizIdx = quizOrder[quizPos] ?? 0;
+
+  const cVocab = sVocab[vocabIdx];
+  const cQuiz = genQ[quizIdx];
   const tlOK =
     tlC &&
-    tlA.trim().length > 0;
+    tlA.trim().toLowerCase() === (cVocab?.meaningVi || "").trim().toLowerCase();
   const hzOK = hzC && hzA.trim() === (cVocab?.chinese || "").trim();
-  // Build dynamic options: current answer + last 3 answers as wrong options
-  const currentOptions = useMemo(() => {
-    if (!cQuiz?.answer) return [];
-    const answer = cQuiz.answer as string;
-    const distractorSet = [...new Set(lastAnswers.filter((a) => a !== answer))].slice(-3);
-    let opts = [answer, ...distractorSet];
-    if (opts.length < 4) {
-      const rest = sVocab
-        .filter((v) => {
-          const val =
-            qzM === "pinyin"
-              ? v.pinyin
-              : qzM === "recognition" || qzM === "listening"
-                ? v.chinese
-                : v.meaningVi;
-          return val && val !== answer && !opts.includes(val);
-        })
-        .map((v) =>
-          qzM === "pinyin"
-            ? v.pinyin
-            : qzM === "recognition" || qzM === "listening"
-              ? v.chinese
-              : v.meaningVi,
-        )
-        .filter(Boolean);
-      opts = [...opts, ...shuffleItems(rest)].slice(0, 4);
-    }
-    return shuffleItems([...new Set(opts)]);
-  }, [cQuiz, lastAnswers, qzM, sVocab]);
-
   const qzHas = qzR.trim().length > 0;
   const qzOK = qzHas && qzR.trim() === (cQuiz?.answer || "").trim();
 
+  // Phát âm thanh khi kiểm tra dịch nghĩa
   useEffect(() => {
-    setVocabIndex(0);
+    if (tlC) playSound(tlOK);
+  }, [tlC, tlOK]);
+  // Phát âm thanh khi kiểm tra chữ Hán
+  useEffect(() => {
+    if (hzC) playSound(hzOK);
+  }, [hzC, hzOK]);
+  // Phát âm thanh khi chọn đáp án quiz
+  useEffect(() => {
+    if (qzHas) playSound(qzOK);
+  }, [qzHas, qzOK]);
+
+  useEffect(() => {
+    setVocabPos(0);
+    setVocabSk((k) => k + 1);
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
     setHzA("");
     setHzC(false);
-    setQzI(0);
+    setQuizPos(0);
+    setQuizSk((k) => k + 1);
     setQzR("");
     setQzM("meaning");
-    setLastAnswers([]);
   }, [activeTab]);
-  useEffect(() => {
-    setQzI(0);
-    setQzR("");
-    setLastAnswers([]);
-  }, [qzM]);
-  useEffect(() => {
-    setQzR("");
-  }, [qzI]);
   useEffect(() => {
     if (activeTab === "quiz" && qzM === "listening" && cQuiz?.answer)
       speakChinese(cQuiz.answer as string);
-  }, [qzI, qzM, activeTab, cQuiz?.answer]);
+  }, [quizIdx, qzM, activeTab, cQuiz?.answer]);
 
   const sw = (t: StudyTab) => {
     if (!sVocab.length && t !== "quiz") return;
@@ -253,7 +275,12 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const nV = () => {
     if (!sVocab.length) return;
-    setVocabIndex((vocabIndex + 1) % sVocab.length);
+    if (vocabPos + 1 >= vocabOrder.length) {
+      setVocabSk((k) => k + 1);
+      setVocabPos(0);
+    } else {
+      setVocabPos(vocabPos + 1);
+    }
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
@@ -262,7 +289,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const pV = () => {
     if (!sVocab.length) return;
-    setVocabIndex((vocabIndex - 1 + sVocab.length) % sVocab.length);
+    setVocabPos((vocabPos - 1 + vocabOrder.length) % vocabOrder.length);
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
@@ -271,23 +298,18 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   };
   const nQ = () => {
     if (!genQ.length) return;
-    if (cQuiz?.answer) {
-      setLastAnswers((prev) => {
-        const next = [...prev, cQuiz.answer as string];
-        return next.slice(-3);
-      });
+    setQzR("");
+    if (quizPos + 1 >= quizOrder.length) {
+      setQuizSk((k) => k + 1);
+      setQuizPos(0);
+    } else {
+      setQuizPos(quizPos + 1);
     }
-    setQzI((qzI + 1) % genQ.length);
   };
   const pQ = () => {
     if (!genQ.length) return;
-    if (cQuiz?.answer) {
-      setLastAnswers((prev) => {
-        const next = [...prev, cQuiz.answer as string];
-        return next.slice(-3);
-      });
-    }
-    setQzI((qzI - 1 + genQ.length) % genQ.length);
+    setQzR("");
+    setQuizPos((quizPos - 1 + quizOrder.length) % quizOrder.length);
   };
 
   const title =
@@ -314,8 +336,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                 <h2 className="text-lg font-bold sm:text-xl">{title}</h2>
                 <p className="text-xs text-slate-400 sm:text-sm">
                   {activeTab === "quiz"
-                    ? `${qzI + 1}/${cnt}`
-                    : `${vocabIndex + 1}/${cnt}`}
+                    ? `${quizPos + 1}/${cnt}`
+                    : `${vocabPos + 1}/${cnt}`}
                 </p>
               </div>
               <div className="-mx-1 flex flex-wrap justify-center gap-1">
@@ -495,7 +517,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     ).map((m) => (
                       <button
                         key={m}
-                        onClick={() => setQzM(m)}
+                        onClick={() => { setQzM(m); setQuizPos(0); setQzR(""); }}
                         className={`rounded-full px-3 py-1.5 text-[11px] font-bold sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${qzM === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}
                       >
                         {m === "meaning"
@@ -521,7 +543,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     </button>
                   ) : null}
                   <div className="mt-4 grid gap-2">
-                    {currentOptions.map((opt: string) => {
+                    {(cQuiz.options as string[]).map((opt: string) => {
                       const s = qzR === opt;
                       const c = opt === cQuiz.answer;
                       return (
