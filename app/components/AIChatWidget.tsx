@@ -64,6 +64,7 @@ export function AIChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const prevWordsRef = useRef<string[]>([]);
+  const prevSentencesRef = useRef<string[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [speaking, setSpeaking] = useState(false);
 
@@ -153,6 +154,9 @@ export function AIChatWidget() {
     setLoading(true);
     try {
       const body = addStudyContext({ intent: "hanzi_sentence" });
+      if (prevSentencesRef.current.length > 0) {
+        body.previousSentences = prevSentencesRef.current;
+      }
       const response = await fetch("/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -170,6 +174,11 @@ export function AIChatWidget() {
       }
 
       hanziSentenceRef.current = data.sentence;
+      const sentChinese = data.sentence.chinese?.trim();
+      if (sentChinese && !prevSentencesRef.current.includes(sentChinese)) {
+        prevSentencesRef.current.push(sentChinese);
+        if (prevSentencesRef.current.length > 30) prevSentencesRef.current.shift();
+      }
       pushAssistant(
         `Viết chữ Hán cho câu sau:\n\nPinyin: ${data.sentence.pinyin}\nNghĩa: ${data.sentence.meaningVi}\n\nNhập chữ Hán của bạn vào ô bên dưới.`,
       );
@@ -249,6 +258,7 @@ export function AIChatWidget() {
         setTranslationActiveState(false);
         setHanziActiveState(false);
         hanziSentenceRef.current = null;
+        prevSentencesRef.current = [];
         pushAssistant(`Đã kết thúc ${label}. Gõ luyện tập, luyện chữ Hán hoặc dịch để bắt đầu!`);
         return;
       }
@@ -262,6 +272,7 @@ export function AIChatWidget() {
         setConvoActiveState(false);
         setTranslationActiveState(false);
         hanziSentenceRef.current = null;
+        prevSentencesRef.current = [];
         pushAssistant(
           "Bắt đầu luyện viết chữ Hán! Tôi sẽ đưa câu, bạn gõ chữ Hán tương ứng. Gõ kết thúc để dừng.",
         );

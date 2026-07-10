@@ -505,6 +505,7 @@ Hãy đưa ra phản hồi khuyến khích.`,
   if (intent === "hanzi_sentence") {
     const lessonIds = body.lessonIds || [];
     const roadmapId = body.roadmapId;
+    const previousSentences = (body as any).previousSentences as string[] || [];
     let vocabData: { chinese: string; pinyin: string; meaningVi: string }[] = [];
 
     if (lessonIds.length > 0) {
@@ -544,19 +545,22 @@ Hãy đưa ra phản hồi khuyến khích.`,
     const prompt = `Bạn là giáo viên tiếng Trung. Dựa vào danh sách từ vựng sau, hãy tạo MỘT CÂU tiếng Trung ngắn (không phải từ đơn) sử dụng các từ trong danh sách.
 Yêu cầu:
 - Câu phải có ý nghĩa, tự nhiên, ngắn gọn (5-15 từ).
+- MỖI LẦN GỌI PHẢI TẠO CÂU KHÁC NHAU, không lặp lại câu cũ.
+- Đa dạng chủ đề: giới thiệu bản thân, gia đình, mua sắm, trường học, công việc, thời tiết, sở thích, du lịch, ăn uống...
+- Cố gắng tăng dần độ khó, dùng nhiều từ vựng khác nhau trong danh sách.
 - Kèm pinyin và nghĩa tiếng Việt.
 - Chỉ trả về JSON thuần, không markdown.
 Định dạng:
 {"chinese":"câu tiếng Trung","pinyin":"pinyin","meaningVi":"nghĩa tiếng Việt"}
 
-Danh sách từ:
+${previousSentences.length > 0 ? `CÁC CÂU ĐÃ DÙNG (KHÔNG ĐƯỢC LẶP LẠI):\n${previousSentences.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\n` : ""}Danh sách từ:
 ${vocabList}`;
 
     try {
       const content = await callAI([
-        { role: "system", content: "Trả về JSON thuần, không markdown." },
+        { role: "system", content: "Trả về JSON thuần, không markdown. Mỗi lần tạo câu tiếng Trung KHÁC NHAU, đa dạng chủ đề, không lặp lại câu cũ." },
         { role: "user", content: prompt },
-      ], 1.0);
+      ], 1.2); // higher temperature for variety
 
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (!jsonMatch) return data({ error: "AI không tạo được câu." }, { status: 502 });
