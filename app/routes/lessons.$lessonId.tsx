@@ -1,5 +1,5 @@
 import type { Route } from "./+types/lessons.$lessonId";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { data } from "react-router";
 import {
   ChevronLeft,
@@ -93,6 +93,8 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [quizSk, setQuizSk] = useState(0);
   const [quizResponse, setQuizResponse] = useState("");
   const [quizMode, setQuizMode] = useState<QuizMode>("meaning");
+  const translationInputRef = useRef<HTMLInputElement>(null);
+  const hanziInputRef = useRef<HTMLInputElement>(null);
 
   const vocabItems = lesson.vocabularies;
 
@@ -194,13 +196,22 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     }
   }, [quizIdx, quizMode, activeTab, currentQuiz?.answer]);
 
+  // Tự động focus input khi chuyển từ mới
+  useEffect(() => {
+    if (activeTab === "translation") {
+      translationInputRef.current?.focus();
+    } else if (activeTab === "hanzi") {
+      hanziInputRef.current?.focus();
+    }
+  }, [vocabIdx, activeTab]);
+
   const switchTab = (tab: StudyTab) => {
     if (!vocabItems.length && tab !== "quiz") return;
     if (tab === "quiz" && !vocabItems.length && !quizItems.length) return;
     setActiveTab(tab);
   };
 
-  const nextVocab = () => {
+  const nextVocab = useCallback(() => {
     if (!vocabItems.length) return;
     if (vocabPos + 1 >= vocabOrder.length) {
       setVocabSk((k) => k + 1);
@@ -210,14 +221,14 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     }
     setShowMeaning(false); setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
-  };
-  const prevVocab = () => {
+  }, [vocabItems.length, vocabPos, vocabOrder.length]);
+  const prevVocab = useCallback(() => {
     if (!vocabItems.length) return;
     setVocabPos((vocabPos - 1 + vocabOrder.length) % vocabOrder.length);
     setShowMeaning(false); setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
-  };
-  const nextQuiz = () => {
+  }, [vocabItems.length, vocabPos, vocabOrder.length]);
+  const nextQuiz = useCallback(() => {
     if (!practiceQuestions.length) return;
     setQuizResponse("");
     if (quizPos + 1 >= quizOrder.length) {
@@ -226,12 +237,33 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     } else {
       setQuizPos(quizPos + 1);
     }
-  };
-  const prevQuiz = () => {
+  }, [practiceQuestions.length, quizPos, quizOrder.length]);
+  const prevQuiz = useCallback(() => {
     if (!practiceQuestions.length) return;
     setQuizResponse("");
     setQuizPos((quizPos - 1 + quizOrder.length) % quizOrder.length);
-  };
+  }, [practiceQuestions.length, quizPos, quizOrder.length]);
+
+  // Phím tắt: ← Trước, → Tiếp
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Bỏ qua nếu đang focus vào input
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (activeTab === "quiz") prevQuiz();
+        else prevVocab();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (activeTab === "quiz") nextQuiz();
+        else nextVocab();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeTab, prevVocab, nextVocab, prevQuiz, nextQuiz]);
 
   const tabTitle = activeTab === "vocabulary" ? "Học từ vựng" : activeTab === "translation" ? "Dịch nghĩa" : activeTab === "hanzi" ? "Chữ Hán" : "Luyện tập";
   const activeCount = activeTab === "quiz" ? practiceQuestions.length : vocabItems.length;
@@ -313,9 +345,9 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="break-all text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>{currentVocab.chinese}</p>
                   <p className="mt-3 break-words text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>{currentVocab.pinyin}</p>
                   <div className="mt-5">
-                    <input value={translationAnswer} onChange={(e) => setTranslationAnswer(e.target.value)} placeholder="Nhập nghĩa tiếng Việt..."
+                    <input ref={translationInputRef} value={translationAnswer} onChange={(e) => setTranslationAnswer(e.target.value)} placeholder="Nhập nghĩa tiếng Việt..."
                       className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedTranslation ? (translationCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
-                      onKeyDown={(e) => { if (e.key === "Enter") setCheckedTranslation(true); }} />
+                      onKeyDown={(e) => { if (e.key === "Enter") { setCheckedTranslation(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
                   {!checkedTranslation ? (
                     <button onClick={() => setCheckedTranslation(true)} disabled={!translationAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>
@@ -342,9 +374,9 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="break-all text-4xl font-black text-red-600 sm:text-5xl" suppressHydrationWarning>{currentVocab.pinyin}</p>
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
-                    <input value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
+                    <input ref={hanziInputRef} value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
                       className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
-                      onKeyDown={(e) => { if (e.key === "Enter") setCheckedHanzi(true); }} />
+                      onKeyDown={(e) => { if (e.key === "Enter") { setCheckedHanzi(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
                   {!checkedHanzi ? (
                     <button onClick={() => setCheckedHanzi(true)} disabled={!hanziAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>

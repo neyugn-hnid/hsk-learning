@@ -1,5 +1,5 @@
 import type { Route } from "./+types/roadmap.$roadmapId";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { data } from "react-router";
 import {
   ChevronLeft,
@@ -162,6 +162,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [quizSk, setQuizSk] = useState(0);
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("meaning");
+  const translationInputRef = useRef<HTMLInputElement>(null);
+  const hanziInputRef = useRef<HTMLInputElement>(null);
 
   const sVocab = lesson.vocabularies;
 
@@ -269,11 +271,20 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
       speakChinese(cQuiz.answer as string);
   }, [quizIdx, qzM, activeTab, cQuiz?.answer]);
 
+  // Tự động focus input khi chuyển từ mới
+  useEffect(() => {
+    if (activeTab === "translation") {
+      translationInputRef.current?.focus();
+    } else if (activeTab === "hanzi") {
+      hanziInputRef.current?.focus();
+    }
+  }, [vocabIdx, activeTab]);
+
   const sw = (t: StudyTab) => {
     if (!sVocab.length && t !== "quiz") return;
     setActiveTab(t);
   };
-  const nV = () => {
+  const nV = useCallback(() => {
     if (!sVocab.length) return;
     if (vocabPos + 1 >= vocabOrder.length) {
       setVocabSk((k) => k + 1);
@@ -286,8 +297,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     setTlC(false);
     setHzA("");
     setHzC(false);
-  };
-  const pV = () => {
+  }, [sVocab.length, vocabPos, vocabOrder.length]);
+  const pV = useCallback(() => {
     if (!sVocab.length) return;
     setVocabPos((vocabPos - 1 + vocabOrder.length) % vocabOrder.length);
     setShowMeaning(false);
@@ -295,8 +306,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     setTlC(false);
     setHzA("");
     setHzC(false);
-  };
-  const nQ = () => {
+  }, [sVocab.length, vocabPos, vocabOrder.length]);
+  const nQ = useCallback(() => {
     if (!genQ.length) return;
     setQzR("");
     if (quizPos + 1 >= quizOrder.length) {
@@ -305,12 +316,32 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     } else {
       setQuizPos(quizPos + 1);
     }
-  };
-  const pQ = () => {
+  }, [genQ.length, quizPos, quizOrder.length]);
+  const pQ = useCallback(() => {
     if (!genQ.length) return;
     setQzR("");
     setQuizPos((quizPos - 1 + quizOrder.length) % quizOrder.length);
-  };
+  }, [genQ.length, quizPos, quizOrder.length]);
+
+  // Phím tắt: ← Trước, → Tiếp
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (activeTab === "quiz") pQ();
+        else pV();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (activeTab === "quiz") nQ();
+        else nV();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeTab, pV, nV, pQ, nQ]);
 
   const title =
     activeTab === "vocabulary"
@@ -419,12 +450,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   </p>
                   <div className="mt-5">
                     <input
+                      ref={translationInputRef}
                       value={tlA}
                       onChange={(e) => setTlA(e.target.value)}
                       placeholder="Nhập nghĩa tiếng Việt..."
                       className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter") setTlC(true);
+                        if (e.key === "Enter") { setTlC(true); (e.target as HTMLInputElement).blur(); }
                       }}
                     />
                   </div>
@@ -472,12 +504,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   </p>
                   <div className="mt-5">
                     <input
+                      ref={hanziInputRef}
                       value={hzA}
                       onChange={(e) => setHzA(e.target.value)}
                       placeholder="Nhập chữ Hán..."
                       className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter") setHzC(true);
+                        if (e.key === "Enter") { setHzC(true); (e.target as HTMLInputElement).blur(); }
                       }}
                     />
                   </div>
