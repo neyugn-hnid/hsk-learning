@@ -1,6 +1,6 @@
 import type { Route } from "./+types/lessons.$lessonId";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { data } from "react-router";
+import { data, useNavigate } from "react-router";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,19 +8,32 @@ import {
   EyeOff,
   Check,
   Volume2,
+  BookOpen,
 } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
-import { getUser } from "~/lib/auth.server";
+import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
 
 export async function loader({ request, params }: Route.LoaderArgs) {
+  const user = await requireUser(request);
   const lesson = await prisma.lesson.findUnique({
     where: { id: params.lessonId },
     include: { vocabularies: true, grammars: true, quizzes: true },
   });
 
   if (!lesson) throw data("Không tìm thấy bài học", { status: 404 });
-  return { user: await getUser(request), lesson };
+
+  // Tự động gán imageUrl cho từ vựng dựa trên quy ước đặt tên file ảnh
+  // Nếu chưa có imageUrl trong DB, kiểm tra /images/{chinese}.jpg hoặc .png
+  const vocabulariesWithImages = lesson.vocabularies.map((v) => ({
+    ...v,
+    imageUrl: v.imageUrl || `/images/${encodeURIComponent(v.chinese)}.jpg`,
+  }));
+
+  return {
+    user,
+    lesson: { ...lesson, vocabularies: vocabulariesWithImages },
+  };
 }
 
 type StudyTab = "vocabulary" | "translation" | "hanzi" | "quiz";
@@ -81,6 +94,7 @@ function playSound(correct: boolean) {
 
 export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const { lesson } = loaderData;
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<StudyTab>("vocabulary");
   const [vocabPos, setVocabPos] = useState(0);
   const [vocabSk, setVocabSk] = useState(0);
@@ -92,7 +106,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [quizPos, setQuizPos] = useState(0);
   const [quizSk, setQuizSk] = useState(0);
   const [quizResponse, setQuizResponse] = useState("");
-  const [quizMode, setQuizMode] = useState<QuizMode>("meaning");
+  const [quizMode, setQuizMode] = useState<QuizMode>("pinyin");
   const translationInputRef = useRef<HTMLInputElement>(null);
   const hanziInputRef = useRef<HTMLInputElement>(null);
 
@@ -104,6 +118,8 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     [vocabItems.length, vocabSk],
   );
   const vocabIdx = vocabOrder[vocabPos] ?? 0;
+  const currentVocab = vocabItems[vocabIdx];
+
   const quizItems = lesson.quizzes;
 
   // Warm-up speechSynthesis cho lần phát đầu tiên
@@ -152,7 +168,6 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   );
   const quizIdx = quizOrder[quizPos] ?? 0;
 
-  const currentVocab = vocabItems[vocabIdx];
   const currentQuiz = practiceQuestions[quizIdx];
 
   const normalizedUserMeaning = translationAnswer.trim().toLowerCase();
@@ -187,7 +202,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     setQuizPos(0);
     setQuizSk((k) => k + 1);
     setQuizResponse("");
-    setQuizMode("meaning");
+    setQuizMode("pinyin");
   }, [activeTab]);
 
   useEffect(() => {
@@ -271,13 +286,14 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   return (
     <SiteLayout user={loaderData.user}>
       <main className="mx-auto max-w-3xl px-3 py-4 md:px-4 md:py-8">
-        
-
         <div className="mt-4 md:mt-6">
           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-4 md:p-6">
             <div className="mb-4 flex flex-col gap-3">
               <div>
-                <h1 className="text-lg font-bold sm:text-xl">{lesson.title}</h1>
+                <h1 className="text-lg font-bold sm:text-xl">
+                  <button onClick={() => navigate(-1)} className="inline-flex items-center align-middle mr-1.5 text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
+                  {lesson.title}
+                </h1>
                 <p className="mt-1 text-sm text-slate-500">{lesson.description}</p>
               </div>
               <div className="flex items-center gap-2">
@@ -305,7 +321,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
             </div>
 
             {/* VOCABULARY */}
-            {activeTab === "vocabulary" && currentVocab && (
+            {activeTab === "vocabulary" && currentVocab ? (
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 shadow-sm sm:rounded-[2rem] sm:p-6">
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
                   <button onClick={() => speakChinese(currentVocab.chinese)} className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 shadow-sm hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3" title="Nghe phát âm" type="button"><Volume2 size={18} className="sm:w-5 sm:h-5" /></button>
@@ -335,7 +351,9 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   </div>
                 </div>
               </div>
-            )}
+            ) : activeTab === "vocabulary" ? (
+              <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-sm text-slate-400">Bài này chưa có từ vựng.</div>
+            ) : null}
 
             {/* TRANSLATION */}
             {activeTab === "translation" && currentVocab && (
@@ -346,22 +364,24 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="mt-3 break-words text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>{currentVocab.pinyin}</p>
                   <div className="mt-5">
                     <input ref={translationInputRef} value={translationAnswer} onChange={(e) => setTranslationAnswer(e.target.value)} placeholder="Nhập nghĩa tiếng Việt..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedTranslation ? (translationCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedTranslation ? (translationCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => { if (e.key === "Enter") { setCheckedTranslation(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
-                  {!checkedTranslation ? (
-                    <button onClick={() => setCheckedTranslation(true)} disabled={!translationAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>
-                  ) : null}
+                  <div className="mt-4 flex items-center justify-center gap-2.5">
+                    <NavBtn onClick={prevVocab} label="Trước" />
+                    {!checkedTranslation ? (
+                      <button onClick={() => setCheckedTranslation(true)} disabled={!translationAnswer.trim()} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12" type="button"><Check size={20} /></button>
+                    ) : (
+                      <button onClick={nextVocab} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12" type="button"><ChevronRight size={20} /></button>
+                    )}
+                    <NavBtn onClick={nextVocab} label="Tiếp" next />
+                  </div>
                   {checkedTranslation ? (
                     <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Đáp án tham khảo</p>
                       <p className="mt-1 text-base font-extrabold text-slate-900">{currentVocab.meaningVi}</p>
                     </div>
                   ) : null}
-                  <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
-                    <NavBtn onClick={prevVocab} label="Trước" />
-                    <NavBtn onClick={nextVocab} label="Tiếp" next />
-                  </div>
                 </div>
               </div>
             )}
@@ -375,20 +395,22 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
                     <input ref={hanziInputRef} value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => { if (e.key === "Enter") { setCheckedHanzi(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
-                  {!checkedHanzi ? (
-                    <button onClick={() => setCheckedHanzi(true)} disabled={!hanziAnswer.trim()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"><Check size={18} />Kiểm tra</button>
-                  ) : null}
                   {checkedHanzi ? (
                     <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">Đáp án</p>
                       <p className="mt-1 text-2xl font-black text-red-600">{currentVocab.chinese}</p>
                     </div>
                   ) : null}
-                  <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
+                  <div className="mt-4 flex items-center justify-center gap-2.5">
                     <NavBtn onClick={prevVocab} label="Trước" />
+                    {!checkedHanzi ? (
+                      <button onClick={() => setCheckedHanzi(true)} disabled={!hanziAnswer.trim()} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12" type="button"><Check size={20} /></button>
+                    ) : (
+                      <button onClick={nextVocab} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12" type="button"><ChevronRight size={20} /></button>
+                    )}
                     <NavBtn onClick={nextVocab} label="Tiếp" next />
                   </div>
                 </div>
@@ -401,17 +423,17 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                 <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 shadow-md sm:rounded-[2rem] sm:p-6">
                   {/* Quiz mode pills */}
                   <div className="-mx-1 mb-4 flex justify-center overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-                    {(["meaning", "pinyin", "recognition", "listening"] as const).map((m) => (
+                    {([ "pinyin", "meaning", "recognition", "listening"] as const).map((m) => (
                       <button key={m} onClick={() => { setQuizMode(m); setQuizPos(0); setQuizResponse(""); }}
                         className={`mx-1 shrink-0 rounded-full px-3 py-1.5 text-xs font-bold transition sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${quizMode === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}>
-                        {m === "meaning" ? "Nghĩa" : m === "pinyin" ? "Pinyin" : m === "recognition" ? "Chữ Hán" : "Nghe"}
+                        {m === "pinyin" ? "Pinyin" : m === "meaning" ? "Nghĩa" : m === "recognition" ? "Chữ Hán" : "Nghe"}
                       </button>
                     ))}
                   </div>
                   <h3 className="text-lg font-extrabold text-slate-900 sm:text-xl">{currentQuiz.question}</h3>
                   {quizMode === "listening" ? (
                     <button onClick={() => speakChinese(currentQuiz.answer as string)} className="mt-3 flex items-center gap-1.5 rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-600 sm:rounded-2xl sm:px-4 sm:py-2.5 sm:text-sm" type="button">
-                      <Volume2 size={16} />Nghe lại
+                      <Volume2 size={16} />
                     </button>
                   ) : null}
                   <div className="mt-4 grid gap-2">

@@ -1,0 +1,80 @@
+[
+  {
+    "chinese": "光",
+    "pinyin": "guāng",
+    "meaningVi": "ánh sáng",
+    "meaningEn": "light",
+    "exampleChinese": "房间里的光很亮。",
+    "examplePinyin": "Fángjiān lǐ de guāng hěn liàng.",
+    "exampleMeaning": "Ánh sáng trong phòng rất sáng.",
+    "imageUrl": "/images/光.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "包",
+    "pinyin": "bāo",
+    "meaningVi": "cái túi, bao",
+    "meaningEn": "bag, package",
+    "exampleChinese": "这个包很漂亮。",
+    "examplePinyin": "Zhège bāo hěn piàoliang.",
+    "exampleMeaning": "Cái túi này rất đẹp.",
+    "imageUrl": "/images/包.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "工",
+    "pinyin": "gōng",
+    "meaningVi": "công việc, lao động",
+    "meaningEn": "work, labor",
+    "exampleChinese": "他在工厂工作。",
+    "examplePinyin": "Tā zài gōngchǎng gōngzuò.",
+    "exampleMeaning": "Anh ấy làm việc ở nhà máy.",
+    "imageUrl": "/images/工.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "灯",
+    "pinyin": "dēng",
+    "meaningVi": "đèn",
+    "meaningEn": "lamp, light",
+    "exampleChinese": "请开灯。",
+    "examplePinyin": "Qǐng kāi dēng.",
+    "exampleMeaning": "Làm ơn bật đèn.",
+    "imageUrl": "/images/灯.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "皮",
+    "pinyin": "pí",
+    "meaningVi": "da, vỏ",
+    "meaningEn": "skin, leather",
+    "exampleChinese": "这个包是真皮的。",
+    "examplePinyin": "Zhège bāo shì zhēn pí de.",
+    "exampleMeaning": "Cái túi này làm bằng da thật.",
+    "imageUrl": "/images/皮.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "车",
+    "pinyin": "chē",
+    "meaningVi": "xe, ô tô",
+    "meaningEn": "car, vehicle",
+    "exampleChinese": "我开车去学校。",
+    "examplePinyin": "Wǒ kāi chē qù xuéxiào.",
+    "exampleMeaning": "Tôi lái xe đến trường.",
+    "imageUrl": "/images/车.jpg",
+    "level": "HSK1"
+  },
+  {
+    "chinese": "井",
+    "pinyin": "jǐng",
+    "meaningVi": "cái giếng",
+    "meaningEn": "well",
+    "exampleChinese": "村子中间有一口井。",
+    "examplePinyin": "Cūnzi zhōngjiān yǒu yī kǒu jǐng.",
+    "exampleMeaning": "Giữa làng có một cái giếng.",
+    "imageUrl": "/images/井.jpg",
+    "level": "HSK1"
+  }
+]
+

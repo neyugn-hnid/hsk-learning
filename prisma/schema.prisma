@@ -80,6 +80,7 @@ model Vocabulary {
   exampleChinese String?
   examplePinyin  String?
   exampleMeaning String?
+  imageUrl       String?
   level          String
   lessonId       String
   createdAt      DateTime @default(now())

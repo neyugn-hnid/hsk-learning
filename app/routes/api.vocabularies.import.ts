@@ -14,7 +14,7 @@ export async function action({ request }: Route.ActionArgs) {
   for (const item of finalItems) { const key = item.lessonTitle || `${item.level} - Import`; lessonMap.set(key, [...(lessonMap.get(key) || []), item]); }
   const lessons = [];
   for (const [title, items] of lessonMap) {
-    lessons.push(await prisma.lesson.create({ data: { title, level: items[0]?.level || "HSK1", description: `Bài học import tự động với ${items.length} từ vựng.`, orderNo: 999, vocabularies: { create: items.map((v) => ({ chinese: v.chinese, pinyin: v.pinyin, meaningVi: v.meaningVi, meaningEn: v.meaningEn, exampleChinese: v.exampleChinese, examplePinyin: v.examplePinyin, exampleMeaning: v.exampleMeaning, level: v.level || "HSK1" })) } }, include: { vocabularies: true } }));
+    lessons.push(await prisma.lesson.create({ data: { title, level: items[0]?.level || "HSK1", description: `Bài học import tự động với ${items.length} từ vựng.`, orderNo: 999, vocabularies: { create: items.map((v) => ({ chinese: v.chinese, pinyin: v.pinyin, meaningVi: v.meaningVi, meaningEn: v.meaningEn, exampleChinese: v.exampleChinese, examplePinyin: v.examplePinyin, exampleMeaning: v.exampleMeaning, imageUrl: (v as any).imageUrl || null, level: v.level || "HSK1" })) } }, include: { vocabularies: true } }));
   }
   return data({ message: `Đã import ${finalItems.length} từ vào ${lessons.length} bài học.`, lessons });
 }

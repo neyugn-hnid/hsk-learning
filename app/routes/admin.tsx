@@ -3,11 +3,17 @@ import type { Prisma } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { useFetcher, useRevalidator } from "react-router";
 import {
+  Activity,
   BookOpen,
+  Bot,
+  Clock,
+  Database,
   FileJson,
   GitBranch,
   GraduationCap,
   ListChecks,
+  ShieldCheck,
+  Trash2,
   Upload,
   Users,
   X,
@@ -252,12 +258,7 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
       "Đang lưu các mục lộ trình vào hệ thống...",
     ],
   );
-  const roadmapItems = loaderData.roadmapItems as Array<
-    (typeof loaderData.roadmapItems)[number] & {
-      vocabulary?: unknown;
-      phrases?: unknown;
-    }
-  >;
+  const [levelFilter, setLevelFilter] = useState("");
 
   useFetcherToast(roadmapImportFetcher, {
     successKey: "roadmapSuccess",
@@ -272,251 +273,318 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
   });
 
   const lessonImportBusy = lessonImportFetcher.state !== "idle";
+  const lessons = loaderData.lessons;
+  const lessonLevels = [...new Set(lessons.map((l) => l.level))].sort();
+  const filteredLessons = levelFilter ? lessons.filter((l) => l.level === levelFilter) : lessons;
+  const roadmapItems = loaderData.roadmapItems as Array<
+    (typeof loaderData.roadmapItems)[number] & {
+      vocabulary?: unknown;
+      phrases?: unknown;
+    }
+  >;
+  const hsk20Lessons = lessons.filter((lesson) => lesson.source === "HSK20").length;
+  const hsk30Lessons = lessons.filter((lesson) => lesson.source === "HSK30").length;
+  const publishedLessons = lessons.filter((lesson) => lesson.status === "PUBLISHED").length;
+  const totalRoadmapWords = roadmapItems.reduce(
+    (sum, item) => sum + countJsonArray(item.vocabulary) + countJsonArray(item.phrases),
+    0,
+  );
+  const adminName = loaderData.user.name || "Admin";
 
   return (
     <SiteLayout user={loaderData.user}>
-      <main className="mx-auto max-w-7xl px-4 py-8 md:py-10">
-        <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Stat icon={Users} value={loaderData.userCount} label="Người dùng" />
-          <Stat
-            icon={BookOpen}
-            value={loaderData.lessonCount}
-            label="Bài học"
-          />
-          <Stat
-            icon={GraduationCap}
-            value={loaderData.vocabCount}
-            label="Từ vựng"
-          />
-          <Stat
-            icon={ListChecks}
-            value={loaderData.quizCount}
-            label="Câu hỏi"
-          />
-          <Stat
-            icon={GitBranch}
-            value={loaderData.roadmapCount}
-            label="Mục lộ trình"
-          />
-        </div>
-        <section className="mt-6 grid gap-6 xl:grid-cols-2">
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm ring-1 ring-slate-200/70">
-            <div className="border-b border-slate-100 bg-gradient-to-r from-red-50 via-white to-white p-5 md:p-6">
-              <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-100 text-red-600">
-                  <FileJson size={22} />
+      <main className="bg-slate-100/70 px-3 py-4 md:px-4 md:py-6">
+        <div className="mx-auto max-w-7xl">
+          <section className="rounded-lg border border-slate-200 bg-white shadow-sm">
+            <div className="flex flex-col gap-4 border-b border-slate-200 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-white">
+                  <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-red-500">
-                    Import
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                    Admin Console
                   </p>
-                  <h2 className="mt-1 text-xl font-black">Import bài học HSK</h2>
+                  <h1 className="mt-1 text-2xl font-black text-slate-950 md:text-3xl">
+                    Bảng điều khiển quản trị
+                  </h1>
+                  <p className="mt-1 text-sm text-slate-500">
+                    Xin chào {adminName}. Quản lý nội dung học tập, dữ liệu HSK và lộ trình lớp.
+                  </p>
                 </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-end">
+                <StatusPill icon={Activity} label="Hệ thống" value="Online" tone="emerald" />
+                <StatusPill icon={Clock} label="Phiên" value="Admin" tone="slate" />
               </div>
             </div>
 
-            <div className="p-5 md:p-6">
-              <lessonImportFetcher.Form
-                action="/api/admin/lesson-import"
-                method="post"
-                encType="multipart/form-data"
-                className="space-y-4"
-              >
-                <input type="hidden" name="intent" value="lesson-import" />
-                <FilePickerField
-                  key={lessonInputKey}
-                  file={lessonFile}
-                  idleTitle="Chọn JSON bài học"
-                  idleHint="Bấm để chọn file từ thiết bị"
-                  onClear={() => {
-                    setLessonFile(null);
-                    setLessonInputKey((current) => current + 1);
-                  }}
-                >
-                  <input
-                    type="file"
-                    name="jsonFile"
-                    accept=".json,application/json"
-                    className="hidden"
-                    onChange={(event) =>
-                      setLessonFile(toFileSelection(event.currentTarget.files?.[0]))
-                    }
-                  />
-                </FilePickerField>
+            <div className="grid gap-px bg-slate-200 md:grid-cols-2 xl:grid-cols-5">
+              <Stat icon={Users} value={loaderData.userCount} label="Người dùng" meta="Tài khoản hệ thống" />
+              <Stat icon={BookOpen} value={loaderData.lessonCount} label="Bài học" meta={`${publishedLessons} published`} />
+              <Stat icon={GraduationCap} value={loaderData.vocabCount} label="Từ vựng" meta="Vocabulary records" />
+              <Stat icon={ListChecks} value={loaderData.quizCount} label="Câu hỏi" meta="Quiz bank" />
+              <Stat icon={GitBranch} value={loaderData.roadmapCount} label="Lộ trình" meta={`${totalRoadmapWords} mục học`} />
+            </div>
+          </section>
 
-                <label className="block">
-                  <span className="text-sm font-bold text-slate-700">Nguồn dữ liệu</span>
-                  <select
-                    name="source"
-                    defaultValue="HSK20"
-                    className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold outline-none transition focus:border-red-400"
+          <section className="mt-4 grid gap-4 xl:grid-cols-[1.35fr_0.85fr]">
+            <div className="grid gap-4 lg:grid-cols-2">
+              <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
+                <PanelHeader
+                  icon={FileJson}
+                  title="Import bài học HSK"
+                  subtitle="JSON lessons"
+                  tone="red"
+                />
+                <div className="p-5">
+                  <lessonImportFetcher.Form
+                    action="/api/admin/lesson-import"
+                    method="post"
+                    encType="multipart/form-data"
+                    className="space-y-4"
                   >
-                    <option value="HSK20">HSK 2.0</option>
-                    <option value="HSK30">HSK 3.0</option>
-                  </select>
-                </label>
-                <button
-                  disabled={lessonImportBusy}
-                  className="w-full rounded-2xl bg-red-600 px-5 py-3.5 font-bold text-white transition hover:bg-red-700 disabled:cursor-wait disabled:opacity-70"
-                >
-                  {lessonImportBusy ? "Đang xử lý..." : "Import bài học"}
-                </button>
-              </lessonImportFetcher.Form>
-            </div>
-          </div>
+                    <input type="hidden" name="intent" value="lesson-import" />
+                    <FilePickerField
+                      key={lessonInputKey}
+                      file={lessonFile}
+                      idleTitle="Chọn file bài học"
+                      idleHint="JSON bài học HSK"
+                      onClear={() => {
+                        setLessonFile(null);
+                        setLessonInputKey((current) => current + 1);
+                      }}
+                    >
+                      <input
+                        type="file"
+                        name="jsonFile"
+                        accept=".json,application/json"
+                        className="hidden"
+                        onChange={(event) =>
+                          setLessonFile(toFileSelection(event.currentTarget.files?.[0]))
+                        }
+                      />
+                    </FilePickerField>
 
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm ring-1 ring-slate-200/70">
-            <div className="border-b border-slate-100 bg-gradient-to-r from-amber-50 via-white to-white p-5 md:p-6">
-              <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-600">
-                  <GitBranch size={22} />
+                    <label className="block">
+                      <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                        Nguồn dữ liệu
+                      </span>
+                      <select
+                        name="source"
+                        defaultValue="HSK20"
+                        className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold outline-none transition focus:border-red-400 focus:ring-2 focus:ring-red-100"
+                      >
+                        <option value="HSK20">HSK 2.0</option>
+                        <option value="HSK30">HSK 3.0</option>
+                      </select>
+                    </label>
+                    <button
+                      disabled={lessonImportBusy}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-red-700 disabled:cursor-wait disabled:opacity-70"
+                    >
+                      <Upload size={17} />
+                      {lessonImportBusy ? "Đang xử lý..." : "Import bài học"}
+                    </button>
+                  </lessonImportFetcher.Form>
                 </div>
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-500">
-                    Class Roadmap
-                  </p>
-                  <h2 className="mt-1 text-xl font-black">Import lộ trình lớp</h2>
+              </div>
+
+              <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
+                <PanelHeader
+                  icon={GitBranch}
+                  title="Import lộ trình lớp"
+                  subtitle="Roadmap JSON"
+                  tone="amber"
+                />
+                <div className="p-5">
+                  <roadmapImportFetcher.Form
+                    method="post"
+                    encType="multipart/form-data"
+                    className="space-y-4"
+                  >
+                    <input type="hidden" name="intent" value="roadmap-import" />
+                    <FilePickerField
+                      key={roadmapInputKey}
+                      file={roadmapFile}
+                      idleTitle="Chọn file lộ trình"
+                      idleHint="JSON roadmap lớp học"
+                      onClear={() => {
+                        setRoadmapFile(null);
+                        setRoadmapInputKey((current) => current + 1);
+                      }}
+                    >
+                      <input
+                        type="file"
+                        name="roadmapFile"
+                        accept=".json,application/json"
+                        className="hidden"
+                        onChange={(event) =>
+                          setRoadmapFile(toFileSelection(event.currentTarget.files?.[0]))
+                        }
+                      />
+                    </FilePickerField>
+                    <button
+                      disabled={roadmapImportFetcher.state !== "idle"}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70"
+                    >
+                      <Upload size={17} />
+                      {roadmapImportFetcher.state === "idle"
+                        ? "Import lộ trình"
+                        : "Đang xử lý..."}
+                    </button>
+                  </roadmapImportFetcher.Form>
+
+                  {roadmapImportFetcher.state !== "idle" ? (
+                    <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+                      {roadmapProgress}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>
 
-            <div className="p-5 md:p-6">
-              <roadmapImportFetcher.Form
-                method="post"
-                encType="multipart/form-data"
-                className="space-y-4"
-              >
-                <input type="hidden" name="intent" value="roadmap-import" />
-                <FilePickerField
-                  key={roadmapInputKey}
-                  file={roadmapFile}
-                  idleTitle="Chọn JSON lộ trình"
-                  idleHint="Nhận file roadmap riêng, không lẫn với bài học"
-                  onClear={() => {
-                    setRoadmapFile(null);
-                    setRoadmapInputKey((current) => current + 1);
-                  }}
-                >
-                  <input
-                    type="file"
-                    name="roadmapFile"
-                    accept=".json,application/json"
-                    className="hidden"
-                    onChange={(event) =>
-                      setRoadmapFile(toFileSelection(event.currentTarget.files?.[0]))
-                    }
-                  />
-                </FilePickerField>
-                <button
-                  disabled={roadmapImportFetcher.state !== "idle"}
-                  className="w-full rounded-2xl bg-slate-900 px-5 py-3.5 font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70"
-                >
-                  {roadmapImportFetcher.state === "idle"
-                    ? "Import lộ trình"
-                    : "Đang xử lý..."}
-                </button>
-              </roadmapImportFetcher.Form>
-
-              {roadmapImportFetcher.state !== "idle" ? (
-                <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold text-amber-700">
-                  {roadmapProgress}
+            <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
+              <PanelHeader
+                icon={Database}
+                title="Tổng quan dữ liệu"
+                subtitle="Content inventory"
+                tone="slate"
+              />
+              <div className="grid gap-px bg-slate-200 sm:grid-cols-2">
+                <DataCell label="HSK 2.0" value={`${hsk20Lessons} bài`} />
+                <DataCell label="HSK 3.0" value={`${hsk30Lessons} bài`} />
+                <DataCell label="Từ/bài TB" value={formatAverage(loaderData.vocabCount, loaderData.lessonCount)} />
+                <DataCell label="Quiz/bài TB" value={formatAverage(loaderData.quizCount, loaderData.lessonCount)} />
+              </div>
+              <div className="border-t border-slate-200 p-5">
+                <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-slate-700 shadow-sm">
+                    <Bot size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-slate-950">AI Learning Tools</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                      Chat, luyện dịch, luyện chữ Hán và quiz đang dùng chung dữ liệu bài học.
+                    </p>
+                  </div>
                 </div>
-              ) : null}
-
-              
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="mt-6 grid gap-6 xl:grid-cols-2">
-          <div className="flex h-[40rem] flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm ring-1 ring-slate-200/70">
-            <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 p-5">
+          <section className="mt-4 grid gap-4 xl:grid-cols-[1.35fr_0.85fr]">
+            <div className="flex min-h-[38rem] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div className="flex flex-col gap-3 border-b border-slate-200 bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
-                  Lessons
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                    Content Management
                 </p>
-                <h2 className="mt-1 text-lg font-black">Danh sách bài học HSK</h2>
+                  <h2 className="mt-1 text-lg font-black text-slate-950">Danh sách bài học HSK</h2>
               </div>
               <div className="flex items-center gap-3">
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-500 ring-1 ring-slate-200">
-                  {loaderData.lessons.length} bài
+                  <select
+                    value={levelFilter}
+                    onChange={(e) => setLevelFilter(e.target.value)}
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 outline-none"
+                  >
+                    <option value="">Tất cả cấp độ</option>
+                    {lessonLevels.map((lvl) => (
+                      <option key={lvl} value={lvl}>{lvl}</option>
+                    ))}
+                  </select>
+                  <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
+                    {filteredLessons.length} bài
                 </span>
-                <DeleteAllLessonsButton disabled={!loaderData.lessons.length} />
+                  <DeleteAllLessonsButton disabled={!lessons.length} />
               </div>
             </div>
-            <div className="flex-1 overflow-auto">
-              <table className="w-full min-w-[760px] text-left text-sm">
-                <thead className="bg-slate-50 text-slate-500">
+            <div className="flex-1 overflow-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-track]:bg-transparent">
+                <table className="w-full min-w-[820px] text-left text-sm">
+                  <thead className="sticky top-0 z-10 border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
                   <tr>
-                    <th className="px-6 py-4">Tên bài</th>
-                    <th className="px-6 py-4">Cấp độ</th>
-                    <th className="px-6 py-4">Từ vựng</th>
-                    <th className="px-6 py-4 text-right">Thao tác</th>
+                    <th className="px-5 py-3">Bài học</th>
+                    <th className="px-5 py-3">Nguồn</th>
+                    <th className="px-5 py-3">Cấp độ</th>
+                    <th className="px-5 py-3 text-right">Từ</th>
+                    <th className="px-5 py-3 text-right">Quiz</th>
+                    <th className="px-5 py-3 text-right">Thao tác</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {loaderData.lessons.map(
-                    (lesson: (typeof loaderData.lessons)[number]) => (
-                      <tr key={lesson.id} className="border-t border-slate-100">
-                        <td className="px-6 py-4 font-semibold">
+                  <tbody className="divide-y divide-slate-100">
+                    {filteredLessons.map((lesson: (typeof lessons)[number]) => (
+                      <tr key={lesson.id} className="hover:bg-slate-50/80">
+                        <td className="px-5 py-4">
+                          <p className="font-bold text-slate-950">
                           {lesson.title}
+                          </p>
+                          <p className="mt-1 text-xs text-slate-500">
+                            Thứ tự {lesson.orderNo} · {lesson.status}
+                          </p>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-600">
+                        <td className="px-5 py-4">
+                          <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-bold text-slate-700">
+                            {lesson.source}
+                          </span>
+                        </td>
+                        <td className="px-5 py-4">
+                          <span className="rounded-md bg-red-50 px-2 py-1 text-xs font-bold text-red-700">
                             {lesson.level}
                           </span>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-5 py-4 text-right font-semibold text-slate-700">
                           {lesson._count.vocabularies}
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-5 py-4 text-right font-semibold text-slate-700">
+                          {lesson._count.quizzes}
+                        </td>
+                        <td className="px-5 py-4 text-right">
                           <LessonDeleteButton
                             lessonId={lesson.id}
                             lessonTitle={lesson.title}
                           />
                         </td>
                       </tr>
-                    ),
-                  )}
+                    ))}
                 </tbody>
               </table>
             </div>
           </div>
 
-          <div className="flex h-[40rem] flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm ring-1 ring-slate-200/70">
-            <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 p-5">
+            <div className="flex min-h-[38rem] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div className="shrink-0 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
                   Roadmap
                 </p>
-                <h2 className="mt-1 text-lg font-black">Danh sách lộ trình lớp</h2>
+                  <h2 className="mt-1 text-lg font-black text-slate-950">Lộ trình lớp gần đây</h2>
               </div>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-500 ring-1 ring-slate-200">
+                <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
                 {roadmapItems.length} mục
               </span>
             </div>
-            <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
+              <div className="flex-1 overflow-y-auto divide-y divide-slate-100 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-track]:bg-transparent">
               {roadmapItems.map((item) => (
-                <div key={item.id} className="p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div key={item.id} className="p-5 hover:bg-slate-50/70">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white">
+                          <span className="rounded-md bg-slate-950 px-2.5 py-1 text-xs font-bold text-white">
                           Buổi {item.orderNo}
                         </span>
-                        <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">
+                          <span className="rounded-md bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">
                           {item.phase}
                         </span>
                         {item.weekLabel ? (
-                          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
+                            <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
                             {item.weekLabel}
                           </span>
                         ) : null}
                       </div>
-                      <h3 className="mt-3 text-lg font-black">{item.title}</h3>
+                        <h3 className="mt-3 text-base font-black text-slate-950">{item.title}</h3>
                     </div>
                     {item.duration ? (
-                      <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-600">
+                        <span className="rounded-md bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700">
                         {item.duration}
                       </span>
                     ) : null}
@@ -524,11 +592,11 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     {item.description || "Chưa có mô tả."}
                   </p>
-                  <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-600">
+                    <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                      <span className="rounded-md bg-slate-100 px-2.5 py-1 font-bold text-slate-600">
                       {countJsonArray(item.vocabulary)} từ
                     </span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-bold text-slate-600">
+                      <span className="rounded-md bg-slate-100 px-2.5 py-1 font-bold text-slate-600">
                       {countJsonArray(item.phrases)} mẫu câu
                     </span>
                   </div>
@@ -540,12 +608,94 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
                   </div>
                 </div>
               ))}
+                {!roadmapItems.length ? (
+                  <div className="p-8 text-center text-sm font-semibold text-slate-500">
+                    Chưa có dữ liệu lộ trình.
+                  </div>
+                ) : null}
             </div>
           </div>
         </section>
+        </div>
       </main>
     </SiteLayout>
   );
+}
+
+function StatusPill({
+  icon: Icon,
+  label,
+  value,
+  tone,
+}: {
+  icon: any;
+  label: string;
+  value: string;
+  tone: "emerald" | "slate";
+}) {
+  const toneClass =
+    tone === "emerald"
+      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+      : "border-slate-200 bg-slate-50 text-slate-700";
+
+  return (
+    <div className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 ${toneClass}`}>
+      <Icon size={15} />
+      <span className="text-[11px] font-black uppercase tracking-[0.12em]">
+        {label}
+      </span>
+      <span className="text-xs font-bold">{value}</span>
+    </div>
+  );
+}
+
+function PanelHeader({
+  icon: Icon,
+  title,
+  subtitle,
+  tone,
+}: {
+  icon: any;
+  title: string;
+  subtitle: string;
+  tone: "red" | "amber" | "slate";
+}) {
+  const toneClass =
+    tone === "red"
+      ? "bg-red-50 text-red-600"
+      : tone === "amber"
+        ? "bg-amber-50 text-amber-700"
+        : "bg-slate-100 text-slate-700";
+
+  return (
+    <div className="flex items-center gap-3 border-b border-slate-200 px-5 py-4">
+      <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${toneClass}`}>
+        <Icon size={20} />
+      </div>
+      <div>
+        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
+          {subtitle}
+        </p>
+        <h2 className="mt-0.5 text-base font-black text-slate-950">{title}</h2>
+      </div>
+    </div>
+  );
+}
+
+function DataCell({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-white p-5">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
+        {label}
+      </p>
+      <p className="mt-2 text-2xl font-black text-slate-950">{value}</p>
+    </div>
+  );
+}
+
+function formatAverage(total: number, count: number) {
+  if (!count) return "0";
+  return (total / count).toFixed(1);
 }
 
 function LessonDeleteButton({
@@ -571,13 +721,14 @@ function LessonDeleteButton({
       <button
         type="submit"
         disabled={fetcher.state !== "idle"}
-        className="rounded-xl bg-red-50 px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-100 disabled:cursor-wait disabled:opacity-70"
+        className="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-100 disabled:cursor-wait disabled:opacity-70"
         onClick={(event) => {
           if (!window.confirm(`Xóa bài học "${lessonTitle}"?`)) {
             event.preventDefault();
           }
         }}
       >
+        <Trash2 size={14} />
         {fetcher.state === "idle" ? "Xóa" : "Đang xóa..."}
       </button>
     </fetcher.Form>
@@ -607,13 +758,14 @@ function RoadmapDeleteButton({
       <button
         type="submit"
         disabled={fetcher.state !== "idle"}
-        className="rounded-xl bg-red-50 px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-100 disabled:cursor-wait disabled:opacity-70"
+        className="inline-flex items-center gap-1.5 rounded-lg bg-red-50 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-100 disabled:cursor-wait disabled:opacity-70"
         onClick={(event) => {
           if (!window.confirm(`Xóa mục lộ trình "${title}"?`)) {
             event.preventDefault();
           }
         }}
       >
+        <Trash2 size={14} />
         {fetcher.state === "idle" ? "Xóa mục này" : "Đang xóa..."}
       </button>
     </fetcher.Form>
@@ -636,13 +788,14 @@ function DeleteAllLessonsButton({ disabled }: { disabled: boolean }) {
       <button
         type="submit"
         disabled={disabled || fetcher.state !== "idle"}
-        className="rounded-xl bg-red-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex items-center gap-1.5 rounded-lg bg-red-600 px-3 py-2 text-xs font-bold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
         onClick={(event) => {
           if (!window.confirm("Xóa toàn bộ bài học HSK đã import?")) {
             event.preventDefault();
           }
         }}
       >
+        <Trash2 size={14} />
         {fetcher.state === "idle" ? "Xóa tất cả" : "Đang xóa..."}
       </button>
     </fetcher.Form>

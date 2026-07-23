@@ -48,13 +48,10 @@ type Pages = {
   "/ai-practice": {
     params: {};
   };
+  "/maintenance": {
+    params: {};
+  };
   "/admin": {
-    params: {};
-  };
-  "/login": {
-    params: {};
-  };
-  "/register": {
     params: {};
   };
   "/api/auth/login": {
@@ -117,7 +114,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/admin" | "/login" | "/register" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
+    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
@@ -163,17 +160,13 @@ type RouteFiles = {
     id: "routes/ai-practice";
     page: "/ai-practice";
   };
+  "routes/maintenance.tsx": {
+    id: "routes/maintenance";
+    page: "/maintenance";
+  };
   "routes/admin.tsx": {
     id: "routes/admin";
     page: "/admin";
-  };
-  "routes/login.tsx": {
-    id: "routes/login";
-    page: "/login";
-  };
-  "routes/register.tsx": {
-    id: "routes/register";
-    page: "/register";
   };
   "routes/api.auth.login.ts": {
     id: "routes/api.auth.login";
@@ -258,9 +251,8 @@ type RouteModules = {
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
   "routes/ai-assistant": typeof import("./app/routes/ai-assistant.tsx");
   "routes/ai-practice": typeof import("./app/routes/ai-practice.tsx");
+  "routes/maintenance": typeof import("./app/routes/maintenance.tsx");
   "routes/admin": typeof import("./app/routes/admin.tsx");
-  "routes/login": typeof import("./app/routes/login.tsx");
-  "routes/register": typeof import("./app/routes/register.tsx");
   "routes/api.auth.login": typeof import("./app/routes/api.auth.login.ts");
   "routes/api.auth.register": typeof import("./app/routes/api.auth.register.ts");
   "routes/api.auth.logout": typeof import("./app/routes/api.auth.logout.ts");

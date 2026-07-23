@@ -35,7 +35,7 @@ export async function getUser(request: Request) {
 
 export async function requireUser(request: Request) {
   const user = await getUser(request);
-  if (!user) throw redirect("/login");
+  if (!user) throw redirect("/?auth=login");
   return user;
 }
 

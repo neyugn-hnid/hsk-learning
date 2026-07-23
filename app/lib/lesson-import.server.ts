@@ -112,6 +112,7 @@ export async function runLessonImportAI(
             exampleChinese: v.exampleChinese,
             examplePinyin: v.examplePinyin,
             exampleMeaning: v.exampleMeaning,
+            imageUrl: v.imageUrl || null,
             level: v.level || "HSK1",
           })),
         },

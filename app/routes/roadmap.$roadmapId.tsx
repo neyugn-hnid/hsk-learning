@@ -1,6 +1,7 @@
 import type { Route } from "./+types/roadmap.$roadmapId";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { data } from "react-router";
+import { useNavigate } from "react-router";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,13 +9,14 @@ import {
   EyeOff,
   Check,
   Volume2,
+  BookOpen,
 } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
-import { getUser } from "~/lib/auth.server";
+import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
 
 export async function loader({ request, params }: Route.LoaderArgs) {
-  const user = await getUser(request);
+  const user = await requireUser(request);
   const roadmap = await prisma.roadmapItem.findUnique({
     where: { id: params.roadmapId },
   });
@@ -45,6 +47,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
         exampleChinese: v.exampleChinese || null,
         examplePinyin: v.examplePinyin || null,
         exampleMeaning: v.exampleMeaning || null,
+        imageUrl: v.imageUrl || `/images/${encodeURIComponent(v.chinese)}.jpg`,
         level: v.level || "",
         lessonId: roadmap.id,
         createdAt: new Date(),
@@ -64,6 +67,7 @@ type Entry = {
   exampleChinese?: string;
   examplePinyin?: string;
   exampleMeaning?: string;
+  imageUrl?: string;
 };
 function toEntries(value: unknown): Entry[] {
   if (!Array.isArray(value)) return [];
@@ -87,6 +91,7 @@ function toEntries(value: unknown): Entry[] {
       exampleMeaning: item.exampleMeaning
         ? String(item.exampleMeaning)
         : undefined,
+      imageUrl: item.imageUrl ? String(item.imageUrl) : undefined,
     }))
     .filter((item) => item.chinese && item.meaningVi);
 }
@@ -148,6 +153,7 @@ function playSound(correct: boolean) {
 
 export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const { lesson } = loaderData;
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<StudyTab>(
     lesson.vocabularies.length ? "vocabulary" : "quiz",
   );
@@ -161,7 +167,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [quizPos, setQuizPos] = useState(0);
   const [quizSk, setQuizSk] = useState(0);
   const [qzR, setQzR] = useState("");
-  const [qzM, setQzM] = useState<QuizMode>("meaning");
+  const [qzM, setQzM] = useState<QuizMode>("pinyin");
   const translationInputRef = useRef<HTMLInputElement>(null);
   const hanziInputRef = useRef<HTMLInputElement>(null);
 
@@ -264,7 +270,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     setQuizPos(0);
     setQuizSk((k) => k + 1);
     setQzR("");
-    setQzM("meaning");
+    setQzM("pinyin");
   }, [activeTab]);
   useEffect(() => {
     if (activeTab === "quiz" && qzM === "listening" && cQuiz?.answer)
@@ -292,20 +298,14 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     } else {
       setVocabPos(vocabPos + 1);
     }
-    setShowMeaning(false);
-    setTlA("");
-    setTlC(false);
-    setHzA("");
-    setHzC(false);
+    setShowMeaning(false); setTlA(""); setTlC(false);
+    setHzA(""); setHzC(false);
   }, [sVocab.length, vocabPos, vocabOrder.length]);
   const pV = useCallback(() => {
     if (!sVocab.length) return;
     setVocabPos((vocabPos - 1 + vocabOrder.length) % vocabOrder.length);
-    setShowMeaning(false);
-    setTlA("");
-    setTlC(false);
-    setHzA("");
-    setHzC(false);
+    setShowMeaning(false); setTlA(""); setTlC(false);
+    setHzA(""); setHzC(false);
   }, [sVocab.length, vocabPos, vocabOrder.length]);
   const nQ = useCallback(() => {
     if (!genQ.length) return;
@@ -360,7 +360,10 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-4 md:p-6">
             <div className="mb-4 flex flex-col gap-3">
               <div>
-                <h1 className="text-lg font-bold sm:text-xl">{lesson.title}</h1>
+                <h1 className="text-lg font-bold sm:text-xl">
+                  <button onClick={() => navigate(-1)} className="inline-flex items-center align-middle mr-1.5 text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
+                  {lesson.title}
+                </h1>
                 <p className="mt-1 text-sm text-slate-500">{lesson.description}</p>
               </div>
               <div className="flex items-center gap-2">
@@ -393,46 +396,39 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
               </div>
             </div>
 
-            {activeTab === "vocabulary" && cVocab && (
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 sm:rounded-[2rem] sm:p-6">
+            {activeTab === "vocabulary" && cVocab ? (
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 shadow-sm sm:rounded-[2rem] sm:p-6">
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
-                  <button
-                    onClick={() => speakChinese(cVocab.chinese)}
-                    className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3"
-                  >
-                    <Volume2 size={18} />
-                  </button>
-                  <p className="break-all text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>
-                    {cVocab.chinese}
-                  </p>
-                  <p className="mt-3 text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>
-                    {cVocab.pinyin}
-                  </p>
+                  <button onClick={() => speakChinese(cVocab.chinese)} className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 shadow-sm hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3" title="Nghe phát âm" type="button"><Volume2 size={18} className="sm:w-5 sm:h-5" /></button>
+                  <p className="break-all text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>{cVocab.chinese}</p>
+                  <p className="mt-3 break-words text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>{cVocab.pinyin}</p>
                   {showMeaning ? (
                     <div className="mt-4 rounded-2xl bg-amber-50 p-3 sm:mt-6 sm:rounded-3xl sm:p-5">
-                      <p className="text-lg font-extrabold text-slate-900 sm:text-2xl" suppressHydrationWarning>
-                        {cVocab.meaningVi}
-                      </p>
+                      <p className="text-lg font-extrabold text-slate-900 sm:text-2xl">{cVocab.meaningVi}</p>
+                      {cVocab.exampleChinese ? (
+                        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:mt-4 sm:gap-2">
+                          <p className="break-words text-sm font-semibold sm:text-lg">{cVocab.exampleChinese}</p>
+                          <button onClick={() => speakChinese(cVocab.exampleChinese || "")} className="rounded-full bg-white p-1.5 text-red-600 hover:bg-red-100 sm:p-2" type="button"><Volume2 size={14} className="sm:w-4 sm:h-4" /></button>
+                        </div>
+                      ) : null}
+                      {cVocab.examplePinyin ? <p className="mt-1 text-xs font-semibold text-red-600 sm:text-sm">{cVocab.examplePinyin}</p> : null}
+                      {cVocab.exampleMeaning ? <p className="mt-1 text-xs text-slate-600 sm:text-sm">{cVocab.exampleMeaning}</p> : null}
                     </div>
                   ) : (
-                    <div className="mt-4 rounded-2xl border border-dashed border-slate-200 p-4 text-xs text-slate-400 sm:mt-6 sm:p-5 sm:text-sm">
-                      Ẩn nghĩa để bạn tự nhớ trước
-                    </div>
+                    <div className="mt-4 rounded-2xl border border-dashed border-slate-200 p-4 text-xs text-slate-400 sm:mt-6 sm:rounded-3xl sm:p-5 sm:text-sm">Ẩn nghĩa để bạn tự nhớ trước</div>
                   )}
-                  <div className="mt-4 grid grid-cols-3 gap-1.5 sm:mt-6 sm:flex sm:justify-center sm:gap-2.5">
+                  <div className="mt-4 grid grid-cols-3 gap-1.5 sm:mt-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-2.5">
                     <Nb onClick={pV} label="Trước" />
-                    <button
-                      onClick={() => setShowMeaning((p) => !p)}
-                      className="flex min-h-10 items-center justify-center gap-1.5 rounded-2xl bg-red-600 px-3 py-2.5 text-xs font-semibold text-white hover:bg-red-700 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm"
-                    >
-                      {showMeaning ? <EyeOff size={16} /> : <Eye size={16} />}
-                      {showMeaning ? "Ẩn" : "Lật"}
+                    <button onClick={() => setShowMeaning((p) => !p)} type="button" className="flex min-h-10 items-center justify-center gap-1.5 rounded-2xl bg-red-600 px-3 py-2.5 text-xs font-semibold text-white hover:bg-red-700 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm">
+                      {showMeaning ? <EyeOff size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Eye size={16} className="sm:w-[18px] sm:h-[18px]" />}{showMeaning ? "Ẩn" : "Lật"}
                     </button>
                     <Nb onClick={nV} label="Tiếp" next />
                   </div>
                 </div>
               </div>
-            )}
+            ) : activeTab === "vocabulary" ? (
+              <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-sm text-slate-400">Bài này chưa có từ vựng.</div>
+            ) : null}
             {activeTab === "translation" && cVocab && (
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 sm:rounded-[2rem] sm:p-6">
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
@@ -454,23 +450,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={tlA}
                       onChange={(e) => setTlA(e.target.value)}
                       placeholder="Nhập nghĩa tiếng Việt..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setTlC(true); (e.target as HTMLInputElement).blur(); }
                       }}
                     />
                   </div>
-                  {!tlC ? (
-                    <button
-                      onClick={() => setTlC(true)}
-                      disabled={!tlA.trim()}
-                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"
-                    >
-                      <Check size={18} />
-                      Kiểm tra
-                    </button>
-                  ) : null}
-                  {tlC ? (
+                  {!tlC ? null : (
                     <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
                         Đáp án tham khảo
@@ -479,9 +465,14 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                         {cVocab.meaningVi}
                       </p>
                     </div>
-                  ) : null}
-                  <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
+                  )}
+                  <div className="mt-4 flex items-center justify-center gap-2.5">
                     <Nb onClick={pV} label="Trước" />
+                    {!tlC ? (
+                      <button onClick={() => setTlC(true)} disabled={!tlA.trim()} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12" type="button"><Check size={20} /></button>
+                    ) : (
+                      <button onClick={nV} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12" type="button"><ChevronRight size={20} /></button>
+                    )}
                     <Nb onClick={nV} label="Tiếp" next />
                   </div>
                 </div>
@@ -508,23 +499,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={hzA}
                       onChange={(e) => setHzA(e.target.value)}
                       placeholder="Nhập chữ Hán..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setHzC(true); (e.target as HTMLInputElement).blur(); }
                       }}
                     />
                   </div>
-                  {!hzC ? (
-                    <button
-                      onClick={() => setHzC(true)}
-                      disabled={!hzA.trim()}
-                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50"
-                    >
-                      <Check size={18} />
-                      Kiểm tra
-                    </button>
-                  ) : null}
-                  {hzC ? (
+                  {!hzC ? null : (
                     <div className="mt-3 rounded-2xl bg-amber-50 p-3 text-left">
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
                         Đáp án
@@ -533,9 +514,14 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                         {cVocab.chinese}
                       </p>
                     </div>
-                  ) : null}
-                  <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:justify-center sm:gap-2.5">
+                  )}
+                  <div className="mt-4 flex items-center justify-center gap-2.5">
                     <Nb onClick={pV} label="Trước" />
+                    {!hzC ? (
+                      <button onClick={() => setHzC(true)} disabled={!hzA.trim()} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12" type="button"><Check size={20} /></button>
+                    ) : (
+                      <button onClick={nV} className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12" type="button"><ChevronRight size={20} /></button>
+                    )}
                     <Nb onClick={nV} label="Tiếp" next />
                   </div>
                 </div>
@@ -546,17 +532,17 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                 <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 shadow-md sm:rounded-[2rem] sm:p-6">
                   <div className="-mx-1 mb-4 flex flex-wrap justify-center gap-1">
                     {(
-                      ["meaning", "pinyin", "recognition", "listening"] as const
+                      ["pinyin", "meaning",  "recognition", "listening"] as const
                     ).map((m) => (
                       <button
                         key={m}
                         onClick={() => { setQzM(m); setQuizPos(0); setQzR(""); }}
                         className={`rounded-full px-3 py-1.5 text-[11px] font-bold sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm ${qzM === m ? "bg-red-600 text-white" : "bg-slate-100 text-slate-500"}`}
                       >
-                        {m === "meaning"
-                          ? "Nghĩa"
-                          : m === "pinyin"
-                            ? "Pinyin"
+                        {m === "pinyin"
+                          ? "Pinyin"
+                          : m === "meaning"
+                            ? "Nghĩa"
                             : m === "recognition"
                               ? "Chữ Hán"
                               : "Nghe"}
@@ -569,10 +555,9 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   {qzM === "listening" ? (
                     <button
                       onClick={() => speakChinese(cQuiz.answer as string)}
-                      className="mt-3 flex items-center gap-1.5 rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-600 sm:rounded-2xl sm:px-4 sm:py-2.5 sm:text-sm"
+                      className="mt-3 flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-2 text-xs font-bold text-red-600 sm:rounded-full sm:px-4 sm:py-2.5 sm:text-sm"
                     >
                       <Volume2 size={16} />
-                      Nghe lại
                     </button>
                   ) : null}
                   <div className="mt-4 grid gap-2">
@@ -591,8 +576,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                     })}
                   </div>
                   <div className="mt-4 grid grid-cols-2 gap-2 sm:flex sm:justify-center sm:gap-3">
-                    <Nb onClick={pQ} label="Câu trước" />
-                    <Nb onClick={nQ} label="Câu tiếp theo" next />
+                    <Nb onClick={pQ} label="Trước" />
+                    <Nb onClick={nQ} label="Tiếp" next />
                   </div>
                 </div>
               </div>

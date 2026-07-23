@@ -35,11 +35,22 @@ const WELCOME: Message = {
   id: "welcome",
   role: "assistant",
   content:
-    "Xin chào! Tôi là trợ lý AI học tiếng Trung.\n\n• Hỏi tôi về từ vựng, ngữ pháp, phát âm...\n• Gõ \"Luyện tập\" để AI tạo câu hỏi trắc nghiệm.\n• Gõ \"Luyện chữ Hán\" để luyện viết câu tiếng Trung.\n\nBắt đầu ngay nhé!",
+    "Xin chào! Tôi là trợ lý AI học tiếng Trung.\n\n• Hỏi tôi về từ vựng, ngữ pháp, phát âm...\n• Gõ \"Luyện tập\" để AI tạo câu hỏi trắc nghiệm.\n• Gõ \"Luyện chữ Hán\" để luyện viết chữ Hán (có pinyin).\n• Gõ \"Dịch Hán-Việt\" để dịch câu tiếng Trung sang tiếng Việt.\n• Gõ \"Dịch Việt-Hán\" để viết chữ Hán từ nghĩa tiếng Việt (không pinyin).\n\nBắt đầu ngay nhé!",
 };
 
 function startsWithAny(text: string, patterns: RegExp[]) {
   return patterns.some((pattern) => pattern.test(text));
+}
+
+function normalizeCommand(text: string) {
+  return text
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/[-‐‑‒–—―_/]+/g, " ")
+    .replace(/\s+/g, " ");
 }
 
 export function AIChatWidget() {
@@ -55,11 +66,17 @@ export function AIChatWidget() {
   const [convoActive, setConvoActive] = useState(false);
   const [translationActive, setTranslationActive] = useState(false);
   const [hanziActive, setHanziActive] = useState(false);
+  const [hanVietActive, setHanVietActive] = useState(false);
+  const [vietHanActive, setVietHanActive] = useState(false);
   const quizActiveRef = useRef(false);
   const convoActiveRef = useRef(false);
   const translationActiveRef = useRef(false);
   const hanziActiveRef = useRef(false);
+  const hanVietActiveRef = useRef(false);
+  const vietHanActiveRef = useRef(false);
   const hanziSentenceRef = useRef<{chinese: string; pinyin: string; meaningVi: string} | null>(null);
+  const hanVietRef = useRef<{chinese: string; pinyin: string; meaningVi: string} | null>(null);
+  const vietHanRef = useRef<{chinese: string; pinyin: string; meaningVi: string} | null>(null);
   const recognitionRef = useRef<any>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -91,6 +108,16 @@ export function AIChatWidget() {
   const setHanziActiveState = (value: boolean) => {
     setHanziActive(value);
     hanziActiveRef.current = value;
+  };
+
+  const setHanVietActiveState = (value: boolean) => {
+    setHanVietActive(value);
+    hanVietActiveRef.current = value;
+  };
+
+  const setVietHanActiveState = (value: boolean) => {
+    setVietHanActive(value);
+    vietHanActiveRef.current = value;
   };
 
   const addStudyContext = (body: Record<string, unknown>) => {
@@ -190,6 +217,86 @@ export function AIChatWidget() {
     }
   };
 
+  const generateHanVietSentence = async () => {
+    setLoading(true);
+    try {
+      const body = addStudyContext({ intent: "hanviet_sentence" });
+      if (prevSentencesRef.current.length > 0) {
+        body.previousSentences = prevSentencesRef.current;
+      }
+      const response = await fetch("/api/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = (await response.json()) as {
+        sentence?: { chinese: string; pinyin: string; meaningVi: string };
+        error?: string;
+      };
+
+      if (!data.sentence) {
+        pushAssistant(data.error || "Không tạo được câu.");
+        setHanVietActiveState(false);
+        return;
+      }
+
+      hanVietRef.current = data.sentence;
+      const sentChinese = data.sentence.chinese?.trim();
+      if (sentChinese && !prevSentencesRef.current.includes(sentChinese)) {
+        prevSentencesRef.current.push(sentChinese);
+        if (prevSentencesRef.current.length > 30) prevSentencesRef.current.shift();
+      }
+      pushAssistant(
+        `Dịch câu sau sang tiếng Việt:\n\n${data.sentence.chinese}\n\nNhập nghĩa tiếng Việt của bạn vào ô bên dưới.`,
+      );
+    } catch {
+      pushAssistant("Lỗi kết nối.");
+      setHanVietActiveState(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const generateVietHanSentence = async () => {
+    setLoading(true);
+    try {
+      const body = addStudyContext({ intent: "hanviet_sentence" });
+      if (prevSentencesRef.current.length > 0) {
+        body.previousSentences = prevSentencesRef.current;
+      }
+      const response = await fetch("/api/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = (await response.json()) as {
+        sentence?: { chinese: string; pinyin: string; meaningVi: string };
+        error?: string;
+      };
+
+      if (!data.sentence) {
+        pushAssistant(data.error || "Không tạo được câu.");
+        setVietHanActiveState(false);
+        return;
+      }
+
+      vietHanRef.current = data.sentence;
+      const sentChinese = data.sentence.chinese?.trim();
+      if (sentChinese && !prevSentencesRef.current.includes(sentChinese)) {
+        prevSentencesRef.current.push(sentChinese);
+        if (prevSentencesRef.current.length > 30) prevSentencesRef.current.shift();
+      }
+      pushAssistant(
+        `Dịch câu sau sang tiếng Trung:\n\n${data.sentence.meaningVi}\n\nNhập chữ Hán của bạn vào ô bên dưới.`,
+      );
+    } catch {
+      pushAssistant("Lỗi kết nối.");
+      setVietHanActiveState(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const genQuiz = async () => {
     setLoading(true);
     try {
@@ -251,15 +358,21 @@ export function AIChatWidget() {
         let label = "trợ lý";
         if (quizActiveRef.current) label = "luyện tập";
         else if (hanziActiveRef.current) label = "luyện chữ Hán";
+        else if (hanVietActiveRef.current) label = "dịch Hán-Việt";
+        else if (vietHanActiveRef.current) label = "Dịch Việt-Hán";
         else if (convoActiveRef.current) label = "hội thoại";
         else if (translationActiveRef.current) label = "dịch";
         setQuizActiveState(false);
         setConvoActiveState(false);
         setTranslationActiveState(false);
         setHanziActiveState(false);
+        setHanVietActiveState(false);
+        setVietHanActiveState(false);
         hanziSentenceRef.current = null;
+        hanVietRef.current = null;
+        vietHanRef.current = null;
         prevSentencesRef.current = [];
-        pushAssistant(`Đã kết thúc ${label}. Gõ luyện tập, luyện chữ Hán hoặc dịch để bắt đầu!`);
+        pushAssistant(`Đã kết thúc ${label}. Gõ luyện tập, luyện chữ Hán, dịch Hán-Việt, dịch Việt-Hán hoặc dịch để bắt đầu!`);
         return;
       }
 
@@ -271,6 +384,8 @@ export function AIChatWidget() {
         setQuizActiveState(false);
         setConvoActiveState(false);
         setTranslationActiveState(false);
+        setHanVietActiveState(false);
+        setVietHanActiveState(false);
         hanziSentenceRef.current = null;
         prevSentencesRef.current = [];
         pushAssistant(
@@ -278,6 +393,60 @@ export function AIChatWidget() {
         );
         setLoading(false);
         setTimeout(() => generateHanziSentence(), 350);
+        return;
+      }
+
+      const textKey = normalizeCommand(text);
+
+      const isVietHan =
+        textKey.startsWith("dich viet han") ||
+        textKey.startsWith("viet han") ||
+        textKey.startsWith("viet sang han") ||
+        textKey.startsWith("tieng viet sang tieng trung") ||
+        textKey.startsWith("viet trung");
+      if (isVietHan) {
+        setVietHanActiveState(true);
+        setQuizActiveState(false);
+        setConvoActiveState(false);
+        setTranslationActiveState(false);
+        setHanziActiveState(false);
+        setHanVietActiveState(false);
+        hanziSentenceRef.current = null;
+        hanVietRef.current = null;
+        vietHanRef.current = null;
+        prevSentencesRef.current = [];
+        pushAssistant(
+          "Dịch Việt-Hán: Tôi sẽ đưa câu tiếng Việt, bạn dịch sang tiếng Trung. Gõ kết thúc để dừng.",
+        );
+        setLoading(false);
+        setTimeout(() => generateVietHanSentence(), 350);
+        return;
+      }
+
+      const isHanViet =
+        textKey.startsWith("dich han viet") ||
+        textKey.startsWith("han viet") ||
+        textKey.startsWith("han sang viet") ||
+        textKey.startsWith("tieng trung sang tieng viet") ||
+        textKey.startsWith("trung viet") ||
+        textKey.startsWith("dich han") ||
+        textKey.startsWith("luyen dich");
+      if (isHanViet) {
+        setHanVietActiveState(true);
+        setQuizActiveState(false);
+        setConvoActiveState(false);
+        setTranslationActiveState(false);
+        setHanziActiveState(false);
+        setVietHanActiveState(false);
+        hanziSentenceRef.current = null;
+        hanVietRef.current = null;
+        vietHanRef.current = null;
+        prevSentencesRef.current = [];
+        pushAssistant(
+          "Luyện dịch Hán-Việt: Tôi sẽ đưa câu tiếng Trung, bạn dịch sang tiếng Việt. Gõ kết thúc để dừng.",
+        );
+        setLoading(false);
+        setTimeout(() => generateHanVietSentence(), 350);
         return;
       }
 
@@ -289,7 +458,11 @@ export function AIChatWidget() {
         setQuizActiveState(false);
         setConvoActiveState(false);
         setHanziActiveState(false);
+        setHanVietActiveState(false);
+        setVietHanActiveState(false);
         hanziSentenceRef.current = null;
+        hanVietRef.current = null;
+        vietHanRef.current = null;
         pushAssistant(
           "Chế độ dịch: Nhập tiếng Việt, tôi sẽ phân tích sang tiếng Trung (chữ Hán, pinyin, nghĩa, ví dụ). Gõ kết thúc để thoát.",
         );
@@ -304,7 +477,11 @@ export function AIChatWidget() {
         setConvoActiveState(false);
         setTranslationActiveState(false);
         setHanziActiveState(false);
+        setHanVietActiveState(false);
+        setVietHanActiveState(false);
         hanziSentenceRef.current = null;
+        hanVietRef.current = null;
+        vietHanRef.current = null;
         prevWordsRef.current = [];
         pushAssistant(
           "Bắt đầu chuỗi luyện tập! Trả lời từng câu, gõ kết thúc để dừng.",
@@ -335,6 +512,56 @@ export function AIChatWidget() {
         );
         if (hanziActiveRef.current) {
           setTimeout(() => generateHanziSentence(), 1000);
+        }
+        return;
+      }
+
+      // HanViet mode: check user's Vietnamese translation
+      if (hanVietActiveRef.current && hanVietRef.current) {
+        const body = addStudyContext({
+          intent: "hanviet_check",
+          userAnswer: text,
+          sentence: hanVietRef.current,
+        });
+        const response = await fetch("/api/ai/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = (await response.json()) as { correct: boolean; feedback: string };
+        pushAssistant(
+          data.feedback ||
+            (data.correct
+              ? "Chính xác! 🎉"
+              : `Chưa đúng. Nghĩa: ${hanVietRef.current.meaningVi}`),
+        );
+        if (hanVietActiveRef.current) {
+          setTimeout(() => generateHanVietSentence(), 1000);
+        }
+        return;
+      }
+
+      // VietHan mode: check user's Chinese translation from Vietnamese
+      if (vietHanActiveRef.current && vietHanRef.current) {
+        const body = addStudyContext({
+          intent: "viethan_check",
+          userAnswer: text,
+          sentence: vietHanRef.current,
+        });
+        const response = await fetch("/api/ai/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = (await response.json()) as { correct: boolean; feedback: string };
+        pushAssistant(
+          data.feedback ||
+            (data.correct
+              ? "Chính xác! 🎉"
+              : `Chưa đúng. Đáp án: ${vietHanRef.current.chinese} (${vietHanRef.current.pinyin})`),
+        );
+        if (vietHanActiveRef.current) {
+          setTimeout(() => generateVietHanSentence(), 1000);
         }
         return;
       }
@@ -409,7 +636,11 @@ export function AIChatWidget() {
     setConvoActiveState(false);
     setTranslationActiveState(false);
     setHanziActiveState(false);
+    setHanVietActiveState(false);
+    setVietHanActiveState(false);
     hanziSentenceRef.current = null;
+    hanVietRef.current = null;
+    vietHanRef.current = null;
     prevWordsRef.current = [];
   };
 
@@ -470,7 +701,7 @@ export function AIChatWidget() {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-20 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition-all hover:scale-110 hover:bg-red-700 md:bottom-6 md:right-6"
+          className="fixed bottom-28 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition-all hover:scale-110 hover:bg-red-700 md:bottom-10 md:right-6"
           type="button"
           aria-label="Mở trợ lý AI"
         >
@@ -480,18 +711,18 @@ export function AIChatWidget() {
 
       {open ? (
         <div
-          className="fixed bottom-24 right-4 z-[60] flex w-[calc(100vw-2rem)] max-w-sm flex-col rounded-3xl border border-slate-200 bg-white shadow-2xl md:bottom-24 md:right-6"
+          className="fixed bottom-32 right-4 z-[60] flex w-[calc(100vw-2rem)] max-w-sm flex-col rounded-3xl border border-slate-200 bg-white shadow-2xl md:bottom-14 md:right-6"
           style={{ height: "min(600px, calc(100vh - 8rem))" }}
         >
           <div
             className={`flex items-center justify-between rounded-t-3xl px-4 py-3 text-white ${
-              translationActive ? "bg-emerald-500" : hanziActive ? "bg-purple-600" : convoActive ? "bg-blue-500" : "bg-red-500"
+              translationActive ? "bg-emerald-500" : hanziActive ? "bg-purple-600" : hanVietActive ? "bg-amber-500" : vietHanActive ? "bg-teal-600" : convoActive ? "bg-blue-500" : "bg-red-500"
             }`}
           >
             <div className="flex items-center gap-2">
               <GraduationCap size={20} />
               <span className="text-sm font-bold">
-                {quizActive ? "Đang luyện tập" : hanziActive ? "Luyện chữ Hán" : convoActive ? "Đang hội thoại" : translationActive ? "Chế độ dịch" : "HSK Learning"}
+                {quizActive ? "Đang luyện tập" : hanziActive ? "Luyện chữ Hán" : hanVietActive ? "Dịch Hán-Việt" : vietHanActive ? "Dịch Việt-Hán" : convoActive ? "Đang hội thoại" : translationActive ? "Chế độ dịch" : "HSK Learning"}
               </span>
             </div>
             <div className="flex items-center gap-1">
@@ -628,7 +859,7 @@ export function AIChatWidget() {
               className="flex gap-1.5 overflow-x-auto px-3 pb-1 pt-1 [&::-webkit-scrollbar]:hidden"
               style={{ scrollbarWidth: "none" }}
             >
-              {["Dịch", "Luyện chữ Hán", "Luyện tập", "Ngữ pháp"].map(
+              {["Dịch Hán-Việt", "Dịch Việt-Hán", "Luyện chữ Hán", "Luyện tập", "Dịch", "Ngữ pháp"].map(
                 (quickReply) => (
                   <button
                     key={quickReply}
@@ -672,11 +903,15 @@ export function AIChatWidget() {
                     ? 'Gõ "kết thúc" để dừng luyện tập...'
                     : hanziActive
                       ? "Nhập chữ Hán..."
-                      : convoActive
-                        ? "Nói hoặc gõ tiếng Trung..."
-                        : translationActive
-                          ? "Nhập tiếng Việt để dịch sang tiếng Trung..."
-                          : 'Hỏi từ vựng, gõ "luyện tập" hoặc "luyện chữ Hán"...'
+                      : hanVietActive
+                        ? "Nhập nghĩa tiếng Việt..."
+                      : vietHanActive
+                        ? "Nhập chữ Hán..."
+                        : convoActive
+                          ? "Nói hoặc gõ tiếng Trung..."
+                          : translationActive
+                            ? "Nhập tiếng Việt để dịch sang tiếng Trung..."
+                            : 'Hỏi từ vựng, gõ "luyện tập", "luyện chữ Hán" hoặc "dịch Hán-Việt"...'
                 }
                 className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-base outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100"
                 disabled={loading}

@@ -345,7 +345,7 @@ Quy tắc:
 export async function action({ request }: Route.ActionArgs) {
   const user = await requireUser(request);
   const body = (await request.json()) as {
-    intent?: "chat" | "practice_generate" | "practice_check" | "hanzi_sentence" | "hanzi_check";
+    intent?: "chat" | "practice_generate" | "practice_check" | "hanzi_sentence" | "hanzi_check" | "hanviet_sentence" | "hanviet_check" | "viethan_check";
     messages?: ChatMessage[];
     mode?: ChatMode;
     lessonIds?: string[];
@@ -502,7 +502,7 @@ Hãy đưa ra phản hồi khuyến khích.`,
   }
 
   // ===== HANZI SENTENCE =====
-  if (intent === "hanzi_sentence") {
+  if (intent === "hanzi_sentence" || intent === "hanviet_sentence") {
     const lessonIds = body.lessonIds || [];
     const roadmapId = body.roadmapId;
     const previousSentences = (body as any).previousSentences as string[] || [];
@@ -615,6 +615,84 @@ Hãy đưa ra phản hồi.`,
       });
     } catch {
       return data({ correct: isCorrect, feedback: "" });
+    }
+  }
+
+  // ===== HANVIET CHECK =====
+  if (intent === "hanviet_check") {
+    const { userAnswer, sentence } = body;
+    if (!userAnswer?.trim() || !sentence?.meaningVi) {
+      return data({ error: "Thiếu thông tin." }, { status: 400 });
+    }
+
+    try {
+      const feedback = await callAI([
+        {
+          role: "system",
+          content:
+            "Bạn là giáo viên tiếng Trung. Học viên dịch câu tiếng Trung sang tiếng Việt. So sánh bản dịch của học viên với nghĩa đúng, đánh giá đúng/sai, phản hồi ngắn 1-2 câu bằng tiếng Việt. Chấp nhận nếu ý nghĩa tương đương dù cách diễn đạt khác. Khuyến khích học viên.",
+        },
+        {
+          role: "user",
+          content: `Câu tiếng Trung: "${sentence.chinese}" (${sentence.pinyin})
+Nghĩa đúng: "${sentence.meaningVi}"
+Học viên dịch: "${userAnswer}"
+Hãy đánh giá đúng/sai và phản hồi.`,
+        },
+      ]);
+
+      const lower = feedback.toLowerCase();
+      const isCorrect = lower.includes("đúng") && !lower.includes("sai") && !lower.includes("chưa");
+
+      return data({
+        correct: isCorrect,
+        feedback:
+          feedback ||
+          (isCorrect
+            ? "Chính xác! 🎉"
+            : `Chưa đúng. Nghĩa: ${sentence.meaningVi}`),
+      });
+    } catch {
+      return data({ correct: false, feedback: `Nghĩa: ${sentence.meaningVi}` });
+    }
+  }
+
+  // ===== VIETHAN CHECK =====
+  if (intent === "viethan_check") {
+    const { userAnswer, sentence } = body;
+    if (!userAnswer?.trim() || !sentence?.chinese) {
+      return data({ error: "Thiếu thông tin." }, { status: 400 });
+    }
+
+    try {
+      const feedback = await callAI([
+        {
+          role: "system",
+          content:
+            "Bạn là giáo viên tiếng Trung. Học viên dịch câu tiếng Việt sang tiếng Trung. So sánh bản dịch của học viên với câu đúng, đánh giá đúng/sai, phản hồi ngắn 1-2 câu bằng tiếng Việt. Chấp nhận nếu ý nghĩa tương đương dù cách diễn đạt khác. Nếu sai, chỉ ra lỗi và đưa đáp án đúng. Khuyến khích học viên.",
+        },
+        {
+          role: "user",
+          content: `Nghĩa tiếng Việt: "${sentence.meaningVi}"
+Câu tiếng Trung đúng: "${sentence.chinese}" (${sentence.pinyin})
+Học viên viết: "${userAnswer}"
+Hãy đánh giá đúng/sai và phản hồi.`,
+        },
+      ]);
+
+      const lower = feedback.toLowerCase();
+      const isCorrect = lower.includes("đúng") && !lower.includes("sai") && !lower.includes("chưa");
+
+      return data({
+        correct: isCorrect,
+        feedback:
+          feedback ||
+          (isCorrect
+            ? "Chính xác! 🎉"
+            : `Chưa đúng. Đáp án: ${sentence.chinese} (${sentence.pinyin})`),
+      });
+    } catch {
+      return data({ correct: false, feedback: `Đáp án: ${sentence.chinese} (${sentence.pinyin})` });
     }
   }
 

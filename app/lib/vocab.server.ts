@@ -6,6 +6,7 @@ export type ImportedVocabulary = {
   exampleChinese?: string;
   examplePinyin?: string;
   exampleMeaning?: string;
+  imageUrl?: string;
   level?: string;
   lessonTitle?: string;
 };

@@ -78,9 +78,8 @@ export async function action({ request }: Route.ActionArgs) {
       vocabCount += vocabularies.length;
     }
 
-    return data({
-      message: `Đã import ${lessonCount} bài học, ${vocabCount} từ vựng vào ${source === "HSK30" ? "HSK 3.0" : "HSK 2.0"}.`,
-    });
+    const message = `Đã import ${lessonCount} bài học, ${vocabCount} từ vựng vào ${source === "HSK30" ? "HSK 3.0" : "HSK 2.0"}.`;
+    return data({ success: message, message });
   } catch (error) {
     return data(
       { error: error instanceof Error ? error.message : "Lỗi import file." },
