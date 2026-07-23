@@ -5,14 +5,20 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  Navigate,
   useNavigate,
+  useNavigation,
+  useLocation,
   useRouteError,
   useSearchParams,
 } from "react-router";
 import type { LinksFunction } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ToastProvider, useToast } from "~/components/Toast";
+import { AuthProvider } from "~/components/AuthProvider";
 import appCss from "~/styles/app.css?url";
+
+const MAINTENANCE_MODE = true;
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: appCss }];
 
@@ -35,11 +41,78 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation();
+
+  // Chế độ bảo trì: redirect tất cả về /maintenance (trừ chính trang maintenance)
+  if (MAINTENANCE_MODE && location.pathname !== "/maintenance") {
+    return <Navigate to="/maintenance" replace />;
+  }
+
   return (
-    <>
+    <AuthProvider>
+      <NavigationProgress />
       <ToastSearchBridge />
-      <Outlet />
-    </>
+      <PageTransition>
+        <Outlet />
+      </PageTransition>
+    </AuthProvider>
+  );
+}
+
+/* ─── Navigation Progress Bar ─── */
+function NavigationProgress() {
+  const navigation = useNavigation();
+  const [show, setShow] = useState(false);
+  const [complete, setComplete] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (navigation.state === "loading" || navigation.state === "submitting") {
+      setComplete(false);
+      timerRef.current = setTimeout(() => setShow(true), 80);
+    } else if (navigation.state === "idle" && show) {
+      setComplete(true);
+      timerRef.current = setTimeout(() => {
+        setShow(false);
+        setComplete(false);
+      }, 120);
+    }
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [navigation.state, show]);
+
+  if (!show) return null;
+
+  return (
+    <div
+      className={`nav-progress-bar ${complete ? "complete" : ""}`}
+      role="progressbar"
+      aria-label="Đang tải trang..."
+    />
+  );
+}
+
+/* ─── Page Fade-In Transition ─── */
+function PageTransition({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const [prevPath, setPrevPath] = useState(location.pathname);
+  const [animating, setAnimating] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname !== prevPath) {
+      setAnimating(true);
+      setPrevPath(location.pathname);
+      const t = setTimeout(() => setAnimating(false), 90);
+      return () => clearTimeout(t);
+    }
+  }, [location.pathname, prevPath]);
+
+  return (
+    <div className={animating ? "page-transition-enter" : ""}>
+      {children}
+    </div>
   );
 }
 
