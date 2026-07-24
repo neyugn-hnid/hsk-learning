@@ -418,10 +418,10 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
                         key={stat.level}
                         type="button"
                         onClick={() => setLevel(stat.level)}
-                        className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${lvlStyle.border}`}
+                        className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${lvlStyle.border}`}
                       >
                         {/* Top Banner / Image Header */}
-                        <div className="relative -mx-6 -mt-6 mb-5 h-40 overflow-hidden bg-slate-900">
+                        <div className="relative h-40 overflow-hidden bg-slate-900">
                           {stat.sampleImages.length > 0 ? (
                             <div className="flex h-full w-full gap-0.5">
                               {stat.sampleImages.map((img, i) => (
@@ -463,7 +463,7 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
                         </div>
 
                         {/* Card Body */}
-                        <div>
+                        <div className="p-6 pt-5">
                           <div className="flex items-center justify-between">
                             <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-rose-600 transition-colors">
                               Cấp độ {stat.level}

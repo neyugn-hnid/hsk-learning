@@ -312,17 +312,17 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const activeCount = activeTab === "quiz" ? practiceQuestions.length : vocabItems.length;
 
   return (
-    <SiteLayout user={loaderData.user}>
+    <SiteLayout user={loaderData.user} hideFooter>
       <main className="mx-auto max-w-3xl px-3 py-4 md:px-4 md:py-8">
         <div className="mt-4 md:mt-6">
           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-4 md:p-6">
             <div className="mb-4 flex flex-col gap-3">
               <div>
                 <h1 className="flex items-center gap-1.5 text-lg font-bold sm:text-xl">
-                  <button onClick={() => navigate(-1)} className="text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
+                  <button onClick={() => navigate(-1)} className="hidden sm:inline text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
                   {lesson.title}
                 </h1>
-                <p className="mt-1 pl-8 text-sm text-slate-500">{lesson.description}</p>
+                <p className="mt-1 pl-0 sm:pl-8 text-sm text-slate-500">{lesson.description}</p>
               </div>
               
               {/* Tab row */}

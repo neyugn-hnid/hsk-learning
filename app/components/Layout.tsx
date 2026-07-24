@@ -20,9 +20,11 @@ import { useToast } from "~/components/Toast";
 export function SiteLayout({
   children,
   user,
+  hideFooter,
 }: {
   children: React.ReactNode;
   user?: any;
+  hideFooter?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -256,6 +258,7 @@ export function SiteLayout({
         </div>
       </nav>
 
+      {!hideFooter ? (
       <footer className="mt-16 border-t border-slate-200 bg-slate-950 text-slate-300">
         <div className="mx-auto max-w-7xl px-4 py-12 md:py-14">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
@@ -397,6 +400,7 @@ export function SiteLayout({
           </div>
         </div>
       </footer>
+      ) : null}
     </div>
   );
 }
