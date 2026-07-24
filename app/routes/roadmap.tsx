@@ -134,55 +134,61 @@ function toRoadmapEntries(value: unknown, availableImages: Set<string>): Roadmap
 // ── Phase color schemes ──────────────────────────────────────────
 const PHASE_STYLES: Record<
   string,
-  { bg: string; border: string; text: string; badge: string; gradient: string; defaultImage: string }
+  { bg: string; border: string; text: string; badge: string; gradient: string; defaultImage: string; hskLevel: string }
 > = {
-  "Giai đoạn 1": {
-    bg: "bg-emerald-50 hover:bg-emerald-100/60",
-    border: "border-emerald-200 hover:border-emerald-400",
-    text: "text-emerald-700",
-    badge: "bg-emerald-500 text-white",
-    gradient: "from-emerald-600 to-teal-700",
-    defaultImage: "/images/hsk1.svg",
-  },
-  "Giai đoạn 2": {
+  "HSK1": {
     bg: "bg-sky-50 hover:bg-sky-100/60",
     border: "border-sky-200 hover:border-sky-400",
     text: "text-sky-700",
     badge: "bg-sky-500 text-white",
     gradient: "from-sky-600 to-blue-700",
-    defaultImage: "/images/hsk2.svg",
+    defaultImage: "/images/hsk1.png",
+    hskLevel: "HSK1",
   },
-  "Giai đoạn 3": {
+  "HSK2": {
+    bg: "bg-emerald-50 hover:bg-emerald-100/60",
+    border: "border-emerald-200 hover:border-emerald-400",
+    text: "text-emerald-700",
+    badge: "bg-emerald-500 text-white",
+    gradient: "from-emerald-600 to-teal-700",
+    defaultImage: "/images/hsk2.png",
+    hskLevel: "HSK2",
+  },
+  "HSK3": {
     bg: "bg-indigo-50 hover:bg-indigo-100/60",
     border: "border-indigo-200 hover:border-indigo-400",
     text: "text-indigo-700",
     badge: "bg-indigo-500 text-white",
     gradient: "from-indigo-600 to-violet-700",
-    defaultImage: "/images/hsk3.svg",
+    defaultImage: "/images/hsk3.png",
+    hskLevel: "HSK3",
   },
-  "Giai đoạn 4": {
+  "HSK4": {
     bg: "bg-amber-50 hover:bg-amber-100/60",
     border: "border-amber-200 hover:border-amber-400",
     text: "text-amber-700",
     badge: "bg-amber-500 text-white",
     gradient: "from-amber-500 to-orange-600",
-    defaultImage: "/images/hsk_beginner.png",
+    defaultImage: "/images/hsk4.png",
+    hskLevel: "HSK4",
   },
-  "Giai đoạn 5": {
+  "HSK5": {
     bg: "bg-rose-50 hover:bg-rose-100/60",
     border: "border-rose-200 hover:border-rose-400",
     text: "text-rose-700",
     badge: "bg-rose-500 text-white",
     gradient: "from-rose-600 to-red-700",
     defaultImage: "/images/hsk_intermediate.png",
+    hskLevel: "HSK5",
   },
-  "Giai đoạn 6": {
+  "HSK6": {
     bg: "bg-purple-50 hover:bg-purple-100/60",
     border: "border-purple-200 hover:border-purple-400",
     text: "text-purple-700",
     badge: "bg-purple-600 text-white",
     gradient: "from-purple-600 to-fuchsia-700",
     defaultImage: "/images/hsk_advanced.png",
+    hskLevel: "HSK6",
   },
 };
 
@@ -196,6 +202,7 @@ function getPhaseStyle(ph: string) {
     badge: "bg-red-600 text-white",
     gradient: "from-red-600 to-rose-700",
     defaultImage: "/images/hsk_advanced.png",
+    hskLevel: "",
   };
 }
 
@@ -369,9 +376,7 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                   <GraduationCap className="text-blue-600" size={22} />
                   <span>Chọn giai đoạn học</span>
                 </h2>
-                <span className="text-xs font-medium text-slate-500">
-                  Hiển thị {phaseStats.length} giai đoạn
-                </span>
+                
               </div>
 
               {phaseStats.length === 0 ? (
@@ -430,6 +435,9 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                           <div className="flex items-center justify-between">
                             <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
                               {stat.phase}
+                              {phStyle.hskLevel ? (
+                                <span className="ml-2 rounded-lg bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-500">{phStyle.hskLevel}</span>
+                              ) : null}
                             </h3>
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-200">
                               <ArrowRight size={16} />
@@ -489,15 +497,8 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                   <div>
                     <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
                       <span>Danh sách buổi học</span>
-                      <span className={`rounded-xl px-3 py-0.5 text-xs font-bold ${getPhaseStyle(phase).badge}`}>
-                        {phase}
-                      </span>
                     </h2>
                   </div>
-                </div>
-
-                <div className="text-xs font-semibold text-slate-500">
-                  Hiển thị <strong className="text-slate-900">{items.length}</strong> buổi học
                 </div>
               </div>
 

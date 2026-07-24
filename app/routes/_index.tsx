@@ -308,9 +308,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               level="HSK 1"
               title="Nhập môn căn bản"
               desc="Nắm vững 150-300 từ vựng ban đầu, mẫu câu giao tiếp cơ bản hằng ngày."
-              bgImg="/images/hsk1.svg"
+              bgImg="/images/thumbnail-hsk1.png"
               color="emerald"
-              link="/lessons?source=HSK20&level=HSK+1"
+              link="/lessons?source=HSK20&level=HSK1"
               user={user}
               onRequireAuth={() => { pushToast("Vui lòng đăng nhập để xem bài học.", "info"); openLogin(); }}
             />
@@ -318,9 +318,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               level="HSK 2"
               title="Sơ cấp ứng dụng"
               desc="Mở rộng 300-600 từ vựng, diễn đạt ý kiến và trao đổi thông tin cá nhân."
-              bgImg="/images/hsk2.svg"
+              bgImg="/images/thumbnail-hsk2.png"
               color="sky"
-              link="/lessons?source=HSK20&level=HSK+2"
+              link="/lessons?source=HSK20&level=HSK2"
               user={user}
               onRequireAuth={() => { pushToast("Vui lòng đăng nhập để xem bài học.", "info"); openLogin(); }}
             />
@@ -328,9 +328,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               level="HSK 3"
               title="Trung cấp giao tiếp"
               desc="Tích lũy 600-1000 từ vựng, tự tin hoàn thành các nhu cầu sinh hoạt & du lịch."
-              bgImg="/images/hsk3.svg"
+              bgImg="/images/thumbnail-hsk3.png"
               color="purple"
-              link="/lessons?source=HSK20&level=HSK+3"
+              link="/lessons?source=HSK20&level=HSK3"
               user={user}
               onRequireAuth={() => { pushToast("Vui lòng đăng nhập để xem bài học.", "info"); openLogin(); }}
             />
@@ -487,7 +487,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
         {/* CTA Callout Banner */}
         <section className="mx-auto max-w-7xl px-4 pt-16 md:pt-24">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-rose-700 via-red-600 to-amber-600 p-8 md:p-14 text-white shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl bg-amber-600 p-8 md:p-14 text-white shadow-2xl">
             <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-white/10 blur-3xl pointer-events-none" />
 
             <div className="relative max-w-2xl">

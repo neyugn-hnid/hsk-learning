@@ -18,7 +18,7 @@ import { ToastProvider, useToast } from "~/components/Toast";
 import { AuthProvider } from "~/components/AuthProvider";
 import appCss from "~/styles/app.css?url";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = import.meta.env.VITE_MAINTENANCE_MODE === "true";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: appCss }];
 

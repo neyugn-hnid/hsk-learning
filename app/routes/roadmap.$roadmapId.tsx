@@ -108,18 +108,17 @@ function shuffleItems<T>(items: T[]): T[] {
   return s;
 }
 function speakChinese(text: string) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "zh-CN";
-  u.rate = 0.85;
-  const voices = window.speechSynthesis.getVoices();
-  // Ưu tiên giọng nữ (Ting-Ting, Mei-Jia, Yu-Xiao…)
-  const zhVoice = voices
-    .filter((v) => v.lang.startsWith("zh"))
-    .sort((a) => (a.name.toLowerCase().includes("chen") ? 1 : -1))[0];
-  if (zhVoice) u.voice = zhVoice;
-  window.speechSynthesis.speak(u);
+  if (typeof window === "undefined") return;
+  fetch("/api/ai/tts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, lang: "zh-CN" }),
+  })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(({ audio }) => {
+      if (audio) new Audio(`data:audio/mp3;base64,${audio}`).play().catch(() => {});
+    })
+    .catch(() => {});
 }
 
 function playSound(correct: boolean) {
@@ -151,6 +150,25 @@ function playSound(correct: boolean) {
   } catch { /* bỏ qua nếu không hỗ trợ */ }
 }
 
+function getProgressColor(ratio: number): string {
+  if (ratio >= 1) return "#22c55e";
+  if (ratio <= 0) return "#ef4444";
+  // red(#ef4444) → amber(#f59e0b) → green(#22c55e)
+  if (ratio < 0.5) {
+    const t = ratio / 0.5;
+    const r = Math.round(239 + (245 - 239) * t);
+    const g = Math.round(68 + (158 - 68) * t);
+    const b = Math.round(68 + (11 - 68) * t);
+    return `rgb(${r},${g},${b})`;
+  } else {
+    const t = (ratio - 0.5) / 0.5;
+    const r = Math.round(245 + (34 - 245) * t);
+    const g = Math.round(158 + (197 - 158) * t);
+    const b = Math.round(11 + (94 - 11) * t);
+    return `rgb(${r},${g},${b})`;
+  }
+}
+
 export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const { lesson } = loaderData;
   const navigate = useNavigate();
@@ -168,6 +186,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [quizSk, setQuizSk] = useState(0);
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("pinyin");
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
   const translationInputRef = useRef<HTMLInputElement>(null);
   const hanziInputRef = useRef<HTMLInputElement>(null);
 
@@ -179,14 +198,6 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     [sVocab.length, vocabSk],
   );
   const vocabIdx = vocabOrder[vocabPos] ?? 0;
-
-  // Warm-up speechSynthesis cho lần phát đầu tiên
-  useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.getVoices();
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(" "));
-    window.speechSynthesis.cancel();
-  }, []);
 
   const genQ = useMemo(() => {
     return sVocab.map((v) => {
@@ -239,9 +250,17 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
 
   const cVocab = sVocab[vocabIdx];
   const cQuiz = genQ[quizIdx];
+  const correctMeanings = (cVocab?.meaningVi || "").split(/[;,/]| - |\/| hoặc /).map((s: string) => s.trim().toLowerCase()).filter(Boolean);
   const tlOK =
     tlC &&
-    tlA.trim().toLowerCase() === (cVocab?.meaningVi || "").trim().toLowerCase();
+    tlA.trim().length > 0 && correctMeanings.some((m: string) => {
+      const u = tlA.trim().toLowerCase();
+      if (u === m) return true;
+      if (u.length >= Math.max(3, m.length / 2)) {
+        return m.includes(u) || u.includes(m);
+      }
+      return false;
+    });
   const hzOK = hzC && hzA.trim() === (cVocab?.chinese || "").trim();
   const qzHas = qzR.trim().length > 0;
   const qzOK = qzHas && qzR.trim() === (cQuiz?.answer || "").trim();
@@ -293,13 +312,12 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const nV = useCallback(() => {
     if (!sVocab.length) return;
     if (vocabPos + 1 >= vocabOrder.length) {
-      setVocabSk((k) => k + 1);
-      setVocabPos(0);
+      setShowCompleteModal(true);
     } else {
       setVocabPos(vocabPos + 1);
+      setShowMeaning(false); setTlA(""); setTlC(false);
+      setHzA(""); setHzC(false);
     }
-    setShowMeaning(false); setTlA(""); setTlC(false);
-    setHzA(""); setHzC(false);
   }, [sVocab.length, vocabPos, vocabOrder.length]);
   const pV = useCallback(() => {
     if (!sVocab.length) return;
@@ -309,12 +327,11 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   }, [sVocab.length, vocabPos, vocabOrder.length]);
   const nQ = useCallback(() => {
     if (!genQ.length) return;
-    setQzR("");
     if (quizPos + 1 >= quizOrder.length) {
-      setQuizSk((k) => k + 1);
-      setQuizPos(0);
+      setShowCompleteModal(true);
     } else {
       setQuizPos(quizPos + 1);
+      setQzR("");
     }
   }, [genQ.length, quizPos, quizOrder.length]);
   const pQ = useCallback(() => {
@@ -345,12 +362,12 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
 
   const title =
     activeTab === "vocabulary"
-      ? "Học từ vựng"
+      ? "Từ Vựng"
       : activeTab === "translation"
-        ? "Dịch nghĩa"
+        ? "Dịch Nghĩa"
         : activeTab === "hanzi"
           ? "Chữ Hán"
-          : "Luyện tập";
+          : "Luyện Tập";
   const cnt = activeTab === "quiz" ? genQ.length : sVocab.length;
 
   return (
@@ -360,20 +377,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-4 md:p-6">
             <div className="mb-4 flex flex-col gap-3">
               <div>
-                <h1 className="text-lg font-bold sm:text-xl">
-                  <button onClick={() => navigate(-1)} className="inline-flex items-center align-middle mr-1.5 text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
+                <h1 className="flex items-center gap-1.5 text-lg font-bold sm:text-xl">
+                  <button onClick={() => navigate(-1)} className="text-slate-400 hover:text-red-500 transition"><ChevronLeft size={26} /></button>
                   {lesson.title}
                 </h1>
-                <p className="mt-1 text-sm text-slate-500">{lesson.description}</p>
+                <p className="mt-1 pl-8 text-sm text-slate-500">{lesson.description}</p>
               </div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold sm:text-xl">{title}</h2>
-                <p className="text-xs text-slate-400 sm:text-sm">
-                  {activeTab === "quiz"
-                    ? `${quizPos + 1}/${cnt}`
-                    : `${vocabPos + 1}/${cnt}`}
-                </p>
-              </div>
+              
               <div className="-mx-1 flex flex-wrap justify-center gap-1">
                 {(
                   ["vocabulary", "translation", "hanzi", "quiz"] as StudyTab[]
@@ -393,6 +403,22 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                           : "Luyện Tập"}
                   </button>
                 ))}
+              </div>
+              {/* Progress bar */}
+              <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
+                <div
+                  className="h-full rounded-full transition-all duration-300"
+                  style={{
+                    width: `${(activeTab === "quiz"
+                      ? ((quizPos + 1) / cnt)
+                      : ((vocabPos + 1) / cnt)) * 100}%`,
+                    background: getProgressColor(
+                      activeTab === "quiz"
+                        ? (quizPos + 1) / cnt
+                        : (vocabPos + 1) / cnt
+                    ),
+                  }}
+                />
               </div>
             </div>
 
@@ -419,8 +445,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   )}
                   <div className="mt-4 grid grid-cols-3 gap-1.5 sm:mt-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-2.5">
                     <Nb onClick={pV} label="Trước" />
-                    <button onClick={() => setShowMeaning((p) => !p)} type="button" className="flex min-h-10 items-center justify-center gap-1.5 rounded-2xl bg-red-600 px-3 py-2.5 text-xs font-semibold text-white hover:bg-red-700 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm">
-                      {showMeaning ? <EyeOff size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Eye size={16} className="sm:w-[18px] sm:h-[18px]" />}{showMeaning ? "Ẩn" : "Lật"}
+                    <button onClick={() => setShowMeaning((p) => !p)} type="button" className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12">
+                      {showMeaning ? <EyeOff size={18} className="sm:w-5 sm:h-5" /> : <Eye size={18} className="sm:w-5 sm:h-5" />}
                     </button>
                     <Nb onClick={nV} label="Tiếp" next />
                   </div>
@@ -450,7 +476,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={tlA}
                       onChange={(e) => setTlA(e.target.value)}
                       placeholder="Nhập nghĩa tiếng Việt..."
-                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setTlC(true); (e.target as HTMLInputElement).blur(); }
                       }}
@@ -499,7 +525,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={hzA}
                       onChange={(e) => setHzA(e.target.value)}
                       placeholder="Nhập chữ Hán..."
-                      className={`mx-auto max-w-xs rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setHzC(true); (e.target as HTMLInputElement).blur(); }
                       }}
@@ -583,6 +609,65 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
               </div>
             )}
           </section>
+
+          {/* Completion Modal */}
+          {showCompleteModal ? (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+              <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                  <svg className="h-8 w-8 text-emerald-600" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-extrabold text-slate-900">Đã hoàn thành!</h3>
+                <p className="mt-1 text-sm text-slate-500">
+                  Bạn đã học xong {activeTab === "quiz" ? "bài luyện tập" : "tất cả từ vựng"}.
+                </p>
+                <div className="mt-5 flex gap-3">
+                  <button
+                    onClick={() => {
+                      setShowCompleteModal(false);
+                      if (activeTab === "quiz") {
+                        setQuizSk((k) => k + 1);
+                        setQuizPos(0);
+                        setQzR("");
+                      } else {
+                        setVocabSk((k) => k + 1);
+                        setVocabPos(0);
+                        setShowMeaning(false);
+                        setTlA(""); setTlC(false);
+                        setHzA(""); setHzC(false);
+                      }
+                    }}
+                    className="flex-1 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50"
+                  >
+                    {activeTab === "quiz" ? "Làm lại" : "Học lại"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowCompleteModal(false);
+                      if (activeTab === "quiz") {
+                        const modes: QuizMode[] = ["pinyin", "meaning", "recognition", "listening"];
+                        const idx = modes.indexOf(qzM);
+                        if (idx < modes.length - 1) {
+                          setQzM(modes[idx + 1]);
+                          setQuizPos(0);
+                          setQzR("");
+                        }
+                      } else {
+                        const tabs: StudyTab[] = ["vocabulary", "translation", "hanzi", "quiz"];
+                        const idx = tabs.indexOf(activeTab);
+                        if (idx < tabs.length - 1) setActiveTab(tabs[idx + 1]);
+                      }
+                    }}
+                    className="flex-1 rounded-2xl bg-red-600 px-4 py-3 text-sm font-bold text-white hover:bg-red-700"
+                  >
+                    Tiếp
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
       </main>
     </SiteLayout>

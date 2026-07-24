@@ -320,9 +320,6 @@ export function SiteLayout({
                     Lộ trình học
                   </button>
                 )}
-                <Link to="/ai-practice" prefetch="intent" className="text-slate-400 transition hover:text-white">
-                  Luyện cùng AI
-                </Link>
               </div>
             </div>
 
