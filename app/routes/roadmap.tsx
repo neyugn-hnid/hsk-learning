@@ -396,9 +396,9 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                         key={stat.phase}
                         type="button"
                         onClick={() => setPhase(stat.phase)}
-                        className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${phStyle.border}`}
+                        className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${phStyle.border}`}
                       >
-                        <div className="relative h-40 overflow-hidden bg-slate-900">
+                        <div className="relative h-40 overflow-hidden rounded-2xl bg-slate-900">
                           {stat.sampleImages.length > 0 ? (
                             <div className="flex h-full w-full gap-0.5">
                               {stat.sampleImages.map((img, i) => (
@@ -431,7 +431,7 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                         </div>
 
                         {/* Card Body */}
-                        <div className="p-6 pt-5">
+                        <div className="flex flex-1 flex-col px-1 pt-4">
                           <div className="flex items-center justify-between">
                             <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
                               {stat.phase}

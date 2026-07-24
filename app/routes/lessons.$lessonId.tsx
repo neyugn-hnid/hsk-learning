@@ -440,7 +440,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
                     <input ref={hanziInputRef} value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
-                      className={`w-full input-hanzi rounded-2xl border px-4 py-3 text-2xl font-bold outline-none transition ${hanziHasCJK ? "font-hanzi" : ""} ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full input-hanzi rounded-2xl border px-4 py-3 text-xl font-bold outline-none transition ${hanziHasCJK ? "font-hanzi" : ""} ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => { if (e.key === "Enter") { setCheckedHanzi(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
                   {checkedHanzi ? (

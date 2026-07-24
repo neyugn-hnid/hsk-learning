@@ -544,7 +544,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={hzA}
                       onChange={(e) => setHzA(e.target.value)}
                       placeholder="Nhập chữ Hán..."
-                      className={`w-full input-hanzi rounded-2xl border px-4 py-3 text-2xl font-bold outline-none transition ${hanziHasCJK ? "font-hanzi" : ""} ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full input-hanzi rounded-2xl border px-4 py-3 text-xl font-bold outline-none transition ${hanziHasCJK ? "font-hanzi" : ""} ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setHzC(true); (e.target as HTMLInputElement).blur(); }
                       }}

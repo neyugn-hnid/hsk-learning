@@ -246,7 +246,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
                   {/* Main Word Presentation */}
                   <div className="my-6 text-center">
-                    <h3 className="text-6xl font-black tracking-wide text-white drop-shadow-lg sm:text-7xl">
+                    <h3 className="font-hanzi text-6xl font-black tracking-wide text-white drop-shadow-lg sm:text-7xl">
                       {currentVocab.chinese}
                     </h3>
                     <p className="mt-2 text-2xl font-bold text-rose-300">
