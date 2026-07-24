@@ -208,6 +208,8 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const hasQuizAnswer = quizResponse.trim().length > 0;
   const quizCorrect = hasQuizAnswer && quizResponse.trim() === (currentQuiz?.answer || "").trim();
 
+  const hanziHasCJK = /[\u4e00-\u9fff]/.test(hanziAnswer);
+
   // Phát âm thanh khi kiểm tra dịch nghĩa
   useEffect(() => {
     if (checkedTranslation) playSound(translationCorrect);
@@ -379,9 +381,9 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   ) : (
                     <div className="mt-4 rounded-2xl border border-dashed border-slate-200 p-4 text-xs text-slate-400 sm:mt-6 sm:rounded-3xl sm:p-5 sm:text-sm">Ẩn nghĩa để bạn tự nhớ trước</div>
                   )}
-                  <div className="mt-4 grid grid-cols-3 gap-1.5 sm:mt-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-2.5">
+                  <div className="mt-4 flex items-center justify-center gap-2 sm:mt-6 sm:gap-2.5">
                     <NavBtn onClick={prevVocab} label="Trước" />
-                    <button onClick={() => setShowMeaning((p) => !p)} type="button" className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12">
+                    <button onClick={() => setShowMeaning((p) => !p)} type="button" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-600 text-white hover:bg-red-700 sm:h-12 sm:w-12">
                       {showMeaning ? <EyeOff size={18} className="sm:w-5 sm:h-5" /> : <Eye size={18} className="sm:w-5 sm:h-5" />}
                     </button>
                     <NavBtn onClick={nextVocab} label="Tiếp" next />
@@ -438,7 +440,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
                     <input ref={hanziInputRef} value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
-                      className={`w-full font-hanzi rounded-2xl border px-4 py-3 text-2xl font-bold outline-none transition ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full input-hanzi rounded-2xl border px-4 py-3 text-2xl font-bold outline-none transition ${hanziHasCJK ? "font-hanzi" : ""} ${checkedHanzi ? (hanziCorrect ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => { if (e.key === "Enter") { setCheckedHanzi(true); (e.target as HTMLInputElement).blur(); } }} />
                   </div>
                   {checkedHanzi ? (
