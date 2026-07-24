@@ -169,6 +169,18 @@ function getProgressColor(ratio: number): string {
   }
 }
 
+function renderQuizQuestion(q: string) {
+  const parts = q.split(/("[^"]+")/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('"') && part.endsWith('"')) {
+      const inner = part.slice(1, -1);
+      const hasCJK = /[\u4e00-\u9fff]/.test(inner);
+      return <span key={i} className={hasCJK ? "font-hanzi" : ""}>{part}</span>;
+    }
+    return part;
+  });
+}
+
 export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const { lesson } = loaderData;
   const navigate = useNavigate();
@@ -426,7 +438,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 shadow-sm sm:rounded-[2rem] sm:p-6">
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
                   <button onClick={() => speakChinese(cVocab.chinese)} className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 shadow-sm hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3" title="Nghe phát âm" type="button"><Volume2 size={18} className="sm:w-5 sm:h-5" /></button>
-                  <p className="break-all text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>{cVocab.chinese}</p>
+                  <p className="break-all font-hanzi text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>{cVocab.chinese}</p>
                   <p className="mt-3 break-words text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>{cVocab.pinyin}</p>
                   {showMeaning ? (
                     <div className="mt-4 rounded-2xl bg-amber-50 p-3 sm:mt-6 sm:rounded-3xl sm:p-5">
@@ -464,19 +476,21 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   >
                     <Volume2 size={18} />
                   </button>
-                  <p className="break-all text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>
+                  <p className="break-all font-hanzi text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>
                     {cVocab.chinese}
                   </p>
-                  <p className="mt-3 text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>
-                    {cVocab.pinyin}
-                  </p>
+                  {tlC ? (
+                    <p className="mt-3 text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>
+                      {cVocab.pinyin}
+                    </p>
+                  ) : null}
                   <div className="mt-5">
                     <input
                       ref={translationInputRef}
                       value={tlA}
                       onChange={(e) => setTlA(e.target.value)}
                       placeholder="Nhập nghĩa tiếng Việt..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full input-normal rounded-2xl border px-4 py-3 text-xl font-bold outline-none transition ${tlC ? (tlOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setTlC(true); (e.target as HTMLInputElement).blur(); }
                       }}
@@ -487,7 +501,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
                         Đáp án tham khảo
                       </p>
-                      <p className="mt-1 text-base font-extrabold text-slate-900">
+                      <p className="mt-1 text-xl font-extrabold text-slate-900">
                         {cVocab.meaningVi}
                       </p>
                     </div>
@@ -513,9 +527,13 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   >
                     <Volume2 size={18} />
                   </button>
-                  <p className="break-all text-4xl font-black text-red-600 sm:text-5xl">
-                    {cVocab.pinyin}
-                  </p>
+                  {hzC ? (
+                    <p className="break-all text-4xl font-black text-red-600 sm:text-5xl">
+                      {cVocab.pinyin}
+                    </p>
+                  ) : (
+                    <p className="text-4xl font-black text-slate-300 sm:text-5xl">?</p>
+                  )}
                   <p className="mt-2 text-base text-slate-500 sm:text-lg">
                     {cVocab.meaningVi}
                   </p>
@@ -525,7 +543,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       value={hzA}
                       onChange={(e) => setHzA(e.target.value)}
                       placeholder="Nhập chữ Hán..."
-                      className={`w-full rounded-2xl border px-4 py-3 text-base font-semibold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
+                      className={`w-full font-hanzi rounded-2xl border px-4 py-3 text-2xl font-bold outline-none transition ${hzC ? (hzOK ? "border-emerald-400 bg-emerald-50" : "border-red-400 bg-red-50") : "border-slate-200 focus:border-red-400"}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") { setHzC(true); (e.target as HTMLInputElement).blur(); }
                       }}
@@ -536,7 +554,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
                         Đáp án
                       </p>
-                      <p className="mt-1 text-2xl font-black text-red-600">
+                      <p className="mt-1 font-hanzi text-2xl font-black text-red-600">
                         {cVocab.chinese}
                       </p>
                     </div>
@@ -575,8 +593,8 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       </button>
                     ))}
                   </div>
-                  <h3 className="text-lg font-extrabold text-slate-900 sm:text-xl">
-                    {cQuiz.question}
+                  <h3 className="text-lg font-extrabold text-slate-900 sm:text-2xl">
+                    {renderQuizQuestion(cQuiz.question)}
                   </h3>
                   {qzM === "listening" ? (
                     <button
@@ -594,7 +612,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                         <button
                           key={opt}
                           onClick={() => setQzR(opt)}
-                          className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold ${qzHas ? (c ? "border-emerald-300 bg-emerald-50 text-emerald-700" : s ? "border-red-300 bg-red-50 text-red-700" : "border-slate-200 bg-white text-slate-500") : s ? "border-red-300 bg-red-50 text-red-700" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
+                          className={`rounded-2xl border px-4 py-3 text-left text-base font-bold ${qzM === "recognition" || qzM === "listening" ? "font-hanzi" : ""} ${qzHas ? (c ? "border-emerald-300 bg-emerald-50 text-emerald-700" : s ? "border-red-300 bg-red-50 text-red-700" : "border-slate-200 bg-white text-slate-500") : s ? "border-red-300 bg-red-50 text-red-700" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`}
                         >
                           {opt}
                         </button>

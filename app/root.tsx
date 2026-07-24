@@ -20,7 +20,12 @@ import appCss from "~/styles/app.css?url";
 
 const MAINTENANCE_MODE = import.meta.env.VITE_MAINTENANCE_MODE === "true";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: appCss }];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: appCss },
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+  { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
