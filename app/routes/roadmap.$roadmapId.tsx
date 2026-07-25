@@ -199,6 +199,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
   const [qzR, setQzR] = useState("");
   const [qzM, setQzM] = useState<QuizMode>("pinyin");
   const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [showPinyin, setShowPinyin] = useState(false);
   const translationInputRef = useRef<HTMLInputElement>(null);
   const hanziInputRef = useRef<HTMLInputElement>(null);
 
@@ -297,6 +298,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
     setShowMeaning(false);
     setTlA("");
     setTlC(false);
+    setShowPinyin(false);
     setHzA("");
     setHzC(false);
     setQuizPos(0);
@@ -480,7 +482,7 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   <p className="break-all font-hanzi text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>
                     {cVocab.chinese}
                   </p>
-                  {tlC ? (
+                  {(showPinyin || tlC) ? (
                     <p className="mt-3 text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>
                       {cVocab.pinyin}
                     </p>
@@ -507,6 +509,19 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                       </p>
                     </div>
                   )}
+                  <button
+                    onClick={() => setShowPinyin(!showPinyin)}
+                    type="button"
+                    className={`absolute left-2 top-2 sm:left-5 sm:top-5 inline-flex h-6 w-10 items-center rounded-full transition ${
+                      showPinyin ? "bg-red-500" : "bg-slate-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+                        showPinyin ? "translate-x-5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
                   <div className="mt-4 flex items-center justify-center gap-2.5">
                     <Nb onClick={pV} label="Trước" />
                     {!tlC ? (
@@ -528,13 +543,26 @@ export default function RoadmapDetail({ loaderData }: Route.ComponentProps) {
                   >
                     <Volume2 size={18} />
                   </button>
-                  {hzC ? (
+                  {(showPinyin || hzC) ? (
                     <p className="break-all text-4xl font-black text-red-600 sm:text-5xl">
                       {cVocab.pinyin}
                     </p>
                   ) : (
                     <p className="text-4xl font-black text-slate-300 sm:text-5xl">?</p>
                   )}
+                  <button
+                    onClick={() => setShowPinyin(!showPinyin)}
+                    type="button"
+                    className={`absolute left-2 top-2 sm:left-5 sm:top-5 inline-flex h-6 w-10 items-center rounded-full transition ${
+                      showPinyin ? "bg-red-500" : "bg-slate-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+                        showPinyin ? "translate-x-5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
                   <p className="mt-2 text-base text-slate-500 sm:text-lg">
                     {cVocab.meaningVi}
                   </p>

@@ -136,6 +136,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
   const [quizResponse, setQuizResponse] = useState("");
   const [quizMode, setQuizMode] = useState<QuizMode>("pinyin");
   const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [showPinyin, setShowPinyin] = useState(false);
   const translationInputRef = useRef<HTMLInputElement>(null);
   const hanziInputRef = useRef<HTMLInputElement>(null);
 
@@ -229,6 +230,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
     setShowMeaning(false);
     setTranslationAnswer(""); setCheckedTranslation(false);
     setHanziAnswer(""); setCheckedHanzi(false);
+    setShowPinyin(false);
     setQuizPos(0);
     setQuizSk((k) => k + 1);
     setQuizResponse("");
@@ -400,7 +402,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
                   <button onClick={() => speakChinese(currentVocab.chinese)} className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 shadow-sm hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3" type="button"><Volume2 size={18} /></button>
                   <p className="break-all font-hanzi text-5xl font-black text-red-600 sm:text-6xl md:text-7xl" suppressHydrationWarning>{currentVocab.chinese}</p>
-                  {checkedTranslation ? (
+                  {(showPinyin || checkedTranslation) ? (
                     <p className="mt-3 break-words text-base font-bold text-slate-800 sm:mt-4 sm:text-xl" suppressHydrationWarning>{currentVocab.pinyin}</p>
                   ) : null}
                   <div className="mt-5">
@@ -423,6 +425,19 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
                       <p className="mt-1 text-xl font-extrabold text-slate-900">{currentVocab.meaningVi}</p>
                     </div>
                   ) : null}
+                  <button
+                    onClick={() => setShowPinyin(!showPinyin)}
+                    type="button"
+                    className={`absolute left-2 top-2 sm:left-5 sm:top-5 inline-flex h-6 w-10 items-center rounded-full transition ${
+                      showPinyin ? "bg-red-500" : "bg-slate-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+                        showPinyin ? "translate-x-5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
                 </div>
               </div>
             )}
@@ -432,11 +447,24 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
               <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-2 shadow-sm sm:rounded-[2rem] sm:p-6">
                 <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-6 sm:pt-14">
                   <button onClick={() => speakChinese(currentVocab.chinese)} className="absolute right-2 top-2 rounded-full bg-red-50 p-2.5 text-red-600 shadow-sm hover:bg-red-100 sm:right-5 sm:top-5 sm:p-3" type="button"><Volume2 size={18} /></button>
-                  {checkedHanzi ? (
+                  {(showPinyin || checkedHanzi) ? (
                     <p className="break-all text-4xl font-black text-red-600 sm:text-5xl" suppressHydrationWarning>{currentVocab.pinyin}</p>
                   ) : (
                     <p className="text-4xl font-black text-slate-300 sm:text-5xl">?</p>
                   )}
+                  <button
+                    onClick={() => setShowPinyin(!showPinyin)}
+                    type="button"
+                    className={`absolute left-2 top-2 sm:left-5 sm:top-5 inline-flex h-6 w-10 items-center rounded-full transition ${
+                      showPinyin ? "bg-red-500" : "bg-slate-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+                        showPinyin ? "translate-x-5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
                   <p className="mt-2 text-base text-slate-500 sm:text-lg" suppressHydrationWarning>{currentVocab.meaningVi}</p>
                   <div className="mt-5">
                     <input ref={hanziInputRef} value={hanziAnswer} onChange={(e) => setHanziAnswer(e.target.value)} placeholder="Nhập chữ Hán..."
