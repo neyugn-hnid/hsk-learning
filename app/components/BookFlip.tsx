@@ -43,7 +43,7 @@ export default function BookFlip({ pages, onPageChange }: Props) {
     if (!el || pages.length === 0) return;
 
     if (pfRef.current) {
-      try { pfRef.current.destroy(); } catch {}
+      try { pfRef.current.destroy(); } catch { }
       pfRef.current = null;
     }
     el.innerHTML = "";

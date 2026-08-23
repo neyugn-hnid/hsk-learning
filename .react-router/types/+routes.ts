@@ -28,6 +28,11 @@ type Pages = {
       "lessonId": string;
     };
   };
+  "/game/:lessonId": {
+    params: {
+      "lessonId": string;
+    };
+  };
   "/roadmap": {
     params: {};
   };
@@ -114,7 +119,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
+    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/game/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
@@ -135,6 +140,10 @@ type RouteFiles = {
   "routes/lessons.$lessonId.tsx": {
     id: "routes/lessons.$lessonId";
     page: "/lessons/:lessonId";
+  };
+  "routes/game.$lessonId.tsx": {
+    id: "routes/game.$lessonId";
+    page: "/game/:lessonId";
   };
   "routes/roadmap.tsx": {
     id: "routes/roadmap";
@@ -245,6 +254,7 @@ type RouteModules = {
   "routes/hsk30": typeof import("./app/routes/hsk30.tsx");
   "routes/lessons._index": typeof import("./app/routes/lessons._index.tsx");
   "routes/lessons.$lessonId": typeof import("./app/routes/lessons.$lessonId.tsx");
+  "routes/game.$lessonId": typeof import("./app/routes/game.$lessonId.tsx");
   "routes/roadmap": typeof import("./app/routes/roadmap.tsx");
   "routes/roadmap.$roadmapId": typeof import("./app/routes/roadmap.$roadmapId.tsx");
   "routes/profile": typeof import("./app/routes/profile.tsx");

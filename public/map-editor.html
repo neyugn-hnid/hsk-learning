@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Map Waypoint Editor</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #111; color: #fff; font-family: monospace; display: flex; gap: 12px; padding: 12px; min-height: 100vh; }
+    #map-wrap {
+      position: relative;
+      flex: 1;
+      cursor: crosshair;
+      user-select: none;
+    }
+    #map-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+    .pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+    .pin .stars { color: #fbbf24; font-size: 10px; letter-spacing: -1px; margin-bottom: 2px; }
+    .pin .badge {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #7c5c10, #3d2c06);
+      border: 2.5px solid #c89b30;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 13px; color: white;
+      box-shadow: 0 0 10px rgba(180,120,10,0.7);
+    }
+    #sidebar {
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #sidebar h2 { color: #fbbf24; font-size: 14px; margin-bottom: 4px; }
+    #sidebar p { font-size: 11px; color: #aaa; line-height: 1.5; }
+    #output {
+      flex: 1;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 11px;
+      overflow-y: auto;
+      white-space: pre;
+      color: #7dd3fc;
+      min-height: 200px;
+    }
+    button {
+      background: #c89b30;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 900;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button:hover { background: #fbbf24; }
+    #undo-btn { background: #555; color: white; }
+    #undo-btn:hover { background: #777; }
+    #coords-live { 
+      font-size: 11px; 
+      color: #555; 
+      padding: 4px 0;
+    }
+    .tip { color: #6ee7b7; }
+  </style>
+</head>
+<body>
+  <div id="map-wrap">
+    <img src="/images/map.png" alt="Map" id="map-img" />
+  </div>
+
+  <div id="sidebar">
+    <h2>🗺️ Map Waypoint Editor</h2>
+    <p>
+      <span class="tip">Click vào đường mòn trên bản đồ</span> để đặt mốc.<br/>
+      Mỗi click = 1 mốc theo thứ tự bài học.<br/>
+      Sau khi click xong → copy code bên dưới.
+    </p>
+    <div id="coords-live">Di chuột lên bản đồ để xem tọa độ...</div>
+    <div style="display:flex;gap:6px;">
+      <button id="undo-btn" onclick="undo()">↩ Xoá mốc cuối</button>
+      <button onclick="clearAll()">🗑️ Xoá tất cả</button>
+      <button onclick="copyCode()">📋 Copy Code</button>
+    </div>
+    <div id="output">// Chưa có mốc nào\n// Click vào bản đồ để bắt đầu</div>
+  </div>
+
+  <script>
+    const wrap = document.getElementById('map-wrap');
+    const img = document.getElementById('map-img');
+    const output = document.getElementById('output');
+    const coordsLive = document.getElementById('coords-live');
+    let points = [];
+
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = img.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+      coordsLive.textContent = `📍 x: ${x}%   y: ${y}%`;
+    });
+
+    wrap.addEventListener('click', (e) => {
+      const rect = img.getBoundingClientRect();
+      const x = +((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const y = +((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+      points.push({ x, y });
+      renderPins();
+      renderOutput();
+    });
+
+    function renderPins() {
+      // Remove old pins
+      wrap.querySelectorAll('.pin').forEach(p => p.remove());
+      points.forEach((pt, i) => {
+        const pin = document.createElement('div');
+        pin.className = 'pin';
+        pin.style.left = pt.x + '%';
+        pin.style.top = pt.y + '%';
+        pin.innerHTML = `<div class="stars">★★★</div><div class="badge">${i + 1}</div>`;
+        wrap.appendChild(pin);
+      });
+    }
+
+    function renderOutput() {
+      if (points.length === 0) {
+        output.textContent = '// Chưa có mốc nào\n// Click vào bản đồ để bắt đầu';
+        return;
+      }
+      const lines = points.map((p, i) =>
+        `  { x: ${String(p.x).padEnd(5)}, y: ${String(p.y).padEnd(5)} }, // ${i + 1}`
+      ).join('\n');
+      output.textContent = `const WAYPOINTS = [\n${lines}\n];`;
+    }
+
+    function undo() {
+      points.pop();
+      renderPins();
+      renderOutput();
+    }
+
+    function clearAll() {
+      if (confirm('Xoá tất cả mốc?')) {
+        points = [];
+        renderPins();
+        renderOutput();
+      }
+    }
+
+    function copyCode() {
+      const text = output.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ Đã copy vào clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>

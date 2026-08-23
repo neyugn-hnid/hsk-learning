@@ -45,7 +45,6 @@ export async function loader({ request }: Route.LoaderArgs) {
     }),
     prisma.roadmapItem.findMany({
       orderBy: [{ orderNo: "asc" }, { createdAt: "asc" }],
-      take: 20,
     }),
   ]);
 
@@ -259,6 +258,7 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
     ],
   );
   const [levelFilter, setLevelFilter] = useState("");
+  const [roadmapLevelFilter, setRoadmapLevelFilter] = useState("");
 
   useFetcherToast(roadmapImportFetcher, {
     successKey: "roadmapSuccess",
@@ -282,6 +282,12 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
       phrases?: unknown;
     }
   >;
+  const roadmapLevels = [
+    ...new Set(roadmapItems.map((item) => item.level).filter(Boolean)),
+  ].sort() as string[];
+  const filteredRoadmapItems = roadmapLevelFilter
+    ? roadmapItems.filter((item) => item.level === roadmapLevelFilter)
+    : roadmapItems;
   const hsk20Lessons = lessons.filter((lesson) => lesson.source === "HSK20").length;
   const hsk30Lessons = lessons.filter((lesson) => lesson.source === "HSK30").length;
   const publishedLessons = lessons.filter((lesson) => lesson.status === "PUBLISHED").length;
@@ -552,19 +558,31 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
           </div>
 
             <div className="flex min-h-[38rem] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-              <div className="shrink-0 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4">
+              <div className="shrink-0 flex flex-col gap-3 border-b border-slate-200 bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
                   Roadmap
                 </p>
                   <h2 className="mt-1 text-lg font-black text-slate-950">Lộ trình lớp gần đây</h2>
               </div>
-                <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
-                {roadmapItems.length} mục
-              </span>
+                <div className="flex items-center gap-3">
+                  <select
+                    value={roadmapLevelFilter}
+                    onChange={(e) => setRoadmapLevelFilter(e.target.value)}
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 outline-none"
+                  >
+                    <option value="">Tất cả HSK</option>
+                    {roadmapLevels.map((lvl) => (
+                      <option key={lvl} value={lvl}>{lvl}</option>
+                    ))}
+                  </select>
+                  <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-600">
+                  {filteredRoadmapItems.length} mục
+                </span>
+                </div>
             </div>
               <div className="flex-1 overflow-y-auto divide-y divide-slate-100 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-track]:bg-transparent">
-              {roadmapItems.map((item) => (
+              {filteredRoadmapItems.map((item) => (
                   <div key={item.id} className="p-5 hover:bg-slate-50/70">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
@@ -575,6 +593,11 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
                           <span className="rounded-md bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">
                           {item.phase}
                         </span>
+                        {item.level ? (
+                            <span className="rounded-md bg-blue-100 px-2.5 py-1 text-xs font-bold text-blue-800">
+                            {item.level}
+                          </span>
+                        ) : null}
                         {item.weekLabel ? (
                             <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
                             {item.weekLabel}
@@ -608,7 +631,7 @@ export default function Admin({ loaderData }: Route.ComponentProps) {
                   </div>
                 </div>
               ))}
-                {!roadmapItems.length ? (
+                {!filteredRoadmapItems.length ? (
                   <div className="p-8 text-center text-sm font-semibold text-slate-500">
                     Chưa có dữ liệu lộ trình.
                   </div>
