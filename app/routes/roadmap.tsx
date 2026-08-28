@@ -240,8 +240,36 @@ const ROADMAP_REALMS = [
     bossTitle: "Tuyệt Đỉnh Tông Sư",
     bossHanzi: "宗师",
     targetWords: 1200,
-  }
+  },
 ];
+
+function GemDiamondSVG({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <path
+        d="M6 3h12l4 6-10 12L2 9l4-6z"
+        fill="url(#gem-gradient-roadmap)"
+        stroke="#0284C7"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M2 9h20M12 21L8 9l4-6 4 6-4 12z"
+        stroke="#BAE6FD"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.8"
+      />
+      <defs>
+        <linearGradient id="gem-gradient-roadmap" x1="2" y1="3" x2="22" y2="21" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#38BDF8" />
+          <stop offset="1" stopColor="#0284C7" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
 
 export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
   const {
@@ -259,7 +287,7 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
   const isStudentOrAdmin = user?.role === "ADMIN" || user?.role === "STUDENT";
   const [accessModalOpen, setAccessModalOpen] = useState<boolean>(!isStudentOrAdmin);
   const [activeRealmIndex, setActiveRealmIndex] = useState<number>(0);
-  const [selectedStage, setSelectedStage] = useState<any | null>(null);
+  const [selectedStage, setSelectedStage] = useState<(typeof items)[number] | null>(null);
 
   const activeRealmData = ROADMAP_REALMS[activeRealmIndex] || ROADMAP_REALMS[0];
   const activePhaseKey = activeRealmData.phaseKey;
@@ -444,7 +472,7 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
               {/* ===================================================================== */}
               {/* THE ADVENTURE TRAIL (CON ĐƯỜNG VƯỢT ẢI ĐỈNH CAO)                       */}
               {/* ===================================================================== */}
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs">
+              <div className="relative rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs">
                 {/* Stage Title Header */}
                 <div className="mb-10 flex items-center justify-between border-b border-slate-100 pb-4">
                   <div>
@@ -478,9 +506,18 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                     />
                   </svg>
 
+                  {/* Transparent backdrop to click outside and close popover */}
+                  {selectedStage && (
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setSelectedStage(null)}
+                    />
+                  )}
+
                   {currentPhaseLessons.map((item, idx) => {
                     const isBoss = idx === currentPhaseLessons.length - 1;
                     const isCurrent = idx === 0;
+                    const isSelected = selectedStage?.id === item.id;
                     const vocabs = toRoadmapEntries(item.vocabulary);
                     const phrases = toRoadmapEntries(item.phrases);
 
@@ -493,18 +530,67 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                       "sm:translate-x-0",
                     ];
                     const currentOffset = xOffsets[idx % xOffsets.length];
+                    // Node on left -> popover on right; Node on right -> popover on left
+                    const isRightPlaced = currentOffset.includes("-translate-x") || currentOffset === "sm:translate-x-0";
 
                     return (
                       <div
                         key={item.id}
-                        className={`relative z-10 flex flex-col items-center transition-transform duration-300 ${currentOffset}`}
+                        className={`relative flex flex-col items-center transition-transform duration-300 ${currentOffset} ${
+                          isSelected ? "z-50" : "z-10"
+                        }`}
                       >
+                        {/* Compact Popover Speech Bubble attached to the side of the node */}
+                        {isSelected && (
+                          <div
+                            className={`absolute z-50 w-72 sm:w-80 rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl text-slate-900 animate-in zoom-in-95 fade-in duration-150 text-left max-sm:bottom-[calc(100%+12px)] max-sm:left-1/2 max-sm:-translate-x-1/2 ${
+                              isRightPlaced
+                                ? "sm:left-[calc(100%+16px)] sm:top-1/2 sm:-translate-y-1/2"
+                                : "sm:right-[calc(100%+16px)] sm:top-1/2 sm:-translate-y-1/2"
+                            }`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {/* Triangle Pointer pointing directly at the button */}
+                            <div
+                              className={`absolute h-4 w-4 rotate-45 bg-white border-slate-200 max-sm:left-1/2 max-sm:-bottom-2 max-sm:-translate-x-1/2 max-sm:border-b max-sm:border-r ${
+                                isRightPlaced
+                                  ? "sm:-left-2 sm:top-1/2 sm:-translate-y-1/2 sm:border-l sm:border-b"
+                                  : "sm:-right-2 sm:top-1/2 sm:-translate-y-1/2 sm:border-r sm:border-t"
+                              }`}
+                            />
+
+                            
+
+                            {/* Title & Short Description */}
+                            <div className="my-2.5 space-y-1">
+                              <h4 className="text-sm font-black text-slate-900 line-clamp-1">
+                                {item.title}
+                              </h4>
+                              <p className="text-[11px] text-slate-500 font-medium line-clamp-2 leading-relaxed">
+                                {item.description || "Nắm trọn từ vựng then chốt, ngữ pháp và bài tập thực chiến."}
+                              </p>
+                            </div>
+
+                            {/* Start Action Buttons */}
+                            <div className="space-y-1.5">
+                              <Link
+                                to={`/roadmap/${item.id}`}
+                                onClick={() => setSelectedStage(null)}
+                                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-600 py-2.5 px-4 text-xs font-black text-white shadow-md shadow-red-500/20 hover:from-red-500 hover:to-rose-500 active:scale-95 transition-all cursor-pointer"
+                              >
+                                <Play size={14} className="fill-white" />
+                                <span>BẮT ĐẦU</span>
+                              </Link>
+                            </div>
+                          </div>
+                        )}
+
                         {/* 3D Physical Game Token / Stage Disc Button */}
                         <button
                           type="button"
                           onClick={() => {
                             sound.playWoodblock();
-                            setSelectedStage(item);
+                            setSelectedStage((prev) => (prev?.id === item.id ? null : item));
                           }}
                           className={`group relative flex items-center justify-center cursor-pointer select-none transition-all duration-150 ${
                             isBoss ? "h-24 w-24 rounded-3xl btn-stage-boss" : "h-20 w-20 rounded-2xl"
@@ -563,16 +649,14 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                           <div
                             onClick={() => {
                               sound.playWoodblock();
-                              setSelectedStage(item);
+                              setSelectedStage((prev) => (prev?.id === item.id ? null : item));
                             }}
-                            className="flex items-center gap-2.5 px-3.5 py-2  hover:border-red-300 cursor-pointer"
+                            className="flex items-center gap-2.5 px-3.5 py-2 hover:border-red-300 cursor-pointer"
                           >
-                            
                             <div className="text-left">
                               <p className="max-w-[170px] truncate text-xs font-black text-slate-900">
                                 {item.title}
                               </p>
-                              
                             </div>
                           </div>
                         </div>
@@ -582,193 +666,6 @@ export default function RoadmapPage({ loaderData }: Route.ComponentProps) {
                 </div>
               </div>
             </div>
-
-          {/* ========================================================================= */}
-          {/* 4. STAGE BRIEFING MODAL (BẢNG NHIỆM VỤ ẢI BÀI HỌC KHI CLICK)              */}
-          {/* ========================================================================= */}
-          {selectedStage && (() => {
-            const vocabs = toRoadmapEntries(selectedStage.vocabulary);
-            const phrases = toRoadmapEntries(selectedStage.phrases);
-
-            return (
-              <div
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md transition-all animate-in fade-in duration-200"
-                style={{ background: "rgba(15, 23, 42, 0.65)" }}
-                onClick={(e) => {
-                  if (e.target === e.currentTarget) setSelectedStage(null);
-                }}
-              >
-                <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-[28px] border border-slate-200/80 bg-white shadow-2xl text-slate-900 transition-all animate-in zoom-in-95 duration-200">
-                  {/* Header Scenic Artwork Cover */}
-                  <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-slate-900">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
-                      style={{ backgroundImage: `url(${r2Asset(activeRealmData.bgImage)})` }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-slate-950/40 to-slate-950/60" />
-
-                    {/* Top Bar Floating Badges */}
-                    <div className="relative z-10 flex items-center justify-between p-4 sm:p-5">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-black uppercase tracking-wider text-white shadow-sm ${activeRealmData.primaryBg}`}
-                        >
-                          <span>{activeRealmData.chapter} · Ải {selectedStage.orderNo}</span>
-                        </span>
-                        {selectedStage.duration && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-slate-900/75 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-white border border-white/15">
-                            <span>{selectedStage.duration}</span>
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Glass Close Button */}
-                      <button
-                        type="button"
-                        onClick={() => setSelectedStage(null)}
-                        aria-label="Đóng bảng nhiệm vụ"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white/90 hover:bg-black/60 hover:text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
-                      >
-                        <X size={17} />
-                      </button>
-                    </div>
-
-                    {/* Chinese Region Tag Watermark */}
-                    <div className="absolute right-5 bottom-3 pointer-events-none select-none">
-                      <span className="font-hanzi text-4xl font-black text-slate-900/10 tracking-widest">
-                        {activeRealmData.chineseName}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Main Content Body */}
-                  <div className="p-6 sm:p-7 pt-3 space-y-5">
-                    {/* Title & Stage Information */}
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                        {selectedStage.title}
-                      </h3>
-
-                      {selectedStage.description && (
-                        <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-slate-600 font-medium">
-                          {selectedStage.description}
-                        </p>
-                      )}
-
-                      {/* Stage Highlights & Summary Banner */}
-                      <div className="mt-3.5 flex flex-wrap items-center gap-2">
-                        {vocabs.length > 0 && (
-                          <div className="flex items-center gap-1.5 rounded-xl border border-amber-200/80 bg-amber-50/70 px-3 py-1 text-[11px] font-bold text-amber-800">
-                            <BookOpen size={12} className="text-amber-600" />
-                            <span>{vocabs.length} từ vựng trọng tâm</span>
-                          </div>
-                        )}
-                        {phrases.length > 0 && (
-                          <div className="flex items-center gap-1.5 rounded-xl border border-emerald-200/80 bg-emerald-50/70 px-3 py-1 text-[11px] font-bold text-emerald-800">
-                            <Sparkles size={12} className="text-emerald-600" />
-                            <span>{phrases.length} mẫu câu giao tiếp</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Vocabulary Spotlight Section */}
-                    {vocabs.length > 0 && (
-                      <div className="rounded-2xl border border-slate-200/90 bg-slate-50/70 p-4">
-                        <div className="mb-3 flex items-center justify-between">
-                          <p className="text-[11px] font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                            <BookOpen size={13} className="text-red-600" />
-                            <span>Từ Vựng Trọng Tâm ({vocabs.length} Từ)</span>
-                          </p>
-                          <span className="text-[10px] font-medium text-slate-400">Nhấp loa để nghe giọng đọc</span>
-                        </div>
-
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-48 overflow-y-auto pr-1">
-                          {vocabs.map((v, i) => (
-                            <div
-                              key={i}
-                              className="group relative flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-2.5 shadow-2xs hover:border-amber-300 hover:shadow-sm transition-all"
-                            >
-                              <div className="flex items-start justify-between">
-                                <div>
-                                  <p className="font-hanzi text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                                    {v.chinese}
-                                  </p>
-                                  <span className="inline-block mt-0.5 text-[11px] font-bold text-amber-700 font-mono tracking-wide">
-                                    {v.pinyin}
-                                  </span>
-                                </div>
-                                <button
-                                  type="button"
-                                  onClick={() => speak(v.chinese)}
-                                  aria-label={`Nghe phát âm ${v.chinese}`}
-                                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-600 transition-colors cursor-pointer"
-                                >
-                                  <Volume2 size={13} />
-                                </button>
-                              </div>
-                              <p className="mt-2 text-xs font-semibold text-slate-600 line-clamp-1 border-t border-slate-100 pt-1.5">
-                                {v.meaningVi}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Phrases Section */}
-                    {phrases.length > 0 && (
-                      <div className="space-y-2">
-                        <p className="text-[11px] font-black uppercase text-slate-500">
-                          Mẫu Câu Đàm Thoại ({phrases.length})
-                        </p>
-                        <div className="space-y-1.5 max-h-36 overflow-y-auto pr-1">
-                          {phrases.map((p, i) => (
-                            <div
-                              key={i}
-                              onClick={() => speak(p.chinese)}
-                              className="flex items-center justify-between rounded-xl bg-slate-50 p-2.5 border border-slate-200/80 hover:bg-amber-50/50 transition cursor-pointer"
-                            >
-                              <div>
-                                <div className="font-hanzi text-xs font-bold text-slate-900">{p.chinese}</div>
-                                <div className="text-[10px] text-amber-800 font-mono">{p.pinyin}</div>
-                                <div className="text-[10px] text-slate-600">{p.meaningVi}</div>
-                              </div>
-                              <button type="button" className="p-1 text-slate-400 hover:text-red-700">
-                                <Volume2 size={14} />
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Call to Action Buttons */}
-                    <div className="pt-2 flex flex-col gap-2.5">
-                      <Link
-                        to={`/roadmap/${selectedStage.id}`}
-                        className="flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 sm:py-4 text-sm font-black text-white bg-red-600 hover:bg-red-700 shadow-md shadow-red-600/20 active:scale-[0.99] transition-all cursor-pointer"
-                      >
-                        <BookOpen size={18} />
-                        <span>VÀO HỌC BUỔI LỘ TRÌNH NÀY</span>
-                        <ArrowRight size={18} />
-                      </Link>
-
-                      {selectedStage.lessonId && (
-                        <Link
-                          to={`/lessons/${selectedStage.lessonId}`}
-                          className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
-                        >
-                          <Sparkles size={14} className="text-amber-600" />
-                          <span>Luyện Viết Thư Pháp & Quiz Studio</span>
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
         </div>
       </div>
 

@@ -845,7 +845,7 @@ export function WorldMap({ lessons, user }: WorldMapProps) {
           {/* ===================================================================== */}
           {/* THE ADVENTURE TRAIL (Interactive 3D Stage Podiums - Light Theme)      */}
           {/* ===================================================================== */}
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs">
+          <div className="relative rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-xs">
             {/* Stage Title */}
             <div className="mb-10 flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
@@ -878,6 +878,14 @@ export function WorldMap({ lessons, user }: WorldMapProps) {
                 />
               </svg>
 
+              {/* Transparent backdrop to close popover on click outside */}
+              {selectedLesson && (
+                <div
+                  className="fixed inset-0 z-40"
+                  onClick={() => setSelectedLesson(null)}
+                />
+              )}
+
               {activeRealmData.lessons.map((lesson, idx) => {
                 const isRealmLocked = !isAdmin && !activeRealmData.isUnlocked;
                 const isCompleted = isAdmin || Boolean(lesson.completed) || localCompletedIds.includes(lesson.id);
@@ -903,17 +911,21 @@ export function WorldMap({ lessons, user }: WorldMapProps) {
                 ];
                 const currentOffset = xOffsets[idx % xOffsets.length];
 
-                const isRightPlaced = currentOffset.includes("-translate-x") || idx % 2 === 0;
+                // Node on left -> popover on right; Node on right -> popover on left
+                const isRightPlaced = currentOffset.includes("-translate-x") || currentOffset === "sm:translate-x-0";
+                const isSelected = selectedLesson?.id === lesson.id;
 
                 return (
                   <div
                     key={lesson.id}
-                    className={`relative z-10 flex flex-col items-center transition-transform duration-300 ${currentOffset}`}
+                    className={`relative flex flex-col items-center transition-transform duration-300 ${currentOffset} ${
+                      isSelected ? "z-50" : "z-10"
+                    }`}
                   >
                     {/* Compact Popover Speech Bubble attached to the side of the node */}
-                    {selectedLesson?.id === lesson.id && (
+                    {isSelected && (
                       <div
-                        className={`absolute z-40 w-72 sm:w-80 rounded-3xl border border-slate-200 bg-white p-4 shadow-xl text-slate-900 animate-in zoom-in-95 fade-in duration-150 text-left max-sm:bottom-[calc(100%+12px)] max-sm:left-1/2 max-sm:-translate-x-1/2 ${
+                        className={`absolute z-50 w-72 sm:w-80 rounded-3xl border border-slate-200 bg-white p-4 shadow-2xl text-slate-900 animate-in zoom-in-95 fade-in duration-150 text-left max-sm:bottom-[calc(100%+12px)] max-sm:left-1/2 max-sm:-translate-x-1/2 ${
                           isRightPlaced
                             ? "sm:left-[calc(100%+16px)] sm:top-1/2 sm:-translate-y-1/2"
                             : "sm:right-[calc(100%+16px)] sm:top-1/2 sm:-translate-y-1/2"
