@@ -19,6 +19,7 @@ import {
   Layers,
   ListChecks,
   Lock,
+  Pencil,
   Plus,
   RefreshCw,
   Search,
@@ -120,6 +121,10 @@ export async function action({ request }: Route.ActionArgs) {
 
   if (intent === "roadmap-vocab-delete") {
     return deleteVocabFromRoadmap(form);
+  }
+
+  if (intent === "roadmap-vocab-edit") {
+    return editVocabInRoadmap(form);
   }
 
   if (intent === "lesson-vocab-add") {
@@ -236,6 +241,57 @@ async function deleteVocabFromRoadmap(form: FormData) {
   });
 
   return { addVocabSuccess: `Đã xóa từ vựng khỏi bài "${roadmap.title}".` };
+}
+
+async function editVocabInRoadmap(form: FormData) {
+  const roadmapItemId = String(form.get("roadmapItemId") || "").trim();
+  const wordIndex = Number(form.get("wordIndex"));
+  const chinese = String(form.get("chinese") || "").trim();
+  const pinyin = String(form.get("pinyin") || "").trim();
+  const meaningVi = String(form.get("meaningVi") || "").trim();
+  const exampleChinese = String(form.get("exampleChinese") || "").trim();
+  const examplePinyin = String(form.get("examplePinyin") || "").trim();
+  const exampleMeaning = String(form.get("exampleMeaning") || "").trim();
+
+  if (!roadmapItemId) return { addVocabError: "Thiếu thông tin bài học." };
+  if (!chinese || !pinyin || !meaningVi) {
+    return { addVocabError: "Vui lòng nhập đầy đủ Hán tự, Pinyin và Nghĩa tiếng Việt." };
+  }
+
+  const roadmap = await prisma.roadmapItem.findUnique({
+    where: { id: roadmapItemId },
+  });
+  if (!roadmap) return { addVocabError: "Không tìm thấy bài học." };
+
+  let currentVocab: any[] = Array.isArray(roadmap.vocabulary) ? [...roadmap.vocabulary] : [];
+  if (!Number.isInteger(wordIndex) || wordIndex < 0 || wordIndex >= currentVocab.length) {
+    return { addVocabError: "Không tìm thấy vị trí từ vựng cần chỉnh sửa." };
+  }
+
+  const existingWord = currentVocab[wordIndex] || {};
+  const updatedWord: any = {
+    ...existingWord,
+    chinese,
+    pinyin,
+    meaningVi,
+  };
+  if (exampleChinese) updatedWord.exampleChinese = exampleChinese;
+  else delete updatedWord.exampleChinese;
+
+  if (examplePinyin) updatedWord.examplePinyin = examplePinyin;
+  else delete updatedWord.examplePinyin;
+
+  if (exampleMeaning) updatedWord.exampleMeaning = exampleMeaning;
+  else delete updatedWord.exampleMeaning;
+
+  currentVocab[wordIndex] = updatedWord;
+
+  await prisma.roadmapItem.update({
+    where: { id: roadmapItemId },
+    data: { vocabulary: currentVocab },
+  });
+
+  return { addVocabSuccess: `Đã cập nhật từ "${chinese}" (${pinyin}: ${meaningVi}) thành công.` };
 }
 
 async function addVocabToLesson(form: FormData) {
@@ -522,6 +578,16 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
   const [inputExampleMeaning, setInputExampleMeaning] = useState("");
   const [bulkText, setBulkText] = useState("");
   const [inputMode, setInputMode] = useState<"single" | "bulk">("single");
+  const [editingVocab, setEditingVocab] = useState<{
+    index: number;
+    roadmapItemId: string;
+    chinese: string;
+    pinyin: string;
+    meaningVi: string;
+    exampleChinese?: string;
+    examplePinyin?: string;
+    exampleMeaning?: string;
+  } | null>(null);
 
   const lessonImportFetcher = useFetcher<{ success?: string; error?: string }>();
   const roadmapImportFetcher = useFetcher<typeof action>();
@@ -582,6 +648,7 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
       setInputExamplePinyin("");
       setInputExampleMeaning("");
       setBulkText("");
+      setEditingVocab(null);
     },
   });
 
@@ -695,28 +762,28 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
           {/* ========================================================================= */}
           {/* 1. HERO ADMIN DASHBOARD BANNER                                            */}
           {/* ========================================================================= */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6 sm:p-8 text-white shadow-xl border border-slate-800">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 text-slate-900 shadow-sm">
             {/* Background Decorative Glow */}
-            <div className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-red-600/15 blur-3xl" />
-            <div className="pointer-events-none absolute -left-16 -bottom-16 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
+            <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gradient-to-br from-red-500/10 via-rose-500/5 to-transparent blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-gradient-to-tr from-amber-500/10 via-orange-500/5 to-transparent blur-3xl" />
 
             <div className="relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
               <div>
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-xs font-black uppercase tracking-wider text-red-400">
-                    <ShieldCheck size={14} />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-wider text-red-700">
+                    <ShieldCheck size={14} className="text-red-600" />
                     <span>Trung Tâm Quản Trị Hệ Thống</span>
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-400">
-                    <Activity size={12} className="animate-pulse" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700">
+                    <Activity size={12} className="animate-pulse text-emerald-600" />
                     <span>Máy chủ trực tuyến</span>
                   </span>
                 </div>
-                <h1 className="mt-3 text-2xl sm:text-4xl font-black tracking-tight text-white">
+                <h1 className="mt-3 text-2xl sm:text-4xl font-black tracking-tight text-slate-900">
                   Bảng Điều Khiển HSK Master Pro
                 </h1>
-                <p className="mt-2 max-w-2xl text-xs sm:text-sm text-slate-400 font-medium leading-relaxed">
-                  Xin chào <strong>{loaderData.user.name}</strong>. Quản lý phân quyền học viên, giám sát kho từ vựng, cập nhật ngân hàng đề thi và quản trị lộ trình đại lục.
+                <p className="mt-2 max-w-2xl text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
+                  Xin chào <strong className="text-slate-800">{loaderData.user.name}</strong>. Quản lý phân quyền học viên, giám sát kho từ vựng, cập nhật ngân hàng đề thi và quản trị lộ trình đại lục.
                 </p>
               </div>
 
@@ -725,14 +792,14 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
                 <button
                   type="button"
                   onClick={() => revalidator.revalidate()}
-                  className="flex items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/15 transition active:scale-95 cursor-pointer backdrop-blur-sm"
+                  className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-700 transition active:scale-95 cursor-pointer shadow-xs"
                 >
-                  <RefreshCw size={14} />
+                  <RefreshCw size={14} className="text-slate-500" />
                   <span>Đồng Bộ Dữ Liệu</span>
                 </button>
                 <Link
                   to="/roadmap"
-                  className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-red-600/30 transition active:scale-95 cursor-pointer"
+                  className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-red-600/25 transition active:scale-95 cursor-pointer"
                 >
                   <Compass size={14} />
                   <span>Xem Lộ Trình</span>
@@ -741,46 +808,46 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
             </div>
 
             {/* Top 5 KPI Metrics Strip */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 pt-6 border-t border-white/10">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 pt-6 border-t border-slate-100">
               <StatMetricCard
                 icon={Users}
                 label="Tổng Tài Khoản"
                 value={loaderData.userCount}
                 sub={`${loaderData.studentCount} Học viên VIP`}
-                color="text-sky-400"
-                bgColor="bg-sky-500/10"
+                color="text-sky-600"
+                bgColor="bg-sky-50 border border-sky-100"
               />
               <StatMetricCard
                 icon={GraduationCap}
                 label="Học Viên VIP"
                 value={loaderData.studentCount}
                 sub="Được học Lộ trình"
-                color="text-amber-400"
-                bgColor="bg-amber-500/10"
+                color="text-amber-600"
+                bgColor="bg-amber-50 border border-amber-100"
               />
               <StatMetricCard
                 icon={BookOpen}
                 label="Bài Học HSK"
                 value={loaderData.lessonCount}
                 sub={`${hsk20Count} HSK2.0 · ${hsk30Count} HSK3.0`}
-                color="text-red-400"
-                bgColor="bg-red-500/10"
+                color="text-red-600"
+                bgColor="bg-red-50 border border-red-100"
               />
               <StatMetricCard
                 icon={Sparkles}
                 label="Kho Từ Vựng"
                 value={loaderData.vocabCount}
                 sub="Có Pinyin & Âm thanh"
-                color="text-emerald-400"
-                bgColor="bg-emerald-500/10"
+                color="text-emerald-600"
+                bgColor="bg-emerald-50 border border-emerald-100"
               />
               <StatMetricCard
                 icon={GitBranch}
                 label="Ải Lộ Trình"
                 value={loaderData.roadmapCount}
                 sub="4 Chặng Đại Lục"
-                color="text-purple-400"
-                bgColor="bg-purple-500/10"
+                color="text-purple-600"
+                bgColor="bg-purple-50 border border-purple-100"
               />
             </div>
           </div>
@@ -1762,18 +1829,39 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
                                 <span className="text-slate-600 text-[11px]">{w.meaningVi}</span>
                               </div>
                               {vocabTargetType === "roadmap" && (
-                                <addVocabFetcher.Form method="post" className="inline">
-                                  <input type="hidden" name="intent" value="roadmap-vocab-delete" />
-                                  <input type="hidden" name="roadmapItemId" value={selectedItemId} />
-                                  <input type="hidden" name="wordIndex" value={idx} />
+                                <div className="flex items-center gap-1">
                                   <button
-                                    type="submit"
-                                    title="Xóa từ này"
-                                    className="p-1 text-slate-300 hover:text-red-600 transition cursor-pointer"
+                                    type="button"
+                                    onClick={() =>
+                                      setEditingVocab({
+                                        index: idx,
+                                        roadmapItemId: selectedItemId,
+                                        chinese: w.chinese,
+                                        pinyin: w.pinyin,
+                                        meaningVi: w.meaningVi,
+                                        exampleChinese: w.exampleChinese,
+                                        examplePinyin: w.examplePinyin,
+                                        exampleMeaning: w.exampleMeaning,
+                                      })
+                                    }
+                                    title="Chỉnh sửa từ này"
+                                    className="p-1 text-slate-300 hover:text-amber-600 transition cursor-pointer"
                                   >
-                                    <Trash2 size={13} />
+                                    <Pencil size={13} />
                                   </button>
-                                </addVocabFetcher.Form>
+                                  <addVocabFetcher.Form method="post" className="inline">
+                                    <input type="hidden" name="intent" value="roadmap-vocab-delete" />
+                                    <input type="hidden" name="roadmapItemId" value={selectedItemId} />
+                                    <input type="hidden" name="wordIndex" value={idx} />
+                                    <button
+                                      type="submit"
+                                      title="Xóa từ này"
+                                      className="p-1 text-slate-300 hover:text-red-600 transition cursor-pointer"
+                                    >
+                                      <Trash2 size={13} />
+                                    </button>
+                                  </addVocabFetcher.Form>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -1783,6 +1871,146 @@ export default function AdminPage({ loaderData }: Route.ComponentProps) {
                   </div>
                 </div>
               </div>
+
+              {/* Edit Vocab Modal */}
+              {editingVocab && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-150">
+                  <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-150">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+                      <div className="flex items-center gap-2.5">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600 border border-amber-200">
+                          <Pencil size={18} />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-black text-slate-900">
+                            Chỉnh Sửa Từ Vựng
+                          </h3>
+                          <p className="text-[11px] text-slate-500 font-medium">
+                            Cập nhật Hán tự, Pinyin và dịch nghĩa trong lộ trình
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditingVocab(null)}
+                        className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors cursor-pointer"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
+
+                    <addVocabFetcher.Form method="post" className="space-y-4">
+                      <input type="hidden" name="intent" value="roadmap-vocab-edit" />
+                      <input type="hidden" name="roadmapItemId" value={editingVocab.roadmapItemId} />
+                      <input type="hidden" name="wordIndex" value={editingVocab.index} />
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="sm:col-span-2">
+                          <label className="text-xs font-bold text-slate-700 block mb-1">
+                            <span className="text-red-600 font-bold">*</span> Hán Tự (Chữ Hán):
+                          </label>
+                          <input
+                            type="text"
+                            name="chinese"
+                            required
+                            value={editingVocab.chinese}
+                            onChange={(e) => setEditingVocab({ ...editingVocab, chinese: e.target.value })}
+                            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-base font-hanzi font-black text-slate-900 outline-none focus:border-red-500 focus:bg-white"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 block mb-1">
+                            <span className="text-red-600 font-bold">*</span> Pinyin (Phiên âm):
+                          </label>
+                          <input
+                            type="text"
+                            name="pinyin"
+                            required
+                            value={editingVocab.pinyin}
+                            onChange={(e) => setEditingVocab({ ...editingVocab, pinyin: e.target.value })}
+                            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-mono font-bold text-slate-900 outline-none focus:border-red-500 focus:bg-white"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold text-slate-700 block mb-1">
+                            <span className="text-red-600 font-bold">*</span> Nghĩa Tiếng Việt:
+                          </label>
+                          <input
+                            type="text"
+                            name="meaningVi"
+                            required
+                            value={editingVocab.meaningVi}
+                            onChange={(e) => setEditingVocab({ ...editingVocab, meaningVi: e.target.value })}
+                            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-semibold text-slate-900 outline-none focus:border-red-500 focus:bg-white"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Optional Example Fields */}
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-3.5 space-y-2.5">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                          Ví dụ mẫu & Dịch nghĩa (Tùy chọn)
+                        </span>
+                        <input
+                          type="text"
+                          name="exampleChinese"
+                          placeholder="Câu ví dụ Hán tự"
+                          value={editingVocab.exampleChinese || ""}
+                          onChange={(e) => setEditingVocab({ ...editingVocab, exampleChinese: e.target.value })}
+                          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-hanzi text-slate-800 outline-none focus:border-red-500"
+                        />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <input
+                            type="text"
+                            name="examplePinyin"
+                            placeholder="Pinyin câu ví dụ"
+                            value={editingVocab.examplePinyin || ""}
+                            onChange={(e) => setEditingVocab({ ...editingVocab, examplePinyin: e.target.value })}
+                            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-mono text-slate-800 outline-none focus:border-red-500"
+                          />
+                          <input
+                            type="text"
+                            name="exampleMeaning"
+                            placeholder="Dịch nghĩa câu ví dụ"
+                            value={editingVocab.exampleMeaning || ""}
+                            onChange={(e) => setEditingVocab({ ...editingVocab, exampleMeaning: e.target.value })}
+                            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-800 outline-none focus:border-red-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-100">
+                        <button
+                          type="button"
+                          onClick={() => setEditingVocab(null)}
+                          className="rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-50 transition cursor-pointer"
+                        >
+                          Hủy
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={addVocabFetcher.state !== "idle" || !editingVocab.chinese || !editingVocab.pinyin || !editingVocab.meaningVi}
+                          className="flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-xs font-black text-white shadow-md shadow-red-500/20 hover:bg-red-700 transition cursor-pointer disabled:opacity-50"
+                        >
+                          {addVocabFetcher.state !== "idle" ? (
+                            <>
+                              <RefreshCw size={14} className="animate-spin" />
+                              <span>Đang Lưu...</span>
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle2 size={14} />
+                              <span>Lưu Thay Đổi</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </addVocabFetcher.Form>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -1812,17 +2040,17 @@ function StatMetricCard({
   bgColor: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+    <div className="rounded-2xl border border-slate-200/70 bg-slate-50/50 p-4 transition-all duration-200 hover:bg-white hover:border-slate-300 hover:shadow-xs">
       <div className="flex items-center gap-2.5">
-        <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${bgColor} ${color}`}>
+        <div className={`flex h-9 w-9 items-center justify-center rounded-xl shadow-2xs ${bgColor} ${color}`}>
           <Icon size={18} />
         </div>
-        <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">
+        <span className="text-[11px] font-black uppercase tracking-wider text-slate-500 truncate">
           {label}
         </span>
       </div>
-      <p className="mt-2.5 text-2xl sm:text-3xl font-black text-white">{value}</p>
-      <p className="mt-0.5 text-[11px] font-medium text-slate-400 truncate">{sub}</p>
+      <p className="mt-2.5 text-2xl sm:text-3xl font-black text-slate-900">{value}</p>
+      <p className="mt-0.5 text-[11px] font-semibold text-slate-500 truncate">{sub}</p>
     </div>
   );
 }
