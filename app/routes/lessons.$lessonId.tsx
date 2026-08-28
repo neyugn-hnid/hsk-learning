@@ -140,7 +140,7 @@ function speakChinese(text: string, rate: number = 1.0) {
   }
 }
 
-export type CollocationItem = {
+type CollocationItem = {
   zh: string;
   pinyin?: string;
   vi: string;
@@ -171,7 +171,7 @@ function tokenizeChineseSentence(sentence: string, targetVocab: string): string[
   return result.length > 1 ? result : cleanStr.split("");
 }
 
-export type SentenceToken = {
+type SentenceToken = {
   id: string;
   text: string;
 };

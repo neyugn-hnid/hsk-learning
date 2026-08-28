@@ -136,7 +136,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
-export type RoadmapEntry = {
+type RoadmapEntry = {
   chinese: string;
   pinyin: string;
   meaningVi: string;

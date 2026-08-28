@@ -60,9 +60,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   };
 }
 
-export type ExamSection = "listening" | "reading" | "writing";
+type ExamSection = "listening" | "reading" | "writing";
 
-export interface ExamQuestion {
+interface ExamQuestion {
   id: number;
   section: ExamSection;
   sectionTitle: string;
@@ -81,7 +81,7 @@ export interface ExamQuestion {
   explanation: string;
 }
 
-export interface ExamPreset {
+interface ExamPreset {
   id: string;
   level: string;
   levelChinese: string;

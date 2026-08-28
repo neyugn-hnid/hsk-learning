@@ -1,6 +1,5 @@
 import type { Route } from "./+types/api.ai.shootout";
 import { data } from "react-router";
-import { prisma } from "~/lib/db.server";
 
 type ShootoutGeneratedQuestion = {
   id?: string;

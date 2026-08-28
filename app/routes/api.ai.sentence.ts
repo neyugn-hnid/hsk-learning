@@ -1,4 +1,3 @@
-import { prisma } from "~/lib/db.server";
 import type { Route } from "./+types/api.ai.sentence";
 
 interface AIProvider {
@@ -9,7 +8,7 @@ interface AIProvider {
   model: string;
 }
 
-export interface SentenceAIGeneratedQuestion {
+export type SentenceAIGeneratedQuestion = {
   id: string;
   vietnamese: string;
   chineseTokens: string[];
