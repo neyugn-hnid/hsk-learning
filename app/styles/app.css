@@ -1,12 +1,21 @@
 @import "tailwindcss/index.css";
 
-body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 .font-hanzi { font-family: "DFKaiW5GB5-HPinIn1WLD", KaiTi, "Noto Serif SC", "Noto Sans SC", "Microsoft YaHei", "SimHei", sans-serif; }
 .font-hanzi::placeholder { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1rem; }
 .input-normal, .input-normal::placeholder { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important; }
 .input-normal::placeholder { font-size: 1rem; }
 .input-hanzi::placeholder { font-size: 1rem; }
 .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ===== Hide Scrollbar Utility ===== */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 /* ===== Navigation Progress Bar ===== */
 @keyframes nprogress-grow {
@@ -64,7 +73,133 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
   animation: spin-loader 0.6s linear infinite;
 }
 
-/* PageFlip required styles */
+/* ===== Game Map Animations ===== */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(1deg); }
+  66%       { transform: translateY(-4px) rotate(-1deg); }
+}
+@keyframes float-petal {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.4; }
+  100% { transform: translate(var(--dx, 60px), 140px) rotate(var(--rot, 180deg)); opacity: 0; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-color, rgba(251,191,36,0.4)); }
+  50%       { box-shadow: 0 0 40px var(--glow-color, rgba(251,191,36,0.7)), 0 0 80px var(--glow-color, rgba(251,191,36,0.2)); }
+}
+@keyframes node-idle {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%       { transform: scale(1.04) translateY(-3px); }
+}
+@keyframes star-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes path-dash {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes shimmer-gold {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes firefly {
+  0%, 100% { opacity: 0; transform: scale(0.5) translate(0,0); }
+  50%       { opacity: 1; transform: scale(1.2) translate(var(--fx, 10px), var(--fy, -10px)); }
+}
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(30px); }
+}
+.animate-float-slow    { animation: float-slow 6s ease-in-out infinite; }
+.animate-node-idle     { animation: node-idle 3s ease-in-out infinite; }
+.animate-glow-pulse    { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-shimmer-gold  {
+  background: linear-gradient(90deg, #F59E0B 0%, #FEF3C7 40%, #F59E0B 60%, #D97706 100%);
+  background-size: 200% auto;
+  animation: shimmer-gold 2.5s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.animate-cloud-drift   { animation: cloud-drift 8s ease-in-out infinite alternate; }
+
+/* ===== 3D Game Token & Podium Styles ===== */
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  50%  { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-ring-spin {
+  animation: ring-spin 12s linear infinite;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Physical 3D Game Stage Buttons (Solid Light Theme Colors - No Gradients) */
+.btn-stage-active {
+  background-color: #F59E0B;
+  border: 3px solid #FDE68A;
+  box-shadow: 0 8px 0 #B45309, 0 12px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-stage-active:hover {
+  background-color: #D97706;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 #B45309, 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+.btn-stage-active:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #B45309, 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-stage-completed {
+  background-color: #10B981;
+  border: 3px solid #A7F3D0;
+  box-shadow: 0 8px 0 #047857, 0 12px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-stage-completed:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 #047857, 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+.btn-stage-completed:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #047857, 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.btn-stage-locked {
+  background-color: #E2E8F0;
+  border: 3px solid #CBD5E1;
+  box-shadow: 0 6px 0 #94A3B8;
+}
+
+.btn-stage-boss {
+  background-color: #DC2626;
+  border: 3px solid #FECACA;
+  box-shadow: 0 8px 0 #991B1B, 0 12px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-stage-boss:hover {
+  background-color: #B91C1C;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 #991B1B, 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+.btn-stage-boss:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #991B1B, 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+
 .stf__parent { position: relative; display: block; box-sizing: border-box; transform: translateZ(0); touch-action: pan-y; }
 .stf__wrapper { position: relative; width: 100%; box-sizing: border-box; }
 .stf__block { position: absolute; width: 100%; height: 100%; box-sizing: border-box; perspective: 2000px; }

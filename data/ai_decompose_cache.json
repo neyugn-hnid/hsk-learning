@@ -1,0 +1,165 @@
+{
+  "你-HSK1": {
+    "radicals": "亻 (Nhân đứng - Người) + 尔 (Nhĩ - Ngươi/Bạn)",
+    "story": "Gấu Trúc Bao Bao đang đi dạo trong rừng, thấy một người (亻) và gọi: “Bạn (尔) ơi, đến đây chơi nhé!” Khi Hai người chạm tay, hình ảnh ‘你’ hiện ra, nhớ rằng 你 là sự kết hợp của người và “bạn”.",
+    "collocations": [
+      {
+        "zh": "你好",
+        "pinyin": "nǐ hǎo",
+        "vi": "chào bạn"
+      },
+      {
+        "zh": "你们",
+        "pinyin": "nǐ men",
+        "vi": "các bạn"
+      },
+      {
+        "zh": "你好吗",
+        "pinyin": "nǐ hǎo ma",
+        "vi": "bạn có khỏe không"
+      },
+      {
+        "zh": "你是谁",
+        "pinyin": "nǐ shì shuí",
+        "vi": "bạn là ai"
+      }
+    ],
+    "sentenceChallenge": {
+      "chinese": "你吃饭了吗",
+      "pinyin": "Nǐ chī fàn le ma",
+      "meaningVi": "Bạn đã ăn cơm chưa",
+      "tokens": [
+        "你",
+        "吃",
+        "饭",
+        "了",
+        "吗"
+      ],
+      "distractors": [
+        "他",
+        "我们"
+      ]
+    }
+  },
+  "我-HSK1": {
+    "radicals": "戈 (Giá - giáo) + 手 (Thủ - tay)",
+    "story": "Bảo Bảo, chú gấu trúc dễ thương, cố gắng nắm chặt một cây giáo bằng đôi tay bé xíu. Khi cô ấy thành công, cô luôn nói \"我\" (tôi) để tự hào rằng mình đã làm được!",
+    "collocations": [
+      {
+        "zh": "我是",
+        "pinyin": "wǒ shì",
+        "vi": "tôi là"
+      },
+      {
+        "zh": "我的",
+        "pinyin": "wǒ de",
+        "vi": "của tôi"
+      },
+      {
+        "zh": "我们",
+        "pinyin": "wǒmen",
+        "vi": "chúng tôi/chúng mình"
+      },
+      {
+        "zh": "我爱",
+        "pinyin": "wǒ ài",
+        "vi": "tôi yêu"
+      }
+    ],
+    "sentenceChallenge": {
+      "chinese": "我想喝水。",
+      "pinyin": "wǒ xiǎng hē shuǐ",
+      "meaningVi": "Tôi muốn uống nước.",
+      "tokens": [
+        "我",
+        "想",
+        "喝",
+        "水"
+      ],
+      "distractors": [
+        "他",
+        "你"
+      ]
+    }
+  },
+  "我们-HSK1": {
+    "radicals": "我：戈 (vũ khí) + 手 (bàn tay)；们：亻 (người đứng) + 门 (cửa)",
+    "story": "Khi Gấu Trúc Bao Bao muốn nhớ “我们”, cô ấy tưởng tượng một chú gấu trúc đang cầm một cây 戈 (gươm) trong tay, nói 我 (tôi). Bên cạnh, một nhóm bạn gấu trúc đứng thành hàng, mỗi con mang một cánh 门 (cửa) mở rộng, tạo thành 们 (chúng ta). Khi cả hai gặp nhau, Bao Bao nhớ rằng 我 + 们 = chúng tôi, chúng ta.",
+    "collocations": [
+      {
+        "zh": "我们是",
+        "pinyin": "wǒmen shì",
+        "vi": "chúng tôi là"
+      },
+      {
+        "zh": "我们有",
+        "pinyin": "wǒmen yǒu",
+        "vi": "chúng tôi có"
+      },
+      {
+        "zh": "我们去",
+        "pinyin": "wǒmen qù",
+        "vi": "chúng tôi đi"
+      },
+      {
+        "zh": "我们叫",
+        "pinyin": "wǒmen jiào",
+        "vi": "chúng tôi gọi là"
+      }
+    ],
+    "sentenceChallenge": {
+      "chinese": "我们去公园。",
+      "pinyin": "Wǒmen qù gōngyuán.",
+      "meaningVi": "Chúng ta đi công viên.",
+      "tokens": [
+        "我们",
+        "去",
+        "公园"
+      ],
+      "distractors": [
+        "学校",
+        "吃"
+      ]
+    }
+  },
+  "他-HSK1": {
+    "radicals": "亻 (Nhân đứng - Người) + 也 (Nhĩ - cũng, người)",
+    "story": "Gấu Trúc Bao Bao đang dạo chơi trong rừng, gặp một người bạn tên là 他. Bao Bao nhìn thấy người này luôn đứng một mình, nên nghĩ: “他 (người này) giống như một chiếc bóng 也 (cũng) luôn theo mình, dù tôi chạy nhanh hay chậm.” Nhờ câu chuyện này, bạn sẽ nhớ rằng 他 gồm 亻 (người) và 也 (cũng).",
+    "collocations": [
+      {
+        "zh": "他是",
+        "pinyin": "tā shì",
+        "vi": "anh ấy là"
+      },
+      {
+        "zh": "他有",
+        "pinyin": "tā yǒu",
+        "vi": "anh ấy có"
+      },
+      {
+        "zh": "他会",
+        "pinyin": "tā huì",
+        "vi": "anh ấy có thể"
+      },
+      {
+        "zh": "他喜欢",
+        "pinyin": "tā xǐhuān",
+        "vi": "anh ấy thích"
+      }
+    ],
+    "sentenceChallenge": {
+      "chinese": "他是老师。",
+      "pinyin": "tā shì lǎoshī",
+      "meaningVi": "Anh ấy là giáo viên.",
+      "tokens": [
+        "他",
+        "是",
+        "老师"
+      ],
+      "distractors": [
+        "我",
+        "她"
+      ]
+    }
+  }
+}

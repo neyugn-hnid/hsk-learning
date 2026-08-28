@@ -41,7 +41,7 @@ export async function requireUser(request: Request) {
 
 export async function requireAdmin(request: Request) {
   const user = await requireUser(request);
-  if (user.role !== "ADMIN") throw redirect("/dashboard");
+  if (user.role !== "ADMIN") throw redirect("/");
   return user;
 }
 

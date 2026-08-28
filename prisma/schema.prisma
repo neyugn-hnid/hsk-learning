@@ -9,6 +9,7 @@ datasource db {
 
 enum Role {
   USER
+  STUDENT
   ADMIN
 }
 
@@ -72,18 +73,23 @@ model RoadmapItem {
 }
 
 model Vocabulary {
-  id             String   @id @default(cuid())
-  chinese        String
-  pinyin         String
-  meaningVi      String
-  meaningEn      String?
-  exampleChinese String?
-  examplePinyin  String?
-  exampleMeaning String?
-  imageUrl       String?
-  level          String
-  lessonId       String
-  createdAt      DateTime @default(now())
+  id                String   @id @default(cuid())
+  chinese           String
+  pinyin            String
+  meaningVi         String
+  meaningEn         String?
+  exampleChinese    String?
+  examplePinyin     String?
+  exampleMeaning    String?
+  imageUrl          String?
+  level             String
+  radicals          String?
+  story             String?
+  collocations      Json?
+  sentenceChallenge Json?
+  aiData            Json?
+  lessonId          String
+  createdAt         DateTime @default(now())
 
   lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }

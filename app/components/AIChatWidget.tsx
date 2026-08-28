@@ -10,6 +10,7 @@ import {
   Volume2,
   X,
 } from "lucide-react";
+import { MascotPandaSVG } from "~/components/Icons/CustomSVGs";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 
@@ -701,11 +702,15 @@ export function AIChatWidget() {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-28 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition-all hover:scale-110 hover:bg-red-700 md:bottom-10 md:right-6"
+          className="fixed bottom-28 right-4 z-[60] group flex h-14 w-14 items-center justify-center rounded-full bg-amber-50 border-2 border-amber-300 p-1 shadow-xl transition-all hover:scale-110 hover:shadow-amber-500/25 active:scale-95 md:bottom-10 md:right-6 cursor-pointer animate-bounce-short"
           type="button"
-          aria-label="Mở trợ lý AI"
+          aria-label="Mở trợ lý AI Bao Bao"
+          title="Trợ lý AI Bao Bao"
         >
-          <GraduationCap size={24} />
+          <MascotPandaSVG className="h-full w-full object-contain drop-shadow-xs" />
+          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[9px] font-black text-white ring-2 ring-white">
+            AI
+          </span>
         </button>
       ) : null}
 
@@ -720,9 +725,11 @@ export function AIChatWidget() {
             }`}
           >
             <div className="flex items-center gap-2">
-              <GraduationCap size={20} />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 p-0.5">
+                <MascotPandaSVG className="h-full w-full object-contain" />
+              </div>
               <span className="text-sm font-bold">
-                {quizActive ? "Đang luyện tập" : hanziActive ? "Luyện chữ Hán" : hanVietActive ? "Dịch Hán-Việt" : vietHanActive ? "Dịch Việt-Hán" : convoActive ? "Đang hội thoại" : translationActive ? "Chế độ dịch" : "HSK Learning"}
+                {quizActive ? "Đang luyện tập" : hanziActive ? "Luyện chữ Hán" : hanVietActive ? "Dịch Hán-Việt" : vietHanActive ? "Dịch Việt-Hán" : convoActive ? "Đang hội thoại" : translationActive ? "Chế độ dịch" : "Trợ Lý AI Bao Bao"}
               </span>
             </div>
             <div className="flex items-center gap-1">
@@ -755,8 +762,18 @@ export function AIChatWidget() {
                 key={message.id}
                 className={`flex gap-2 ${message.role === "user" ? "flex-row-reverse" : ""}`}
               >
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
-                  {message.role === "user" ? <User size={14} /> : <GraduationCap size={14} />}
+                <div
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${
+                    message.role === "user"
+                      ? "bg-red-100 text-red-600"
+                      : "bg-amber-50 border border-amber-200 p-0.5"
+                  }`}
+                >
+                  {message.role === "user" ? (
+                    <User size={14} />
+                  ) : (
+                    <MascotPandaSVG className="h-full w-full object-contain" />
+                  )}
                 </div>
                 <div
                   className={`group relative max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-xs leading-relaxed ${

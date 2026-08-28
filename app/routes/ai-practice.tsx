@@ -172,7 +172,7 @@ export default function AIPractice({ loaderData }: Route.ComponentProps) {
             <p className="mt-1 text-sm text-slate-500">Nếu không chọn, AI sẽ lấy từ vựng ngẫu nhiên trong toàn bộ dữ liệu.</p>
 
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
-              {loaderData.lessons.map((lesson) => (
+              {loaderData.lessons.map((lesson: any) => (
                 <button
                   key={lesson.id}
                   onClick={() => toggleLesson(lesson.id)}

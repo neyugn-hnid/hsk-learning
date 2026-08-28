@@ -24,7 +24,10 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appCss },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-  { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap" },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;700;900&family=Noto+Serif+SC:wght@400;700;900&display=swap",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -36,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-slate-50 text-slate-900">
+      <body className="bg-[#FDFBF7] text-slate-900 selection:bg-amber-100 selection:text-amber-900">
         <ToastProvider>{children}</ToastProvider>
         <ScrollRestoration />
         <Scripts />
@@ -57,9 +60,7 @@ export default function App() {
     <AuthProvider>
       <NavigationProgress />
       <ToastSearchBridge />
-      <PageTransition>
-        <Outlet />
-      </PageTransition>
+      <Outlet />
     </AuthProvider>
   );
 }
@@ -96,28 +97,6 @@ function NavigationProgress() {
       role="progressbar"
       aria-label="Đang tải trang..."
     />
-  );
-}
-
-/* ─── Page Fade-In Transition ─── */
-function PageTransition({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
-  const [prevPath, setPrevPath] = useState(location.pathname);
-  const [animating, setAnimating] = useState(false);
-
-  useEffect(() => {
-    if (location.pathname !== prevPath) {
-      setAnimating(true);
-      setPrevPath(location.pathname);
-      const t = setTimeout(() => setAnimating(false), 90);
-      return () => clearTimeout(t);
-    }
-  }, [location.pathname, prevPath]);
-
-  return (
-    <div className={animating ? "page-transition-enter" : ""}>
-      {children}
-    </div>
   );
 }
 

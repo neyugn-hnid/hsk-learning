@@ -27,31 +27,19 @@ interface AIProvider {
 function getProviders(): AIProvider[] {
   const providers: AIProvider[] = [];
 
-  // Ollama (local) - no API key needed
-  const ollamaUrl = process.env.OLLAMA_URL?.trim();
-  if (ollamaUrl) {
+  // 1. Groq (Nhanh nhất, miễn phí, model openai/gpt-oss-120b)
+  const gqKey = process.env.GROQ_API_KEY?.trim();
+  if (gqKey) {
     providers.push({
-      name: "Ollama",
+      name: "Groq",
       type: "openai",
-      apiKey: "ollama",
-      baseUrl: ollamaUrl,
-      model: process.env.OLLAMA_MODEL || "llama3.1:8b",
+      apiKey: gqKey,
+      baseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com/openai/v1",
+      model: process.env.GROQ_MODEL || "openai/gpt-oss-120b",
     });
   }
 
-  // Google AI Studio (Gemini)
-  const googleKey = process.env.GOOGLE_API_KEY?.trim();
-  if (googleKey) {
-    providers.push({
-      name: "Google",
-      type: "google",
-      apiKey: googleKey,
-      baseUrl: "https://generativelanguage.googleapis.com/v1beta",
-      model: process.env.GOOGLE_MODEL || "gemini-2.0-flash",
-    });
-  }
-
-  // DeepSeek
+  // 2. DeepSeek
   const dsKey = process.env.DEEPSEEK_API_KEY?.trim();
   if (dsKey) {
     providers.push({
@@ -59,11 +47,11 @@ function getProviders(): AIProvider[] {
       type: "openai",
       apiKey: dsKey,
       baseUrl: process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com",
-      model: process.env.DEEPSEEK_MODEL || "deepseek-v4-flash",
+      model: process.env.DEEPSEEK_MODEL || "deepseek-chat",
     });
   }
 
-  // OpenAI
+  // 3. OpenAI
   const oaKey = process.env.OPENAI_API_KEY?.trim();
   if (oaKey) {
     providers.push({
@@ -75,15 +63,27 @@ function getProviders(): AIProvider[] {
     });
   }
 
-  // Groq
-  const gqKey = process.env.GROQ_API_KEY?.trim();
-  if (gqKey) {
+  // 4. Google AI Studio (Gemini)
+  const googleKey = process.env.GOOGLE_API_KEY?.trim();
+  if (googleKey) {
     providers.push({
-      name: "Groq",
+      name: "Google",
+      type: "google",
+      apiKey: googleKey,
+      baseUrl: "https://generativelanguage.googleapis.com/v1beta",
+      model: process.env.GOOGLE_MODEL || "gemini-2.5-flash",
+    });
+  }
+
+  // 5. Ollama (local) - no API key needed
+  const ollamaUrl = process.env.OLLAMA_URL?.trim();
+  if (ollamaUrl) {
+    providers.push({
+      name: "Ollama",
       type: "openai",
-      apiKey: gqKey,
-      baseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com/openai",
-      model: process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
+      apiKey: "ollama",
+      baseUrl: ollamaUrl,
+      model: process.env.OLLAMA_MODEL || "llama3.1:8b",
     });
   }
 
@@ -143,30 +143,42 @@ async function callProvider(provider: AIProvider, messages: { role: string; cont
     const result = await res.json() as {
       candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
     };
-    return result.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+    const raw = result.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+    return raw.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
   }
 
-  // OpenAI-compatible API
-  const res = await fetch(`${provider.baseUrl}/v1/chat/completions`, {
+  // OpenAI-compatible API (Groq, DeepSeek, OpenAI)
+  const chatUrl = provider.baseUrl.endsWith("/v1")
+    ? `${provider.baseUrl}/chat/completions`
+    : `${provider.baseUrl}/v1/chat/completions`;
+
+  const requestBody: Record<string, any> = {
+    model: provider.model,
+    messages,
+    stream: false,
+    temperature,
+    max_tokens: 2000,
+  };
+
+  if (provider.name === "Groq") {
+    requestBody.reasoning_format = "hidden";
+  }
+
+  const res = await fetch(chatUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${provider.apiKey}`,
     },
-    body: JSON.stringify({
-      model: provider.model,
-      messages,
-      stream: false,
-      temperature,
-      max_tokens: 2000,
-    }),
+    body: JSON.stringify(requestBody),
   });
   if (!res.ok) {
     const t = await res.text();
     throw new Error(`${provider.name} error ${res.status}: ${t.slice(0, 200)}`);
   }
   const result = (await res.json()) as AIResponse;
-  return result.choices?.[0]?.message?.content?.trim() || "";
+  const raw = result.choices?.[0]?.message?.content?.trim() || "";
+  return raw.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
 }
 
 async function callAI(messages: { role: string; content: string }[], temperature = 0.7): Promise<string> {

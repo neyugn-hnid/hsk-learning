@@ -36,6 +36,9 @@ type Pages = {
       "roadmapId": string;
     };
   };
+  "/hsk-test": {
+    params: {};
+  };
   "/profile": {
     params: {};
   };
@@ -43,6 +46,18 @@ type Pages = {
     params: {};
   };
   "/ai-assistant": {
+    params: {};
+  };
+  "/game-map": {
+    params: {};
+  };
+  "/games": {
+    params: {};
+  };
+  "/memory-garden": {
+    params: {};
+  };
+  "/ai-roleplay": {
     params: {};
   };
   "/ai-practice": {
@@ -88,6 +103,9 @@ type Pages = {
       "roadmapId": string;
     };
   };
+  "/api/vocabularies": {
+    params: {};
+  };
   "/api/vocabularies/import": {
     params: {};
   };
@@ -103,10 +121,22 @@ type Pages = {
   "/api/ai/tts": {
     params: {};
   };
+  "/api/ai/shootout": {
+    params: {};
+  };
+  "/api/ai/sentence": {
+    params: {};
+  };
+  "/api/ai/word-decompose": {
+    params: {};
+  };
   "/api/admin/lesson-import": {
     params: {};
   };
   "/api/admin/lesson-import-status": {
+    params: {};
+  };
+  "/favicon.ico": {
     params: {};
   };
 };
@@ -114,7 +144,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/profile" | "/dashboard" | "/ai-assistant" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status";
+    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/hsk-test" | "/profile" | "/dashboard" | "/ai-assistant" | "/game-map" | "/games" | "/memory-garden" | "/ai-roleplay" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/ai/shootout" | "/api/ai/sentence" | "/api/ai/word-decompose" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status" | "/favicon.ico";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
@@ -144,6 +174,10 @@ type RouteFiles = {
     id: "routes/roadmap.$roadmapId";
     page: "/roadmap/:roadmapId";
   };
+  "routes/hsk-test.tsx": {
+    id: "routes/hsk-test";
+    page: "/hsk-test";
+  };
   "routes/profile.tsx": {
     id: "routes/profile";
     page: "/profile";
@@ -155,6 +189,22 @@ type RouteFiles = {
   "routes/ai-assistant.tsx": {
     id: "routes/ai-assistant";
     page: "/ai-assistant";
+  };
+  "routes/game-map.tsx": {
+    id: "routes/game-map";
+    page: "/game-map";
+  };
+  "routes/games.tsx": {
+    id: "routes/games";
+    page: "/games";
+  };
+  "routes/memory-garden.tsx": {
+    id: "routes/memory-garden";
+    page: "/memory-garden";
+  };
+  "routes/ai-roleplay.tsx": {
+    id: "routes/ai-roleplay";
+    page: "/ai-roleplay";
   };
   "routes/ai-practice.tsx": {
     id: "routes/ai-practice";
@@ -208,6 +258,10 @@ type RouteFiles = {
     id: "routes/api.mobile.roadmap.$roadmapId";
     page: "/api/mobile/roadmap/:roadmapId";
   };
+  "routes/api.vocabularies.ts": {
+    id: "routes/api.vocabularies";
+    page: "/api/vocabularies";
+  };
   "routes/api.vocabularies.import.ts": {
     id: "routes/api.vocabularies.import";
     page: "/api/vocabularies/import";
@@ -228,6 +282,18 @@ type RouteFiles = {
     id: "routes/api.ai.tts";
     page: "/api/ai/tts";
   };
+  "routes/api.ai.shootout.ts": {
+    id: "routes/api.ai.shootout";
+    page: "/api/ai/shootout";
+  };
+  "routes/api.ai.sentence.ts": {
+    id: "routes/api.ai.sentence";
+    page: "/api/ai/sentence";
+  };
+  "routes/api.ai.word-decompose.ts": {
+    id: "routes/api.ai.word-decompose";
+    page: "/api/ai/word-decompose";
+  };
   "routes/api.admin.lesson-import.ts": {
     id: "routes/api.admin.lesson-import";
     page: "/api/admin/lesson-import";
@@ -235,6 +301,10 @@ type RouteFiles = {
   "routes/api.admin.lesson-import-status.ts": {
     id: "routes/api.admin.lesson-import-status";
     page: "/api/admin/lesson-import-status";
+  };
+  "routes/favicon.ico.ts": {
+    id: "routes/favicon.ico";
+    page: "/favicon.ico";
   };
 };
 
@@ -247,9 +317,14 @@ type RouteModules = {
   "routes/lessons.$lessonId": typeof import("./app/routes/lessons.$lessonId.tsx");
   "routes/roadmap": typeof import("./app/routes/roadmap.tsx");
   "routes/roadmap.$roadmapId": typeof import("./app/routes/roadmap.$roadmapId.tsx");
+  "routes/hsk-test": typeof import("./app/routes/hsk-test.tsx");
   "routes/profile": typeof import("./app/routes/profile.tsx");
   "routes/dashboard": typeof import("./app/routes/dashboard.tsx");
   "routes/ai-assistant": typeof import("./app/routes/ai-assistant.tsx");
+  "routes/game-map": typeof import("./app/routes/game-map.tsx");
+  "routes/games": typeof import("./app/routes/games.tsx");
+  "routes/memory-garden": typeof import("./app/routes/memory-garden.tsx");
+  "routes/ai-roleplay": typeof import("./app/routes/ai-roleplay.tsx");
   "routes/ai-practice": typeof import("./app/routes/ai-practice.tsx");
   "routes/maintenance": typeof import("./app/routes/maintenance.tsx");
   "routes/admin": typeof import("./app/routes/admin.tsx");
@@ -263,11 +338,16 @@ type RouteModules = {
   "routes/api.mobile.lessons.$lessonId": typeof import("./app/routes/api.mobile.lessons.$lessonId.ts");
   "routes/api.mobile.roadmap": typeof import("./app/routes/api.mobile.roadmap.ts");
   "routes/api.mobile.roadmap.$roadmapId": typeof import("./app/routes/api.mobile.roadmap.$roadmapId.ts");
+  "routes/api.vocabularies": typeof import("./app/routes/api.vocabularies.ts");
   "routes/api.vocabularies.import": typeof import("./app/routes/api.vocabularies.import.ts");
   "routes/api.ai.chat": typeof import("./app/routes/api.ai.chat.ts");
   "routes/api.ai.practice": typeof import("./app/routes/api.ai.practice.ts");
   "routes/api.ai.split-lessons": typeof import("./app/routes/api.ai.split-lessons.ts");
   "routes/api.ai.tts": typeof import("./app/routes/api.ai.tts.ts");
+  "routes/api.ai.shootout": typeof import("./app/routes/api.ai.shootout.ts");
+  "routes/api.ai.sentence": typeof import("./app/routes/api.ai.sentence.ts");
+  "routes/api.ai.word-decompose": typeof import("./app/routes/api.ai.word-decompose.ts");
   "routes/api.admin.lesson-import": typeof import("./app/routes/api.admin.lesson-import.ts");
   "routes/api.admin.lesson-import-status": typeof import("./app/routes/api.admin.lesson-import-status.ts");
+  "routes/favicon.ico": typeof import("./app/routes/favicon.ico.ts");
 };
