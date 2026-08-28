@@ -7,36 +7,64 @@ type DeepSeekResponse = {
   choices?: Array<{ message?: { content?: string } }>;
 };
 
-function getConfig() {
-  return {
-    apiKey: process.env.DEEPSEEK_API_KEY?.trim() || "",
-    baseUrl: process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com",
-    model: process.env.DEEPSEEK_MODEL || "deepseek-v4-flash",
-  };
-}
-
-async function callDeepSeek(messages: { role: string; content: string }[]) {
-  const { apiKey, baseUrl, model } = getConfig();
-  const res = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model,
-      messages,
-      stream: false,
-      temperature: 0.8,
-      max_tokens: 2000,
-    }),
-  });
-  if (!res.ok) {
-    const t = await res.text();
-    throw new Error(`DeepSeek error ${res.status}: ${t}`);
+async function callAI(messages: { role: string; content: string }[]) {
+  // 1. Thử Groq
+  const groqKey = process.env.GROQ_API_KEY?.trim();
+  if (groqKey) {
+    try {
+      const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${groqKey}`,
+        },
+        body: JSON.stringify({
+          model: process.env.GROQ_MODEL || "qwen/qwen3.6-27b",
+          messages,
+          stream: false,
+          temperature: 0.7,
+          max_tokens: 2000,
+        }),
+      });
+      if (res.ok) {
+        const result = await res.json();
+        const raw = result.choices?.[0]?.message?.content?.trim() || "";
+        return raw.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+      }
+    } catch (e) {
+      console.warn("[Groq Practice Fallback]:", e);
+    }
   }
-  const result = (await res.json()) as DeepSeekResponse;
-  return result.choices?.[0]?.message?.content?.trim() || "";
+
+  // 2. Thử DeepSeek
+  const deepseekKey = process.env.DEEPSEEK_API_KEY?.trim();
+  if (deepseekKey) {
+    try {
+      const res = await fetch("https://api.deepseek.com/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${deepseekKey}`,
+        },
+        body: JSON.stringify({
+          model: process.env.DEEPSEEK_MODEL || "deepseek-chat",
+          messages,
+          stream: false,
+          temperature: 0.7,
+          max_tokens: 2000,
+        }),
+      });
+      if (res.ok) {
+        const result = await res.json();
+        const raw = result.choices?.[0]?.message?.content?.trim() || "";
+        return raw.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+      }
+    } catch (e) {
+      console.warn("[DeepSeek Practice Fallback]:", e);
+    }
+  }
+
+  throw new Error("Không thể kết nối đến AI provider (Groq/DeepSeek).");
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -88,7 +116,7 @@ Trả về JSON (không markdown) theo định dạng:
 - answer: đáp án đúng, chính xác từ danh sách trên
 - explanation: giải thích ngắn bằng tiếng Việt`;
 
-    const content = await callDeepSeek([
+    const content = await callAI([
       { role: "system", content: systemMsg },
       { role: "user", content: `Danh sách từ vựng:\n${vocabList}\n\nHãy tạo 1 câu hỏi. Trả về JSON thuần.` },
     ]);
@@ -133,7 +161,7 @@ Kết quả: ${correct ? "ĐÚNG" : "SAI"}
 
 Hãy đưa ra phản hồi ngắn (1-2 câu) bằng tiếng Việt, khuyến khích học viên. Nếu sai, giải thích nhẹ nhàng.`;
 
-    const feedback = await callDeepSeek([
+    const feedback = await callAI([
       { role: "system", content: "Bạn là giáo viên tiếng Trung vui tính." },
       { role: "user", content: feedbackMsg },
     ]);

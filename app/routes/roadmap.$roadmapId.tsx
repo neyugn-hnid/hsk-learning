@@ -12,11 +12,11 @@ import {
   BookOpen,
 } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
-import { requireUser } from "~/lib/auth.server";
+import { getUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
 
 export async function loader({ request, params }: Route.LoaderArgs) {
-  const user = await requireUser(request);
+  const user = await getUser(request);
   const roadmap = await prisma.roadmapItem.findUnique({
     where: { id: params.roadmapId },
   });

@@ -17,6 +17,7 @@ import {
 import { SiteLayout } from "~/components/Layout";
 import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
+import { r2Asset } from "~/lib/assets";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const user = await requireUser(request);
@@ -217,7 +218,7 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
   return (
     <SiteLayout user={loaderData.user}>
       {/* Dynamic Background Wrapper */}
-      <div className="min-h-screen bg-slate-50/50 pb-16">
+      <div className="min-h-screen bg-[#FDFBF7] pb-16">
         {/* Ultra Modern Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-rose-950 to-slate-950 text-white py-12 md:py-20 px-4">
           {/* Subtle Calligraphy Watermark Background */}
@@ -301,7 +302,7 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
                   {/* High Resolution Hero 3D Artwork */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-950">
                     <img
-                      src="/images/hsk_hero.png"
+                      src={r2Asset("/images/hsk_hero.png")}
                       alt="HSK Study Sanctuary 3D Illustration"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -566,10 +567,10 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
                           <div className="relative h-40 w-full overflow-hidden bg-slate-900">
                             {images.length > 0 ? (
                               <div className="flex h-full w-full gap-0.5">
-                                {images.map((img, i) => (
+                                {images.map((img: string, i: number) => (
                                   <img
                                     key={i}
-                                    src={img}
+                                    src={r2Asset(img)}
                                     alt=""
                                     className="h-full flex-1 object-cover transition-transform duration-500 group-hover:scale-110"
                                   />
@@ -579,7 +580,7 @@ export default function Lessons({ loaderData }: Route.ComponentProps) {
                             ) : (
                               <div className="relative h-full w-full">
                                 <img
-                                  src={fallbackCover}
+                                  src={r2Asset(lvlStyle.defaultImage || fallbackCover)}
                                   alt={lesson.title}
                                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />

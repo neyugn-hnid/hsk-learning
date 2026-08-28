@@ -10,27 +10,43 @@ import {
   Sparkles,
   Mail,
   CheckCircle2,
+  Gamepad2,
+  Trees,
+  Compass,
+  Crown,
+  MessageCircle,
+  ArrowRight,
+  Lock,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Form, Link, NavLink, useLocation } from "react-router";
 import { AIChatWidget } from "~/components/AIChatWidget";
 import { useAuth } from "~/components/AuthProvider";
 import { useToast } from "~/components/Toast";
+import { GamificationHeader } from "~/components/GamificationHeader";
+import { ImperialLogoSVG, ChineseLanternSVG } from "~/components/Icons/CustomSVGs";
+import { RoadmapAccessModal } from "~/components/RoadmapAccessModal";
+import { VIPGameAccessModal } from "~/components/VIPGameAccessModal";
+import { FeatureInDevModal } from "~/components/FeatureInDevModal";
 
 export function SiteLayout({
   children,
   user,
-  hideFooter,
+  hideFooter = false,
 }: {
   children: React.ReactNode;
   user?: any;
   hideFooter?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [roadmapModalOpen, setRoadmapModalOpen] = useState(false);
+  const [vipRoleplayModalOpen, setVipRoleplayModalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const { openLogin, openRegister } = useAuth();
   const { pushToast } = useToast();
+
+  const isAdmin = user?.role === "ADMIN";
 
   const handleProtectedClick = (label: string) => {
     pushToast(`Vui lòng đăng nhập để xem ${label}.`, "info");
@@ -44,13 +60,15 @@ export function SiteLayout({
 
   const desktopMenus = [
     { to: "/", label: "Trang chủ", icon: Home },
-    { to: "/lessons", label: "Bài học", icon: BookOpen },
+    { to: "/game-map", label: "Bản Đồ HSK", icon: Compass },
+    { to: "/games", label: "Games", icon: Gamepad2 },
     { to: "/roadmap", label: "Lộ trình", icon: Map },
   ];
 
   const bottomTabs = [
     { to: "/", label: "Trang chủ", icon: Home },
-    { to: "/lessons", label: "Bài học", icon: BookOpen },
+    { to: "/game-map", label: "Bản đồ", icon: Compass },
+    { to: "/games", label: "Games", icon: Gamepad2 },
     { to: "/roadmap", label: "Lộ trình", icon: Map },
   ];
 
@@ -76,34 +94,75 @@ export function SiteLayout({
   }, [menuOpen]);
 
   return (
-    <div className="flex flex-col min-h-screen pb-24 md:pb-0">
+    <div className="flex flex-col min-h-screen pb-24 md:pb-0 bg-[#FDFBF7] text-slate-900 selection:bg-amber-100 selection:text-amber-900">
       {/* Top header bar */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:py-4">
-          <Link to="/" prefetch="render" className="flex shrink-0 items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-red-600 text-white shadow-sm">
-              <GraduationCap size={22} />
+      <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md transition-all">
+        <div className="w-full flex items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 xl:px-10 h-16">
+          {/* Logo & Brand Identity */}
+          <Link to="/" prefetch="intent" className="flex shrink-0 items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center shrink-0">
+              <ImperialLogoSVG className="h-9 w-9" />
             </div>
-            <div className="text-left">
-              <p className="text-lg font-bold">HSK Learning</p>
+            <div className="text-left shrink-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-base sm:text-lg font-black tracking-tight text-slate-900">
+                  <span className="text-red-600">HSK</span> MASTER
+                </span>
+                <span className="rounded bg-amber-50 px-1.5 py-0.5 text-[9px] font-extrabold text-amber-700 border border-amber-200">
+                  PRO
+                </span>
+              </div>
+              <p className="text-[10px] font-semibold text-slate-400 -mt-0.5 tracking-wider">汉语学习平台</p>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          {/* Desktop Navigation Links (Airy, Minimal, Modern) */}
+          <nav className="hidden items-center gap-6 lg:flex">
             {desktopMenus.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.to);
-              const isProtected = item.to === "/roadmap" || item.to === "/lessons";
+              const isStudentOrAdmin = user?.role === "ADMIN" || user?.role === "STUDENT";
 
-              if (isProtected && !user) {
+              if (item.to === "/roadmap" && !isStudentOrAdmin) {
+                return (
+                  <button
+                    key={item.to}
+                    type="button"
+                    onClick={() => setRoadmapModalOpen(true)}
+                    className="flex items-center gap-1.5 py-1 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
+                  >
+                    <Icon size={16} className="text-slate-400" />
+                    <span>{item.label}</span>
+                    <span className="rounded bg-amber-50 px-1 py-0.2 text-[9px] font-black text-amber-700 border border-amber-200">
+                      VIP
+                    </span>
+                  </button>
+                );
+              }
+
+              if (item.to === "/ai-roleplay" && !isAdmin) {
+                return (
+                  <button
+                    key={item.to}
+                    type="button"
+                    onClick={() => setVipRoleplayModalOpen(true)}
+                    className="flex items-center gap-1.5 py-1 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
+                  >
+                    <Icon size={16} className="text-slate-400" />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              }
+
+              if (item.to === "/lessons" && !user) {
                 return (
                   <button
                     key={item.to}
                     onClick={() => handleProtectedClick(item.label)}
-                    className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
+                    className="flex items-center gap-1.5 py-1 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
                   >
-                    <Icon size={16} />
-                    {item.label}
+                    <Icon size={16} className="text-slate-400" />
+                    <span>{item.label}</span>
                   </button>
                 );
               }
@@ -112,38 +171,44 @@ export function SiteLayout({
                 <NavLink
                   key={item.to}
                   to={item.to}
-                  prefetch="render"
-                  className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition ${
+                  prefetch="intent"
+                  className={`flex items-center gap-1.5 py-1 text-sm transition-colors cursor-pointer ${
                     active
-                      ? "bg-red-50 text-red-600"
-                      : "text-slate-600 hover:bg-slate-100"
+                      ? "font-bold text-red-600"
+                      : "font-semibold text-slate-600 hover:text-slate-900"
                   }`}
                 >
-                  <Icon size={16} />
-                  {item.label}
+                  <Icon size={16} className={active ? "text-red-600" : "text-slate-400"} />
+                  <span>{item.label}</span>
                 </NavLink>
               );
             })}
           </nav>
 
-          <div className="relative flex items-center gap-2" ref={menuRef}>
+          {/* Right Action & Gamification Pill */}
+          <div className="relative flex shrink-0 items-center gap-2 sm:gap-3" ref={menuRef}>
+            {/* Gamification Stats Indicator */}
+            <GamificationHeader />
+
+            <div className="h-4 w-px bg-slate-200 mx-1 hidden sm:block" />
+
             {!user ? (
-              <>
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={handleOpenLogin}
-                  className="hidden rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 md:inline-flex"
+                  className="hidden rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-100 md:inline-flex cursor-pointer transition-colors"
                 >
                   Đăng nhập
                 </button>
                 <button
                   type="button"
                   onClick={handleOpenRegister}
-                  className="hidden rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 md:inline-flex"
+                  className="rounded-lg bg-red-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-red-700 active:scale-95 cursor-pointer transition-all"
                 >
                   Bắt đầu học
                 </button>
-              </>
+              </div>
             ) : null}
 
             {user ? (
@@ -151,58 +216,48 @@ export function SiteLayout({
                 type="button"
                 onClick={() => setMenuOpen((prev) => !prev)}
                 aria-label="Mở menu tài khoản"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm hover:bg-slate-50"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-2xs transition hover:bg-slate-50 cursor-pointer"
               >
-                <User size={20} />
+                <User size={16} />
               </button>
-            ) : (
-              <button
-                type="button"
-                onClick={handleOpenLogin}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm hover:bg-slate-50 md:hidden"
-                aria-label="Đăng nhập"
-              >
-                <User size={20} />
-              </button>
-            )}
+            ) : null}
 
             {user && menuOpen ? (
-              <div className="absolute right-4 top-[calc(100%-0.25rem)] w-56 overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-xl md:right-4">
-                <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                  <p className="text-sm font-bold text-slate-900">{user.name}</p>
+              <div className="absolute right-0 top-11 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-xl animate-fade-in text-slate-900">
+                <div className="rounded-xl bg-slate-50 px-3.5 py-2.5 border border-slate-100">
+                  <p className="text-xs font-bold text-slate-900">{user.name}</p>
                   {user.email ? (
-                    <p className="mt-1 text-xs text-slate-500">{user.email}</p>
+                    <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
                   ) : null}
-                  
                 </div>
-                <div className="mt-2 space-y-1">
+                <div className="mt-1.5 space-y-0.5">
                   <Link
                     to="/profile"
                     prefetch="intent"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                   >
-                    <User size={16} />
-                    Hồ sơ
+                    <User size={14} className="text-slate-400" />
+                    Hồ sơ cá nhân
                   </Link>
                   {user?.role === "ADMIN" ? (
                     <Link
                       to="/admin"
                       prefetch="intent"
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                     >
-                      <Shield size={16} />
-                      Quản trị
+                      <Shield size={14} className="text-slate-400" />
+                      Trang Quản trị
                     </Link>
                   ) : null}
                 </div>
-                <Form method="post" action="/api/auth/logout" className="mt-2">
+                <Form method="post" action="/api/auth/logout" className="mt-1 border-t border-slate-100 pt-1">
                   <button
                     type="submit"
-                    className="flex w-full items-center gap-2 rounded-xl px-4 py-2 text-left text-sm font-semibold text-red-600 hover:bg-red-50"
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-left text-xs font-bold text-red-600 hover:bg-red-50 cursor-pointer"
                   >
-                    <LogOut size={16} />
+                    <LogOut size={14} />
                     Đăng xuất
                   </button>
                 </Form>
@@ -218,23 +273,28 @@ export function SiteLayout({
       {/* AI Chat Widget */}
       <AIChatWidget />
 
-      {/* Bottom tab bar - mobile only */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 bg-white/95 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-[0_-12px_30px_rgba(15,23,42,0.08)] md:hidden">
-        <div className="mx-auto grid max-w-md grid-cols-3 gap-2">
+      {/* Floating Island Mobile Bottom Nav */}
+      <nav className="fixed bottom-3 inset-x-3 sm:inset-x-6 z-50 mx-auto max-w-sm sm:max-w-md rounded-3xl border border-white/80 bg-white/90 p-1.5 shadow-[0_12px_40px_rgba(15,23,42,0.18)] backdrop-blur-2xl md:hidden pb-[max(0.375rem,env(safe-area-inset-bottom))]">
+        <div className="grid grid-cols-4 gap-1.5">
           {bottomTabs.map((tab) => {
             const Icon = tab.icon;
             const active = isActive(tab.to);
-            const isProtected = tab.to === "/roadmap" || tab.to === "/lessons";
+            const isStudentOrAdmin = user?.role === "ADMIN" || user?.role === "STUDENT";
 
-            if (isProtected && !user) {
+            if (tab.to === "/roadmap" && !isStudentOrAdmin) {
               return (
                 <button
                   key={tab.to}
-                  onClick={() => handleProtectedClick(tab.label)}
-                  className="flex flex-col items-center justify-center rounded-2xl px-2 py-2 text-[11px] font-bold text-slate-400"
+                  type="button"
+                  onClick={() => setRoadmapModalOpen(true)}
+                  className={`flex flex-col items-center justify-center rounded-2xl py-2 px-1 text-[10px] font-bold transition-all cursor-pointer ${
+                    active
+                      ? "bg-gradient-to-b from-red-600 to-rose-600 text-white shadow-md shadow-red-600/25 scale-[1.03]"
+                      : "text-slate-500 hover:text-slate-800 hover:bg-slate-100/60"
+                  }`}
                 >
-                  <Icon size={22} strokeWidth={2} />
-                  <span className="mt-1 leading-none">{tab.label}</span>
+                  <Icon size={19} strokeWidth={active ? 2.5 : 2} className={active ? "text-white" : "text-slate-400"} />
+                  <span className="mt-1 leading-none text-center truncate max-w-full tracking-tight">{tab.label}</span>
                 </button>
               );
             }
@@ -243,15 +303,15 @@ export function SiteLayout({
               <NavLink
                 key={tab.to}
                 to={tab.to}
-                prefetch="viewport"
-                className={`flex flex-col items-center justify-center rounded-2xl px-2 py-2 text-[11px] font-bold ${
+                prefetch="intent"
+                className={`flex flex-col items-center justify-center rounded-2xl py-2 px-1 text-[10px] font-bold transition-all ${
                   active
-                    ? "bg-red-50 text-red-600"
-                    : "text-slate-400"
+                    ? "bg-gradient-to-b from-red-600 to-rose-600 text-white shadow-md shadow-red-600/25 scale-[1.03]"
+                    : "text-slate-500 hover:text-slate-800 hover:bg-slate-100/60"
                 }`}
               >
-                <Icon size={22} strokeWidth={active ? 2.5 : 2} />
-                <span className="mt-1 leading-none">{tab.label}</span>
+                <Icon size={19} strokeWidth={active ? 2.5 : 2} className={active ? "text-white" : "text-slate-400"} />
+                <span className="mt-1 leading-none text-center truncate max-w-full tracking-tight">{tab.label}</span>
               </NavLink>
             );
           })}
@@ -259,148 +319,83 @@ export function SiteLayout({
       </nav>
 
       {!hideFooter ? (
-      <footer className="mt-16 border-t border-slate-200 bg-slate-950 text-slate-300">
-        <div className="mx-auto max-w-7xl px-4 py-12 md:py-14">
-          <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
-            <div>
-              <Link to="/" prefetch="intent" className="inline-flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-600 text-white shadow-lg shadow-red-950/30">
-                  <GraduationCap size={24} />
-                </span>
-                <span>
-                  <span className="block text-lg font-black text-white">HSK Learning</span>
-                  <span className="block text-xs font-semibold text-slate-400">
-                    Học tiếng Trung theo lộ trình
+        <footer className="mt-14 border-t border-slate-200/80 bg-white/95 backdrop-blur-md text-slate-500 py-6 sm:py-7">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-5 text-xs">
+            {/* Left: Brand Signature */}
+            <div className="flex items-center gap-3 shrink-0">
+              <Link to="/" prefetch="intent" className="flex items-center gap-2 group">
+                <div className="flex h-7 w-7 items-center justify-center shrink-0">
+                  <ImperialLogoSVG className="h-7 w-7" />
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-extrabold text-slate-900 tracking-tight group-hover:text-red-700 transition">
+                    <span className="text-red-600">HSK</span> MASTER
                   </span>
-                </span>
+                  <span className="rounded bg-amber-50 px-1 py-0.2 text-[9px] font-black text-amber-700 border border-amber-200">
+                    PRO
+                  </span>
+                </div>
               </Link>
-              <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
-                Nền tảng học HSK, luyện từ vựng, chữ Hán, phát âm và quiz theo từng bài học cho người học tiếng Trung tại Việt Nam.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {["HSK 2.0", "HSK 3.0", "Lộ trình", "AI Practice"].map((label) => (
-                  <span
-                    key={label}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-bold text-slate-300"
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
+              <span className="text-slate-300 hidden sm:inline">|</span>
+              <span className="text-[11px] font-medium text-slate-400 hidden sm:inline tracking-wider">
+                汉语学习平台 · Hệ thống đào tạo HSK chuẩn hóa
+              </span>
             </div>
 
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-white">
-                Khám phá
-              </h2>
-              <div className="mt-5 grid gap-3 text-sm">
-                <Link to="/" prefetch="intent" className="text-slate-400 transition hover:text-white">
-                  Trang chủ
+            {/* Center: Horizontal Navigation Links */}
+            <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-semibold text-slate-600">
+              <Link to="/" prefetch="intent" className="hover:text-red-600 transition">
+                Trang Chủ
+              </Link>
+              <Link to="/game-map" prefetch="intent" className="hover:text-red-600 transition">
+                Bản Đồ HSK
+              </Link>
+              <Link to="/games" prefetch="intent" className="hover:text-red-600 transition">
+                Sảnh Games
+              </Link>
+              {user?.role === "ADMIN" || user?.role === "STUDENT" ? (
+                <Link to="/roadmap" prefetch="intent" className="hover:text-red-600 transition">
+                  Lộ Trình VIP
                 </Link>
-                {user ? (
-                  <Link to="/lessons" prefetch="intent" className="text-slate-400 transition hover:text-white">
-                    Bài học HSK
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => handleProtectedClick("Bài học")}
-                    className="text-left text-slate-400 transition hover:text-white"
-                  >
-                    Bài học HSK
-                  </button>
-                )}
-                {user ? (
-                  <Link to="/roadmap" prefetch="intent" className="text-slate-400 transition hover:text-white">
-                    Lộ trình học
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => handleProtectedClick("Lộ trình")}
-                    className="text-left text-slate-400 transition hover:text-white"
-                  >
-                    Lộ trình học
-                  </button>
-                )}
-              </div>
-            </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setRoadmapModalOpen(true)}
+                  className="hover:text-red-600 transition inline-flex items-center gap-1 cursor-pointer"
+                >
+                  <span>Lộ Trình</span>
+                  <span className="rounded bg-amber-50 px-1 py-0.2 text-[8px] font-black text-amber-700 border border-amber-200">
+                    VIP
+                  </span>
+                </button>
+              )}
+            </nav>
 
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-white">
-                Công cụ học
-              </h2>
-              <div className="mt-5 grid gap-3 text-sm">
-                <span className="inline-flex items-center gap-2 text-slate-400">
-                  <BookOpen size={15} className="text-red-400" />
-                  Từ vựng theo bài
-                </span>
-                <span className="inline-flex items-center gap-2 text-slate-400">
-                  <CheckCircle2 size={15} className="text-emerald-400" />
-                  Quiz ghi nhớ
-                </span>
-                <span className="inline-flex items-center gap-2 text-slate-400">
-                  <Sparkles size={15} className="text-amber-300" />
-                  Luyện chữ Hán
-                </span>
-                <span className="inline-flex items-center gap-2 text-slate-400">
-                  <Bot size={15} className="text-sky-300" />
-                  Trợ lý AI
-                </span>
+            {/* Right: Status Indicator & Copyright */}
+            <div className="flex items-center gap-3 shrink-0 text-[11px] text-slate-400 font-medium">
+              <div className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span>Chuẩn HSK Quốc Tế</span>
               </div>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-black uppercase tracking-wider text-white">
-                Tài khoản
-              </h2>
-              <p className="mt-5 text-sm leading-6 text-slate-400">
-                Lưu tiến độ học, theo dõi bài đã hoàn thành và tiếp tục lộ trình ở mọi thiết bị.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {user ? (
-                  <Link
-                    to="/profile"
-                    prefetch="intent"
-                    className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-red-50"
-                  >
-                    <User size={16} />
-                    Hồ sơ
-                  </Link>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      onClick={handleOpenRegister}
-                      className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-red-500"
-                    >
-                      <GraduationCap size={16} />
-                      Bắt đầu học
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleOpenLogin}
-                      className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/10"
-                    >
-                      Đăng nhập
-                    </button>
-                  </>
-                )}
-              </div>
-              <p className="mt-4 inline-flex items-center gap-2 text-xs text-slate-500">
-                <Mail size={14} />
-                Hỗ trợ học tập trong ứng dụng
-              </p>
+              <span className="text-slate-300">·</span>
+              <span>© 2026 HSK Master</span>
             </div>
           </div>
-
-          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
-            <p>© 2026 HSK Learning Platform. All rights reserved.</p>
-            <p>Thiết kế cho học HSK · Lộ trình lớp · Luyện tập mỗi ngày</p>
-          </div>
-        </div>
-      </footer>
+        </footer>
       ) : null}
+
+      {/* Modal Thông Báo Lộ Trình Riêng Dành Cho Học Viên */}
+      <RoadmapAccessModal
+        open={roadmapModalOpen}
+        onClose={() => setRoadmapModalOpen(false)}
+      />
+
+      {/* Modal Khóa Tính Năng Đang Phát Triển Tiểu Nguyệt AI */}
+      <FeatureInDevModal
+        open={vipRoleplayModalOpen}
+        onClose={() => setVipRoleplayModalOpen(false)}
+        featureName="Tiểu Nguyệt AI (Hội Thoại Nhập Vai)"
+      />
     </div>
   );
 }
