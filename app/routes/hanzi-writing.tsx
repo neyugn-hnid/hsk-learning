@@ -233,7 +233,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="mt-4 flex items-center justify-center gap-2 font-sans text-xs font-bold text-slate-400">
-                  <RotateCcw size={13} /> Từ {wordIndex + 1} / {words.length}
+                  Từ {wordIndex + 1} / {words.length}
                 </div>
               </>
             ) : (
