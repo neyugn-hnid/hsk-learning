@@ -31,6 +31,9 @@ type Pages = {
   "/roadmap": {
     params: {};
   };
+  "/hanzi-writing": {
+    params: {};
+  };
   "/roadmap/:roadmapId": {
     params: {
       "roadmapId": string;
@@ -144,7 +147,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/roadmap/:roadmapId" | "/hsk-test" | "/profile" | "/dashboard" | "/ai-assistant" | "/game-map" | "/games" | "/memory-garden" | "/ai-roleplay" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/ai/shootout" | "/api/ai/sentence" | "/api/ai/word-decompose" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status" | "/favicon.ico";
+    page: "/" | "/hsk20" | "/hsk30" | "/lessons" | "/lessons/:lessonId" | "/roadmap" | "/hanzi-writing" | "/roadmap/:roadmapId" | "/hsk-test" | "/profile" | "/dashboard" | "/ai-assistant" | "/game-map" | "/games" | "/memory-garden" | "/ai-roleplay" | "/ai-practice" | "/maintenance" | "/admin" | "/api/auth/login" | "/api/auth/register" | "/api/auth/logout" | "/api/mobile/auth/login" | "/api/mobile/auth/register" | "/api/mobile/auth/me" | "/api/mobile/lessons" | "/api/mobile/lessons/:lessonId" | "/api/mobile/roadmap" | "/api/mobile/roadmap/:roadmapId" | "/api/vocabularies" | "/api/vocabularies/import" | "/api/ai/chat" | "/api/ai/practice" | "/api/ai/split-lessons" | "/api/ai/tts" | "/api/ai/shootout" | "/api/ai/sentence" | "/api/ai/word-decompose" | "/api/admin/lesson-import" | "/api/admin/lesson-import-status" | "/favicon.ico";
   };
   "routes/_index.tsx": {
     id: "routes/_index";
@@ -169,6 +172,10 @@ type RouteFiles = {
   "routes/roadmap.tsx": {
     id: "routes/roadmap";
     page: "/roadmap";
+  };
+  "routes/hanzi-writing.tsx": {
+    id: "routes/hanzi-writing";
+    page: "/hanzi-writing";
   };
   "routes/roadmap.$roadmapId.tsx": {
     id: "routes/roadmap.$roadmapId";
@@ -316,6 +323,7 @@ type RouteModules = {
   "routes/lessons._index": typeof import("./app/routes/lessons._index.tsx");
   "routes/lessons.$lessonId": typeof import("./app/routes/lessons.$lessonId.tsx");
   "routes/roadmap": typeof import("./app/routes/roadmap.tsx");
+  "routes/hanzi-writing": typeof import("./app/routes/hanzi-writing.tsx");
   "routes/roadmap.$roadmapId": typeof import("./app/routes/roadmap.$roadmapId.tsx");
   "routes/hsk-test": typeof import("./app/routes/hsk-test.tsx");
   "routes/profile": typeof import("./app/routes/profile.tsx");

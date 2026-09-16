@@ -7,6 +7,7 @@ export default [
   route("lessons", "routes/lessons._index.tsx"),
   route("lessons/:lessonId", "routes/lessons.$lessonId.tsx"),
   route("roadmap", "routes/roadmap.tsx"),
+  route("hanzi-writing", "routes/hanzi-writing.tsx"),
   route("roadmap/:roadmapId", "routes/roadmap.$roadmapId.tsx"),
   route("hsk-test", "routes/hsk-test.tsx"),
   route("profile", "routes/profile.tsx"),

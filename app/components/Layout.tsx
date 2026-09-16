@@ -369,6 +369,22 @@ export function SiteLayout({
                   </span>
                 </button>
               )}
+              {user?.role === "ADMIN" || user?.role === "STUDENT" ? (
+                <Link to="/hanzi-writing" prefetch="intent" className="hover:text-red-600 transition">
+                  Luyện chữ Hán
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setRoadmapModalOpen(true)}
+                  className="hover:text-red-600 transition inline-flex items-center gap-1 cursor-pointer"
+                >
+                  <span>Luyện chữ Hán</span>
+                  <span className="rounded bg-amber-50 px-1 py-0.2 text-[8px] font-black text-amber-700 border border-amber-200">
+                    VIP
+                  </span>
+                </button>
+              )}
             </nav>
 
             {/* Right: Status Indicator & Copyright */}
