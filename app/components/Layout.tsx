@@ -94,18 +94,18 @@ export function SiteLayout({
   }, [menuOpen]);
 
   return (
-    <div className="flex flex-col min-h-screen pb-24 md:pb-0 bg-[#FDFBF7] text-slate-900 selection:bg-amber-100 selection:text-amber-900">
+    <div className="flex min-h-screen min-w-0 max-w-full flex-col overflow-x-hidden pb-24 text-slate-900 selection:bg-amber-100 selection:text-amber-900 bg-[#FDFBF7]">
       {/* Top header bar */}
       <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md transition-all">
-        <div className="w-full flex items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 xl:px-10 h-16">
+        <div className="flex h-16 min-w-0 w-full items-center justify-between gap-2 overflow-visible px-3 sm:gap-6 sm:px-6 lg:px-8 xl:px-10">
           {/* Logo & Brand Identity */}
-          <Link to="/" prefetch="intent" className="flex shrink-0 items-center gap-2.5">
+          <Link to="/" prefetch="intent" className="flex min-w-0 shrink items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center shrink-0">
               <ImperialLogoSVG className="h-9 w-9" />
             </div>
-            <div className="text-left shrink-0">
+            <div className="min-w-0 shrink text-left">
               <div className="flex items-center gap-1.5">
-                <span className="text-base sm:text-lg font-black tracking-tight text-slate-900">
+                <span className="block truncate text-base font-black tracking-tight text-slate-900 sm:text-lg">
                   <span className="text-red-600">HSK</span> MASTER
                 </span>
                 <span className="rounded bg-amber-50 px-1.5 py-0.5 text-[9px] font-extrabold text-amber-700 border border-amber-200">
@@ -186,9 +186,11 @@ export function SiteLayout({
           </nav>
 
           {/* Right Action & Gamification Pill */}
-          <div className="relative flex shrink-0 items-center gap-2 sm:gap-3" ref={menuRef}>
+          <div className="relative flex min-w-0 shrink-0 items-center gap-1 sm:gap-3" ref={menuRef}>
             {/* Gamification Stats Indicator */}
-            <GamificationHeader />
+            <div className="hidden sm:block">
+              <GamificationHeader />
+            </div>
 
             <div className="h-4 w-px bg-slate-200 mx-1 hidden sm:block" />
 
@@ -216,14 +218,14 @@ export function SiteLayout({
                 type="button"
                 onClick={() => setMenuOpen((prev) => !prev)}
                 aria-label="Mở menu tài khoản"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-2xs transition hover:bg-slate-50 cursor-pointer"
+                className="flex h-8 min-h-8 w-8 min-w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-2xs transition hover:bg-slate-50 cursor-pointer"
               >
-                <User size={16} />
+                <User size={16} className="shrink-0" />
               </button>
             ) : null}
 
             {user && menuOpen ? (
-              <div className="absolute right-0 top-11 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-xl animate-fade-in text-slate-900">
+              <div className="absolute right-0 top-11 z-[100] w-56 max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-xl animate-fade-in text-slate-900">
                 <div className="rounded-xl bg-slate-50 px-3.5 py-2.5 border border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{user.name}</p>
                   {user.email ? (

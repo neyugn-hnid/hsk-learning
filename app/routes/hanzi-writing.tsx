@@ -1,6 +1,6 @@
 import type { Route } from "./+types/hanzi-writing";
-import { useEffect, useMemo, useState } from "react";
-import { ChevronLeft, ChevronRight, Check, Volume2, RotateCcw } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, Check, Map as MapIcon, Volume2 } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
 import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
@@ -12,27 +12,61 @@ type WritingWord = {
   meaningVi: string;
 };
 
-type RoadmapSource = {
+type WritingItem = {
   id: string;
   title: string;
   phase: string;
+  level: string;
   orderNo: number;
-  vocabulary: unknown;
+  source: "roadmap" | "lesson";
+  sourceType: string;
+  vocabulary: WritingWord[];
 };
 
 export async function loader({ request }: Route.LoaderArgs) {
   const user = await requireUser(request);
-  const items = await prisma.roadmapItem.findMany({
-    select: { id: true, title: true, phase: true, orderNo: true, vocabulary: true },
-    orderBy: [{ phase: "asc" }, { orderNo: "asc" }],
-  });
+  const [roadmapItems, lessons] = await Promise.all([
+    prisma.roadmapItem.findMany({
+      select: { id: true, title: true, phase: true, level: true, orderNo: true, vocabulary: true },
+      orderBy: [{ level: "asc" }, { orderNo: "asc" }],
+    }),
+    prisma.lesson.findMany({
+      where: { status: "PUBLISHED", source: { in: ["HSK20", "HSK30"] } },
+      select: {
+        id: true,
+        title: true,
+        level: true,
+        orderNo: true,
+        source: true,
+        vocabularies: { select: { chinese: true, pinyin: true, meaningVi: true } },
+      },
+      orderBy: [{ level: "asc" }, { orderNo: "asc" }],
+    }),
+  ]);
+
+  const items: WritingItem[] = [
+    ...roadmapItems.map((item) => ({
+      ...item,
+      level: item.level || item.phase,
+      source: "roadmap" as const,
+      sourceType: "Roadmap",
+      vocabulary: toWritingWords(item.vocabulary),
+    })),
+    ...lessons.map((lesson) => ({
+      id: `lesson-${lesson.id}`,
+      title: lesson.title,
+      phase: lesson.source,
+      level: lesson.level,
+      orderNo: lesson.orderNo,
+      source: "lesson" as const,
+      sourceType: lesson.source,
+      vocabulary: toWritingWords(lesson.vocabularies),
+    })),
+  ];
 
   return {
     user,
-    items: items.map((item) => ({
-      ...item,
-      vocabulary: toWritingWords(item.vocabulary),
-    })),
+    items,
   };
 }
 
@@ -49,35 +83,206 @@ function toWritingWords(value: unknown): WritingWord[] {
     .filter((word) => word.chinese && word.meaningVi);
 }
 
+function uniqueWritingWords(words: WritingWord[]) {
+  const unique = new Map<string, WritingWord>();
+  for (const word of words) {
+    const key = word.chinese.normalize("NFC").replace(/\s+/g, "");
+    if (!unique.has(key)) unique.set(key, word);
+  }
+  return [...unique.values()];
+}
+
+function compareHskLevels(first: string, second: string) {
+  const firstNumber = Number(first.match(/\d+/)?.[0] || Number.POSITIVE_INFINITY);
+  const secondNumber = Number(second.match(/\d+/)?.[0] || Number.POSITIVE_INFINITY);
+  return firstNumber - secondNumber || first.localeCompare(second);
+}
+
+type SourceOption = {
+  value: string;
+  label: string;
+  count: number;
+};
+
+function SourceSelect({
+  value,
+  groups,
+  onChange,
+}: {
+  value: string;
+  groups: { label: string; options: SourceOption[]; icon: typeof MapIcon }[];
+  onChange: (value: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const selected = groups.flatMap((group) => group.options).find((option) => option.value === value);
+  const selectedGroup = groups.find((group) => group.options.some((option) => option.value === value));
+
+  useEffect(() => {
+    if (!open) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative w-full min-w-0 font-sans sm:min-w-64">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((isOpen) => !isOpen)}
+        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-2.5 text-left shadow-sm outline-none transition ${
+          open ? "border-red-400 ring-4 ring-red-100" : "border-slate-200 hover:border-slate-300"
+        }`}
+      >
+        <span className="flex min-w-0 items-center gap-3">
+          {selectedGroup ? <selectedGroup.icon size={19} className="shrink-0 text-red-500" /> : null}
+          <span className="min-w-0">
+            <span className="block truncate text-sm font-black text-slate-800">{selected?.label || "Chọn nguồn dữ liệu"}</span>
+            <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-wide text-slate-400">{selectedGroup?.label || "Nguồn dữ liệu"}</span>
+          </span>
+        </span>
+        <ChevronDown size={18} className={`shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open ? (
+        <div role="listbox" className="absolute left-0 right-0 top-full z-[100] mt-2 max-h-[min(20rem,calc(100vh-8rem))] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/10">
+          {groups.map((group) => {
+            const GroupIcon = group.icon;
+            if (group.options.length === 0) return null;
+            return (
+              <div key={group.label} className="not-first:mt-2">
+                <div className="flex items-center gap-2 px-3 pb-1.5 pt-2 text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">
+                  <GroupIcon size={13} />
+                  {group.label}
+                </div>
+                {group.options.map((option) => {
+                  const isSelected = option.value === value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        onChange(option.value);
+                        setOpen(false);
+                      }}
+                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition ${
+                        isSelected ? "bg-red-50 font-black text-red-700" : "font-semibold text-slate-700 hover:bg-slate-50"
+                      }`}
+                    >
+                      <span>{option.label}</span>
+                      <span className={`text-[11px] font-bold ${isSelected ? "text-red-400" : "text-slate-400"}`}>{option.count} từ</span>
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const { user, items } = loaderData;
-  const [selectedItemId, setSelectedItemId] = useState(items[0]?.id || "");
+  const selections = useMemo(() => {
+    const roadmapLevels = [...new Set(
+      items.filter((item) => item.source === "roadmap").map((item) => item.level),
+    )].sort(compareHskLevels);
+    const lessonLevels = [...new Set(
+      items
+        .filter((item) => item.source === "lesson")
+        .map((item) => `${item.sourceType}:${item.level}`),
+    )].sort((first, second) => compareHskLevels(first.split(":")[1], second.split(":")[1]));
+
+    return {
+      roadmapLevels,
+      lessonLevels,
+    };
+  }, [items]);
+  const sourceGroups = useMemo(() => [
+    {
+      label: "Lộ trình",
+      icon: MapIcon,
+      options: selections.roadmapLevels.map((level) => ({
+        value: `roadmap:${level}`,
+        label: level,
+        count: uniqueWritingWords(
+          items
+            .filter((item) => item.source === "roadmap" && item.level === level)
+            .flatMap((item) => item.vocabulary),
+        ).length,
+      })),
+    },
+    {
+      label: "HSK 2.0",
+      icon: BookOpen,
+      options: selections.lessonLevels
+        .filter((value) => value.startsWith("HSK20:"))
+        .map((value) => {
+          const level = value.replace("HSK20:", "");
+          return {
+            value: `lesson:${value}`,
+            label: level,
+            count: items.filter((item) => item.source === "lesson" && item.sourceType === "HSK20" && item.level === level).reduce((total, item) => total + item.vocabulary.length, 0),
+          };
+        }),
+    },
+    {
+      label: "HSK 3.0",
+      icon: BookOpen,
+      options: selections.lessonLevels
+        .filter((value) => value.startsWith("HSK30:"))
+        .map((value) => {
+          const level = value.replace("HSK30:", "");
+          return {
+            value: `lesson:${value}`,
+            label: level,
+            count: items.filter((item) => item.source === "lesson" && item.sourceType === "HSK30" && item.level === level).reduce((total, item) => total + item.vocabulary.length, 0),
+          };
+        }),
+    },
+  ], [items, selections]);
+  const firstSelection = selections.roadmapLevels[0]
+    ? `roadmap:${selections.roadmapLevels[0]}`
+    : selections.lessonLevels[0]
+      ? `lesson:${selections.lessonLevels[0]}`
+      : "";
+  const [selectedSource, setSelectedSource] = useState(firstSelection);
   const [wordIndex, setWordIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const [showPinyin, setShowPinyin] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [results, setResults] = useState<{ chinese: string; pinyin: string; meaningVi: string; correct: boolean }[]>([]);
 
-  const selectedItem = items.find((item) => item.id === selectedItemId) || items[0];
   const words = useMemo(() => {
-    const unique = new Map<string, WritingWord>();
-    for (const word of selectedItem?.vocabulary || []) {
-      if (!unique.has(word.chinese)) unique.set(word.chinese, word);
-    }
-    return [...unique.values()];
-  }, [selectedItem]);
+    return uniqueWritingWords(
+      items
+        .filter((item) => {
+          const itemSelection = item.source === "roadmap"
+            ? `roadmap:${item.level}`
+            : `lesson:${item.sourceType}:${item.level}`;
+          return itemSelection === selectedSource;
+        })
+        .flatMap((item) => item.vocabulary),
+    );
+  }, [items, selectedSource]);
   const currentWord = words[wordIndex];
   useEffect(() => {
     setWordIndex(0);
     setAnswer("");
-    setShowPinyin(false);
     setIsCorrect(null);
     setResults([]);
-  }, [selectedItemId]);
+  }, [selectedSource]);
 
   useEffect(() => {
     setAnswer("");
-    setShowPinyin(false);
     setIsCorrect(null);
   }, [wordIndex]);
 
@@ -131,30 +336,22 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   return (
     <SiteLayout user={user}>
       <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="font-sans text-xs font-black uppercase tracking-[0.2em] text-red-600">Lộ trình HSK</p>
+        <div className="relative z-[60] mb-6 grid gap-5 sm:flex sm:items-end sm:justify-between sm:gap-6">
+          <div className="min-w-0">
+            <p className="font-sans text-[11px] font-black uppercase tracking-[0.16em] text-red-600 sm:text-xs sm:tracking-[0.2em]">Lộ trình HSK</p>
             <h1 className="mt-1 font-sans text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Luyện chữ Hán</h1>
-            <p className="mt-1 font-sans text-sm font-medium text-slate-500">Ôn từng chữ trong các bài học bạn đã mở.</p>
+            <p className="mt-1 max-w-xl font-sans text-sm font-medium leading-5 text-slate-500">Ôn chữ Hán từ lộ trình và bài học HSK 2.0, 3.0.</p>
           </div>
-          <label className="font-sans text-xs font-bold text-slate-500">
-            Chọn chặng học
-            <select
-              value={selectedItemId}
-              onChange={(event) => setSelectedItemId(event.target.value)}
-              className="mt-1 block w-full min-w-56 rounded-xl border border-slate-200 bg-white px-3 py-2 font-sans text-sm font-bold text-slate-700 outline-none focus:border-red-400"
-            >
-              {items.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.phase} · {item.title}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="w-full min-w-0 sm:w-auto sm:max-w-[22rem] sm:flex-1 lg:max-w-xs">
+            <label className="mb-1.5 block font-sans text-xs font-bold text-slate-500">
+              Chọn nguồn dữ liệu
+            </label>
+            <SourceSelect value={selectedSource} groups={sourceGroups} onChange={setSelectedSource} />
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-3 sm:rounded-[2rem] sm:p-6">
-          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-4 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-8 sm:pt-14">
+          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-8 sm:pt-14">
             {currentWord ? (
               <>
                 <button
@@ -175,8 +372,8 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   <span className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${showPinyin ? "translate-x-5" : "translate-x-0.5"}`} />
                 </button>
 
-                <p className="font-sans text-5xl font-black tracking-wide text-slate-400 sm:text-6xl">{showPinyin ? currentWord.pinyin : "?"}</p>
-                <p className="mt-2 font-sans text-base font-bold text-slate-600 sm:text-lg">{currentWord.meaningVi}</p>
+                <p className="font-sans text-4xl font-black tracking-wide text-slate-400 sm:text-6xl">{showPinyin ? currentWord.pinyin : "?"}</p>
+                <p className="mt-2 break-words font-sans text-base font-bold leading-6 text-slate-600 sm:text-lg">{currentWord.meaningVi}</p>
 
                 <div className="mt-5">
                   <input
@@ -190,7 +387,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                     }}
                     placeholder="Nhập chữ Hán..."
                     aria-label="Nhập chữ Hán"
-                    className={`input-hanzi w-full rounded-2xl border px-4 py-3 font-hanzi text-3xl font-bold outline-none transition ${
+                    className={`input-hanzi w-full min-w-0 rounded-2xl border px-3 py-3 font-hanzi text-2xl font-bold outline-none transition sm:px-4 sm:text-3xl ${
                       isCorrect === true
                         ? "border-emerald-400 bg-emerald-50 text-emerald-700"
                         : isCorrect === false
@@ -205,19 +402,19 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   )}
                 </div>
 
-                <div className="mt-5 flex items-center justify-center gap-2.5">
+                <div className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2.5">
                   <button
                     type="button"
                     onClick={() => goToWord(wordIndex - 1)}
                     disabled={wordIndex === 0}
-                    className="flex min-h-10 cursor-pointer items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-3 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
+                    className="flex min-h-10 min-w-0 flex-1 cursor-pointer items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                   >
                     <ChevronLeft size={16} /> <span>Trước</span>
                   </button>
                   <button
                     type="button"
                     onClick={checkAnswer}
-                    className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12"
+                    className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12"
                     aria-label="Kiểm tra đáp án"
                   >
                     <Check size={20} />
@@ -226,7 +423,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                     type="button"
                     onClick={() => goToWord(wordIndex + 1)}
                     disabled={wordIndex >= words.length - 1}
-                    className="flex min-h-10 cursor-pointer flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-3 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
+                    className="flex min-h-10 min-w-0 flex-1 cursor-pointer flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                   >
                     <ChevronRight size={16} /> <span>Tiếp</span>
                   </button>
@@ -259,9 +456,9 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   }`}
                 >
                   <span className="font-hanzi text-xl font-black">{result.chinese}</span>
-                  <span className="flex flex-col leading-tight">
+                  <span className="min-w-0 flex flex-col leading-tight">
                     <span className="font-bold">{result.pinyin}</span>
-                    <span className="text-xs opacity-70">{result.meaningVi}</span>
+                    <span className="truncate text-xs opacity-70">{result.meaningVi}</span>
                   </span>
                   <span className="ml-auto text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
                 </li>
