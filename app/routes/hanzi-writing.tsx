@@ -12,6 +12,8 @@ type WritingWord = {
   meaningVi: string;
 };
 
+type PracticeMode = "hanzi" | "meaning";
+
 type WritingItem = {
   id: string;
   title: string;
@@ -90,6 +92,17 @@ function uniqueWritingWords(words: WritingWord[]) {
     if (!unique.has(key)) unique.set(key, word);
   }
   return [...unique.values()];
+}
+
+function normalizeMeaning(value: string) {
+  return value
+    .toLocaleLowerCase("vi-VN")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[đĐ]/g, "d")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function compareHskLevels(first: string, second: string) {
@@ -257,6 +270,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const [selectedSource, setSelectedSource] = useState(firstSelection);
   const [wordIndex, setWordIndex] = useState(0);
   const [answer, setAnswer] = useState("");
+  const [practiceMode, setPracticeMode] = useState<PracticeMode>("hanzi");
   const [showPinyin, setShowPinyin] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [results, setResults] = useState<{ chinese: string; pinyin: string; meaningVi: string; correct: boolean }[]>([]);
@@ -284,7 +298,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   useEffect(() => {
     setAnswer("");
     setIsCorrect(null);
-  }, [wordIndex]);
+  }, [wordIndex, practiceMode]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -315,7 +329,15 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
 
   const checkAnswer = () => {
     if (!currentWord || !answer.trim()) return;
-    const correct = answer.trim() === currentWord.chinese;
+    const correct = practiceMode === "hanzi"
+      ? answer.trim() === currentWord.chinese
+      : (() => {
+          const normalizedAnswer = normalizeMeaning(answer);
+          const normalizedExpected = normalizeMeaning(currentWord.meaningVi);
+          return normalizedAnswer === normalizedExpected
+            || normalizedExpected.includes(normalizedAnswer)
+            || normalizedAnswer.includes(normalizedExpected);
+        })();
     setIsCorrect(correct);
     if (correct) {
       sound.playCorrect();
@@ -350,6 +372,27 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
 
+        <div className="mb-4 flex w-full rounded-2xl border border-slate-200 bg-white p-1 shadow-sm sm:mb-6 sm:mx-auto sm:max-w-xl">
+          <button
+            type="button"
+            onClick={() => setPracticeMode("hanzi")}
+            className={`flex min-h-10 flex-1 items-center justify-center rounded-xl px-3 py-2 text-xs font-black transition sm:text-sm ${
+              practiceMode === "hanzi" ? "bg-red-600 text-white shadow-sm" : "text-slate-500 hover:bg-slate-50"
+            }`}
+          >
+            Viết chữ Hán
+          </button>
+          <button
+            type="button"
+            onClick={() => setPracticeMode("meaning")}
+            className={`flex min-h-10 flex-1 items-center justify-center rounded-xl px-3 py-2 text-xs font-black transition sm:text-sm ${
+              practiceMode === "meaning" ? "bg-red-600 text-white shadow-sm" : "text-slate-500 hover:bg-slate-50"
+            }`}
+          >
+            Nhập nghĩa
+          </button>
+        </div>
+
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-3 sm:rounded-[2rem] sm:p-6">
           <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-8 sm:pt-14">
             {currentWord ? (
@@ -372,8 +415,12 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   <span className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${showPinyin ? "translate-x-5" : "translate-x-0.5"}`} />
                 </button>
 
-                <p className="font-sans text-4xl font-black tracking-wide text-slate-400 sm:text-6xl">{showPinyin ? currentWord.pinyin : "?"}</p>
-                <p className="mt-2 break-words font-sans text-base font-bold leading-6 text-slate-600 sm:text-lg">{currentWord.meaningVi}</p>
+                <p className={`${practiceMode === "meaning" ? "font-hanzi" : "font-sans"} break-words text-4xl font-black tracking-wide text-slate-400 sm:text-6xl`}>
+                  {practiceMode === "meaning" ? currentWord.chinese : showPinyin ? currentWord.pinyin : "?"}
+                </p>
+                <p className="mt-2 break-words font-sans text-base font-bold leading-6 text-slate-600 sm:text-lg">
+                  {practiceMode === "meaning" ? (showPinyin ? currentWord.pinyin : "") : currentWord.meaningVi}
+                </p>
 
                 <div className="mt-5">
                   <input
@@ -385,9 +432,9 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                     onKeyDown={(event) => {
                       if (event.key === "Enter") checkAnswer();
                     }}
-                    placeholder="Nhập chữ Hán..."
-                    aria-label="Nhập chữ Hán"
-                    className={`input-hanzi w-full min-w-0 rounded-2xl border px-3 py-3 font-hanzi text-2xl font-bold outline-none transition sm:px-4 sm:text-3xl ${
+                    placeholder={practiceMode === "hanzi" ? "Nhập chữ Hán..." : "Nhập nghĩa tiếng Việt..."}
+                    aria-label={practiceMode === "hanzi" ? "Nhập chữ Hán" : "Nhập nghĩa tiếng Việt"}
+                    className={`w-full min-w-0 rounded-2xl border px-3 py-3 ${practiceMode === "hanzi" ? "input-hanzi font-hanzi text-2xl font-bold" : "input-normal font-sans text-xl font-bold tracking-normal"} outline-none transition sm:px-4 sm:text-2xl ${
                       isCorrect === true
                         ? "border-emerald-400 bg-emerald-50 text-emerald-700"
                         : isCorrect === false
