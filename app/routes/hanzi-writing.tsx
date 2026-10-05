@@ -12,7 +12,7 @@ type WritingWord = {
   meaningVi: string;
 };
 
-type PracticeMode = "hanzi" | "meaning";
+type PracticeMode = "hanzi" | "meaning" | "quiz";
 
 type WritingItem = {
   id: string;
@@ -92,6 +92,15 @@ function uniqueWritingWords(words: WritingWord[]) {
     if (!unique.has(key)) unique.set(key, word);
   }
   return [...unique.values()];
+}
+
+function shuffleWords(words: WritingWord[]) {
+  const shuffled = [...words];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+  return shuffled;
 }
 
 function normalizeMeaning(value: string) {
@@ -287,7 +296,19 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
         .flatMap((item) => item.vocabulary),
     );
   }, [items, selectedSource]);
-  const currentWord = words[wordIndex];
+  const quizWords = useMemo(() => shuffleWords(words), [words]);
+  const currentWords = practiceMode === "quiz" ? quizWords : words;
+  const currentWord = currentWords[wordIndex];
+  const quizOptions = useMemo(() => {
+    if (!currentWord) return [];
+    const byMeaning = new Map<string, WritingWord>();
+    byMeaning.set(normalizeMeaning(currentWord.meaningVi), currentWord);
+    for (const word of words) {
+      const meaningKey = normalizeMeaning(word.meaningVi);
+      if (!byMeaning.has(meaningKey)) byMeaning.set(meaningKey, word);
+    }
+    return shuffleWords([...byMeaning.values()].slice(0, 4));
+  }, [currentWord, words]);
   useEffect(() => {
     setWordIndex(0);
     setAnswer("");
@@ -296,9 +317,16 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   }, [selectedSource]);
 
   useEffect(() => {
+    setWordIndex(0);
     setAnswer("");
     setIsCorrect(null);
-  }, [wordIndex, practiceMode]);
+    setResults([]);
+  }, [practiceMode]);
+
+  useEffect(() => {
+    setAnswer("");
+    setIsCorrect(null);
+  }, [wordIndex]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -315,7 +343,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   }, []);
 
   const goToWord = (nextIndex: number) => {
-    setWordIndex(Math.max(0, Math.min(nextIndex, words.length - 1)));
+    setWordIndex(Math.max(0, Math.min(nextIndex, currentWords.length - 1)));
   };
 
   const speak = () => {
@@ -348,7 +376,27 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
       { chinese: currentWord.chinese, pinyin: currentWord.pinyin, meaningVi: currentWord.meaningVi, correct },
       ...prev,
     ]);
-    if (wordIndex < words.length - 1) {
+    if (wordIndex < currentWords.length - 1) {
+      window.setTimeout(() => {
+        setWordIndex((index) => index + 1);
+      }, 500);
+    }
+  };
+
+  const chooseQuizAnswer = (meaning: string) => {
+    if (!currentWord || isCorrect !== null) return;
+    const correct = normalizeMeaning(meaning) === normalizeMeaning(currentWord.meaningVi);
+    setIsCorrect(correct);
+    if (correct) {
+      sound.playCorrect();
+    } else {
+      sound.playIncorrect();
+    }
+    setResults((prev) => [
+      { chinese: currentWord.chinese, pinyin: currentWord.pinyin, meaningVi: currentWord.meaningVi, correct },
+      ...prev,
+    ]);
+    if (wordIndex < currentWords.length - 1) {
       window.setTimeout(() => {
         setWordIndex((index) => index + 1);
       }, 500);
@@ -391,6 +439,15 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
           >
             Nhập nghĩa
           </button>
+          <button
+            type="button"
+            onClick={() => setPracticeMode("quiz")}
+            className={`flex min-h-10 flex-1 items-center justify-center rounded-xl px-3 py-2 text-xs font-black transition sm:text-sm ${
+              practiceMode === "quiz" ? "bg-red-600 text-white shadow-sm" : "text-slate-500 hover:bg-slate-50"
+            }`}
+          >
+            Trắc nghiệm
+          </button>
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-3 sm:rounded-[2rem] sm:p-6">
@@ -415,39 +472,64 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   <span className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${showPinyin ? "translate-x-5" : "translate-x-0.5"}`} />
                 </button>
 
-                <p className={`${practiceMode === "meaning" ? "font-hanzi" : "font-sans"} break-words text-4xl font-black tracking-wide text-slate-400 sm:text-6xl`}>
-                  {practiceMode === "meaning" ? currentWord.chinese : showPinyin ? currentWord.pinyin : "?"}
+                <p className={`${practiceMode !== "hanzi" ? "font-hanzi" : "font-sans"} break-words text-4xl font-black tracking-wide text-slate-400 sm:text-6xl`}>
+                  {practiceMode !== "hanzi" ? currentWord.chinese : showPinyin ? currentWord.pinyin : "?"}
                 </p>
                 <p className="mt-2 break-words font-sans text-base font-bold leading-6 text-slate-600 sm:text-lg">
-                  {practiceMode === "meaning" ? (showPinyin ? currentWord.pinyin : "") : currentWord.meaningVi}
+                  {practiceMode === "meaning" ? (showPinyin ? currentWord.pinyin : "") : practiceMode === "quiz" ? "Chọn nghĩa tiếng Việt đúng" : currentWord.meaningVi}
                 </p>
 
-                <div className="mt-5">
-                  <input
-                    value={answer}
-                    onChange={(event) => {
-                      setAnswer(event.target.value);
-                      setIsCorrect(null);
-                    }}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") checkAnswer();
-                    }}
-                    placeholder={practiceMode === "hanzi" ? "Nhập chữ Hán..." : "Nhập nghĩa tiếng Việt..."}
-                    aria-label={practiceMode === "hanzi" ? "Nhập chữ Hán" : "Nhập nghĩa tiếng Việt"}
-                    className={`w-full min-w-0 rounded-2xl border px-3 py-3 ${practiceMode === "hanzi" ? "input-hanzi font-hanzi text-2xl font-bold" : "input-normal font-sans text-xl font-bold tracking-normal"} outline-none transition sm:px-4 sm:text-2xl ${
-                      isCorrect === true
-                        ? "border-emerald-400 bg-emerald-50 text-emerald-700"
-                        : isCorrect === false
-                          ? "border-red-400 bg-red-50 text-red-700"
-                          : "border-slate-200 focus:border-red-400"
-                    }`}
-                  />
-                  {isCorrect !== null && (
-                    <p className={`mt-2 font-sans text-sm font-bold ${isCorrect ? "text-emerald-600" : "text-red-600"}`}>
-                      {isCorrect ? "Chính xác!" : "Chưa đúng, thử lại nhé."}
-                    </p>
-                  )}
-                </div>
+                {practiceMode === "quiz" ? (
+                  <div className="mt-5 grid gap-2 text-left sm:grid-cols-2">
+                    {quizOptions.map((option) => (
+                      <button
+                        key={option.chinese + option.meaningVi}
+                        type="button"
+                        disabled={isCorrect !== null}
+                        onClick={() => chooseQuizAnswer(option.meaningVi)}
+                        className={`min-h-12 rounded-2xl border px-4 py-3 font-sans text-sm font-bold transition ${
+                          isCorrect !== null && normalizeMeaning(option.meaningVi) === normalizeMeaning(currentWord.meaningVi)
+                            ? "border-emerald-400 bg-emerald-50 text-emerald-700"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-red-300 hover:bg-red-50"
+                        } disabled:cursor-default`}
+                      >
+                        {option.meaningVi}
+                      </button>
+                    ))}
+                    {isCorrect !== null ? (
+                      <p className={`sm:col-span-2 mt-1 font-sans text-sm font-bold ${isCorrect ? "text-emerald-600" : "text-red-600"}`}>
+                        {isCorrect ? "Chính xác!" : `Đáp án: ${currentWord.meaningVi}`}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="mt-5">
+                    <input
+                      value={answer}
+                      onChange={(event) => {
+                        setAnswer(event.target.value);
+                        setIsCorrect(null);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") checkAnswer();
+                      }}
+                      placeholder={practiceMode === "hanzi" ? "Nhập chữ Hán..." : "Nhập nghĩa tiếng Việt..."}
+                      aria-label={practiceMode === "hanzi" ? "Nhập chữ Hán" : "Nhập nghĩa tiếng Việt"}
+                      className={`w-full min-w-0 rounded-2xl border px-3 py-3 ${practiceMode === "hanzi" ? "input-hanzi font-hanzi text-2xl font-bold" : "input-normal font-sans text-xl font-bold tracking-normal"} outline-none transition sm:px-4 sm:text-2xl ${
+                        isCorrect === true
+                          ? "border-emerald-400 bg-emerald-50 text-emerald-700"
+                          : isCorrect === false
+                            ? "border-red-400 bg-red-50 text-red-700"
+                            : "border-slate-200 focus:border-red-400"
+                      }`}
+                    />
+                    {isCorrect !== null && (
+                      <p className={`mt-2 font-sans text-sm font-bold ${isCorrect ? "text-emerald-600" : "text-red-600"}`}>
+                        {isCorrect ? "Chính xác!" : "Chưa đúng, thử lại nhé."}
+                      </p>
+                    )}
+                  </div>
+                )}
 
                 <div className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2.5">
                   <button
@@ -469,7 +551,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   <button
                     type="button"
                     onClick={() => goToWord(wordIndex + 1)}
-                    disabled={wordIndex >= words.length - 1}
+                    disabled={wordIndex >= currentWords.length - 1}
                     className="flex min-h-10 min-w-0 flex-1 cursor-pointer flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                   >
                     <ChevronRight size={16} /> <span>Tiếp</span>
@@ -477,7 +559,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="mt-4 flex items-center justify-center gap-2 font-sans text-xs font-bold text-slate-400">
-                  Từ {wordIndex + 1} / {words.length}
+                  Từ {wordIndex + 1} / {currentWords.length}
                 </div>
               </>
             ) : (
