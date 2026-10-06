@@ -302,12 +302,15 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const quizOptions = useMemo(() => {
     if (!currentWord) return [];
     const byMeaning = new Map<string, WritingWord>();
-    byMeaning.set(normalizeMeaning(currentWord.meaningVi), currentWord);
     for (const word of words) {
       const meaningKey = normalizeMeaning(word.meaningVi);
       if (!byMeaning.has(meaningKey)) byMeaning.set(meaningKey, word);
     }
-    return shuffleWords([...byMeaning.values()].slice(0, 4));
+    const correctKey = normalizeMeaning(currentWord.meaningVi);
+    const distractors = shuffleWords(
+      [...byMeaning.values()].filter((word) => normalizeMeaning(word.meaningVi) !== correctKey),
+    ).slice(0, 3);
+    return shuffleWords([currentWord, ...distractors]);
   }, [currentWord, words]);
   useEffect(() => {
     setWordIndex(0);
