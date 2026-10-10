@@ -1,10 +1,15 @@
 import type { Route } from "./+types/hanzi-writing";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useFetcher } from "react-router";
 import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, Check, Map as MapIcon, Volume2 } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
 import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
 import { sound } from "~/lib/sound";
+import sentenceData from "../../data/bai1-10-sentences.json";
+import sentenceData11To20 from "../../data/bai11-20-sentences.json";
+import sentenceData21To30 from "../../data/bai21-30-sentences.json";
+import sentenceData31To40 from "../../data/bai31-40-sentences.json";
 
 type WritingWord = {
   chinese: string;
@@ -12,7 +17,15 @@ type WritingWord = {
   meaningVi: string;
 };
 
-type PracticeMode = "hanzi" | "meaning" | "quiz";
+type PracticeMode = "hanzi" | "meaning" | "quiz" | "sentence";
+
+type SentencePracticeItem = {
+  lesson: number;
+  vietnamese: string;
+  hanzi: string;
+  pinyin: string;
+  vocabulary: { hanzi: string; pinyin: string; meaning: string }[];
+};
 
 type WritingItem = {
   id: string;
@@ -27,7 +40,7 @@ type WritingItem = {
 
 export async function loader({ request }: Route.LoaderArgs) {
   const user = await requireUser(request);
-  const [roadmapItems, lessons] = await Promise.all([
+  const [roadmapItems, lessons, sentenceProgress] = await Promise.all([
     prisma.roadmapItem.findMany({
       select: { id: true, title: true, phase: true, level: true, orderNo: true, vocabulary: true },
       orderBy: [{ level: "asc" }, { orderNo: "asc" }],
@@ -43,6 +56,10 @@ export async function loader({ request }: Route.LoaderArgs) {
         vocabularies: { select: { chinese: true, pinyin: true, meaningVi: true } },
       },
       orderBy: [{ level: "asc" }, { orderNo: "asc" }],
+    }),
+    prisma.sentencePracticeProgress.findUnique({
+      where: { userId: user.id },
+      select: { sentenceIndex: true, results: true },
     }),
   ]);
 
@@ -69,7 +86,49 @@ export async function loader({ request }: Route.LoaderArgs) {
   return {
     user,
     items,
+    sentenceProgress: {
+      sentenceIndex: sentenceProgress?.sentenceIndex ?? 0,
+      results: Array.isArray(sentenceProgress?.results) ? sentenceProgress.results : [],
+    },
   };
+}
+
+export async function action({ request }: Route.ActionArgs) {
+  const user = await requireUser(request);
+  const payload = await request.json() as {
+    intent?: string;
+    sentenceIndex?: number;
+    results?: unknown;
+  };
+
+  if (payload.intent !== "save-sentence-progress") {
+    return { ok: false };
+  }
+
+  const sentenceIndex = Number(payload.sentenceIndex);
+  const results = Array.isArray(payload.results)
+    ? payload.results
+      .filter((result): result is { hanzi: string; vietnamese: string; correct: boolean } => (
+        Boolean(result)
+        && typeof result === "object"
+        && typeof (result as { hanzi?: unknown }).hanzi === "string"
+        && typeof (result as { vietnamese?: unknown }).vietnamese === "string"
+        && typeof (result as { correct?: unknown }).correct === "boolean"
+      ))
+      .slice(0, 300)
+    : [];
+
+  if (!Number.isInteger(sentenceIndex) || sentenceIndex < 0) {
+    return { ok: false };
+  }
+
+  await prisma.sentencePracticeProgress.upsert({
+    where: { userId: user.id },
+    create: { userId: user.id, sentenceIndex, results },
+    update: { sentenceIndex, results },
+  });
+
+  return { ok: true };
 }
 
 function toWritingWords(value: unknown): WritingWord[] {
@@ -213,6 +272,12 @@ function SourceSelect({
 
 export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const { user, items } = loaderData;
+  const progressFetcher = useFetcher<typeof action>();
+  const sentenceItems = useMemo<SentencePracticeItem[]>(
+    () => [sentenceData, sentenceData11To20, sentenceData21To30, sentenceData31To40]
+      .flatMap((data) => data.lessons.flatMap((lesson) => lesson.sentences.map((sentence) => ({ ...sentence, lesson: lesson.lesson })))),
+    [],
+  );
   const selections = useMemo(() => {
     const roadmapLevels = [...new Set(
       items.filter((item) => item.source === "roadmap").map((item) => item.level),
@@ -283,6 +348,10 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const [showPinyin, setShowPinyin] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [results, setResults] = useState<{ chinese: string; pinyin: string; meaningVi: string; correct: boolean }[]>([]);
+  const [sentenceIndex, setSentenceIndex] = useState(loaderData.sentenceProgress.sentenceIndex);
+  const [sentenceAnswer, setSentenceAnswer] = useState("");
+  const [sentenceCorrect, setSentenceCorrect] = useState<boolean | null>(null);
+  const [sentenceResults, setSentenceResults] = useState<{ hanzi: string; vietnamese: string; correct: boolean }[]>(loaderData.sentenceProgress.results as { hanzi: string; vietnamese: string; correct: boolean }[]);
 
   const words = useMemo(() => {
     return uniqueWritingWords(
@@ -299,6 +368,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const quizWords = useMemo(() => shuffleWords(words), [words]);
   const currentWords = practiceMode === "quiz" ? quizWords : words;
   const currentWord = currentWords[wordIndex];
+  const currentSentence = sentenceItems[sentenceIndex];
   const quizOptions = useMemo(() => {
     if (!currentWord) return [];
     const byMeaning = new Map<string, WritingWord>();
@@ -332,6 +402,23 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   }, [wordIndex]);
 
   useEffect(() => {
+    setSentenceAnswer("");
+    setSentenceCorrect(null);
+  }, [sentenceIndex]);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      progressFetcher.submit(JSON.stringify({
+        intent: "save-sentence-progress",
+        sentenceIndex,
+        results: sentenceResults,
+      }), { method: "post", encType: "application/json" });
+    }, 300);
+
+    return () => window.clearTimeout(timeout);
+  }, [sentenceIndex, sentenceResults]);
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
@@ -350,12 +437,25 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   };
 
   const speak = () => {
-    if (!currentWord || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const text = practiceMode === "sentence" ? currentSentence?.hanzi : currentWord?.chinese;
+    if (!text || typeof window === "undefined" || !("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(currentWord.chinese);
+    const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "zh-CN";
     utterance.rate = 0.8;
     window.speechSynthesis.speak(utterance);
+  };
+
+  const checkSentenceAnswer = () => {
+    if (!currentSentence || !sentenceAnswer.trim()) return;
+    const correct = normalizeSentence(sentenceAnswer) === normalizeSentence(currentSentence.hanzi);
+    setSentenceCorrect(correct);
+    if (correct) sound.playCorrect();
+    else sound.playIncorrect();
+    setSentenceResults((prev) => [
+      { hanzi: currentSentence.hanzi, vietnamese: currentSentence.vietnamese, correct },
+      ...prev,
+    ]);
   };
 
   const checkAnswer = () => {
@@ -451,11 +551,111 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
           >
             Trắc nghiệm
           </button>
+          <button
+            type="button"
+            onClick={() => setPracticeMode("sentence")}
+            className={`flex min-h-10 flex-1 items-center justify-center rounded-xl px-3 py-2 text-xs font-black transition sm:text-sm ${
+              practiceMode === "sentence" ? "bg-red-600 text-white shadow-sm" : "text-slate-500 hover:bg-slate-50"
+            }`}
+          >
+            Dịch câu
+          </button>
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-red-50 to-amber-50 p-3 sm:rounded-[2rem] sm:p-6">
           <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white p-3 pt-10 text-center shadow-md sm:rounded-[2rem] sm:p-8 sm:pt-14">
-            {currentWord ? (
+            {practiceMode === "sentence" ? (
+              currentSentence ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={speak}
+                    aria-label="Nghe câu tiếng Trung"
+                    className="absolute right-3 top-3 rounded-full bg-red-50 p-2.5 text-red-600 transition-colors hover:bg-red-100 sm:right-6 sm:top-6 sm:p-3"
+                  >
+                    <Volume2 size={20} />
+                  </button>
+
+                  <p className="font-sans text-xs font-black uppercase tracking-[0.16em] text-red-500">
+                    Bài {currentSentence.lesson} · Dịch câu
+                  </p>
+                  <p className="mt-4 break-words font-sans text-2xl font-black leading-relaxed text-slate-800 sm:text-3xl">
+                    {currentSentence.vietnamese}
+                  </p>
+                  <p className="mt-2 font-sans text-sm font-semibold text-slate-400">
+                    Nhập câu tiếng Trung tương ứng
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap justify-center gap-2">
+                    {currentSentence.vocabulary.map((word) => (
+                      <span key={`${word.hanzi}-${word.pinyin}`} className="rounded-xl bg-amber-50 px-3 py-2 font-hanzi text-lg font-bold text-amber-800">
+                        {word.hanzi}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-5">
+                    <input
+                      value={sentenceAnswer}
+                      onChange={(event) => {
+                        setSentenceAnswer(event.target.value);
+                        setSentenceCorrect(null);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") checkSentenceAnswer();
+                      }}
+                      placeholder="Nhập câu chữ Hán..."
+                      aria-label="Nhập câu chữ Hán"
+                      className={`input-hanzi w-full min-w-0 rounded-2xl border px-3 py-3 font-hanzi text-xl font-bold outline-none transition sm:px-4 sm:text-2xl ${
+                        sentenceCorrect === true
+                          ? "border-emerald-400 bg-emerald-50 text-emerald-700"
+                          : sentenceCorrect === false
+                            ? "border-red-400 bg-red-50 text-red-700"
+                            : "border-slate-200 focus:border-red-400"
+                      }`}
+                    />
+                    {sentenceCorrect !== null ? (
+                      <p className={`mt-2 font-sans text-sm font-bold ${sentenceCorrect ? "text-emerald-600" : "text-red-600"}`}>
+                        {sentenceCorrect ? "Chính xác!" : `Đáp án: ${currentSentence.hanzi}`}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => setSentenceIndex((index) => Math.max(0, index - 1))}
+                      disabled={sentenceIndex === 0}
+                      className="flex min-h-10 min-w-0 flex-1 items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
+                    >
+                      <ChevronLeft size={16} /> <span>Trước</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={checkSentenceAnswer}
+                      aria-label="Kiểm tra câu dịch"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700 sm:h-12 sm:w-12"
+                    >
+                      <Check size={20} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSentenceIndex((index) => Math.min(index + 1, sentenceItems.length - 1))}
+                      disabled={sentenceIndex >= sentenceItems.length - 1}
+                      className="flex min-h-10 min-w-0 flex-1 flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
+                    >
+                      <ChevronRight size={16} /> <span>Tiếp</span>
+                    </button>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-center gap-2 font-sans text-xs font-bold text-slate-400">
+                    Câu {sentenceIndex + 1} / {sentenceItems.length}
+                  </div>
+                </>
+              ) : (
+                <div className="py-16 text-sm font-semibold text-slate-500">Chưa có dữ liệu câu để luyện.</div>
+              )
+            ) : currentWord ? (
               <>
                 <button
                   type="button"
@@ -575,10 +775,29 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
           <div className="mb-3 flex items-center justify-between">
             <h2 className="font-sans text-sm font-black uppercase tracking-wide text-slate-700">Nhật ký luyện tập</h2>
             <span className="font-sans text-xs font-bold text-slate-400">
-              {results.filter((r) => r.correct).length} đúng / {results.length} từ
+              {practiceMode === "sentence"
+                ? `${sentenceResults.filter((result) => result.correct).length} đúng / ${sentenceResults.length} câu`
+                : `${results.filter((result) => result.correct).length} đúng / ${results.length} từ`}
             </span>
           </div>
-          {results.length > 0 ? (
+          {practiceMode === "sentence" ? sentenceResults.length > 0 ? (
+            <ul className="grid max-h-[17rem] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
+              {sentenceResults.map((result, index) => (
+                <li
+                  key={index}
+                  className={`flex items-center gap-2 rounded-xl border px-3 py-2 font-sans text-sm ${
+                    result.correct ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-red-200 bg-red-50 text-red-700"
+                  }`}
+                >
+                  <span className="font-hanzi text-xl font-black">{result.hanzi}</span>
+                  <span className="min-w-0 flex-1 truncate text-xs font-bold">{result.vietnamese}</span>
+                  <span className="text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="font-sans text-sm font-semibold text-slate-400">Chưa có câu nào được kiểm tra.</p>
+          ) : results.length > 0 ? (
             <ul className="grid max-h-[17rem] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-3">
               {results.map((result, index) => (
                 <li
@@ -603,4 +822,8 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
       </main>
     </SiteLayout>
   );
+}
+
+function normalizeSentence(value: string) {
+  return value.normalize("NFC").replace(/\s+/g, "").replace(/[，。！？、,.!?]/g, "");
 }

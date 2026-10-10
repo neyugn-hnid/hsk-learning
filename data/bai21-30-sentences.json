@@ -1,0 +1,4150 @@
+{
+  "source": "(3)TIẾNG TRUNG_Bai21-30.docx",
+  "lessons": [
+    {
+      "lesson": 21,
+      "title": "第21课 · 教育与学校 (Dì èrshíyī kè · Jiàoyù yǔ Xuéxiào) — GIÁO DỤC VÀ TRƯỜNG HỌC",
+      "sentences": [
+        {
+          "vietnamese": "Tôi luôn đến lớp đúng giờ.",
+          "vocabulary": [
+            {
+              "hanzi": "准时到课",
+              "pinyin": "zhǔnshí dào kè",
+              "word_type": "cụm động từ",
+              "meaning": "đến lớp đúng giờ"
+            }
+          ],
+          "hanzi": "我总是准时到课。",
+          "pinyin": "Wǒ zǒngshì zhǔnshí dào kè."
+        },
+        {
+          "vietnamese": "Môn học yêu thích của tôi là tiếng Anh.",
+          "vocabulary": [
+            {
+              "hanzi": "科目",
+              "pinyin": "kēmù",
+              "word_type": "danh từ",
+              "meaning": "môn học"
+            }
+          ],
+          "hanzi": "我最喜欢的科目是英语。",
+          "pinyin": "Wǒ zuì xǐhuan de kēmù shì Yīngyǔ."
+        },
+        {
+          "vietnamese": "Tôi thường làm bài tập về nhà vào buổi tối.",
+          "vocabulary": [
+            {
+              "hanzi": "做作业",
+              "pinyin": "zuò zuòyè",
+              "word_type": "cụm động từ",
+              "meaning": "làm bài tập"
+            }
+          ],
+          "hanzi": "我通常晚上做作业。",
+          "pinyin": "Wǒ tōngcháng wǎnshang zuò zuòyè."
+        },
+        {
+          "vietnamese": "Giáo viên của tôi rất thân thiện.",
+          "vocabulary": [
+            {
+              "hanzi": "老师",
+              "pinyin": "lǎoshī",
+              "word_type": "danh từ",
+              "meaning": "giáo viên"
+            }
+          ],
+          "hanzi": "我的老师很友好。",
+          "pinyin": "Wǒ de lǎoshī hěn yǒuhǎo."
+        },
+        {
+          "vietnamese": "Chúng tôi đang học trong thư viện.",
+          "vocabulary": [
+            {
+              "hanzi": "图书馆",
+              "pinyin": "túshūguǎn",
+              "word_type": "danh từ",
+              "meaning": "thư viện"
+            }
+          ],
+          "hanzi": "我们正在图书馆学习。",
+          "pinyin": "Wǒmen zhèngzài túshūguǎn xuéxí."
+        },
+        {
+          "vietnamese": "Tôi quên mang theo sách giáo khoa hôm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "课本",
+              "pinyin": "kèběn",
+              "word_type": "danh từ",
+              "meaning": "sách giáo khoa"
+            }
+          ],
+          "hanzi": "我今天忘了带课本。",
+          "pinyin": "Wǒ jīntiān wàngle dài kèběn."
+        },
+        {
+          "vietnamese": "Anh ấy luôn ghi chú rất cẩn thận.",
+          "vocabulary": [
+            {
+              "hanzi": "做笔记",
+              "pinyin": "zuò bǐjì",
+              "word_type": "cụm động từ",
+              "meaning": "ghi chú"
+            },
+            {
+              "hanzi": "认真",
+              "pinyin": "rènzhēn",
+              "word_type": "tính từ",
+              "meaning": "cẩn thận, nghiêm túc"
+            }
+          ],
+          "hanzi": "他总是很认真地做笔记。",
+          "pinyin": "Tā zǒngshì hěn rènzhēn de zuò bǐjì."
+        },
+        {
+          "vietnamese": "Tôi thích học cùng bạn bè.",
+          "vocabulary": [
+            {
+              "hanzi": "朋友",
+              "pinyin": "péngyou",
+              "word_type": "danh từ",
+              "meaning": "bạn bè"
+            }
+          ],
+          "hanzi": "我喜欢和朋友一起学习。",
+          "pinyin": "Wǒ xǐhuan hé péngyou yìqǐ xuéxí."
+        },
+        {
+          "vietnamese": "Chúng tôi có một bài kiểm tra vào ngày mai.",
+          "vocabulary": [
+            {
+              "hanzi": "考试",
+              "pinyin": "kǎoshì",
+              "word_type": "danh từ",
+              "meaning": "bài kiểm tra"
+            }
+          ],
+          "hanzi": "我们明天有考试。",
+          "pinyin": "Wǒmen míngtiān yǒu kǎoshì."
+        },
+        {
+          "vietnamese": "Tôi cảm thấy căng thẳng trước kỳ thi.",
+          "vocabulary": [
+            {
+              "hanzi": "紧张",
+              "pinyin": "jǐnzhāng",
+              "word_type": "tính từ",
+              "meaning": "căng thẳng"
+            }
+          ],
+          "hanzi": "我考试前感觉很紧张。",
+          "pinyin": "Wǒ kǎoshì qián gǎnjué hěn jǐnzhāng."
+        },
+        {
+          "vietnamese": "Giáo viên đang giải thích bài học.",
+          "vocabulary": [
+            {
+              "hanzi": "讲解",
+              "pinyin": "jiǎngjiě",
+              "word_type": "động từ",
+              "meaning": "giải thích"
+            },
+            {
+              "hanzi": "课文",
+              "pinyin": "kèwén",
+              "word_type": "danh từ",
+              "meaning": "bài học"
+            }
+          ],
+          "hanzi": "老师正在讲解课文。",
+          "pinyin": "Lǎoshī zhèngzài jiǎngjiě kèwén."
+        },
+        {
+          "vietnamese": "Tôi thường ngồi ở hàng ghế đầu.",
+          "vocabulary": [
+            {
+              "hanzi": "前排",
+              "pinyin": "qiánpái",
+              "word_type": "danh từ",
+              "meaning": "hàng ghế đầu"
+            }
+          ],
+          "hanzi": "我通常坐在前排。",
+          "pinyin": "Wǒ tōngcháng zuò zài qiánpái."
+        },
+        {
+          "vietnamese": "Bạn tôi học rất chăm chỉ.",
+          "vocabulary": [
+            {
+              "hanzi": "努力",
+              "pinyin": "nǔlì",
+              "word_type": "phó từ/tính từ",
+              "meaning": "chăm chỉ, nỗ lực"
+            }
+          ],
+          "hanzi": "我朋友学习很努力。",
+          "pinyin": "Wǒ péngyou xuéxí hěn nǔlì."
+        },
+        {
+          "vietnamese": "Tôi cần thêm thời gian để hoàn thành bài tập.",
+          "vocabulary": [
+            {
+              "hanzi": "完成作业",
+              "pinyin": "wánchéng zuòyè",
+              "word_type": "cụm động từ",
+              "meaning": "hoàn thành bài tập"
+            }
+          ],
+          "hanzi": "我需要更多时间完成作业。",
+          "pinyin": "Wǒ xūyào gèng duō shíjiān wánchéng zuòyè."
+        },
+        {
+          "vietnamese": "Chúng tôi đang làm việc theo nhóm.",
+          "vocabulary": [
+            {
+              "hanzi": "分组",
+              "pinyin": "fēnzǔ",
+              "word_type": "động từ",
+              "meaning": "chia nhóm, làm theo nhóm"
+            }
+          ],
+          "hanzi": "我们正在分组做作业。",
+          "pinyin": "Wǒmen zhèngzài fēnzǔ zuò zuòyè."
+        },
+        {
+          "vietnamese": "Tôi thích học từ vựng mới mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "单词",
+              "pinyin": "dāncí",
+              "word_type": "danh từ",
+              "meaning": "từ vựng"
+            }
+          ],
+          "hanzi": "我喜欢每天学习新单词。",
+          "pinyin": "Wǒ xǐhuan měitiān xuéxí xīn dāncí."
+        },
+        {
+          "vietnamese": "Anh trai tôi thường kè tôi học toán.",
+          "vocabulary": [
+            {
+              "hanzi": "数学",
+              "pinyin": "shùxué",
+              "word_type": "danh từ",
+              "meaning": "môn toán"
+            }
+          ],
+          "hanzi": "我哥哥经常辅导我学数学。",
+          "pinyin": "Wǒ gēge jīngcháng fǔdǎo wǒ xué shùxué."
+        },
+        {
+          "vietnamese": "Tôi không hiểu bài học hôm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "理解",
+              "pinyin": "lǐjiě",
+              "word_type": "động từ",
+              "meaning": "hiểu"
+            }
+          ],
+          "hanzi": "我不理解今天的课文。",
+          "pinyin": "Wǒ bù lǐjiě jīntiān de kèwén."
+        },
+        {
+          "vietnamese": "Chúng tôi phải mặc đồng phục đến trường.",
+          "vocabulary": [
+            {
+              "hanzi": "校服",
+              "pinyin": "xiàofú",
+              "word_type": "danh từ",
+              "meaning": "đồng phục"
+            },
+            {
+              "hanzi": "必须",
+              "pinyin": "bìxū",
+              "word_type": "phó từ",
+              "meaning": "phải, bắt buộc"
+            }
+          ],
+          "hanzi": "我们上学必须穿校服。",
+          "pinyin": "Wǒmen shàngxué bìxū chuān xiàofú."
+        },
+        {
+          "vietnamese": "Tôi đang đọc một cuốn sách trong thư viện.",
+          "vocabulary": [
+            {
+              "hanzi": "看书",
+              "pinyin": "kàn shū",
+              "word_type": "động từ",
+              "meaning": "đọc sách"
+            }
+          ],
+          "hanzi": "我正在图书馆看书。",
+          "pinyin": "Wǒ zhèngzài túshūguǎn kàn shū."
+        },
+        {
+          "vietnamese": "Giáo viên của tôi rất nghiêm khắc nhưng tốt bụng.",
+          "vocabulary": [
+            {
+              "hanzi": "严格",
+              "pinyin": "yángé",
+              "word_type": "tính từ",
+              "meaning": "nghiêm khắc"
+            }
+          ],
+          "hanzi": "我的老师很严格，但很善良。",
+          "pinyin": "Wǒ de lǎoshī hěn yángé, dàn hěn shànliáng."
+        },
+        {
+          "vietnamese": "Tôi thường học bài cùng em gái.",
+          "vocabulary": [
+            {
+              "hanzi": "妹妹",
+              "pinyin": "mèimei",
+              "word_type": "danh từ",
+              "meaning": "em gái"
+            }
+          ],
+          "hanzi": "我经常和妹妹一起学习。",
+          "pinyin": "Wǒ jīngcháng hé mèimei yìqǐ xuéxí."
+        },
+        {
+          "vietnamese": "Chúng tôi có tiết tiếng Anh vào buổi sáng.",
+          "vocabulary": [
+            {
+              "hanzi": "英语课",
+              "pinyin": "Yīngyǔ kè",
+              "word_type": "danh từ",
+              "meaning": "tiết tiếng Anh"
+            }
+          ],
+          "hanzi": "我们早上有英语课。",
+          "pinyin": "Wǒmen zǎoshang yǒu Yīngyǔ kè."
+        },
+        {
+          "vietnamese": "Tôi luôn cố gắng cải thiện điểm số của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "成绩",
+              "pinyin": "chéngjì",
+              "word_type": "danh từ",
+              "meaning": "điểm số"
+            }
+          ],
+          "hanzi": "我总是努力提高自己的成绩。",
+          "pinyin": "Wǒ zǒngshì nǔlì tígāo zìjǐ de chéngjì."
+        },
+        {
+          "vietnamese": "Bạn tôi rất giỏi môn khoa học.",
+          "vocabulary": [
+            {
+              "hanzi": "擅长",
+              "pinyin": "shàncháng",
+              "word_type": "động từ",
+              "meaning": "giỏi về"
+            },
+            {
+              "hanzi": "科学",
+              "pinyin": "kēxué",
+              "word_type": "danh từ",
+              "meaning": "khoa học"
+            }
+          ],
+          "hanzi": "我朋友很擅长科学。",
+          "pinyin": "Wǒ péngyou hěn shàncháng kēxué."
+        },
+        {
+          "vietnamese": "Tôi thường ôn bài trước kỳ thi.",
+          "vocabulary": [
+            {
+              "hanzi": "复习",
+              "pinyin": "fùxí",
+              "word_type": "động từ",
+              "meaning": "ôn bài"
+            }
+          ],
+          "hanzi": "我通常在考试前复习。",
+          "pinyin": "Wǒ tōngcháng zài kǎoshì qián fùxí."
+        },
+        {
+          "vietnamese": "Chúng tôi đang thảo luận về bài tập.",
+          "vocabulary": [
+            {
+              "hanzi": "讨论",
+              "pinyin": "tǎolùn",
+              "word_type": "động từ",
+              "meaning": "thảo luận"
+            }
+          ],
+          "hanzi": "我们正在讨论作业。",
+          "pinyin": "Wǒmen zhèngzài tǎolùn zuòyè."
+        },
+        {
+          "vietnamese": "Tôi cảm thấy vui khi học được điều mới.",
+          "vocabulary": [
+            {
+              "hanzi": "学到",
+              "pinyin": "xuédào",
+              "word_type": "động từ",
+              "meaning": "học được"
+            }
+          ],
+          "hanzi": "学到新东西的时候我感觉很开心。",
+          "pinyin": "Xuédào xīn dōngxi de shíhou wǒ gǎnjué hěn kāixīn."
+        },
+        {
+          "vietnamese": "Anh ấy ngủ gật trong lớp học.",
+          "vocabulary": [
+            {
+              "hanzi": "打瞌睡",
+              "pinyin": "dǎ kēshuì",
+              "word_type": "cụm động từ",
+              "meaning": "ngủ gật"
+            }
+          ],
+          "hanzi": "他在课堂上打瞌睡。",
+          "pinyin": "Tā zài kètáng shàng dǎ kēshuì."
+        },
+        {
+          "vietnamese": "Tôi muốn cải thiện kỹ năng viết tiếng Anh.",
+          "vocabulary": [
+            {
+              "hanzi": "写作能力",
+              "pinyin": "xiězuò nénglì",
+              "word_type": "cụm danh từ",
+              "meaning": "kỹ năng viết"
+            }
+          ],
+          "hanzi": "我想提高我的英语写作能力。",
+          "pinyin": "Wǒ xiǎng tígāo wǒ de Yīngyǔ xiězuò nénglì."
+        }
+      ]
+    },
+    {
+      "lesson": 22,
+      "title": "第22课 · 职业 (Dì èrshí'èr kè · Zhíyè) — NGHỀ NGHIỆP",
+      "sentences": [
+        {
+          "vietnamese": "Tôi là một giáo viên.",
+          "vocabulary": [
+            {
+              "hanzi": "老师",
+              "pinyin": "lǎoshī",
+              "word_type": "danh từ",
+              "meaning": "giáo viên"
+            }
+          ],
+          "hanzi": "我是一名老师。",
+          "pinyin": "Wǒ shì yì míng lǎoshī."
+        },
+        {
+          "vietnamese": "Anh ấy làm bác sĩ.",
+          "vocabulary": [
+            {
+              "hanzi": "医生",
+              "pinyin": "yīshēng",
+              "word_type": "danh từ",
+              "meaning": "bác sĩ"
+            }
+          ],
+          "hanzi": "他是医生。",
+          "pinyin": "Tā shì yīshēng."
+        },
+        {
+          "vietnamese": "Cô ấy làm việc trong một ngân hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "银行",
+              "pinyin": "yínháng",
+              "word_type": "danh từ",
+              "meaning": "ngân hàng"
+            }
+          ],
+          "hanzi": "她在银行工作。",
+          "pinyin": "Tā zài yínháng gōngzuò."
+        },
+        {
+          "vietnamese": "Bố tôi là kỹ sư.",
+          "vocabulary": [
+            {
+              "hanzi": "工程师",
+              "pinyin": "gōngchéngshī",
+              "word_type": "danh từ",
+              "meaning": "kỹ sư"
+            }
+          ],
+          "hanzi": "我爸爸是工程师。",
+          "pinyin": "Wǒ bàba shì gōngchéngshī."
+        },
+        {
+          "vietnamese": "Mẹ tôi là y tá.",
+          "vocabulary": [
+            {
+              "hanzi": "护士",
+              "pinyin": "hùshi",
+              "word_type": "danh từ",
+              "meaning": "y tá"
+            }
+          ],
+          "hanzi": "我妈妈是护士。",
+          "pinyin": "Wǒ māma shì hùshi."
+        },
+        {
+          "vietnamese": "Anh trai tôi làm cảnh sát.",
+          "vocabulary": [
+            {
+              "hanzi": "警察",
+              "pinyin": "jǐngchá",
+              "word_type": "danh từ",
+              "meaning": "cảnh sát"
+            }
+          ],
+          "hanzi": "我哥哥是警察。",
+          "pinyin": "Wǒ gēge shì jǐngchá."
+        },
+        {
+          "vietnamese": "Tôi muốn trở thành một lập trình viên.",
+          "vocabulary": [
+            {
+              "hanzi": "程序员",
+              "pinyin": "chéngxùyuán",
+              "word_type": "danh từ",
+              "meaning": "lập trình viên"
+            }
+          ],
+          "hanzi": "我想成为一名程序员。",
+          "pinyin": "Wǒ xiǎng chéngwéi yì míng chéngxùyuán."
+        },
+        {
+          "vietnamese": "Cô ấy làm việc ở một trường học.",
+          "vocabulary": [
+            {
+              "hanzi": "学校",
+              "pinyin": "xuéxiào",
+              "word_type": "danh từ",
+              "meaning": "trường học"
+            }
+          ],
+          "hanzi": "她在一所学校工作。",
+          "pinyin": "Tā zài yì suǒ xuéxiào gōngzuò."
+        },
+        {
+          "vietnamese": "Người đầu bếp đang chuẩn bị bữa tối.",
+          "vocabulary": [
+            {
+              "hanzi": "厨师",
+              "pinyin": "chúshī",
+              "word_type": "danh từ",
+              "meaning": "đầu bếp"
+            }
+          ],
+          "hanzi": "厨师正在准备晚饭。",
+          "pinyin": "Chúshī zhèngzài zhǔnbèi wǎnfàn."
+        },
+        {
+          "vietnamese": "Anh ấy có một công việc toàn thời gian.",
+          "vocabulary": [
+            {
+              "hanzi": "全职工作",
+              "pinyin": "quánzhí gōngzuò",
+              "word_type": "cụm danh từ",
+              "meaning": "công việc toàn thời gian"
+            }
+          ],
+          "hanzi": "他有一份全职工作。",
+          "pinyin": "Tā yǒu yí fèn quánzhí gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi đang tìm việc làm.",
+          "vocabulary": [
+            {
+              "hanzi": "找工作",
+              "pinyin": "zhǎo gōngzuò",
+              "word_type": "động từ",
+              "meaning": "tìm việc làm"
+            }
+          ],
+          "hanzi": "我正在找工作。",
+          "pinyin": "Wǒ zhèngzài zhǎo gōngzuò."
+        },
+        {
+          "vietnamese": "Cô ấy bắt đầu công việc mới vào tháng trước.",
+          "vocabulary": [
+            {
+              "hanzi": "上个月",
+              "pinyin": "shàng ge yuè",
+              "word_type": "danh từ",
+              "meaning": "tháng trước"
+            }
+          ],
+          "hanzi": "她上个月开始了新工作。",
+          "pinyin": "Tā shàng ge yuè kāishǐle xīn gōngzuò."
+        },
+        {
+          "vietnamese": "Anh ấy làm việc từ thứ Hai đến thứ Sáu.",
+          "vocabulary": [
+            {
+              "hanzi": "星期一",
+              "pinyin": "xīngqīyī",
+              "word_type": "danh từ",
+              "meaning": "thứ Hai"
+            }
+          ],
+          "hanzi": "他从星期一工作到星期五。",
+          "pinyin": "Tā cóng xīngqīyī gōngzuò dào xīngqīwǔ."
+        },
+        {
+          "vietnamese": "Tôi thích công việc của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "工作",
+              "pinyin": "gōngzuò",
+              "word_type": "danh từ",
+              "meaning": "công việc"
+            }
+          ],
+          "hanzi": "我喜欢我的工作。",
+          "pinyin": "Wǒ xǐhuan wǒ de gōngzuò."
+        },
+        {
+          "vietnamese": "Giáo viên của tôi rất tận tâm.",
+          "vocabulary": [
+            {
+              "hanzi": "敬业",
+              "pinyin": "jìngyè",
+              "word_type": "tính từ",
+              "meaning": "tận tâm (với nghề nghiệp)"
+            }
+          ],
+          "hanzi": "我的老师很敬业。",
+          "pinyin": "Wǒ de lǎoshī hěn jìngyè."
+        },
+        {
+          "vietnamese": "Bố tôi là kỹ sư và ông ấy làm việc cho một công ty xây dựng.",
+          "vocabulary": [
+            {
+              "hanzi": "建筑公司",
+              "pinyin": "jiànzhù gōngsī",
+              "word_type": "danh từ",
+              "meaning": "công ty xây dựng"
+            }
+          ],
+          "hanzi": "我爸爸是工程师，他在一家建筑公司工作。",
+          "pinyin": "Wǒ bàba shì gōngchéngshī, tā zài yì jiā jiànzhù gōngsī gōngzuò."
+        },
+        {
+          "vietnamese": "Cô ấy làm y tá nên thường làm việc theo ca.",
+          "vocabulary": [
+            {
+              "hanzi": "倒班",
+              "pinyin": "dǎobān",
+              "word_type": "động từ",
+              "meaning": "làm việc theo ca"
+            }
+          ],
+          "hanzi": "她是护士，所以经常倒班。",
+          "pinyin": "Tā shì hùshi, suǒyǐ jīngcháng dǎobān."
+        },
+        {
+          "vietnamese": "Tôi muốn trở thành giáo viên vì tôi thích giúp đỡ người khác học tập.",
+          "vocabulary": [
+            {
+              "hanzi": "当",
+              "pinyin": "dāng",
+              "word_type": "động từ",
+              "meaning": "làm, trở thành"
+            }
+          ],
+          "hanzi": "我想当老师，因为我喜欢帮助别人学习。",
+          "pinyin": "Wǒ xiǎng dāng lǎoshī, yīnwèi wǒ xǐhuan bāngzhù biéren xuéxí."
+        },
+        {
+          "vietnamese": "Anh ấy làm việc rất chăm chỉ để phát triển sự nghiệp.",
+          "vocabulary": [
+            {
+              "hanzi": "事业",
+              "pinyin": "shìyè",
+              "word_type": "danh từ",
+              "meaning": "sự nghiệp"
+            }
+          ],
+          "hanzi": "他工作很努力，为了发展自己的事业。",
+          "pinyin": "Tā gōngzuò hěn nǔlì, wèile fāzhǎn zìjǐ de shìyè."
+        },
+        {
+          "vietnamese": "Người đầu bếp này nổi tiếng vì các món ăn ngon của ông ấy.",
+          "vocabulary": [
+            {
+              "hanzi": "美味佳肴",
+              "pinyin": "měiwèi jiāyáo",
+              "word_type": "cụm danh từ",
+              "meaning": "món ăn ngon"
+            },
+            {
+              "hanzi": "出名",
+              "pinyin": "chūmíng",
+              "word_type": "động từ",
+              "meaning": "nổi tiếng"
+            }
+          ],
+          "hanzi": "这位厨师因为他的美味佳肴而出名。",
+          "pinyin": "Zhè wèi chúshī yīnwèi tā de měiwèi jiāyáo ér chūmíng."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc tại công ty này được ba năm.",
+          "vocabulary": [
+            {
+              "hanzi": "公司",
+              "pinyin": "gōngsī",
+              "word_type": "danh từ",
+              "meaning": "công ty"
+            }
+          ],
+          "hanzi": "我在这家公司工作了三年了。",
+          "pinyin": "Wǒ zài zhè jiā gōngsī gōngzuòle sān nián le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang nộp đơn xin việc.",
+          "vocabulary": [
+            {
+              "hanzi": "申请工作",
+              "pinyin": "shēnqǐng gōngzuò",
+              "word_type": "cụm động từ",
+              "meaning": "nộp đơn xin việc"
+            }
+          ],
+          "hanzi": "我现在正在申请工作。",
+          "pinyin": "Wǒ xiànzài zhèngzài shēnqǐng gōngzuò."
+        },
+        {
+          "vietnamese": "Cô ấy đã làm việc trong lĩnh vực giáo dục từ năm 2020.",
+          "vocabulary": [
+            {
+              "hanzi": "教育领域",
+              "pinyin": "jiàoyù lǐngyù",
+              "word_type": "cụm danh từ",
+              "meaning": "lĩnh vực giáo dục"
+            }
+          ],
+          "hanzi": "她从2020年开始就在教育领域工作了。",
+          "pinyin": "Tā cóng èr líng èr líng nián kāishǐ jiù zài jiàoyù lǐngyù gōngzuò le."
+        },
+        {
+          "vietnamese": "Tôi thích công việc này vì nó mang đến nhiều cơ hội học hỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "机会",
+              "pinyin": "jīhuì",
+              "word_type": "danh từ",
+              "meaning": "cơ hội"
+            }
+          ],
+          "hanzi": "我喜欢这份工作，因为它带来很多学习机会。",
+          "pinyin": "Wǒ xǐhuan zhè fèn gōngzuò, yīnwèi tā dàilái hěn duō xuéxí jīhuì."
+        },
+        {
+          "vietnamese": "Anh ấy đã được thăng chức vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "升职",
+              "pinyin": "shēngzhí",
+              "word_type": "động từ",
+              "meaning": "thăng chức"
+            }
+          ],
+          "hanzi": "他去年被升职了。",
+          "pinyin": "Tā qùnián bèi shēngzhí le."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng cải thiện kỹ năng nghề nghiệp của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "职业技能",
+              "pinyin": "zhíyè jìnéng",
+              "word_type": "cụm danh từ",
+              "meaning": "kỹ năng nghề nghiệp"
+            }
+          ],
+          "hanzi": "我正在努力提高自己的职业技能。",
+          "pinyin": "Wǒ zhèngzài nǔlì tígāo zìjǐ de zhíyè jìnéng."
+        },
+        {
+          "vietnamese": "Cô ấy đã làm việc ngoài giờ trong vài tuần qua.",
+          "vocabulary": [
+            {
+              "hanzi": "加班",
+              "pinyin": "jiābān",
+              "word_type": "động từ",
+              "meaning": "làm thêm giờ"
+            }
+          ],
+          "hanzi": "她过去几周一直在加班。",
+          "pinyin": "Tā guòqù jǐ zhōu yìzhí zài jiābān."
+        },
+        {
+          "vietnamese": "Mặc dù công việc khá áp lực nhưng anh ấy vẫn yêu thích nó.",
+          "vocabulary": [
+            {
+              "hanzi": "压力",
+              "pinyin": "yālì",
+              "word_type": "danh từ",
+              "meaning": "áp lực"
+            }
+          ],
+          "hanzi": "虽然这份工作压力很大，但他还是很喜欢。",
+          "pinyin": "Suīrán zhè fèn gōngzuò yālì hěn dà, dàn tā háishi hěn xǐhuan."
+        },
+        {
+          "vietnamese": "Tôi đã tìm việc được hai tháng và cuối cùng đã nhận được một lời mời làm việc.",
+          "vocabulary": [
+            {
+              "hanzi": "工作邀请",
+              "pinyin": "gōngzuò yāoqǐng",
+              "word_type": "cụm danh từ",
+              "meaning": "lời mời làm việc"
+            }
+          ],
+          "hanzi": "我找工作找了两个月，终于收到了一份工作邀请。",
+          "pinyin": "Wǒ zhǎo gōngzuò zhǎole liǎng ge yuè, zhōngyú shōudàole yí fèn gōngzuò yāoqǐng."
+        },
+        {
+          "vietnamese": "Một công việc tốt không chỉ mang lại thu nhập mà còn giúp bạn phát triển bản thân.",
+          "vocabulary": [
+            {
+              "hanzi": "收入",
+              "pinyin": "shōurù",
+              "word_type": "danh từ",
+              "meaning": "thu nhập"
+            },
+            {
+              "hanzi": "自我提升",
+              "pinyin": "zìwǒ tíshēng",
+              "word_type": "cụmđộng từ",
+              "meaning": "phát triển bản thân"
+            }
+          ],
+          "hanzi": "一份好工作不仅能带来收入，还能帮助你自我提升。",
+          "pinyin": "Yí fèn hǎo gōngzuò bùjǐn néng dàilái shōurù, hái néng bāngzhù nǐ zìwǒ tíshēng."
+        }
+      ]
+    },
+    {
+      "lesson": 23,
+      "title": "第23课 · 在办公室 (Dì èrshísān kè · Zài Bàngōngshì) — TẠI VĂN PHÒNG",
+      "sentences": [
+        {
+          "vietnamese": "Tôi làm việc trong một văn phòng.",
+          "vocabulary": [
+            {
+              "hanzi": "办公室",
+              "pinyin": "bàngōngshì",
+              "word_type": "danh từ",
+              "meaning": "văn phòng"
+            }
+          ],
+          "hanzi": "我在办公室工作。",
+          "pinyin": "Wǒ zài bàngōngshì gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi ngồi gần cửa sổ.",
+          "vocabulary": [
+            {
+              "hanzi": "窗户",
+              "pinyin": "chuānghu",
+              "word_type": "danh từ",
+              "meaning": "cửa sổ"
+            }
+          ],
+          "hanzi": "我坐在窗户旁边。",
+          "pinyin": "Wǒ zuò zài chuānghu pángbiān."
+        },
+        {
+          "vietnamese": "Sếp của tôi rất thân thiện.",
+          "vocabulary": [
+            {
+              "hanzi": "老板",
+              "pinyin": "lǎobǎn",
+              "word_type": "danh từ",
+              "meaning": "sếp"
+            }
+          ],
+          "hanzi": "我的老板很友好。",
+          "pinyin": "Wǒ de lǎobǎn hěn yǒuhǎo."
+        },
+        {
+          "vietnamese": "Tôi kiểm tra email mỗi sáng.",
+          "vocabulary": [
+            {
+              "hanzi": "检查邮件",
+              "pinyin": "jiǎnchá yóujiàn",
+              "word_type": "cụm động từ",
+              "meaning": "kiểm tra email"
+            }
+          ],
+          "hanzi": "我每天早上检查邮件。",
+          "pinyin": "Wǒ měitiān zǎoshang jiǎnchá yóujiàn."
+        },
+        {
+          "vietnamese": "Chúng tôi có một cuộc họp hôm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "会议",
+              "pinyin": "huìyì",
+              "word_type": "danh từ",
+              "meaning": "cuộc họp"
+            }
+          ],
+          "hanzi": "我们今天有一个会议。",
+          "pinyin": "Wǒmen jīntiān yǒu yí ge huìyì."
+        },
+        {
+          "vietnamese": "Tôi đang làm việc trên một dự án mới.",
+          "vocabulary": [
+            {
+              "hanzi": "项目",
+              "pinyin": "xiàngmù",
+              "word_type": "danh từ",
+              "meaning": "dự án, hạng mục"
+            }
+          ],
+          "hanzi": "我正在做一个新项目。",
+          "pinyin": "Wǒ zhèngzài zuò yí ge xīn xiàngmù."
+        },
+        {
+          "vietnamese": "Đồng nghiệp của tôi rất hữu ích.",
+          "vocabulary": [
+            {
+              "hanzi": "同事",
+              "pinyin": "tóngshì",
+              "word_type": "danh từ",
+              "meaning": "đồng nghiệp"
+            },
+            {
+              "hanzi": "乐于助人",
+              "pinyin": "lèyú zhùrén",
+              "word_type": "thành ngữ",
+              "meaning": "hữu ích, sẵn lòng giúp đỡ"
+            }
+          ],
+          "hanzi": "我的同事很乐于助人。",
+          "pinyin": "Wǒ de tóngshì hěn lèyú zhùrén."
+        },
+        {
+          "vietnamese": "Tôi sử dụng máy tính cả ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "电脑",
+              "pinyin": "diànnǎo",
+              "word_type": "danh từ",
+              "meaning": "máy tính"
+            }
+          ],
+          "hanzi": "我一整天都用电脑。",
+          "pinyin": "Wǒ yì zhěngtiān dōu yòng diànnǎo."
+        },
+        {
+          "vietnamese": "Văn phòng này rất hiện đại.",
+          "vocabulary": [
+            {
+              "hanzi": "现代化",
+              "pinyin": "xiàndàihuà",
+              "word_type": "tính từ",
+              "meaning": "hiện đại hóa"
+            }
+          ],
+          "hanzi": "这个办公室很现代化。",
+          "pinyin": "Zhège bàngōngshì hěn xiàndàihuà."
+        },
+        {
+          "vietnamese": "Tôi cần in tài liệu này.",
+          "vocabulary": [
+            {
+              "hanzi": "打印",
+              "pinyin": "dǎyìn",
+              "word_type": "động từ",
+              "meaning": "in"
+            },
+            {
+              "hanzi": "文件",
+              "pinyin": "wénjiàn",
+              "word_type": "danh từ",
+              "meaning": "tài liệu"
+            }
+          ],
+          "hanzi": "我需要打印这份文件。",
+          "pinyin": "Wǒ xūyào dǎyìn zhè fèn wénjiàn."
+        },
+        {
+          "vietnamese": "Chúng tôi làm việc theo nhóm.",
+          "vocabulary": [
+            {
+              "hanzi": "团队合作",
+              "pinyin": "tuánduì hézuò",
+              "word_type": "cụm động từ",
+              "meaning": "làm việc theo nhóm"
+            }
+          ],
+          "hanzi": "我们团队合作。",
+          "pinyin": "Wǒmen tuánduì hézuò."
+        },
+        {
+          "vietnamese": "Tôi đã tham gia cuộc họp sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "参加会议",
+              "pinyin": "cānjiā huìyì",
+              "word_type": "cụm động từ",
+              "meaning": "tham gia cuộc họp"
+            }
+          ],
+          "hanzi": "我今天早上参加了会议。",
+          "pinyin": "Wǒ jīntiān zǎoshang cānjiāle huìyì."
+        },
+        {
+          "vietnamese": "Tôi đang chuẩn bị một báo cáo.",
+          "vocabulary": [
+            {
+              "hanzi": "报告",
+              "pinyin": "bàogào",
+              "word_type": "danh từ",
+              "meaning": "báo cáo"
+            }
+          ],
+          "hanzi": "我正在准备一份报告。",
+          "pinyin": "Wǒ zhèngzài zhǔnbèi yí fèn bàogào."
+        },
+        {
+          "vietnamese": "Sếp của tôi đang nói chuyện với khách hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "客户",
+              "pinyin": "kèhù",
+              "word_type": "danh từ",
+              "meaning": "khách hàng"
+            }
+          ],
+          "hanzi": "我的老板正在和客户谈话。",
+          "pinyin": "Wǒ de lǎobǎn zhèngzài hé kèhù tánhuà."
+        },
+        {
+          "vietnamese": "Tôi thường uống cà phê trong giờ nghỉ.",
+          "vocabulary": [
+            {
+              "hanzi": "休息时间",
+              "pinyin": "xiūxi shíjiān",
+              "word_type": "cụm danh từ",
+              "meaning": "giờ nghỉ"
+            }
+          ],
+          "hanzi": "我通常在休息时间喝咖啡。",
+          "pinyin": "Wǒ tōngcháng zài xiūxi shíjiān hē kāfēi."
+        },
+        {
+          "vietnamese": "Tôi kiểm tra email trước khi bắt đầu làm việc.",
+          "vocabulary": [
+            {
+              "hanzi": "开始工作",
+              "pinyin": "kāishǐ gōngzuò",
+              "word_type": "cụm động từ",
+              "meaning": "bắt đầu làm việc"
+            }
+          ],
+          "hanzi": "我开始工作前先检查邮件。",
+          "pinyin": "Wǒ kāishǐ gōngzuò qián xiān jiǎnchá yóujiàn."
+        },
+        {
+          "vietnamese": "Đồng nghiệp của tôi rất thân thiện nên tôi thích làm việc với họ.",
+          "vocabulary": [
+            {
+              "hanzi": "友好",
+              "pinyin": "yǒuhǎo",
+              "word_type": "tính từ",
+              "meaning": "thân thiện"
+            }
+          ],
+          "hanzi": "我的同事很友好，所以我喜欢和他们一起工作。",
+          "pinyin": "Wǒ de tóngshì hěn yǒuhǎo, suǒyǐ wǒ xǐhuan hé tāmen yìqǐ gōngzuò."
+        },
+        {
+          "vietnamese": "Chúng tôi có một cuộc họp quan trọng vào chiều nay.",
+          "vocabulary": [
+            {
+              "hanzi": "重要",
+              "pinyin": "zhòngyào",
+              "word_type": "tính từ",
+              "meaning": "quan trọng"
+            }
+          ],
+          "hanzi": "我们今天下午有一个重要会议。",
+          "pinyin": "Wǒmen jīntiān xiàwǔ yǒu yí ge zhòngyào huìyì."
+        },
+        {
+          "vietnamese": "Tôi đang hoàn thành báo cáo trước thời hạn.",
+          "vocabulary": [
+            {
+              "hanzi": "赶",
+              "pinyin": "gǎn",
+              "word_type": "động từ",
+              "meaning": "gấp rút, tranh thủ"
+            },
+            {
+              "hanzi": "截止日期",
+              "pinyin": "jiézhǐ rìqī",
+              "word_type": "cụm danh từ",
+              "meaning": "thời hạn"
+            }
+          ],
+          "hanzi": "我正在赶着在截止日期前完成报告。",
+          "pinyin": "Wǒ zhèngzài gǎnzhe zài jiézhǐ rìqī qián wánchéng bàogào."
+        },
+        {
+          "vietnamese": "Văn phòng này hiện đại nhưng khá đông người.",
+          "vocabulary": [
+            {
+              "hanzi": "人很多",
+              "pinyin": "rén hěn duō",
+              "word_type": "cụm từ",
+              "meaning": "đông người"
+            }
+          ],
+          "hanzi": "这个办公室很现代，但人很多。",
+          "pinyin": "Zhège bàngōngshì hěn xiàndài, dàn rén hěn duō."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc cho công ty này được năm năm.",
+          "vocabulary": [
+            {
+              "hanzi": "五年",
+              "pinyin": "wǔ nián",
+              "word_type": "danh từ",
+              "meaning": "năm năm"
+            }
+          ],
+          "hanzi": "我在这家公司工作了五年了。",
+          "pinyin": "Wǒ zài zhè jiā gōngsī gōngzuòle wǔ nián le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang tham gia một cuộc họp trực tuyến.",
+          "vocabulary": [
+            {
+              "hanzi": "在线会议",
+              "pinyin": "zàixiàn huìyì",
+              "word_type": "cụm danh từ",
+              "meaning": "cuộc họp trực tuyến"
+            }
+          ],
+          "hanzi": "我现在正在参加一个在线会议。",
+          "pinyin": "Wǒ xiànzài zhèngzài cānjiā yí ge zàixiàn huìyì."
+        },
+        {
+          "vietnamese": "Chúng tôi đã làm việc cùng nhau từ năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "一起工作",
+              "pinyin": "yìqǐ gōngzuò",
+              "word_type": "cụm động từ",
+              "meaning": "làm việc cùng nhau"
+            }
+          ],
+          "hanzi": "我们从去年就一起工作了。",
+          "pinyin": "Wǒmen cóng qùnián jiù yìqǐ gōngzuò le."
+        },
+        {
+          "vietnamese": "Tôi thích môi trường làm việc ở đây vì mọi người rất hỗ trợ.",
+          "vocabulary": [
+            {
+              "hanzi": "工作环境",
+              "pinyin": "gōngzuò huánjìng",
+              "word_type": "cụm danh từ",
+              "meaning": "môi trường làm việc"
+            },
+            {
+              "hanzi": "支持",
+              "pinyin": "zhīchí",
+              "word_type": "động từ",
+              "meaning": "hỗ trợ"
+            }
+          ],
+          "hanzi": "我喜欢这里的工作环境，因为大家都很支持彼此。",
+          "pinyin": "Wǒ xǐhuan zhèlǐ de gōngzuò huánjìng, yīnwèi dàjiā dōu hěn zhīchí bǐcǐ."
+        },
+        {
+          "vietnamese": "Sếp của tôi luôn khuyến khích nhân viên phát triển kỹ năng.",
+          "vocabulary": [
+            {
+              "hanzi": "提升技能",
+              "pinyin": "tíshēng jìnéng",
+              "word_type": "cụm động từ",
+              "meaning": "phát triển kỹ năng"
+            }
+          ],
+          "hanzi": "我的老板总是鼓励员工提升技能。",
+          "pinyin": "Wǒ de lǎobǎn zǒngshì gǔlì yuángōng tíshēng jìnéng."
+        },
+        {
+          "vietnamese": "Tôi đang học cách sử dụng một phần mềm mới.",
+          "vocabulary": [
+            {
+              "hanzi": "软件",
+              "pinyin": "ruǎnjiàn",
+              "word_type": "danh từ",
+              "meaning": "phần mềm"
+            }
+          ],
+          "hanzi": "我正在学习使用一个新软件。",
+          "pinyin": "Wǒ zhèngzài xuéxí shǐyòng yí ge xīn ruǎnjiàn."
+        },
+        {
+          "vietnamese": "Chúng tôi đã làm việc ngoài giờ trong vài ngày qua để hoàn thành dự án.",
+          "vocabulary": [
+            {
+              "hanzi": "加班",
+              "pinyin": "jiābān",
+              "word_type": "động từ",
+              "meaning": "làm ngoài giờ"
+            }
+          ],
+          "hanzi": "我们过去几天一直在加班完成项目。",
+          "pinyin": "Wǒmen guòqù jǐ tiān yìzhí zài jiābān wánchéng xiàngmù."
+        },
+        {
+          "vietnamese": "Mặc dù công việc bận rộn nhưng tôi học được rất nhiều điều mới.",
+          "vocabulary": [
+            {
+              "hanzi": "忙",
+              "pinyin": "máng",
+              "word_type": "tính từ",
+              "meaning": "bận rộn"
+            }
+          ],
+          "hanzi": "虽然工作很忙，但我学到了很多新东西。",
+          "pinyin": "Suīrán gōngzuò hěn máng, dàn wǒ xuédàole hěn duō xīn dōngxi."
+        },
+        {
+          "vietnamese": "Tôi đã ngồi trước máy tính suốt buổi sáng để hoàn thành công việc.",
+          "vocabulary": [
+            {
+              "hanzi": "整个上午",
+              "pinyin": "zhěnggè shàngwǔ",
+              "word_type": "danh từ",
+              "meaning": "suốt buổi sáng"
+            }
+          ],
+          "hanzi": "我整个上午都坐在电脑前完成工作。",
+          "pinyin": "Wǒ zhěnggè shàngwǔ dōu zuò zài diànnǎo qián wánchéng gōngzuò."
+        },
+        {
+          "vietnamese": "Một văn phòng hiệu quả cần có sự giao tiếp tốt và tinh thần làm việc nhóm.",
+          "vocabulary": [
+            {
+              "hanzi": "高效",
+              "pinyin": "gāoxiào",
+              "word_type": "tính từ",
+              "meaning": "hiệu quả"
+            },
+            {
+              "hanzi": "团队精神",
+              "pinyin": "tuánduì jīngshén",
+              "word_type": "cụm danh từ",
+              "meaning": "tinh thần làm việc nhóm"
+            }
+          ],
+          "hanzi": "一个高效的办公室需要良好的沟通和团队精神。",
+          "pinyin": "Yí ge gāoxiào de bàngōngshì xūyào liánghǎo de gōutōng hé tuánduì jīngshén."
+        }
+      ]
+    },
+    {
+      "lesson": 24,
+      "title": "第24课 · 会议与演讲 (Dì èrshísì kè · Huìyì yǔ Yǎnjiǎng) — HỌP HÀNH VÀ THUYẾT TRÌNH",
+      "sentences": [
+        {
+          "vietnamese": "Chúng tôi có một cuộc họp vào sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "会议",
+              "pinyin": "huìyì",
+              "word_type": "danh từ",
+              "meaning": "cuộc họp"
+            }
+          ],
+          "hanzi": "我们今天早上有一个会议。",
+          "pinyin": "Wǒmen jīntiān zǎoshang yǒu yí ge huìyì."
+        },
+        {
+          "vietnamese": "Tôi đang chuẩn bị bài thuyết trình.",
+          "vocabulary": [
+            {
+              "hanzi": "演讲",
+              "pinyin": "yǎnjiǎng",
+              "word_type": "danh từ",
+              "meaning": "bài thuyết trình"
+            }
+          ],
+          "hanzi": "我正在准备演讲。",
+          "pinyin": "Wǒ zhèngzài zhǔnbèi yǎnjiǎng."
+        },
+        {
+          "vietnamese": "Cuộc họp bắt đầu lúc 9 giờ.",
+          "vocabulary": [
+            {
+              "hanzi": "开始",
+              "pinyin": "kāishǐ",
+              "word_type": "động từ",
+              "meaning": "bắt đầu"
+            }
+          ],
+          "hanzi": "会议九点开始。",
+          "pinyin": "Huìyì jiǔ diǎn kāishǐ."
+        },
+        {
+          "vietnamese": "Tôi cần trình bày ý tưởng của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "展示",
+              "pinyin": "zhǎnshì",
+              "word_type": "động từ",
+              "meaning": "trình bày"
+            }
+          ],
+          "hanzi": "我需要展示我的想法。",
+          "pinyin": "Wǒ xūyào zhǎnshì wǒ de xiǎngfǎ."
+        },
+        {
+          "vietnamese": "Sếp của tôi đang chủ trì cuộc họp.",
+          "vocabulary": [
+            {
+              "hanzi": "主持",
+              "pinyin": "zhǔchí",
+              "word_type": "động từ",
+              "meaning": "chủ trì"
+            }
+          ],
+          "hanzi": "我的老板正在主持会议。",
+          "pinyin": "Wǒ de lǎobǎn zhèngzài zhǔchí huìyì."
+        },
+        {
+          "vietnamese": "Chúng tôi đang thảo luận về dự án mới.",
+          "vocabulary": [
+            {
+              "hanzi": "讨论",
+              "pinyin": "tǎolùn",
+              "word_type": "động từ",
+              "meaning": "thảo luận"
+            }
+          ],
+          "hanzi": "我们正在讨论新项目。",
+          "pinyin": "Wǒmen zhèngzài tǎolùn xīn xiàngmù."
+        },
+        {
+          "vietnamese": "Tôi đã chuẩn bị các slide.",
+          "vocabulary": [
+            {
+              "hanzi": "幻灯片",
+              "pinyin": "huàndēngpiàn",
+              "word_type": "danh từ",
+              "meaning": "slide"
+            }
+          ],
+          "hanzi": "我已经准备好幻灯片了。",
+          "pinyin": "Wǒ yǐjīng zhǔnbèi hǎo huàndēngpiàn le."
+        },
+        {
+          "vietnamese": "Mọi người đang lắng nghe bài thuyết trình.",
+          "vocabulary": [
+            {
+              "hanzi": "大家",
+              "pinyin": "dàjiā",
+              "word_type": "đại từ",
+              "meaning": "mọi người"
+            }
+          ],
+          "hanzi": "大家正在听演讲。",
+          "pinyin": "Dàjiā zhèngzài tīng yǎnjiǎng."
+        },
+        {
+          "vietnamese": "Tôi cần trả lời một vài câu hỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "回答问题",
+              "pinyin": "huídá wèntí",
+              "word_type": "cụm động từ",
+              "meaning": "trả lời câu hỏi"
+            }
+          ],
+          "hanzi": "我需要回答几个问题。",
+          "pinyin": "Wǒ xūyào huídá jǐ ge wèntí."
+        },
+        {
+          "vietnamese": "Cuộc họp diễn ra rất hiệu quả.",
+          "vocabulary": [
+            {
+              "hanzi": "有成效",
+              "pinyin": "yǒu chéngxiào",
+              "word_type": "tính từ",
+              "meaning": "hiệu quả"
+            }
+          ],
+          "hanzi": "这次会议很有成效。",
+          "pinyin": "Zhè cì huìyì hěn yǒu chéngxiào."
+        },
+        {
+          "vietnamese": "Tôi thường ghi chú trong các cuộc họp.",
+          "vocabulary": [
+            {
+              "hanzi": "做笔记",
+              "pinyin": "zuò bǐjì",
+              "word_type": "cụm động từ",
+              "meaning": "ghi chú"
+            }
+          ],
+          "hanzi": "我在会议中经常做笔记。",
+          "pinyin": "Wǒ zài huìyì zhōng jīngcháng zuò bǐjì."
+        },
+        {
+          "vietnamese": "Chúng tôi đã họp vào tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "开会",
+              "pinyin": "kāihuì",
+              "word_type": "động từ",
+              "meaning": "họp"
+            }
+          ],
+          "hanzi": "我们上星期开会了。",
+          "pinyin": "Wǒmen shàng xīngqī kāihuì le."
+        },
+        {
+          "vietnamese": "Tôi đang chia sẻ màn hình của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "屏幕",
+              "pinyin": "píngmù",
+              "word_type": "danh từ",
+              "meaning": "màn hình"
+            }
+          ],
+          "hanzi": "我正在分享我的屏幕。",
+          "pinyin": "Wǒ zhèngzài fēnxiǎng wǒ de píngmù."
+        },
+        {
+          "vietnamese": "Cô ấy đang trình bày kết quả nghiên cứu.",
+          "vocabulary": [
+            {
+              "hanzi": "研究结果",
+              "pinyin": "yánjiū jiéguǒ",
+              "word_type": "cụm danh từ",
+              "meaning": "kết quả nghiên cứu"
+            }
+          ],
+          "hanzi": "她正在展示她的研究结果。",
+          "pinyin": "Tā zhèngzài zhǎnshì tā de yánjiū jiéguǒ."
+        },
+        {
+          "vietnamese": "Khán giả đặt rất nhiều câu hỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "观众",
+              "pinyin": "guānzhòng",
+              "word_type": "danh từ",
+              "meaning": "khán giả"
+            }
+          ],
+          "hanzi": "观众提了很多问题。",
+          "pinyin": "Guānzhòng tíle hěn duō wèntí."
+        },
+        {
+          "vietnamese": "Chúng tôi có một cuộc họp quan trọng để thảo luận kế hoạch mới.",
+          "vocabulary": [
+            {
+              "hanzi": "计划",
+              "pinyin": "jìhuà",
+              "word_type": "danh từ",
+              "meaning": "kế hoạch"
+            }
+          ],
+          "hanzi": "我们有一个重要会议来讨论新计划。",
+          "pinyin": "Wǒmen yǒu yí ge zhòngyào huìyì lái tǎolùn xīn jìhuà."
+        },
+        {
+          "vietnamese": "Tôi hơi lo lắng trước khi bắt đầu thuyết trình.",
+          "vocabulary": [
+            {
+              "hanzi": "紧张",
+              "pinyin": "jǐnzhāng",
+              "word_type": "tính từ",
+              "meaning": "lo lắng"
+            }
+          ],
+          "hanzi": "演讲前我有点紧张。",
+          "pinyin": "Yǎnjiǎng qián wǒ yǒudiǎn jǐnzhāng."
+        },
+        {
+          "vietnamese": "Cô ấy trình bày rất tự tin nên mọi người đều chú ý lắng nghe.",
+          "vocabulary": [
+            {
+              "hanzi": "专心",
+              "pinyin": "zhuānxīn",
+              "word_type": "tính từ",
+              "meaning": "chú ý, tập trung"
+            }
+          ],
+          "hanzi": "她演讲得很自信，所以大家都很专心地听。",
+          "pinyin": "Tā yǎnjiǎng de hěn zìxìn, suǒyǐ dàjiā dōu hěn zhuānxīn de tīng."
+        },
+        {
+          "vietnamese": "Chúng tôi trao đổi ý kiến và đưa ra một số đề xuất.",
+          "vocabulary": [
+            {
+              "hanzi": "交换意见",
+              "pinyin": "jiāohuàn yìjiàn",
+              "word_type": "cụm động từ",
+              "meaning": "trao đổi ý kiến"
+            },
+            {
+              "hanzi": "建议",
+              "pinyin": "jiànyì",
+              "word_type": "danh từ",
+              "meaning": "đề xuất"
+            }
+          ],
+          "hanzi": "我们交换了意见并提出了一些建议。",
+          "pinyin": "Wǒmen jiāohuànle yìjiàn bìng tíchūle yìxiē jiànyì."
+        },
+        {
+          "vietnamese": "Bài thuyết trình ngắn nhưng rất thú vị.",
+          "vocabulary": [
+            {
+              "hanzi": "有趣",
+              "pinyin": "yǒuqù",
+              "word_type": "tính từ",
+              "meaning": "thú vị"
+            }
+          ],
+          "hanzi": "这次演讲很短，但很有趣。",
+          "pinyin": "Zhè cì yǎnjiǎng hěn duǎn, dàn hěn yǒuqù."
+        },
+        {
+          "vietnamese": "Tôi đã tham dự nhiều cuộc họp trong tháng này.",
+          "vocabulary": [
+            {
+              "hanzi": "这个月",
+              "pinyin": "zhège yuè",
+              "word_type": "danh từ",
+              "meaning": "tháng này"
+            }
+          ],
+          "hanzi": "这个月我参加了很多会议。",
+          "pinyin": "Zhège yuè wǒ cānjiāle hěn duō huìyì."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang chuẩn bị cho buổi thuyết trình ngày mai.",
+          "vocabulary": [
+            {
+              "hanzi": "明天",
+              "pinyin": "míngtiān",
+              "word_type": "danh từ",
+              "meaning": "ngày mai"
+            }
+          ],
+          "hanzi": "我现在正在为明天的演讲做准备。",
+          "pinyin": "Wǒ xiànzài zhèngzài wèi míngtiān de yǎnjiǎng zuò zhǔnbèi."
+        },
+        {
+          "vietnamese": "Chúng tôi đã thảo luận về vấn đề này từ đầu tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "周初",
+              "pinyin": "zhōu chū",
+              "word_type": "danh từ",
+              "meaning": "đầu tuần"
+            }
+          ],
+          "hanzi": "我们从这周初就开始讨论这个问题了。",
+          "pinyin": "Wǒmen cóng zhè zhōu chū jiù kāishǐ tǎolùn zhège wèntí le."
+        },
+        {
+          "vietnamese": "Tôi thích các cuộc họp ngắn gọn và tập trung vào giải pháp.",
+          "vocabulary": [
+            {
+              "hanzi": "简洁",
+              "pinyin": "jiǎnjié",
+              "word_type": "tính từ",
+              "meaning": "ngắn gọn"
+            },
+            {
+              "hanzi": "解决方案",
+              "pinyin": "jiějué fāng'àn",
+              "word_type": "cụm danh từ",
+              "meaning": "giải pháp"
+            }
+          ],
+          "hanzi": "我喜欢简洁并专注于解决方案的会议。",
+          "pinyin": "Wǒ xǐhuan jiǎnjié bìng zhuānzhù yú jiějué fāng'àn de huìyì."
+        },
+        {
+          "vietnamese": "Anh ấy đã thuyết trình trước hàng trăm người.",
+          "vocabulary": [
+            {
+              "hanzi": "数百人",
+              "pinyin": "shùbǎi rén",
+              "word_type": "danh từ",
+              "meaning": "hàng trăm người"
+            }
+          ],
+          "hanzi": "他曾在数百人面前演讲。",
+          "pinyin": "Tā céng zài shùbǎi rén miànqián yǎnjiǎng."
+        },
+        {
+          "vietnamese": "Tôi đang luyện tập phần trình bày của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "练习",
+              "pinyin": "liànxí",
+              "word_type": "động từ",
+              "meaning": "luyện tập"
+            }
+          ],
+          "hanzi": "我正在练习我的展示部分。",
+          "pinyin": "Wǒ zhèngzài liànxí wǒ de zhǎnshì bùfen."
+        },
+        {
+          "vietnamese": "Chúng tôi đã làm việc với bài thuyết trình này suốt nhiều ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "好几天",
+              "pinyin": "hǎo jǐ tiān",
+              "word_type": "cụm từ",
+              "meaning": "nhiều ngày"
+            }
+          ],
+          "hanzi": "我们已经为这次演讲准备了好几天了。",
+          "pinyin": "Wǒmen yǐjīng wèi zhè cì yǎnjiǎng zhǔnbèile hǎo jǐ tiān le."
+        },
+        {
+          "vietnamese": "Mặc dù rất bận nhưng mọi người vẫn tham gia cuộc họp đầy đủ.",
+          "vocabulary": [
+            {
+              "hanzi": "忙",
+              "pinyin": "máng",
+              "word_type": "tính từ",
+              "meaning": "bận"
+            }
+          ],
+          "hanzi": "虽然大家都很忙，但还是都参加了会议。",
+          "pinyin": "Suīrán dàjiā dōu hěn máng, dàn háishi dōu cānjiāle huìyì."
+        },
+        {
+          "vietnamese": "Tôi đã nói chuyện trước khán giả trong gần một giờ.",
+          "vocabulary": [
+            {
+              "hanzi": "将近",
+              "pinyin": "jiāngjìn",
+              "word_type": "phó từ",
+              "meaning": "gần, xấp xỉ"
+            }
+          ],
+          "hanzi": "我在观众面前讲了将近一个小时。",
+          "pinyin": "Wǒ zài guānzhòng miànqián jiǎngle jiāngjìn yí ge xiǎoshí."
+        },
+        {
+          "vietnamese": "Một bài thuyết trình hiệu quả cần rõ ràng, súc tích và thu hút người nghe.",
+          "vocabulary": [
+            {
+              "hanzi": "清晰",
+              "pinyin": "qīngxī",
+              "word_type": "tính từ",
+              "meaning": "rõ ràng"
+            },
+            {
+              "hanzi": "吸引听众",
+              "pinyin": "xīyǐn tīngzhòng",
+              "word_type": "cụm động từ",
+              "meaning": "thu hút người nghe"
+            }
+          ],
+          "hanzi": "一场有效的演讲需要清晰、简洁、并且能够吸引听众。",
+          "pinyin": "Yì chǎng yǒuxiào de yǎnjiǎng xūyào qīngxī, jngzhòng,bìngqiě nénggòu xīyǐn tīngzhòng ."
+        }
+      ]
+    },
+    {
+      "lesson": 25,
+      "title": "第25课 · 求职面试 (Dì èrshíwǔ kè · Qiúzhí Miànshì) — PHỎNG VẤN XIN VIỆC",
+      "sentences": [
+        {
+          "vietnamese": "Tôi có một buổi phỏng vấn vào ngày mai.",
+          "vocabulary": [
+            {
+              "hanzi": "面试",
+              "pinyin": "miànshì",
+              "word_type": "danh từ",
+              "meaning": "buổi phỏng vấn"
+            }
+          ],
+          "hanzi": "我明天有一个面试。",
+          "pinyin": "Wǒ míngtiān yǒu yí ge miànshì."
+        },
+        {
+          "vietnamese": "Tôi đang chuẩn bị cho buổi phỏng vấn.",
+          "vocabulary": [
+            {
+              "hanzi": "准备",
+              "pinyin": "zhǔnbèi",
+              "word_type": "động từ",
+              "meaning": "chuẩn bị"
+            }
+          ],
+          "hanzi": "我正在为面试做准备。",
+          "pinyin": "Wǒ zhèngzài wèi miànshì zuò zhǔnbèi."
+        },
+        {
+          "vietnamese": "Tôi muốn ứng tuyển vào vị trí này.",
+          "vocabulary": [
+            {
+              "hanzi": "职位",
+              "pinyin": "zhíwèi",
+              "word_type": "danh từ",
+              "meaning": "vị trí"
+            },
+            {
+              "hanzi": "申请",
+              "pinyin": "shēnqǐng",
+              "word_type": "động từ",
+              "meaning": "ứng tuyển"
+            }
+          ],
+          "hanzi": "我想申请这个职位。",
+          "pinyin": "Wǒ xiǎng shēnqǐng zhège zhíwèi."
+        },
+        {
+          "vietnamese": "Tôi có ba năm kinh nghiệm làm việc.",
+          "vocabulary": [
+            {
+              "hanzi": "工作经验",
+              "pinyin": "gōngzuò jīngyàn",
+              "word_type": "danh từ",
+              "meaning": "kinh nghiệm làm việc"
+            }
+          ],
+          "hanzi": "我有三年的工作经验。",
+          "pinyin": "Wǒ yǒu sān nián de gōngzuò jīngyàn."
+        },
+        {
+          "vietnamese": "Tôi đã mang theo sơ yếu lý lịch của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "简历",
+              "pinyin": "jiǎnlì",
+              "word_type": "danh từ",
+              "meaning": "sơ yếu lý lịch"
+            }
+          ],
+          "hanzi": "我带了我的简历。",
+          "pinyin": "Wǒ dàile wǒ de jiǎnlì."
+        },
+        {
+          "vietnamese": "Người phỏng vấn rất thân thiện.",
+          "vocabulary": [
+            {
+              "hanzi": "面试官",
+              "pinyin": "miànshìguān",
+              "word_type": "danh từ",
+              "meaning": "người phỏng vấn"
+            }
+          ],
+          "hanzi": "面试官很友好。",
+          "pinyin": "Miànshìguān hěn yǒuhǎo."
+        },
+        {
+          "vietnamese": "Tôi đang trả lời các câu hỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "回答",
+              "pinyin": "huídá",
+              "word_type": "động từ",
+              "meaning": "trả lời"
+            }
+          ],
+          "hanzi": "我正在回答问题。",
+          "pinyin": "Wǒ zhèngzài huídá wèntí."
+        },
+        {
+          "vietnamese": "Công ty này có danh tiếng tốt.",
+          "vocabulary": [
+            {
+              "hanzi": "声誉",
+              "pinyin": "shēngyù",
+              "word_type": "danh từ",
+              "meaning": "danh tiếng"
+            }
+          ],
+          "hanzi": "这家公司有很好的声誉。",
+          "pinyin": "Zhè jiā gōngsī yǒu hěn hǎo de shēngyù."
+        },
+        {
+          "vietnamese": "Tôi muốn làm việc cho công ty này.",
+          "vocabulary": [
+            {
+              "hanzi": "公司",
+              "pinyin": "gōngsī",
+              "word_type": "danh từ",
+              "meaning": "công ty"
+            }
+          ],
+          "hanzi": "我想为这家公司工作。",
+          "pinyin": "Wǒ xiǎng wèi zhè jiā gōngsī gōngzuò."
+        },
+        {
+          "vietnamese": "Cuộc phỏng vấn kéo dài khoảng ba mươi phút.",
+          "vocabulary": [
+            {
+              "hanzi": "持续",
+              "pinyin": "chíxù",
+              "word_type": "động từ",
+              "meaning": "kéo dài"
+            }
+          ],
+          "hanzi": "面试大概持续三十分钟。",
+          "pinyin": "Miànshì dàgài chíxù sānshí fēnzhōng."
+        },
+        {
+          "vietnamese": "Tôi cảm thấy hơi lo lắng.",
+          "vocabulary": [
+            {
+              "hanzi": "紧张",
+              "pinyin": "jǐnzhāng",
+              "word_type": "tính từ",
+              "meaning": "lo lắng"
+            }
+          ],
+          "hanzi": "我感觉有点紧张。",
+          "pinyin": "Wǒ gǎnjué yǒudiǎn jǐnzhāng."
+        },
+        {
+          "vietnamese": "Tôi đã tham gia một buổi phỏng vấn tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "上星期",
+              "pinyin": "shàng xīngqī",
+              "word_type": "danh từ",
+              "meaning": "tuần trước"
+            }
+          ],
+          "hanzi": "我上星期参加了一次面试。",
+          "pinyin": "Wǒ shàng xīngqī cānjiāle yí cì miànshì."
+        },
+        {
+          "vietnamese": "Tôi đang giới thiệu bản thân.",
+          "vocabulary": [
+            {
+              "hanzi": "自我介绍",
+              "pinyin": "zìwǒ jièshào",
+              "word_type": "cụm động từ",
+              "meaning": "giới thiệu bản thân"
+            }
+          ],
+          "hanzi": "我正在自我介绍。",
+          "pinyin": "Wǒ zhèngzài zìwǒ jièshào."
+        },
+        {
+          "vietnamese": "Người phỏng vấn hỏi về kinh nghiệm của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "经验",
+              "pinyin": "jīngyàn",
+              "word_type": "danh từ",
+              "meaning": "kinh nghiệm"
+            }
+          ],
+          "hanzi": "面试官问了我的工作经验。",
+          "pinyin": "Miànshìguān wènle wǒ de gōngzuò jīngyàn."
+        },
+        {
+          "vietnamese": "Tôi tự tin vào kỹ năng của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "有信心",
+              "pinyin": "yǒu xìnxīn",
+              "word_type": "tính từ",
+              "meaning": "tự tin"
+            },
+            {
+              "hanzi": "技能",
+              "pinyin": "jìnéng",
+              "word_type": "danh từ",
+              "meaning": "kỹ năng"
+            }
+          ],
+          "hanzi": "我对自己的技能很有信心。",
+          "pinyin": "Wǒ duì zìjǐ de jìnéng hěn yǒu xìnxīn."
+        },
+        {
+          "vietnamese": "Tôi muốn ứng tuyển vị trí này vì nó phù hợp với kỹ năng của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "符合",
+              "pinyin": "fúhé",
+              "word_type": "động từ",
+              "meaning": "phù hợp"
+            }
+          ],
+          "hanzi": "我想申请这个职位，因为它符合我的技能。",
+          "pinyin": "Wǒ xiǎng shēnqǐng zhège zhíwèi, yīnwèi tā fúhé wǒ de jìnéng."
+        },
+        {
+          "vietnamese": "Tôi đã nghiên cứu về công ty trước buổi phỏng vấn.",
+          "vocabulary": [
+            {
+              "hanzi": "研究",
+              "pinyin": "yánjiū",
+              "word_type": "động từ",
+              "meaning": "nghiên cứu, tìm hiểu"
+            }
+          ],
+          "hanzi": "面试前我研究了这家公司。",
+          "pinyin": "Miànshì qián wǒ yánjiūle zhè jiā gōngsī."
+        },
+        {
+          "vietnamese": "Người phỏng vấn hỏi tôi tại sao tôi muốn làm việc ở đây.",
+          "vocabulary": [
+            {
+              "hanzi": "为什么",
+              "pinyin": "wèishénme",
+              "word_type": "đại từ",
+              "meaning": "tại sao"
+            }
+          ],
+          "hanzi": "面试官问我为什么想在这里工作。",
+          "pinyin": "Miànshìguān wèn wǒ wèishénme xiǎng zài zhèlǐ gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi trả lời các câu hỏi một cách tự tin và rõ ràng.",
+          "vocabulary": [
+            {
+              "hanzi": "清楚地",
+              "pinyin": "qīngchu de",
+              "word_type": "phó từ",
+              "meaning": "rõ ràng"
+            }
+          ],
+          "hanzi": "我自信而清楚地回答了问题。",
+          "pinyin": "Wǒ zìxìn ér qīngchu de huídále wèntí."
+        },
+        {
+          "vietnamese": "Cuộc phỏng vấn diễn ra tốt hơn tôi mong đợi.",
+          "vocabulary": [
+            {
+              "hanzi": "预期",
+              "pinyin": "yùqī",
+              "word_type": "động từ",
+              "meaning": "mong đợi"
+            },
+            {
+              "hanzi": "顺利",
+              "pinyin": "shùnlì",
+              "word_type": "tính từ",
+              "meaning": "thuận lợi, tốt"
+            }
+          ],
+          "hanzi": "面试比我预期的进行得更顺利。",
+          "pinyin": "Miànshì bǐ wǒ yùqī de jìnxíng de gèng shùnlì."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc trong lĩnh vực này được năm năm.",
+          "vocabulary": [
+            {
+              "hanzi": "领域",
+              "pinyin": "lǐngyù",
+              "word_type": "danh từ",
+              "meaning": "lĩnh vực"
+            }
+          ],
+          "hanzi": "我在这个领域工作了五年了。",
+          "pinyin": "Wǒ zài zhège lǐngyù gōngzuòle wǔ nián le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang chuẩn bị cho vòng phỏng vấn cuối cùng.",
+          "vocabulary": [
+            {
+              "hanzi": "最后一轮",
+              "pinyin": "zuìhòu yì lún",
+              "word_type": "cụm danh từ",
+              "meaning": "vòng cuối cùng"
+            }
+          ],
+          "hanzi": "我现在正在为最后一轮面试做准备。",
+          "pinyin": "Wǒ xiànzài zhèngzài wèi zuìhòu yì lún miànshì zuò zhǔnbèi."
+        },
+        {
+          "vietnamese": "Tôi đã gửi đơn ứng tuyển từ tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "提交申请",
+              "pinyin": "tíjiāo shēnqǐng",
+              "word_type": "cụm động từ",
+              "meaning": "gửi đơn ứng tuyển"
+            }
+          ],
+          "hanzi": "我从上星期就提交申请了。",
+          "pinyin": "Wǒ cóng shàng xīngqī jiù tíjiāo shēnqǐng le."
+        },
+        {
+          "vietnamese": "Tôi thích công ty này vì có nhiều cơ hội phát triển nghề nghiệp.",
+          "vocabulary": [
+            {
+              "hanzi": "职业发展",
+              "pinyin": "zhíyè fāzhǎn",
+              "word_type": "cụm danh từ",
+              "meaning": "phát triển nghề nghiệp"
+            }
+          ],
+          "hanzi": "我喜欢这家公司，因为它提供很多职业发展机会。",
+          "pinyin": "Wǒ xǐhuan zhè jiā gōngsī, yīnwèi tā tígōng hěn duō zhíyè fāzhǎn jīhuì."
+        },
+        {
+          "vietnamese": "Người phỏng vấn đã hỏi tôi về mục tiêu nghề nghiệp của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "职业目标",
+              "pinyin": "zhíyè mùbiāo",
+              "word_type": "cụm danh từ",
+              "meaning": "mục tiêu nghề nghiệp"
+            }
+          ],
+          "hanzi": "面试官问了我的职业发展目标。",
+          "pinyin": "Miànshìguān wènle wǒ de zhíyè fāzhǎn mùbiāo."
+        },
+        {
+          "vietnamese": "Tôi đang luyện tập cách trả lời các câu hỏi phỏng vấn phổ biến.",
+          "vocabulary": [
+            {
+              "hanzi": "常见",
+              "pinyin": "chángjiàn",
+              "word_type": "tính từ",
+              "meaning": "phổ biến, thường gặp"
+            }
+          ],
+          "hanzi": "我正在练习如何回答常见的面试问题。",
+          "pinyin": "Wǒ zhèngzài liànxí rúhé huídá chángjiàn de miànshì wèntí."
+        },
+        {
+          "vietnamese": "Tôi đã tham gia nhiều buổi phỏng vấn trong vài tháng qua.",
+          "vocabulary": [
+            {
+              "hanzi": "过去几个月",
+              "pinyin": "guòqù jǐ ge yuè",
+              "word_type": "cụm từ",
+              "meaning": "vài tháng qua"
+            }
+          ],
+          "hanzi": "过去几个月我参加了很多次面试。",
+          "pinyin": "Guòqù jǐ ge yuè wǒ cānjiāle hěn duō cì miànshì."
+        },
+        {
+          "vietnamese": "Mặc dù tôi hơi căng thẳng nhưng tôi vẫn giữ bình tĩnh.",
+          "vocabulary": [
+            {
+              "hanzi": "保持冷静",
+              "pinyin": "bǎochí lěngjìng",
+              "word_type": "cụm động từ",
+              "meaning": "giữ bình tĩnh"
+            }
+          ],
+          "hanzi": "虽然我有点紧张，但我还是保持冷静。",
+          "pinyin": "Suīrán wǒ yǒudiǎn jǐnzhāng, dàn wǒ háishi bǎochí lěngjìng."
+        },
+        {
+          "vietnamese": "Tôi đã chờ phản hồi từ công ty trong hơn hai tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "回复",
+              "pinyin": "huífù",
+              "word_type": "danh từ/động từ",
+              "meaning": "phản hồi"
+            }
+          ],
+          "hanzi": "我已经等公司的回复超过两个星期了。",
+          "pinyin": "Wǒ yǐjīng děng gōngsī de huífù chāoguò liǎng ge xīngqī le."
+        },
+        {
+          "vietnamese": "Một buổi phỏng vấn thành công đòi hỏi sự chuẩn bị kỹ lưỡng và giao tiếp hiệu quả.",
+          "vocabulary": [
+            {
+              "hanzi": "充分",
+              "pinyin": "chōngfèn",
+              "word_type": "tính từ",
+              "meaning": "kỹ lưỡng, đầy đủ"
+            },
+            {
+              "hanzi": "沟通",
+              "pinyin": "gōutōng",
+              "word_type": "danh từ",
+              "meaning": "giao tiếp"
+            }
+          ],
+          "hanzi": "一次成功的面试需要充分的准备和有效的沟通。",
+          "pinyin": "Yí cì chénggōng de miànshì xūyào chōngfèn de zhǔnbèi hé yǒuxiào de gōutōng."
+        }
+      ]
+    },
+    {
+      "lesson": 26,
+      "title": "第26课 · 出差 (Dì èrshíliù kè · Chūchāi) — CÔNG TÁC",
+      "sentences": [
+        {
+          "vietnamese": "Tôi sẽ đi công tác vào tuần tới.",
+          "vocabulary": [
+            {
+              "hanzi": "出差",
+              "pinyin": "chūchāi",
+              "word_type": "động từ",
+              "meaning": "đi công tác"
+            }
+          ],
+          "hanzi": "我下周要去出差。",
+          "pinyin": "Wǒ xià zhōu yào qù chūchāi."
+        },
+        {
+          "vietnamese": "Chuyến bay của tôi khởi hành lúc 8 giờ sáng.",
+          "vocabulary": [
+            {
+              "hanzi": "起飞",
+              "pinyin": "qǐfēi",
+              "word_type": "động từ",
+              "meaning": "khởi hành, cất cánh"
+            }
+          ],
+          "hanzi": "我的航班早上八点起飞。",
+          "pinyin": "Wǒ de hángbān zǎoshang bā diǎn qǐfēi."
+        },
+        {
+          "vietnamese": "Tôi cần đặt khách sạn.",
+          "vocabulary": [
+            {
+              "hanzi": "订酒店",
+              "pinyin": "dìng jiǔdiàn",
+              "word_type": "cụm động từ",
+              "meaning": "đặt khách sạn"
+            }
+          ],
+          "hanzi": "我需要订酒店。",
+          "pinyin": "Wǒ xūyào dìng jiǔdiàn."
+        },
+        {
+          "vietnamese": "Tôi đang chuẩn bị hành lý.",
+          "vocabulary": [
+            {
+              "hanzi": "行李",
+              "pinyin": "xíngli",
+              "word_type": "danh từ",
+              "meaning": "hành lý"
+            }
+          ],
+          "hanzi": "我正在收拾行李。",
+          "pinyin": "Wǒ zhèngzài shōushi xíngli."
+        },
+        {
+          "vietnamese": "Chúng tôi có một cuộc họp với khách hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "客户",
+              "pinyin": "kèhù",
+              "word_type": "danh từ",
+              "meaning": "khách hàng"
+            }
+          ],
+          "hanzi": "我们和客户有一个会议。",
+          "pinyin": "Wǒmen hé kèhù yǒu yí ge huìyì."
+        },
+        {
+          "vietnamese": "Tôi sẽ ở đó trong ba ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "待",
+              "pinyin": "dāi",
+              "word_type": "động từ",
+              "meaning": "ở lại"
+            }
+          ],
+          "hanzi": "我会在那里待三天。",
+          "pinyin": "Wǒ huì zài nàlǐ dāi sān tiān."
+        },
+        {
+          "vietnamese": "Chuyến công tác này rất quan trọng.",
+          "vocabulary": [
+            {
+              "hanzi": "重要",
+              "pinyin": "zhòngyào",
+              "word_type": "tính từ",
+              "meaning": "quan trọng"
+            }
+          ],
+          "hanzi": "这次出差很重要。",
+          "pinyin": "Zhè cì chūchāi hěn zhòngyào."
+        },
+        {
+          "vietnamese": "Tôi đang chờ lên máy bay.",
+          "vocabulary": [
+            {
+              "hanzi": "登机",
+              "pinyin": "dēngjī",
+              "word_type": "động từ",
+              "meaning": "lên máy bay"
+            }
+          ],
+          "hanzi": "我正在等登机。",
+          "pinyin": "Wǒ zhèngzài děng dēngjī."
+        },
+        {
+          "vietnamese": "Công ty sẽ chi trả chi phí đi lại.",
+          "vocabulary": [
+            {
+              "hanzi": "报销",
+              "pinyin": "bàoxiāo",
+              "word_type": "động từ",
+              "meaning": "chi trả (hoàn tiền)"
+            },
+            {
+              "hanzi": "差旅费",
+              "pinyin": "chāilǚfèi",
+              "word_type": "danh từ",
+              "meaning": "chi phí đi lại (công tác)"
+            }
+          ],
+          "hanzi": "公司会报销差旅费。",
+          "pinyin": "Gōngsī huì bàoxiāo chāilǚfèi."
+        },
+        {
+          "vietnamese": "Tôi thường đi công tác vài lần mỗi năm.",
+          "vocabulary": [
+            {
+              "hanzi": "每年",
+              "pinyin": "měinián",
+              "word_type": "danh từ",
+              "meaning": "mỗi năm"
+            }
+          ],
+          "hanzi": "我每年出差好几次。",
+          "pinyin": "Wǒ měinián chūchāi hǎo jǐ cì."
+        },
+        {
+          "vietnamese": "Tôi đã nhận được lịch trình chuyến đi.",
+          "vocabulary": [
+            {
+              "hanzi": "行程安排",
+              "pinyin": "xíngchéng ānpái",
+              "word_type": "danh từ",
+              "meaning": "lịch trình"
+            }
+          ],
+          "hanzi": "我收到了行程安排。",
+          "pinyin": "Wǒ shōudàole xíngchéng ānpái."
+        },
+        {
+          "vietnamese": "Tôi đã đi công tác ở Hà Nội tháng trước.",
+          "vocabulary": [
+            {
+              "hanzi": "上个月",
+              "pinyin": "shàng ge yuè",
+              "word_type": "danh từ",
+              "meaning": "tháng trước"
+            }
+          ],
+          "hanzi": "我上个月去河内出差。",
+          "pinyin": "Wǒ shàng ge yuè qù Hénèi chūchāi ."
+        },
+        {
+          "vietnamese": "Tôi đang làm thủ tục nhận phòng khách sạn.",
+          "vocabulary": [
+            {
+              "hanzi": "办理入住手续",
+              "pinyin": "bànlǐ rùzhù shǒuxù",
+              "word_type": "cụm động từ",
+              "meaning": "làm thủ tục nhận phòng"
+            }
+          ],
+          "hanzi": "我正在办理酒店入住手续。",
+          "pinyin": "Wǒ zhèngzài bànlǐ jiǔdiàn rùzhù shǒuxù."
+        },
+        {
+          "vietnamese": "Chúng tôi sẽ gặp đối tác vào chiều nay.",
+          "vocabulary": [
+            {
+              "hanzi": "合作伙伴",
+              "pinyin": "hézuò huǒbàn",
+              "word_type": "cụm danh từ",
+              "meaning": "đối tác"
+            }
+          ],
+          "hanzi": "我们今天下午会见合作伙伴。",
+          "pinyin": "Wǒmen jīntiān xiàwǔ huì jiàn hézuò huǒbàn."
+        },
+        {
+          "vietnamese": "Chuyến bay bị hoãn một giờ.",
+          "vocabulary": [
+            {
+              "hanzi": "延误",
+              "pinyin": "yánwù",
+              "word_type": "động từ",
+              "meaning": "bị hoãn, trễ"
+            }
+          ],
+          "hanzi": "航班延误了一个小时。",
+          "pinyin": "Hángbān yánwùle yí ge xiǎoshí."
+        },
+        {
+          "vietnamese": "Tôi đi công tác để gặp khách hàng và thảo luận dự án mới.",
+          "vocabulary": [
+            {
+              "hanzi": "讨论",
+              "pinyin": "tǎolùn",
+              "word_type": "động từ",
+              "meaning": "thảo luận"
+            }
+          ],
+          "hanzi": "我出差是为了见客户并讨论新项目。",
+          "pinyin": "Wǒ chūchāi shì wèile jiàn kèhù bìng tǎolùn xīn xiàngmù."
+        },
+        {
+          "vietnamese": "Tôi luôn kiểm tra lịch trình trước khi khởi hành.",
+          "vocabulary": [
+            {
+              "hanzi": "出发",
+              "pinyin": "chūfā",
+              "word_type": "động từ",
+              "meaning": "khởi hành"
+            }
+          ],
+          "hanzi": "我出发前总是检查行程安排。",
+          "pinyin": "Wǒ chūfā qián zǒngshì jiǎnchá xíngchéng ānpái."
+        },
+        {
+          "vietnamese": "Khách sạn gần văn phòng nên rất thuận tiện.",
+          "vocabulary": [
+            {
+              "hanzi": "方便",
+              "pinyin": "fāngbiàn",
+              "word_type": "tính từ",
+              "meaning": "thuận tiện"
+            }
+          ],
+          "hanzi": "酒店离办公室很近，很方便。",
+          "pinyin": "Jiǔdiàn lí bàngōngshì hěn jìn, hěn fāngbiàn."
+        },
+        {
+          "vietnamese": "Chúng tôi tham dự một hội nghị và gặp nhiều chuyên gia trong ngành.",
+          "vocabulary": [
+            {
+              "hanzi": "行业专家",
+              "pinyin": "hángyè zhuānjiā",
+              "word_type": "danh từ",
+              "meaning": "chuyên gia trong ngành"
+            }
+          ],
+          "hanzi": "我们参加了一个会议，见到了很多行业专家。",
+          "pinyin": "Wǒmen cānjiāle yí ge huìyì, jiàndàole hěn duō hángyè zhuānjiā."
+        },
+        {
+          "vietnamese": "Chuyến công tác ngắn nhưng rất hiệu quả.",
+          "vocabulary": [],
+          "hanzi": "这次出差很短，但效率很高。",
+          "pinyin": "Zhè cì chūchāi hěn duǎn, dàn xiàolǜ hěn gāo."
+        },
+        {
+          "vietnamese": "Tôi đã đi công tác thường xuyên trong ba năm qua.",
+          "vocabulary": [
+            {
+              "hanzi": "过去三年",
+              "pinyin": "guòqù sān nián",
+              "word_type": "cụm từ",
+              "meaning": "ba năm qua"
+            }
+          ],
+          "hanzi": "过去三年,我经常出差。",
+          "pinyin": "Guòqù sān nián wǒ jīngcháng chūchāi."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang làm việc từ khách sạn.",
+          "vocabulary": [
+            {
+              "hanzi": "办公",
+              "pinyin": "bàngōng",
+              "word_type": "động từ",
+              "meaning": "làm việc (văn phòng)"
+            }
+          ],
+          "hanzi": "我现在正在酒店办公。",
+          "pinyin": "Wǒ xiànzài zhèngzài jiǔdiàn bàngōng."
+        },
+        {
+          "vietnamese": "Chúng tôi đã gặp khách hàng từ sáng đến chiều.",
+          "vocabulary": [
+            {
+              "hanzi": "从早到晚",
+              "pinyin": "cóng zǎo dào wǎn",
+              "word_type": "cụm từ",
+              "meaning": "từ sáng đến chiều/tối"
+            }
+          ],
+          "hanzi": "我们从早到晚都在见客户。",
+          "pinyin": "Wǒmen cóng zǎo dào wǎn dōu zài jiàn kèhù."
+        },
+        {
+          "vietnamese": "Tôi thích những chuyến công tác vì chúng giúp tôi mở rộng mối quan hệ.",
+          "vocabulary": [
+            {
+              "hanzi": "拓展人脉",
+              "pinyin": "tuòzhǎn rénmài",
+              "word_type": "cụm động từ",
+              "meaning": "mở rộng mối quan hệ"
+            }
+          ],
+          "hanzi": "我喜欢出差，因为它能帮我拓展人脉。",
+          "pinyin": "Wǒ xǐhuan chūchāi, yīnwèi tā néng bāng wǒ tuòzhǎn rénmài."
+        },
+        {
+          "vietnamese": "Công ty đã cử tôi đến tham dự một hội thảo quốc tế.",
+          "vocabulary": [
+            {
+              "hanzi": "派",
+              "pinyin": "pài",
+              "word_type": "động từ",
+              "meaning": "cử (đi)"
+            },
+            {
+              "hanzi": "国际研讨会",
+              "pinyin": "guójì yántǎohuì",
+              "word_type": "danh từ",
+              "meaning": "hội thảo quốc tế"
+            }
+          ],
+          "hanzi": "公司派我去参加一个国际研讨会。",
+          "pinyin": "Gōngsī pài wǒ qù cānjiā yí ge guójì yántǎohuì."
+        },
+        {
+          "vietnamese": "Tôi đang chuẩn bị bài thuyết trình cho cuộc họp ngày mai.",
+          "vocabulary": [
+            {
+              "hanzi": "演讲",
+              "pinyin": "yǎnjiǎng",
+              "word_type": "danh từ",
+              "meaning": "bài thuyết trình"
+            }
+          ],
+          "hanzi": "我正在为明天的会议准备演讲。",
+          "pinyin": "Wǒ zhèngzài wèi míngtiān de huìyì zhǔnbèi yǎnjiǎng."
+        },
+        {
+          "vietnamese": "Tôi đã phải di chuyển liên tục trong suốt chuyến công tác.",
+          "vocabulary": [
+            {
+              "hanzi": "奔波",
+              "pinyin": "bēnbō",
+              "word_type": "động từ",
+              "meaning": "di chuyển liên tục, bôn ba"
+            }
+          ],
+          "hanzi": "整个出差期间, 我一直在奔波。",
+          "pinyin": "Zhěnggè chūchāi qījiān wǒ yìzhí zài bēnbō."
+        },
+        {
+          "vietnamese": "Mặc dù lịch trình rất bận nhưng chuyến đi vẫn thành công.",
+          "vocabulary": [
+            {
+              "hanzi": "成功",
+              "pinyin": "chénggōng",
+              "word_type": "tính từ",
+              "meaning": "thành công"
+            }
+          ],
+          "hanzi": "虽然行程很忙，但这次出差很成功。",
+          "pinyin": "Suīrán xíngchéng hěn máng, dàn zhè cì chūchāi hěn chénggōng."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc và di chuyển gần như cả tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "几乎",
+              "pinyin": "jīhū",
+              "word_type": "phó từ",
+              "meaning": "gần như"
+            }
+          ],
+          "hanzi": "我几乎整个星期都在工作和奔波。",
+          "pinyin": "Wǒ jīhū zhěnggè xīngqī dōu zài gōngzuò hé bēnbō."
+        },
+        {
+          "vietnamese": "Một chuyến công tác thành công đòi hỏi sự chuẩn bị tốt và kỹ năng quản lý thời gian hiệu quả.",
+          "vocabulary": [
+            {
+              "hanzi": "时间管理能力",
+              "pinyin": "shíjiān guǎnlǐ nénglì",
+              "word_type": "danh từ",
+              "meaning": "kỹ năng quản lý thời gian"
+            }
+          ],
+          "hanzi": "一次成功的出差需要良好的准备和有效的时间管理能力。",
+          "pinyin": "Yí cì chénggōng de chūchāi xūyào liánghǎo de zhǔnbèi hé yǒuxiào de shíjiān guǎnlǐ nénglì."
+        }
+      ]
+    },
+    {
+      "lesson": 27,
+      "title": "第27课 · 科技与设备 (Dì èrshíqī kè · Kējì yǔ Shèbèi) — CÔNG NGHỆ VÀ THIẾT BỊ",
+      "sentences": [
+        {
+          "vietnamese": "Tôi sử dụng điện thoại thông minh mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "智能手机",
+              "pinyin": "zhìnéng shǒujī",
+              "word_type": "danh từ",
+              "meaning": "điện thoại thông minh"
+            }
+          ],
+          "hanzi": "我每天使用智能手机。",
+          "pinyin": "Wǒ měitiān shǐyòng zhìnéng shǒujī."
+        },
+        {
+          "vietnamese": "Tôi vừa mua một chiếc máy tính xách tay mới.",
+          "vocabulary": [
+            {
+              "hanzi": "笔记本电脑",
+              "pinyin": "bǐjìběn diànnǎo",
+              "word_type": "danh từ",
+              "meaning": "máy tính xách tay"
+            }
+          ],
+          "hanzi": "我刚买了一台新笔记本电脑。",
+          "pinyin": "Wǒ gāng mǎile yì tái xīn bǐjìběn diànnǎo."
+        },
+        {
+          "vietnamese": "Tôi đang sạc điện thoại.",
+          "vocabulary": [
+            {
+              "hanzi": "充电",
+              "pinyin": "chōngdiàn",
+              "word_type": "động từ",
+              "meaning": "sạc (pin)"
+            }
+          ],
+          "hanzi": "我正在给手机充电。",
+          "pinyin": "Wǒ zhèngzài gěi shǒujī chōngdiàn."
+        },
+        {
+          "vietnamese": "Máy tính của tôi chạy rất nhanh.",
+          "vocabulary": [
+            {
+              "hanzi": "运行",
+              "pinyin": "yùnxíng",
+              "word_type": "động từ",
+              "meaning": "chạy (máy)"
+            }
+          ],
+          "hanzi": "我的电脑运行得很快。",
+          "pinyin": "Wǒ de diànnǎo yùnxíng de hěn kuài."
+        },
+        {
+          "vietnamese": "Tôi cần kết nối với Wi-Fi.",
+          "vocabulary": [
+            {
+              "hanzi": "连接",
+              "pinyin": "liánjiē",
+              "word_type": "động từ",
+              "meaning": "kết nối"
+            }
+          ],
+          "hanzi": "我需要连接Wi-Fi。",
+          "pinyin": "Wǒ xūyào liánjiē Wi-Fi."
+        },
+        {
+          "vietnamese": "Tôi thường xem video trên máy tính bảng.",
+          "vocabulary": [
+            {
+              "hanzi": "平板电脑",
+              "pinyin": "píngbǎn diànnǎo",
+              "word_type": "danh từ",
+              "meaning": "máy tính bảng"
+            }
+          ],
+          "hanzi": "我经常用平板电脑看视频。",
+          "pinyin": "Wǒ jīngcháng yòng píngbǎn diànnǎo kàn shìpín."
+        },
+        {
+          "vietnamese": "Tai nghe này có chất lượng âm thanh tốt.",
+          "vocabulary": [
+            {
+              "hanzi": "耳机",
+              "pinyin": "ěrjī",
+              "word_type": "danh từ",
+              "meaning": "tai nghe"
+            },
+            {
+              "hanzi": "音质",
+              "pinyin": "yīnzhì",
+              "word_type": "danh từ",
+              "meaning": "chất lượng âm thanh"
+            }
+          ],
+          "hanzi": "这副耳机音质很好。",
+          "pinyin": "Zhè fù ěrjī yīnzhì hěn hǎo."
+        },
+        {
+          "vietnamese": "Tôi đang tải xuống một tệp tin.",
+          "vocabulary": [
+            {
+              "hanzi": "下载",
+              "pinyin": "xiàzài",
+              "word_type": "động từ",
+              "meaning": "tải xuống"
+            }
+          ],
+          "hanzi": "我正在下载一个文件。",
+          "pinyin": "Wǒ zhèngzài xiàzài yí ge wénjiàn."
+        },
+        {
+          "vietnamese": "Chiếc đồng hồ thông minh này rất hữu ích.",
+          "vocabulary": [
+            {
+              "hanzi": "智能手表",
+              "pinyin": "zhìnéng shǒubiǎo",
+              "word_type": "danh từ",
+              "meaning": "đồng hồ thông minh"
+            }
+          ],
+          "hanzi": "这块智能手表很有用。",
+          "pinyin": "Zhè kuài zhìnéng shǒubiǎo hěn yǒuyòng."
+        },
+        {
+          "vietnamese": "Tôi quên mật khẩu của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "密码",
+              "pinyin": "mìmǎ",
+              "word_type": "danh từ",
+              "meaning": "mật khẩu"
+            }
+          ],
+          "hanzi": "我忘记密码了。",
+          "pinyin": "Wǒ wàngjì mìmǎ le."
+        },
+        {
+          "vietnamese": "Tôi thường sử dụng Internet để học tập.",
+          "vocabulary": [
+            {
+              "hanzi": "互联网",
+              "pinyin": "hùliánwǎng",
+              "word_type": "danh từ",
+              "meaning": "Internet"
+            }
+          ],
+          "hanzi": "我经常用互联网学习。",
+          "pinyin": "Wǒ jīngcháng yòng hùliánwǎng xuéxí."
+        },
+        {
+          "vietnamese": "Tôi đã thay điện thoại vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "换",
+              "pinyin": "huàn",
+              "word_type": "động từ",
+              "meaning": "thay"
+            }
+          ],
+          "hanzi": "我去年换了手机。",
+          "pinyin": "Wǒ qùnián huànle shǒujī."
+        },
+        {
+          "vietnamese": "Tôi đang cập nhật phần mềm.",
+          "vocabulary": [
+            {
+              "hanzi": "更新",
+              "pinyin": "gēngxīn",
+              "word_type": "động từ",
+              "meaning": "cập nhật"
+            }
+          ],
+          "hanzi": "我正在更新软件。",
+          "pinyin": "Wǒ zhèngzài gēngxīn ruǎnjiàn."
+        },
+        {
+          "vietnamese": "Máy tính của tôi bị hết pin.",
+          "vocabulary": [
+            {
+              "hanzi": "没电",
+              "pinyin": "méi diàn",
+              "word_type": "cụm từ",
+              "meaning": "hết pin"
+            }
+          ],
+          "hanzi": "我的电脑没电了。",
+          "pinyin": "Wǒ de diànnǎo méi diàn le."
+        },
+        {
+          "vietnamese": "Tôi thích các thiết bị công nghệ mới.",
+          "vocabulary": [
+            {
+              "hanzi": "科技设备",
+              "pinyin": "kējì shèbèi",
+              "word_type": "danh từ",
+              "meaning": "thiết bị công nghệ"
+            }
+          ],
+          "hanzi": "我喜欢新的科技设备。",
+          "pinyin": "Wǒ xǐhuan xīn de kējì shèbèi."
+        },
+        {
+          "vietnamese": "Tôi sử dụng điện thoại thông minh để liên lạc với bạn bè và gia đình.",
+          "vocabulary": [
+            {
+              "hanzi": "保持联系",
+              "pinyin": "bǎochí liánxì",
+              "word_type": "động từ",
+              "meaning": "giữ liên lạc"
+            }
+          ],
+          "hanzi": "我用智能手机和朋友家人保持联系。",
+          "pinyin": "Wǒ yòng zhìnéng shǒujī hé péngyou jiārén bǎochí liánxì."
+        },
+        {
+          "vietnamese": "Chiếc laptop này nhẹ nên rất thuận tiện khi mang theo.",
+          "vocabulary": [
+            {
+              "hanzi": "轻",
+              "pinyin": "qīng",
+              "word_type": "tính từ",
+              "meaning": "nhẹ"
+            },
+            {
+              "hanzi": "携带",
+              "pinyin": "xiédài",
+              "word_type": "động từ",
+              "meaning": "mang theo"
+            }
+          ],
+          "hanzi": "这台笔记本很轻，携带很方便。",
+          "pinyin": "Zhè tái bǐjìběn hěn qīng, xiédài hěn fāngbiàn."
+        },
+        {
+          "vietnamese": "Tôi cần cập nhật ứng dụng để sử dụng các tính năng mới.",
+          "vocabulary": [
+            {
+              "hanzi": "应用",
+              "pinyin": "yìngyòng",
+              "word_type": "danh từ",
+              "meaning": "ứng dụng"
+            },
+            {
+              "hanzi": "功能",
+              "pinyin": "gōngnéng",
+              "word_type": "danh từ",
+              "meaning": "tính năng"
+            }
+          ],
+          "hanzi": "我需要更新应用才能使用新功能。",
+          "pinyin": "Wǒ xūyào gēngxīn yìngyòng cái néng shǐyòng xīn gōngnéng."
+        },
+        {
+          "vietnamese": "Tôi thường sao lưu dữ liệu quan trọng lên đám mây.",
+          "vocabulary": [
+            {
+              "hanzi": "数据",
+              "pinyin": "shùjù",
+              "word_type": "danh từ",
+              "meaning": "dữ liệu"
+            },
+            {
+              "hanzi": "备份到云端",
+              "pinyin": "bèifèn dào yúnduān",
+              "word_type": "cụm động từ",
+              "meaning": "sao lưu lên đám mây"
+            }
+          ],
+          "hanzi": "我经常把重要数据备份到云端。",
+          "pinyin": "Wǒ jīngcháng bǎ zhòngyào shùjù bèifèn dào yúnduān."
+        },
+        {
+          "vietnamese": "Tai nghe không dây này có thời lượng pin rất dài.",
+          "vocabulary": [
+            {
+              "hanzi": "无线耳机",
+              "pinyin": "wúxiàn ěrjī",
+              "word_type": "danh từ",
+              "meaning": "tai nghe không dây"
+            },
+            {
+              "hanzi": "续航",
+              "pinyin": "xùháng",
+              "word_type": "danh từ",
+              "meaning": "thời lượng pin"
+            }
+          ],
+          "hanzi": "这副无线耳机的电池续航时间很长。",
+          "pinyin": "Zhè fù wúxiàn ěrjī de diànchí xùháng shíjiān hěn cháng."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng chiếc máy tính này được hơn bốn năm.",
+          "vocabulary": [
+            {
+              "hanzi": "四年多",
+              "pinyin": "sì nián duō",
+              "word_type": "cụm từ",
+              "meaning": "hơn bốn năm"
+            }
+          ],
+          "hanzi": "我用这台电脑已经四年多了。",
+          "pinyin": "Wǒ yòng zhè tái diànnǎo yǐjīng sì nián duō le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang cài đặt một phần mềm mới.",
+          "vocabulary": [
+            {
+              "hanzi": "安装",
+              "pinyin": "ānzhuāng",
+              "word_type": "động từ",
+              "meaning": "cài đặt"
+            }
+          ],
+          "hanzi": "我现在正在安装一个新软件。",
+          "pinyin": "Wǒ xiànzài zhèngzài ānzhuāng yí ge xīn ruǎnjiàn."
+        },
+        {
+          "vietnamese": "Tôi đã tải xuống nhiều tài liệu từ sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "文件",
+              "pinyin": "wénjiàn",
+              "word_type": "danh từ",
+              "meaning": "tài liệu"
+            }
+          ],
+          "hanzi": "我从今天早上就下载了很多文件。",
+          "pinyin": "Wǒ cóng jīntiān zǎoshang jiù xiàzàile hěn duō wénjiàn."
+        },
+        {
+          "vietnamese": "Tôi thích công nghệ vì nó giúp cuộc sống trở nên thuận tiện hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "科技",
+              "pinyin": "kējì",
+              "word_type": "danh từ",
+              "meaning": "công nghệ"
+            }
+          ],
+          "hanzi": "我喜欢科技，因为它让生活更方便。",
+          "pinyin": "Wǒ xǐhuan kējì, yīnwèi tā ràng shēnghuó gèng fāngbiàn."
+        },
+        {
+          "vietnamese": "Công ty đã nâng cấp toàn bộ hệ thống máy tính vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "升级",
+              "pinyin": "shēngjí",
+              "word_type": "động từ",
+              "meaning": "nâng cấp"
+            },
+            {
+              "hanzi": "电脑系统",
+              "pinyin": "diànnǎo xìtǒng",
+              "word_type": "danh từ",
+              "meaning": "hệ thống máy tính"
+            }
+          ],
+          "hanzi": "公司去年升级了整个电脑系统。",
+          "pinyin": "Gōngsī qùnián shēngjíle zhěnggè diànnǎo xìtǒng."
+        },
+        {
+          "vietnamese": "Tôi đang học cách sử dụng một công cụ AI mới.",
+          "vocabulary": [
+            {
+              "hanzi": "工具",
+              "pinyin": "gōngjù",
+              "word_type": "danh từ",
+              "meaning": "công cụ"
+            }
+          ],
+          "hanzi": "我正在学习使用一个新的AI工具。",
+          "pinyin": "Wǒ zhèngzài xuéxí shǐyòng yí ge xīn de AI gōngjù."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc trên máy tính suốt cả ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "一整天",
+              "pinyin": "yì zhěngtiān",
+              "word_type": "danh từ",
+              "meaning": "cả ngày"
+            }
+          ],
+          "hanzi": "我一整天都在用电脑工作。",
+          "pinyin": "Wǒ yì zhěngtiān dōu zài yòng diànnǎo gōngzuò."
+        },
+        {
+          "vietnamese": "Mặc dù thiết bị này đắt nhưng hiệu suất của nó rất tốt.",
+          "vocabulary": [
+            {
+              "hanzi": "设备",
+              "pinyin": "shèbèi",
+              "word_type": "danh từ",
+              "meaning": "thiết bị"
+            },
+            {
+              "hanzi": "性能",
+              "pinyin": "xìngnéng",
+              "word_type": "danh từ",
+              "meaning": "hiệu suất"
+            }
+          ],
+          "hanzi": "虽然这个设备很贵，但它的性能很好。",
+          "pinyin": "Suīrán zhège shèbèi hěn guì, dàn tā de xìngnéng hěn hǎo."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng ứng dụng này trong nhiều tháng và vẫn rất hài lòng.",
+          "vocabulary": [
+            {
+              "hanzi": "满意",
+              "pinyin": "mǎnyì",
+              "word_type": "tính từ",
+              "meaning": "hài lòng"
+            }
+          ],
+          "hanzi": "我用这个应用已经好几个月了，还是很满意。",
+          "pinyin": "Wǒ yòng zhège yìngyòng yǐjīng hǎo jǐ ge yuè le, háishi hěn mǎnyì."
+        },
+        {
+          "vietnamese": "Công nghệ tốt không chỉ giúp tiết kiệm thời gian mà còn nâng cao hiệu quả công việc.",
+          "vocabulary": [
+            {
+              "hanzi": "节省时间",
+              "pinyin": "jiéshěng shíjiān",
+              "word_type": "cụm động từ",
+              "meaning": "tiết kiệm thời gian"
+            },
+            {
+              "hanzi": "工作效率",
+              "pinyin": "gōngzuò xiàolǜ",
+              "word_type": "danh từ",
+              "meaning": "hiệu suất công việc"
+            }
+          ],
+          "hanzi": "好的技术不仅能节省时间，还能提高工作效率。",
+          "pinyin": "Hǎo de jìshù bùjǐn néng jiéshěng shíjiān, hái néng tígāo gōngzuò xiàolǜ."
+        }
+      ]
+    },
+    {
+      "lesson": 28,
+      "title": "第28课 · 电脑与互联网 (Dì èrshíbā kè · Diànnǎo yǔ Hùliánwǎng) — MÁY TÍNH VÀ INTERNET",
+      "sentences": [
+        {
+          "vietnamese": "Tôi sử dụng máy tính mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "电脑",
+              "pinyin": "diànnǎo",
+              "word_type": "danh từ",
+              "meaning": "máy tính"
+            }
+          ],
+          "hanzi": "我每天使用电脑。",
+          "pinyin": "Wǒ měitiān shǐyòng diànnǎo."
+        },
+        {
+          "vietnamese": "Tôi cần kết nối Internet.",
+          "vocabulary": [
+            {
+              "hanzi": "互联网",
+              "pinyin": "hùliánwǎng",
+              "word_type": "danh từ",
+              "meaning": "Internet"
+            }
+          ],
+          "hanzi": "我需要连接互联网。",
+          "pinyin": "Wǒ xūyào liánjiē hùliánwǎng."
+        },
+        {
+          "vietnamese": "Tôi đang gửi một email.",
+          "vocabulary": [
+            {
+              "hanzi": "发邮件",
+              "pinyin": "fā yóujiàn",
+              "word_type": "động từ",
+              "meaning": "gửi email"
+            }
+          ],
+          "hanzi": "我正在发邮件。",
+          "pinyin": "Wǒ zhèngzài fā yóujiàn."
+        },
+        {
+          "vietnamese": "Máy tính của tôi đang chạy chậm.",
+          "vocabulary": [
+            {
+              "hanzi": "慢",
+              "pinyin": "màn",
+              "word_type": "tính từ",
+              "meaning": "chậm"
+            }
+          ],
+          "hanzi": "我的电脑运行很慢。",
+          "pinyin": "Wǒ de diànnǎo yùnxíng hěn màn."
+        },
+        {
+          "vietnamese": "Tôi quên mật khẩu đăng nhập.",
+          "vocabulary": [
+            {
+              "hanzi": "登录密码",
+              "pinyin": "dēnglù mìmǎ",
+              "word_type": "danh từ",
+              "meaning": "mật khẩu đăng nhập"
+            }
+          ],
+          "hanzi": "我忘记登录密码了。",
+          "pinyin": "Wǒ wàngjì dēnglù mìmǎ le."
+        },
+        {
+          "vietnamese": "Tôi đang tìm kiếm thông tin trên mạng.",
+          "vocabulary": [
+            {
+              "hanzi": "搜索信息",
+              "pinyin": "sōusuǒ xìnxī",
+              "word_type": "cụm động từ",
+              "meaning": "tìm kiếm thông tin"
+            }
+          ],
+          "hanzi": "我正在网上搜索信息。",
+          "pinyin": "Wǒ zhèngzài wǎngshàng sōusuǒ xìnxī."
+        },
+        {
+          "vietnamese": "Tôi cần tải lên tệp này.",
+          "vocabulary": [
+            {
+              "hanzi": "上传",
+              "pinyin": "shàngchuán",
+              "word_type": "động từ",
+              "meaning": "tải lên"
+            }
+          ],
+          "hanzi": "我需要上传这个文件。",
+          "pinyin": "Wǒ xūyào shàngchuán zhège wénjiàn."
+        },
+        {
+          "vietnamese": "Tôi thường đọc tin tức trực tuyến.",
+          "vocabulary": [
+            {
+              "hanzi": "新闻",
+              "pinyin": "xīnwén",
+              "word_type": "danh từ",
+              "meaning": "tin tức"
+            }
+          ],
+          "hanzi": "我经常在网上看新闻。",
+          "pinyin": "Wǒ jīngcháng zài wǎngshàng kàn xīnwén."
+        },
+        {
+          "vietnamese": "Kết nối Internet hôm nay rất nhanh.",
+          "vocabulary": [
+            {
+              "hanzi": "网速",
+              "pinyin": "wǎngsù",
+              "word_type": "danh từ",
+              "meaning": "tốc độ kết nối Internet"
+            }
+          ],
+          "hanzi": "今天的网速很快。",
+          "pinyin": "Jīntiān de wǎngsù hěn kuài."
+        },
+        {
+          "vietnamese": "Tôi vừa nhận được một email mới.",
+          "vocabulary": [
+            {
+              "hanzi": "收到",
+              "pinyin": "shōudào",
+              "word_type": "động từ",
+              "meaning": "nhận được"
+            }
+          ],
+          "hanzi": "我刚收到一封新邮件。",
+          "pinyin": "Wǒ gāng shōudào yì fēng xīn yóujiàn."
+        },
+        {
+          "vietnamese": "Tôi đang sử dụng trình duyệt web.",
+          "vocabulary": [
+            {
+              "hanzi": "浏览器",
+              "pinyin": "liúlǎnqì",
+              "word_type": "danh từ",
+              "meaning": "trình duyệt web"
+            }
+          ],
+          "hanzi": "我正在使用网页浏览器。",
+          "pinyin": "Wǒ zhèngzài shǐyòng wǎngyè liúlǎnqì."
+        },
+        {
+          "vietnamese": "Tôi đã tạo tài khoản vào tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "创建账户",
+              "pinyin": "chuàngjiàn zhànghù",
+              "word_type": "cụm động từ",
+              "meaning": "tạo tài khoản"
+            }
+          ],
+          "hanzi": "我上星期创建了账户。",
+          "pinyin": "Wǒ shàng xīngqī chuàngjiànle zhànghù."
+        },
+        {
+          "vietnamese": "Tôi đang tải một tài liệu về máy tính.",
+          "vocabulary": [
+            {
+              "hanzi": "文件",
+              "pinyin": "wénjiàn",
+              "word_type": "danh từ",
+              "meaning": "tài liệu"
+            }
+          ],
+          "hanzi": "我正在把一份文件下载到电脑上。",
+          "pinyin": "Wǒ zhèngzài bǎ yí fèn wénjiàn xiàzài dào diànnǎo shàng."
+        },
+        {
+          "vietnamese": "Tôi cần đặt lại mật khẩu.",
+          "vocabulary": [
+            {
+              "hanzi": "重置密码",
+              "pinyin": "chóngzhì mìmǎ",
+              "word_type": "cụm động từ",
+              "meaning": "đặt lại mật khẩu"
+            }
+          ],
+          "hanzi": "我需要重置密码。",
+          "pinyin": "Wǒ xūyào chóngzhì mìmǎ."
+        },
+        {
+          "vietnamese": "Tôi thường lưu tệp trên máy tính.",
+          "vocabulary": [
+            {
+              "hanzi": "保存文件",
+              "pinyin": "bǎocún wénjiàn",
+              "word_type": "cụm động từ",
+              "meaning": "lưu tệp"
+            }
+          ],
+          "hanzi": "我通常把文件保存在电脑上。",
+          "pinyin": "Wǒ tōngcháng bǎ wénjiàn bǎocún zài diànnǎo shàng."
+        },
+        {
+          "vietnamese": "Tôi sử dụng Internet để học tập và làm việc.",
+          "vocabulary": [
+            {
+              "hanzi": "学习",
+              "pinyin": "xuéxí",
+              "word_type": "động từ",
+              "meaning": "học tập"
+            }
+          ],
+          "hanzi": "我用互联网学习和工作。",
+          "pinyin": "Wǒ yòng hùliánwǎng xuéxí hé gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi không thể đăng nhập vì quên mật khẩu.",
+          "vocabulary": [
+            {
+              "hanzi": "登录",
+              "pinyin": "dēnglù",
+              "word_type": "động từ",
+              "meaning": "đăng nhập"
+            }
+          ],
+          "hanzi": "我无法登录，因为忘记了密码。",
+          "pinyin": "Wǒ wúfǎ dēnglù, yīnwèi wàngjìle mìmǎ."
+        },
+        {
+          "vietnamese": "Tôi cần tải lên tài liệu trước thời hạn.",
+          "vocabulary": [
+            {
+              "hanzi": "截止日期",
+              "pinyin": "jiézhǐ rìqī",
+              "word_type": "danh từ",
+              "meaning": "thời hạn"
+            }
+          ],
+          "hanzi": "我需要在截止日期前上传文件。",
+          "pinyin": "Wǒ xūyào zài jiézhǐ rìqī qián shàngchuán wénjiàn."
+        },
+        {
+          "vietnamese": "Tôi thường sử dụng công cụ tìm kiếm để tìm thông tin.",
+          "vocabulary": [
+            {
+              "hanzi": "搜索引擎",
+              "pinyin": "sōusuǒ yǐnqíng",
+              "word_type": "danh từ",
+              "meaning": "công cụ tìm kiếm"
+            }
+          ],
+          "hanzi": "我经常用搜索引擎查找信息。",
+          "pinyin": "Wǒ jīngcháng yòng sōusuǒ yǐnqíng cházhǎo xìnxī."
+        },
+        {
+          "vietnamese": "Kết nối Internet chậm nên cuộc họp trực tuyến bị gián đoạn.",
+          "vocabulary": [
+            {
+              "hanzi": "打断",
+              "pinyin": "dǎduàn",
+              "word_type": "động từ",
+              "meaning": "bị gián đoạn, cắt ngang"
+            }
+          ],
+          "hanzi": "网速很慢，所以在线会议被打断了。",
+          "pinyin": "Wǎngsù hěn màn, suǒyǐ zàixiàn huìyì bèi dǎduàn le."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng tài khoản này được hơn ba năm.",
+          "vocabulary": [
+            {
+              "hanzi": "三年多",
+              "pinyin": "sān nián duō",
+              "word_type": "cụm từ",
+              "meaning": "hơn ba năm"
+            }
+          ],
+          "hanzi": "我已经使用这个账户三年多了。",
+          "pinyin": "Wǒ yǐjīng shǐyòng zhège zhànghù sān nián duō le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang tải lên một số tệp cho khách hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "客户",
+              "pinyin": "kèhù",
+              "word_type": "danh từ",
+              "meaning": "khách hàng"
+            }
+          ],
+          "hanzi": "我现在正在为客户上传一些文件。",
+          "pinyin": "Wǒ xiànzài zhèngzài wèi kèhù shàngchuán yìxiē wénjiàn."
+        },
+        {
+          "vietnamese": "Tôi đã làm việc trực tuyến từ sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "线上工作",
+              "pinyin": "zàixiàn gōngzuò",
+              "word_type": "cụm động từ",
+              "meaning": "làm việc trực tuyến"
+            }
+          ],
+          "hanzi": "我从今天早上开始就一直在线上工作。",
+          "pinyin": "Wǒ cóng jīntiān zǎoshang kāishǐ jiù yìzhí zàixiàn gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi thích Internet vì nó giúp tôi tiếp cận thông tin nhanh chóng.",
+          "vocabulary": [
+            {
+              "hanzi": "获取信息",
+              "pinyin": "huòqǔ xìnxī",
+              "word_type": "cụm động từ",
+              "meaning": "tiếp cận thông tin"
+            }
+          ],
+          "hanzi": "我喜欢互联网，因为它能让我快速获取信息。",
+          "pinyin": "Wǒ xǐhuan hùliánwǎng, yīnwèi tā néng ràng wǒ kuàisù huòqǔ xìnxī."
+        },
+        {
+          "vietnamese": "Công ty đã nâng cấp hệ thống mạng vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "网络系统",
+              "pinyin": "wǎngluò xìtǒng",
+              "word_type": "danh từ",
+              "meaning": "hệ thống mạng"
+            }
+          ],
+          "hanzi": "公司去年升级了网络系统。",
+          "pinyin": "Gōngsī qùnián shēngjíle wǎngluò xìtǒng."
+        },
+        {
+          "vietnamese": "Tôi đang học cách bảo vệ thông tin cá nhân trên mạng.",
+          "vocabulary": [
+            {
+              "hanzi": "保护个人信息",
+              "pinyin": "bǎohù gèrén xìnxī",
+              "word_type": "cụm động từ",
+              "meaning": "bảo vệ thông tin cá nhân"
+            }
+          ],
+          "hanzi": "我正在学习如何在网上保护个人信息。",
+          "pinyin": "Wǒ zhèngzài xuéxí rúhé zài wǎngshàng bǎohù gèrén xìnxī."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng Internet liên tục suốt cả ngày để nghiên cứu.",
+          "vocabulary": [
+            {
+              "hanzi": "上网",
+              "pinyin": "shàngwǎng",
+              "word_type": "động từ",
+              "meaning": "dùng Internet, lên mạng"
+            }
+          ],
+          "hanzi": "我一整天都在不停地上网做研究。",
+          "pinyin": "Wǒ yì zhěngtiān dōu zài bùtíng de shàngwǎng zuò yánjiū."
+        },
+        {
+          "vietnamese": "Mặc dù mạng chậm nhưng tôi vẫn hoàn thành công việc đúng hạn.",
+          "vocabulary": [
+            {
+              "hanzi": "按时",
+              "pinyin": "ànshí",
+              "word_type": "phó từ",
+              "meaning": "đúng hạn"
+            }
+          ],
+          "hanzi": "虽然网络很慢，但我还是按时完成了工作。",
+          "pinyin": "Suīrán wǎngluò hěn màn, dàn wǒ háishi ànshí wánchéngle gōngzuò."
+        },
+        {
+          "vietnamese": "Tôi đã chờ tệp tải xuống hoàn tất gần một giờ.",
+          "vocabulary": [
+            {
+              "hanzi": "下载",
+              "pinyin": "xiàzài",
+              "word_type": "động từ",
+              "meaning": "tải xuống"
+            }
+          ],
+          "hanzi": "我等文件下载完成, 等了将近一个小时。",
+          "pinyin": "Wǒ děng wénjiàn xiàzài wánchéng děngle jiāngjìn yí ge xiǎoshí."
+        },
+        {
+          "vietnamese": "Sử dụng Internet hiệu quả không chỉ giúp tiết kiệm thời gian mà còn nâng cao năng suất làm việc.",
+          "vocabulary": [
+            {
+              "hanzi": "有效",
+              "pinyin": "yǒuxiào",
+              "word_type": "tính từ",
+              "meaning": "hiệu quả"
+            },
+            {
+              "hanzi": "工作效率",
+              "pinyin": "gōngzuò xiàolǜ",
+              "word_type": "cụm danh từ",
+              "meaning": "năng suất làm việc"
+            }
+          ],
+          "hanzi": "有效使用互联网不仅能节省时间，还能提高工作效率。",
+          "pinyin": "Yǒuxiào shǐyòng hùliánwǎng bùjǐn néng jiéshěng shíjiān, hái néng tígāo gōngzuò xiàolǜ."
+        }
+      ]
+    },
+    {
+      "lesson": 29,
+      "title": "第29课 · 金钱与银行 (Dì èrshíjiǔ kè · Jīnqián yǔ Yínháng) — TIỀN BẠC VÀ NGÂN HÀNG",
+      "sentences": [
+        {
+          "vietnamese": "Tôi có một tài khoản ngân hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "银行账户",
+              "pinyin": "yínháng zhànghù",
+              "word_type": "danh từ",
+              "meaning": "tài khoản ngân hàng"
+            }
+          ],
+          "hanzi": "我有一个银行账户。",
+          "pinyin": "Wǒ yǒu yí ge yínháng zhànghù."
+        },
+        {
+          "vietnamese": "Tôi cần rút một ít tiền.",
+          "vocabulary": [
+            {
+              "hanzi": "取钱",
+              "pinyin": "qǔ qián",
+              "word_type": "động từ",
+              "meaning": "rút tiền"
+            }
+          ],
+          "hanzi": "我需要取一些钱。",
+          "pinyin": "Wǒ xūyào qǔ yìxiē qián."
+        },
+        {
+          "vietnamese": "Tôi vừa gửi tiền vào tài khoản.",
+          "vocabulary": [
+            {
+              "hanzi": "存钱",
+              "pinyin": "cún qián",
+              "word_type": "động từ",
+              "meaning": "gửi tiền vào tài khoản"
+            }
+          ],
+          "hanzi": "我刚往账户里存了钱。",
+          "pinyin": "Wǒ gāng wǎng zhànghù lǐ cúnle qián."
+        },
+        {
+          "vietnamese": "Tôi thường thanh toán bằng thẻ.",
+          "vocabulary": [
+            {
+              "hanzi": "刷卡付款",
+              "pinyin": "shuākǎ fùkuǎn",
+              "word_type": "động từ",
+              "meaning": "thanh toán bằng thẻ"
+            }
+          ],
+          "hanzi": "我通常刷卡付款。",
+          "pinyin": "Wǒ tōngcháng shuākǎ fùkuǎn."
+        },
+        {
+          "vietnamese": "Tôi muốn mở một tài khoản tiết kiệm.",
+          "vocabulary": [
+            {
+              "hanzi": "储蓄账户",
+              "pinyin": "chǔxù zhànghù",
+              "word_type": "danh từ",
+              "meaning": "tài khoản tiết kiệm"
+            }
+          ],
+          "hanzi": "我想开一个储蓄账户。",
+          "pinyin": "Wǒ xiǎng kāi yí ge chǔxù zhànghù."
+        },
+        {
+          "vietnamese": "Ngân hàng đóng cửa lúc 5 giờ chiều.",
+          "vocabulary": [
+            {
+              "hanzi": "关门",
+              "pinyin": "guānmén",
+              "word_type": "động từ",
+              "meaning": "đóng cửa"
+            }
+          ],
+          "hanzi": "银行下午五点关门。",
+          "pinyin": "Yínháng xiàwǔ wǔ diǎn guānmén."
+        },
+        {
+          "vietnamese": "Tôi cần kiểm tra số dư tài khoản.",
+          "vocabulary": [
+            {
+              "hanzi": "余额",
+              "pinyin": "yú'é",
+              "word_type": "danh từ",
+              "meaning": "số dư"
+            }
+          ],
+          "hanzi": "我需要查一下账户余额。",
+          "pinyin": "Wǒ xūyào chá yíxià zhànghù yú'é."
+        },
+        {
+          "vietnamese": "Tôi đã nhận được lương hôm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "工资",
+              "pinyin": "gōngzī",
+              "word_type": "danh từ",
+              "meaning": "tiền lương"
+            }
+          ],
+          "hanzi": "我今天收到工资了。",
+          "pinyin": "Wǒ jīntiān shōudào gōngzī le."
+        },
+        {
+          "vietnamese": "Tôi đang chuyển tiền cho bạn tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "转账",
+              "pinyin": "zhuǎnzhàng",
+              "word_type": "động từ",
+              "meaning": "chuyển tiền"
+            }
+          ],
+          "hanzi": "我正在给朋友转账。",
+          "pinyin": "Wǒ zhèngzài gěi péngyou zhuǎnzhàng."
+        },
+        {
+          "vietnamese": "Tôi thường tiết kiệm tiền mỗi tháng.",
+          "vocabulary": [
+            {
+              "hanzi": "每个月",
+              "pinyin": "měi ge yuè",
+              "word_type": "danh từ",
+              "meaning": "mỗi tháng"
+            }
+          ],
+          "hanzi": "我通常每个月存钱。",
+          "pinyin": "Wǒ tōngcháng měi ge yuè cúnqián."
+        },
+        {
+          "vietnamese": "Tôi sử dụng ứng dụng ngân hàng trên điện thoại.",
+          "vocabulary": [
+            {
+              "hanzi": "银行应用",
+              "pinyin": "yínháng yìngyòng",
+              "word_type": "danh từ",
+              "meaning": "ứng dụng ngân hàng"
+            }
+          ],
+          "hanzi": "我在手机上使用银行应用。",
+          "pinyin": "Wǒ zài shǒujī shàng shǐyòng yínháng yìngyòng."
+        },
+        {
+          "vietnamese": "Tôi đã mở tài khoản này vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "开账户",
+              "pinyin": "kāi zhànghù",
+              "word_type": "cụm động từ",
+              "meaning": "mở tài khoản"
+            }
+          ],
+          "hanzi": "我去年开了这个账户。",
+          "pinyin": "Wǒ qùnián kāile zhège zhànghù."
+        },
+        {
+          "vietnamese": "Tôi đang kiểm tra giao dịch gần đây.",
+          "vocabulary": [
+            {
+              "hanzi": "交易",
+              "pinyin": "jiāoyì",
+              "word_type": "danh từ",
+              "meaning": "giao dịch"
+            }
+          ],
+          "hanzi": "我正在查看最近的交易。",
+          "pinyin": "Wǒ zhèngzài chákàn zuìjìn de jiāoyì."
+        },
+        {
+          "vietnamese": "Thẻ tín dụng của tôi sắp hết hạn.",
+          "vocabulary": [
+            {
+              "hanzi": "信用卡",
+              "pinyin": "xìnyòngkǎ",
+              "word_type": "danh từ",
+              "meaning": "thẻ tín dụng"
+            },
+            {
+              "hanzi": "到期",
+              "pinyin": "dàoqī",
+              "word_type": "động từ",
+              "meaning": "hết hạn"
+            }
+          ],
+          "hanzi": "我的信用卡快到期了。",
+          "pinyin": "Wǒ de xìnyòngkǎ kuài dàoqī le."
+        },
+        {
+          "vietnamese": "Tôi cần đổi một ít tiền mặt.",
+          "vocabulary": [
+            {
+              "hanzi": "现金",
+              "pinyin": "xiànjīn",
+              "word_type": "danh từ",
+              "meaning": "tiền mặt"
+            }
+          ],
+          "hanzi": "我需兑换一些现金。",
+          "pinyin": "Wǒ xūyào duìhuàn yìxiē xiànjīn."
+        },
+        {
+          "vietnamese": "Tôi gửi một phần lương vào tài khoản tiết kiệm mỗi tháng.",
+          "vocabulary": [
+            {
+              "hanzi": "工资",
+              "pinyin": "gōngzī",
+              "word_type": "danh từ",
+              "meaning": "tiền lương"
+            }
+          ],
+          "hanzi": "我每个月把一部分工资存到储蓄账户。",
+          "pinyin": "Wǒ měi ge yuè bǎ yí bùfen gōngzī cún dào chǔxù zhànghù."
+        },
+        {
+          "vietnamese": "Tôi thích thanh toán bằng thẻ vì nó tiện lợi hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "方便",
+              "pinyin": "fāngbiàn",
+              "word_type": "tính từ",
+              "meaning": "tiện lợi"
+            }
+          ],
+          "hanzi": "我喜欢刷卡付款，因为更方便。",
+          "pinyin": "Wǒ xǐhuan shuākǎ fùkuǎn, yīnwèi gèng fāngbiàn."
+        },
+        {
+          "vietnamese": "Tôi cần chuyển tiền trước cuối ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "今天结束前",
+              "pinyin": "jīntiān jiéshù qián",
+              "word_type": "cụm từ",
+              "meaning": "trước cuối ngày"
+            }
+          ],
+          "hanzi": "我需要在今天结束前转账。",
+          "pinyin": "Wǒ xūyào zài jīntiān jiéshù qián zhuǎnzhàng."
+        },
+        {
+          "vietnamese": "Ngân hàng này cung cấp dịch vụ trực tuyến rất tốt.",
+          "vocabulary": [
+            {
+              "hanzi": "线上服务",
+              "pinyin": "xiànshàng fúwù",
+              "word_type": "danh từ",
+              "meaning": "dịch vụ trực tuyến"
+            }
+          ],
+          "hanzi": "这家银行提供很好的线上服务。",
+          "pinyin": "Zhè jiā yínháng tígōng hěn hǎo de xiànshàng fúwù."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng tiết kiệm tiền để mua một chiếc xe mới.",
+          "vocabulary": [
+            {
+              "hanzi": "新车",
+              "pinyin": "xīn chē",
+              "word_type": "danh từ",
+              "meaning": "xe mới"
+            }
+          ],
+          "hanzi": "我正在努力存钱买一辆新车。",
+          "pinyin": "Wǒ zhèngzài nǔlì cúnqián mǎi yí liàng xīn chē."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng tài khoản này được hơn năm năm.",
+          "vocabulary": [
+            {
+              "hanzi": "五年多",
+              "pinyin": "wǔ nián duō",
+              "word_type": "cụm từ",
+              "meaning": "hơn năm năm"
+            }
+          ],
+          "hanzi": "我已经使用这个账户五年多了。",
+          "pinyin": "Wǒ yǐjīng shǐyòng zhège zhànghù wǔ nián duō le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang nói chuyện với nhân viên ngân hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "银行职员",
+              "pinyin": "yínháng zhíyuán",
+              "word_type": "danh từ",
+              "meaning": "nhân viên ngân hàng"
+            }
+          ],
+          "hanzi": "我现在正在和银行职员交谈。",
+          "pinyin": "Wǒ xiànzài zhèngzài hé yínháng zhíyuán jiāotán. ."
+        },
+        {
+          "vietnamese": "Tôi đã tiết kiệm tiền từ khi bắt đầu đi làm.",
+          "vocabulary": [
+            {
+              "hanzi": "开始工作",
+              "pinyin": "kāishǐ gōngzuò",
+              "word_type": "động từ",
+              "meaning": "bắt đầu đi làm"
+            }
+          ],
+          "hanzi": "我从开始工作起就一直在存钱。",
+          "pinyin": "Wǒ cóng kāishǐ gōngzuò qǐ jiù yìzhí zài cúnqián."
+        },
+        {
+          "vietnamese": "Tôi thích ngân hàng này vì ứng dụng của họ rất dễ sử dụng.",
+          "vocabulary": [
+            {
+              "hanzi": "好用",
+              "pinyin": "hǎoyòng",
+              "word_type": "tính từ",
+              "meaning": "dễ sử dụng"
+            }
+          ],
+          "hanzi": "我喜欢这家银行，因为它的应用很好用。",
+          "pinyin": "Wǒ xǐhuan zhè jiā yínháng, yīnwèi tā de yìngyòng hěn hǎoyòng."
+        },
+        {
+          "vietnamese": "Tôi đã trả hết khoản vay vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "还清贷款",
+              "pinyin": "huánqīng dàikuǎn",
+              "word_type": "cụm động từ",
+              "meaning": "trả hết khoản vay"
+            }
+          ],
+          "hanzi": "我去年还清了贷款。",
+          "pinyin": "Wǒ qùnián huánqīngle dàikuǎn."
+        },
+        {
+          "vietnamese": "Tôi đang học cách quản lý tiền hiệu quả hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "管理钱财",
+              "pinyin": "guǎnlǐ qiáncái",
+              "word_type": "động từ",
+              "meaning": "quản lý tiền"
+            }
+          ],
+          "hanzi": "我正在学习如何更有效地管理钱财。",
+          "pinyin": "Wǒ zhèngzài xuéxí rúhé gèng yǒuxiào de guǎnlǐ qiáncái."
+        },
+        {
+          "vietnamese": "Tôi đã theo dõi chi tiêu của mình trong vài tháng qua.",
+          "vocabulary": [
+            {
+              "hanzi": "追踪支出",
+              "pinyin": "zhuīzōng zhīchū",
+              "word_type": "cụm động từ",
+              "meaning": "theo dõi chi tiêu"
+            }
+          ],
+          "hanzi": "过去几个月我一直在追踪自己的支出。",
+          "pinyin": "Guòqù jǐ ge yuè wǒ yìzhí zài zhuīzōng zìjǐ de zhīchū."
+        },
+        {
+          "vietnamese": "Mặc dù lãi suất thấp nhưng tôi vẫn muốn gửi tiết kiệm.",
+          "vocabulary": [
+            {
+              "hanzi": "利率",
+              "pinyin": "lìlǜ",
+              "word_type": "danh từ",
+              "meaning": "lãi suất"
+            }
+          ],
+          "hanzi": "虽然利率很低，但我还是想存钱。",
+          "pinyin": "Suīrán lìlǜ hěn dī, dàn wǒ háishi xiǎng cúnqián."
+        },
+        {
+          "vietnamese": "Tôi đã tiết kiệm tiền đều đặn trong hơn hai năm.",
+          "vocabulary": [
+            {
+              "hanzi": "有规律地",
+              "pinyin": "yǒu guīlǜ de",
+              "word_type": "phó từ",
+              "meaning": "đều đặn"
+            }
+          ],
+          "hanzi": "两年多来, 我一直有规律地存钱。",
+          "pinyin": "Liǎng nián duō lái wǒ yìzhí yǒu guīlǜ de cúnqián."
+        },
+        {
+          "vietnamese": "Quản lý tài chính tốt không chỉ giúp bạn tiết kiệm tiền mà còn giúp bạn đạt được các mục tiêu dài hạn.",
+          "vocabulary": [
+            {
+              "hanzi": "财务管理",
+              "pinyin": "cáiwù guǎnlǐ",
+              "word_type": "danh từ",
+              "meaning": "quản lý tài chính"
+            },
+            {
+              "hanzi": "长期目标",
+              "pinyin": "chángqī mùbiāo",
+              "word_type": "danh từ",
+              "meaning": "mục tiêu dài hạn"
+            }
+          ],
+          "hanzi": "良好的财务管理不仅能帮你省钱，还能帮你实现长期目标。",
+          "pinyin": "Liánghǎo de cáiwù guǎnlǐ bùjǐn néng bāng nǐ shěngqián, hái néng bāng nǐ shíxiàn chángqī mùbiāo."
+        }
+      ]
+    },
+    {
+      "lesson": 30,
+      "title": "第30课 · 电话与邮件沟通 (Dì sānshí kè · Diànhuà yǔ Yóujiàn Gōutōng) — GIAO TIẾP QUA ĐIỆN THOẠI VÀ EMAIL",
+      "sentences": [
+        {
+          "vietnamese": "Tôi cần gọi điện cho khách hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "打电话",
+              "pinyin": "dǎ diànhuà",
+              "word_type": "cụm động từ",
+              "meaning": "gọi điện"
+            }
+          ],
+          "hanzi": "我需要给客户打电话。",
+          "pinyin": "Wǒ xūyào gěi kèhù dǎ diànhuà."
+        },
+        {
+          "vietnamese": "Tôi vừa nhận được một cuộc gọi.",
+          "vocabulary": [
+            {
+              "hanzi": "接到电话",
+              "pinyin": "jiēdào diànhuà",
+              "word_type": "cụm động từ",
+              "meaning": "nhận cuộc gọi"
+            }
+          ],
+          "hanzi": "我刚接到一个电话。",
+          "pinyin": "Wǒ gāng jiēdào yí ge diànhuà."
+        },
+        {
+          "vietnamese": "Tôi đang viết một email.",
+          "vocabulary": [
+            {
+              "hanzi": "写邮件",
+              "pinyin": "xiě yóujiàn",
+              "word_type": "cụm động từ",
+              "meaning": "viết email"
+            }
+          ],
+          "hanzi": "我正在写邮件。",
+          "pinyin": "Wǒ zhèngzài xiě yóujiàn."
+        },
+        {
+          "vietnamese": "Xin vui lòng để lại lời nhắn.",
+          "vocabulary": [
+            {
+              "hanzi": "留言",
+              "pinyin": "liúyán",
+              "word_type": "động từ",
+              "meaning": "để lại lời nhắn"
+            }
+          ],
+          "hanzi": "请留言。",
+          "pinyin": "Qǐng liúyán."
+        },
+        {
+          "vietnamese": "Tôi cần trả lời email này.",
+          "vocabulary": [
+            {
+              "hanzi": "回复邮件",
+              "pinyin": "huífù yóujiàn",
+              "word_type": "cụm động từ",
+              "meaning": "trả lời email"
+            }
+          ],
+          "hanzi": "我需要回复这封邮件。",
+          "pinyin": "Wǒ xūyào huífù zhè fēng yóujiàn."
+        },
+        {
+          "vietnamese": "Anh ấy đang nói chuyện điện thoại.",
+          "vocabulary": [
+            {
+              "hanzi": "打电话",
+              "pinyin": "dǎ diànhuà",
+              "word_type": "cụm động từ",
+              "meaning": "nói chuyện điện thoại"
+            }
+          ],
+          "hanzi": "他正在打电话。",
+          "pinyin": "Tā zhèngzài dǎ diànhuà."
+        },
+        {
+          "vietnamese": "Tôi đã gửi email cho sếp.",
+          "vocabulary": [
+            {
+              "hanzi": "老板",
+              "pinyin": "lǎobǎn",
+              "word_type": "danh từ",
+              "meaning": "sếp"
+            }
+          ],
+          "hanzi": "我给老板发了一封邮件。",
+          "pinyin": "Wǒ gěi lǎobǎn fāle yì fēng yóujiàn."
+        },
+        {
+          "vietnamese": "Tôi thường kiểm tra email vào buổi sáng.",
+          "vocabulary": [
+            {
+              "hanzi": "查邮件",
+              "pinyin": "chá yóujiàn",
+              "word_type": "cụm động từ",
+              "meaning": "kiểm tra email"
+            }
+          ],
+          "hanzi": "我通常早上查邮件。",
+          "pinyin": "Wǒ tōngcháng zǎoshang chá yóujiàn."
+        },
+        {
+          "vietnamese": "Đường truyền điện thoại không tốt.",
+          "vocabulary": [
+            {
+              "hanzi": "电话信号",
+              "pinyin": "diànhuà xìnhào",
+              "word_type": "danh từ",
+              "meaning": "đường truyền điện thoại"
+            }
+          ],
+          "hanzi": "电话信号不好。",
+          "pinyin": "Diànhuà xìnhào bù hǎo."
+        },
+        {
+          "vietnamese": "Tôi cần số điện thoại của bạn.",
+          "vocabulary": [
+            {
+              "hanzi": "电话号码",
+              "pinyin": "diànhuà hàomǎ",
+              "word_type": "danh từ",
+              "meaning": "số điện thoại"
+            }
+          ],
+          "hanzi": "我需要你的电话号码。",
+          "pinyin": "Wǒ xūyào nǐ de diànhuà hàomǎ."
+        },
+        {
+          "vietnamese": "Tôi đang đợi một cuộc gọi quan trọng.",
+          "vocabulary": [
+            {
+              "hanzi": "重要",
+              "pinyin": "zhòngyào",
+              "word_type": "tính từ",
+              "meaning": "quan trọng"
+            }
+          ],
+          "hanzi": "我正在等一个重要的电话。",
+          "pinyin": "Wǒ zhèngzài děng yí ge zhòngyào de diànhuà."
+        },
+        {
+          "vietnamese": "Tôi đã gọi cho khách hàng vào hôm qua.",
+          "vocabulary": [
+            {
+              "hanzi": "昨天",
+              "pinyin": "zuótiān",
+              "word_type": "danh từ",
+              "meaning": "hôm qua"
+            }
+          ],
+          "hanzi": "我昨天给客户打电话了。",
+          "pinyin": "Wǒ zuótiān gěi kèhù dǎ diànhuà le."
+        },
+        {
+          "vietnamese": "Tôi đang gửi tệp đính kèm qua email.",
+          "vocabulary": [
+            {
+              "hanzi": "附件",
+              "pinyin": "fùjiàn",
+              "word_type": "danh từ",
+              "meaning": "tệp đính kèm"
+            }
+          ],
+          "hanzi": "我正在通过邮件发送附件。",
+          "pinyin": "Wǒ zhèngzài tōngguò yóujiàn fāsòng fùjiàn."
+        },
+        {
+          "vietnamese": "Tôi không thể nghe rõ bạn.",
+          "vocabulary": [
+            {
+              "hanzi": "听不清楚",
+              "pinyin": "tīng bu qīngchu",
+              "word_type": "cụm động từ",
+              "meaning": "không nghe rõ"
+            }
+          ],
+          "hanzi": "我听不清楚你说话。",
+          "pinyin": "Wǒ tīng bu qīngchu nǐ shuōhuà."
+        },
+        {
+          "vietnamese": "Email của bạn đã được gửi thành công.",
+          "vocabulary": [
+            {
+              "hanzi": "发送",
+              "pinyin": "fāsòng",
+              "word_type": "động từ",
+              "meaning": "gửi"
+            }
+          ],
+          "hanzi": "你的邮件已经成功发送了。",
+          "pinyin": "Nǐ de yóujiàn yǐjīng chénggōng fāsòng le."
+        },
+        {
+          "vietnamese": "Tôi thường gọi điện cho khách hàng để xác nhận thông tin.",
+          "vocabulary": [
+            {
+              "hanzi": "确认信息",
+              "pinyin": "quèrèn xìnxī",
+              "word_type": "động từ",
+              "meaning": "xác nhận thông tin"
+            }
+          ],
+          "hanzi": "我经常给客户打电话确认信息。",
+          "pinyin": "Wǒ jīngcháng gěi kèhù dǎ diànhuà quèrèn xìnxī."
+        },
+        {
+          "vietnamese": "Tôi đã gửi email nhưng vẫn chưa nhận được phản hồi.",
+          "vocabulary": [
+            {
+              "hanzi": "回复",
+              "pinyin": "huífù",
+              "word_type": "danh từ",
+              "meaning": "phản hồi"
+            }
+          ],
+          "hanzi": "我发了邮件，但还没收到回复。",
+          "pinyin": "Wǒ fāle yóujiàn, dàn hái méi shōudào huífù."
+        },
+        {
+          "vietnamese": "Xin vui lòng gọi lại cho tôi khi bạn rảnh.",
+          "vocabulary": [
+            {
+              "hanzi": "回电话",
+              "pinyin": "huí diànhuà",
+              "word_type": "cụm động từ",
+              "meaning": "gọi lại"
+            }
+          ],
+          "hanzi": "你方便的时候请给我回电话。",
+          "pinyin": "Nǐ fāngbiàn de shíhou qǐng gěi wǒ huí diànhuà."
+        },
+        {
+          "vietnamese": "Tôi đã để lại lời nhắn vì không ai trả lời điện thoại.",
+          "vocabulary": [
+            {
+              "hanzi": "接电话",
+              "pinyin": "jiē diànhuà",
+              "word_type": "cụm động từ",
+              "meaning": "nghe điện thoại"
+            }
+          ],
+          "hanzi": "我留言了，因为没人接电话。",
+          "pinyin": "Wǒ liúyán le, yīnwèi méi rén jiē diànhuà."
+        },
+        {
+          "vietnamese": "Cuộc gọi diễn ra ngắn nhưng rất hiệu quả.",
+          "vocabulary": [
+            {
+              "hanzi": "通话",
+              "pinyin": "tōnghuà",
+              "word_type": "danh từ",
+              "meaning": "cuộc gọi"
+            }
+          ],
+          "hanzi": "这次通话很短，但很有效。",
+          "pinyin": "Zhè cì tōnghuà hěn duǎn, dàn hěn yǒu xiào."
+        },
+        {
+          "vietnamese": "Tôi đã sử dụng địa chỉ email này được nhiều năm.",
+          "vocabulary": [
+            {
+              "hanzi": "邮箱地址",
+              "pinyin": "yóuxiāng dìzhǐ",
+              "word_type": "danh từ",
+              "meaning": "địa chỉ email"
+            }
+          ],
+          "hanzi": "我已经用这个邮箱地址很多年了。",
+          "pinyin": "Wǒ yǐjīng yòng zhège yóuxiāng dìzhǐ hěn duō nián le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang trả lời email của khách hàng.",
+          "vocabulary": [
+            {
+              "hanzi": "客户",
+              "pinyin": "kèhù",
+              "word_type": "danh từ",
+              "meaning": "khách hàng"
+            }
+          ],
+          "hanzi": "我现在正在回复客户的邮件。",
+          "pinyin": "Wǒ xiànzài zhèngzài huífù kèhù de yóujiàn."
+        },
+        {
+          "vietnamese": "Tôi đã trao đổi email với khách hàng từ đầu tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "邮件往来",
+              "pinyin": "yóujiàn wǎnglái",
+              "word_type": "danh từ",
+              "meaning": "trao đổi email"
+            }
+          ],
+          "hanzi": "我从这周初就一直在和客户进行邮件往来。",
+          "pinyin": "Wǒ cóng zhè zhōu chū jiù yìzhí zài hé kèhù jìnxíng yóujiàn wǎnglái."
+        },
+        {
+          "vietnamese": "Tôi thích giao tiếp qua email vì có thể lưu lại thông tin.",
+          "vocabulary": [
+            {
+              "hanzi": "保留记录",
+              "pinyin": "bǎoliú jìlù",
+              "word_type": "cụm động từ",
+              "meaning": "lưu lại thông tin"
+            }
+          ],
+          "hanzi": "我喜欢用邮件沟通，因为可以保留记录。",
+          "pinyin": "Wǒ xǐhuan yòng yóujiàn gōutōng, yīnwèi kěyǐ bǎoliú jìlù."
+        },
+        {
+          "vietnamese": "Sếp đã gọi cho tôi để thảo luận về dự án mới.",
+          "vocabulary": [
+            {
+              "hanzi": "讨论",
+              "pinyin": "tǎolùn",
+              "word_type": "động từ",
+              "meaning": "thảo luận"
+            }
+          ],
+          "hanzi": "老板给我打电话，讨论新项目。",
+          "pinyin": "Lǎobǎn gěi wǒ dǎ diànhuà tǎolùn xīn xiàngmù."
+        },
+        {
+          "vietnamese": "Tôi đang soạn một email để gửi cho đối tác.",
+          "vocabulary": [
+            {
+              "hanzi": "合作伙伴",
+              "pinyin": "hézuò huǒbàn",
+              "word_type": "danh từ",
+              "meaning": "đối tác"
+            }
+          ],
+          "hanzi": "我正在给合作伙伴写一封邮件。",
+          "pinyin": "Wǒ zhèngzài gěi hézuò huǒbàn xiě yì fēng yóujiàn."
+        },
+        {
+          "vietnamese": "Tôi đã gọi điện và gửi email nhiều lần trong vài ngày qua.",
+          "vocabulary": [
+            {
+              "hanzi": "过去几天",
+              "pinyin": "guòqù jǐ tiān",
+              "word_type": "cụm từ",
+              "meaning": "vài ngày qua"
+            }
+          ],
+          "hanzi": "过去几天我打了很多电话，也发了很多邮件。",
+          "pinyin": "Guòqù jǐ tiān wǒ dǎle hěn duō diànhuà, yě fāle hěn duō yóujiàn."
+        },
+        {
+          "vietnamese": "Mặc dù đường truyền kém nhưng chúng tôi vẫn hoàn thành cuộc gọi.",
+          "vocabulary": [
+            {
+              "hanzi": "信号",
+              "pinyin": "xìnhào",
+              "word_type": "danh từ",
+              "meaning": "tín hiệu, đường truyền"
+            }
+          ],
+          "hanzi": "虽然信号不好，但我们还是完成了通话。",
+          "pinyin": "Suīrán xìnhào bù hǎo, dàn wǒmen háishi wánchéngle tōnghuà."
+        },
+        {
+          "vietnamese": "Tôi đã chờ phản hồi email gần một tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "将近",
+              "pinyin": "jiāngjìn",
+              "word_type": "phó từ",
+              "meaning": "gần"
+            }
+          ],
+          "hanzi": "我等邮件回复等了将近一个星期。",
+          "pinyin": "Wǒ děng yóujiàn huífù děngle jiāngjìn yí ge xīngqī."
+        },
+        {
+          "vietnamese": "Giao tiếp hiệu quả qua điện thoại và email giúp xây dựng các mối quan hệ chuyên nghiệp tốt hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "职业关系",
+              "pinyin": "zhíyè guānxi",
+              "word_type": "danh từ",
+              "meaning": "mối quan hệ chuyên nghiệp"
+            },
+            {
+              "hanzi": "有助于",
+              "pinyin": "yǒuzhùyú",
+              "word_type": "động từ",
+              "meaning": "giúp, có ích cho"
+            }
+          ],
+          "hanzi": "通过电话和邮件进行有效沟通有助于建立更好的职业关系。",
+          "pinyin": "Tōngguò diànhuà hé yóujiàn jìnxíng yǒuxiào gōutōng yǒuzhùyú jiànlì gèng hǎo de zhíyè guānxi."
+        }
+      ]
+    }
+  ]
+}

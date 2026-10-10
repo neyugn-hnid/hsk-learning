@@ -1,0 +1,4673 @@
+{
+  "source": "(4) TIẾNG TRUNG_Bai31-40.docx",
+  "lessons": [
+    {
+      "lesson": 31,
+      "title": "第31课 · 体育运动 (Dì sānshíyī kè · Tǐyù Yùndòng) — THỂ THAO",
+      "sentences": [
+        {
+          "vietnamese": "Tôi thích chơi bóng đá.",
+          "vocabulary": [
+            {
+              "hanzi": "踢足球",
+              "pinyin": "tī zúqiú",
+              "word_type": "cụm động từ",
+              "meaning": "chơi bóng đá"
+            }
+          ],
+          "hanzi": "我喜欢踢足球。",
+          "pinyin": "Wǒ xǐhuan tī zúqiú."
+        },
+        {
+          "vietnamese": "Anh trai tôi chơi bóng rổ mỗi cuối tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "打篮球",
+              "pinyin": "dǎ lánqiú",
+              "word_type": "cụm động từ",
+              "meaning": "chơi bóng rổ"
+            }
+          ],
+          "hanzi": "我哥哥每个周末都打篮球。",
+          "pinyin": "Wǒ gēge měi ge zhōumò dōu dǎ lánqiú."
+        },
+        {
+          "vietnamese": "Tôi đang tập thể dục.",
+          "vocabulary": [
+            {
+              "hanzi": "锻炼身体",
+              "pinyin": "duànliàn shēntǐ",
+              "word_type": "cụm động từ",
+              "meaning": "tập thể dục"
+            }
+          ],
+          "hanzi": "我在锻炼身体。",
+          "pinyin": "Wǒ zài duànliàn shēntǐ."
+        },
+        {
+          "vietnamese": "Cô ấy là một vận động viên bơi lội.",
+          "vocabulary": [
+            {
+              "hanzi": "游泳运动员",
+              "pinyin": "yóuyǒng yùndòngyuán",
+              "word_type": "danh từ",
+              "meaning": "vận động viên bơi lội"
+            }
+          ],
+          "hanzi": "她是一名游泳运动员。",
+          "pinyin": "Tā shì yì míng yóuyǒng yùndòngyuán."
+        },
+        {
+          "vietnamese": "Chúng tôi thường chạy bộ vào buổi sáng.",
+          "vocabulary": [
+            {
+              "hanzi": "跑步",
+              "pinyin": "pǎobù",
+              "word_type": "động từ",
+              "meaning": "chạy bộ"
+            }
+          ],
+          "hanzi": "我们经常在早上跑步。",
+          "pinyin": "Wǒmen jīngcháng zài zǎoshang pǎobù."
+        },
+        {
+          "vietnamese": "Tôi thích xem các trận đấu bóng đá.",
+          "vocabulary": [
+            {
+              "hanzi": "足球比赛",
+              "pinyin": "zúqiú bǐsài",
+              "word_type": "danh từ",
+              "meaning": "trận đấu bóng đá"
+            }
+          ],
+          "hanzi": "我喜欢看足球比赛。",
+          "pinyin": "Wǒ xǐhuan kàn zúqiú bǐsài."
+        },
+        {
+          "vietnamese": "Anh ấy đang tập luyện cho giải đấu.",
+          "vocabulary": [
+            {
+              "hanzi": "训练",
+              "pinyin": "xùnliàn",
+              "word_type": "động từ",
+              "meaning": "tập luyện"
+            },
+            {
+              "hanzi": "比赛",
+              "pinyin": "bǐsài",
+              "word_type": "danh từ",
+              "meaning": "giải đấu"
+            }
+          ],
+          "hanzi": "他正在为比赛训练。",
+          "pinyin": "Tā zhèngzài wèi bǐsài xùnliàn."
+        },
+        {
+          "vietnamese": "Tôi chơi cầu lông với bạn bè.",
+          "vocabulary": [
+            {
+              "hanzi": "打羽毛球",
+              "pinyin": "dǎ yǔmáoqiú",
+              "word_type": "cụm động từ",
+              "meaning": "chơi cầu lông"
+            }
+          ],
+          "hanzi": "我和朋友打羽毛球。",
+          "pinyin": "Wǒ hé péngyou dǎ yǔmáoqiú."
+        },
+        {
+          "vietnamese": "Đội của chúng tôi đã thắng trận đấu.",
+          "vocabulary": [
+            {
+              "hanzi": "赢",
+              "pinyin": "yíng",
+              "word_type": "động từ",
+              "meaning": "thắng"
+            },
+            {
+              "hanzi": "队",
+              "pinyin": "duì",
+              "word_type": "danh từ",
+              "meaning": "đội"
+            }
+          ],
+          "hanzi": "我们的队赢了比赛。",
+          "pinyin": "Wǒmen de duì yíngle bǐsài."
+        },
+        {
+          "vietnamese": "Tôi muốn cải thiện thể lực của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "体能",
+              "pinyin": "tǐnéng",
+              "word_type": "danh từ",
+              "meaning": "thể lực"
+            }
+          ],
+          "hanzi": "我想提高我的体能。",
+          "pinyin": "Wǒ xiǎng tígāo wǒ de tǐnéng."
+        },
+        {
+          "vietnamese": "Tôi thường đến phòng tập thể dục sau giờ làm.",
+          "vocabulary": [
+            {
+              "hanzi": "健身房",
+              "pinyin": "jiànshēnfáng",
+              "word_type": "danh từ",
+              "meaning": "phòng tập thể dục"
+            }
+          ],
+          "hanzi": "我下班后经常去健身房。",
+          "pinyin": "Wǒ xiàbān hòu jīngcháng qù jiànshēnfáng."
+        },
+        {
+          "vietnamese": "Tôi đã chơi tennis vào cuối tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "网球",
+              "pinyin": "wǎngqiú",
+              "word_type": "danh từ",
+              "meaning": "tennis"
+            }
+          ],
+          "hanzi": "我上周末打了网球。",
+          "pinyin": "Wǒ shàng zhōumò dǎle wǎngqiú."
+        },
+        {
+          "vietnamese": "Anh ấy đang nâng tạ.",
+          "vocabulary": [
+            {
+              "hanzi": "举重",
+              "pinyin": "jǔzhòng",
+              "word_type": "động từ",
+              "meaning": "nâng tạ"
+            }
+          ],
+          "hanzi": "他在举重。",
+          "pinyin": "Tā zài jǔzhòng."
+        },
+        {
+          "vietnamese": "Chúng tôi đang xem một trận đấu trực tiếp.",
+          "vocabulary": [
+            {
+              "hanzi": "直播比赛",
+              "pinyin": "zhíbō bǐsài",
+              "word_type": "danh từ",
+              "meaning": "trận đấu trực tiếp"
+            }
+          ],
+          "hanzi": "我们在看一场直播比赛。",
+          "pinyin": "Wǒmen zài kàn yì chǎng zhíbō bǐsài."
+        },
+        {
+          "vietnamese": "Cô ấy chạy rất nhanh.",
+          "vocabulary": [
+            {
+              "hanzi": "快",
+              "pinyin": "kuài",
+              "word_type": "tính từ",
+              "meaning": "nhanh"
+            }
+          ],
+          "hanzi": "她跑得很快。",
+          "pinyin": "Tā pǎo de hěn kuài."
+        },
+        {
+          "vietnamese": "Tôi chơi thể thao thường xuyên để giữ sức khỏe.",
+          "vocabulary": [
+            {
+              "hanzi": "运动",
+              "pinyin": "yùndòng",
+              "word_type": "động từ",
+              "meaning": "chơi thể thao"
+            },
+            {
+              "hanzi": "保持健康",
+              "pinyin": "bǎochí jiànkāng",
+              "word_type": "động từ",
+              "meaning": "giữ sức khỏe"
+            }
+          ],
+          "hanzi": "我经常运动来保持健康。",
+          "pinyin": "Wǒ jīngcháng yùndòng lái bǎochí jiànkāng."
+        },
+        {
+          "vietnamese": "Anh ấy luyện tập mỗi ngày để cải thiện thành tích.",
+          "vocabulary": [
+            {
+              "hanzi": "提高成绩",
+              "pinyin": "tígāo chéngjì",
+              "word_type": "cụm động từ",
+              "meaning": "nâng cao thành tích"
+            }
+          ],
+          "hanzi": "他每天训练， 为了提高成绩。",
+          "pinyin": "Tā měitiān xùnliàn wèile tígāo chéngjì."
+        },
+        {
+          "vietnamese": "Chúng tôi tham gia một giải đấu bóng đá vào tháng trước.",
+          "vocabulary": [
+            {
+              "hanzi": "参加",
+              "pinyin": "cānjiā",
+              "word_type": "động từ",
+              "meaning": "tham gia"
+            }
+          ],
+          "hanzi": "我们上个月参加了一场足球比赛。",
+          "pinyin": "Wǒmen shàng ge yuè cānjiāle yì chǎng zúqiú bǐsài."
+        },
+        {
+          "vietnamese": "Bơi lội là một trong những môn thể thao yêu thích của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "之一",
+              "pinyin": "zhī yī",
+              "word_type": "cụm từ",
+              "meaning": "một trong những"
+            }
+          ],
+          "hanzi": "游泳是我最喜欢的运动之一。",
+          "pinyin": "Yóuyǒng shì wǒ zuì xǐhuan de yùndòng zhī yī."
+        },
+        {
+          "vietnamese": "Trận đấu rất hấp dẫn và đầy kịch tính.",
+          "vocabulary": [
+            {
+              "hanzi": "精彩",
+              "pinyin": "jīngcǎi",
+              "word_type": "tính từ",
+              "meaning": "hấp dẫn"
+            },
+            {
+              "hanzi": "戏剧性",
+              "pinyin": "xìjùxìng",
+              "word_type": "danh từ",
+              "meaning": "tính kịch tính"
+            }
+          ],
+          "hanzi": "这场比赛很精彩，充满戏剧性。",
+          "pinyin": "Zhè chǎng bǐsài hěn jīngcǎi, chōngmǎn xìjùxìng."
+        },
+        {
+          "vietnamese": "Tôi đã chơi bóng đá được hơn mười năm.",
+          "vocabulary": [
+            {
+              "hanzi": "十多年",
+              "pinyin": "shí duō nián",
+              "word_type": "cụm từ",
+              "meaning": "hơn mười năm"
+            }
+          ],
+          "hanzi": "我踢足球已经十多年了。",
+          "pinyin": "Wǒ tī zúqiú yǐjīng shí duō nián le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang tập luyện cho một cuộc thi chạy.",
+          "vocabulary": [
+            {
+              "hanzi": "跑步比赛",
+              "pinyin": "pǎobù bǐsài",
+              "word_type": "danh từ",
+              "meaning": "cuộc thi chạy"
+            }
+          ],
+          "hanzi": "我现在正在为一场跑步比赛训练。",
+          "pinyin": "Wǒ xiànzài zhèngzài wèi yì chǎng pǎobù bǐsài xùnliàn."
+        },
+        {
+          "vietnamese": "Chúng tôi đã luyện tập cùng nhau từ đầu mùa giải.",
+          "vocabulary": [
+            {
+              "hanzi": "赛季初",
+              "pinyin": "sàijì chū",
+              "word_type": "danh từ",
+              "meaning": "đầu mùa giải"
+            }
+          ],
+          "hanzi": "我们从赛季初就一起训练了。",
+          "pinyin": "Wǒmen cóng sàijì chū jiù yìqǐ xùnliàn le."
+        },
+        {
+          "vietnamese": "Tôi thích thể thao vì nó giúp giảm căng thẳng.",
+          "vocabulary": [
+            {
+              "hanzi": "减轻压力",
+              "pinyin": "jiǎnqīng yālì",
+              "word_type": "cụm động từ",
+              "meaning": "giảm căng thẳng"
+            }
+          ],
+          "hanzi": "我喜欢运动，因为它能减轻压力。",
+          "pinyin": "Wǒ xǐhuan yùndòng, yīnwèi tā néng jiǎnqīng yālì."
+        },
+        {
+          "vietnamese": "Đội của chúng tôi đã giành chức vô địch năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "赢得冠军",
+              "pinyin": "yíngdé guànjūn",
+              "word_type": "cụm động từ",
+              "meaning": "giành chức vô địch"
+            }
+          ],
+          "hanzi": "我们的队去年赢得了冠军。",
+          "pinyin": "Wǒmen de duì qùnián yíngdéle guànjūn."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng tăng sức bền của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "增强耐力",
+              "pinyin": "zēngqiáng nàilì",
+              "word_type": "cụm động từ",
+              "meaning": "tăng sức bền"
+            }
+          ],
+          "hanzi": "我正在努力增强耐力。",
+          "pinyin": "Wǒ zhèngzài nǔlì zēngqiáng nàilì."
+        },
+        {
+          "vietnamese": "Tôi đã tập luyện chăm chỉ trong vài tháng qua.",
+          "vocabulary": [
+            {
+              "hanzi": "努力训练",
+              "pinyin": "nǔlì xùnliàn",
+              "word_type": "cụm động từ",
+              "meaning": "luyện tập chăm chỉ"
+            }
+          ],
+          "hanzi": "过去几个月我一直努力训练。",
+          "pinyin": "Guòqù jǐ ge yuè wǒ yìzhí nǔlì xùnliàn."
+        },
+        {
+          "vietnamese": "Mặc dù thời tiết xấu nhưng chúng tôi vẫn thi đấu.",
+          "vocabulary": [
+            {
+              "hanzi": "天气不好",
+              "pinyin": "tiānqì bù hǎo",
+              "word_type": "cụm từ",
+              "meaning": "thời tiết xấu"
+            }
+          ],
+          "hanzi": "虽然天气不好，但我们还是参加了比赛。",
+          "pinyin": "Suīrán tiānqì bù hǎo, dàn wǒmen háishi cānjiāle bǐsài."
+        },
+        {
+          "vietnamese": "Tôi đã chạy bộ gần một giờ sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "将近",
+              "pinyin": "jiāngjìn",
+              "word_type": "phó từ",
+              "meaning": "gần"
+            }
+          ],
+          "hanzi": "今天早上我跑步跑了将近一个小时。",
+          "pinyin": "Jīntiān zǎoshang wǒ pǎobù pǎole jiāngjìn yí ge xiǎoshí."
+        },
+        {
+          "vietnamese": "Chơi thể thao thường xuyên không chỉ giúp cải thiện sức khỏe mà còn tăng cường sự tự tin.",
+          "vocabulary": [
+            {
+              "hanzi": "改善健康",
+              "pinyin": "gǎishàn jiànkāng",
+              "word_type": "cụm động từ",
+              "meaning": "cải thiện sức khỏe"
+            },
+            {
+              "hanzi": "增强自信",
+              "pinyin": "zēngqiáng zìxìn",
+              "word_type": "động từ",
+              "meaning": "tăng cường sự tự tin"
+            }
+          ],
+          "hanzi": "经常运动不仅能改善健康，还能增强自信。",
+          "pinyin": "Jīngcháng yùndòng bùjǐn néng gǎishàn jiànkāng, hái néng zēngqiáng zìxìn."
+        }
+      ]
+    },
+    {
+      "lesson": 32,
+      "title": "第32课 · 电影与影院 (Dì sānshí'èr kè · Diànyǐng yǔ Yǐngyuàn) — PHIM ẢNH VÀ RẠP CHIẾU PHIM",
+      "sentences": [
+        {
+          "vietnamese": "Tôi thích xem phim.",
+          "vocabulary": [
+            {
+              "hanzi": "看电影",
+              "pinyin": "kàn diànyǐng",
+              "word_type": "CỤM động từ",
+              "meaning": "xem phim"
+            }
+          ],
+          "hanzi": "我喜欢看电影。",
+          "pinyin": "Wǒ xǐhuan kàn diànyǐng."
+        },
+        {
+          "vietnamese": "Chúng tôi đã đến rạp chiếu phim hôm qua.",
+          "vocabulary": [
+            {
+              "hanzi": "电影院",
+              "pinyin": "diànyǐngyuàn",
+              "word_type": "danh từ",
+              "meaning": "rạp chiếu phim"
+            }
+          ],
+          "hanzi": "我们昨天去电影院了。",
+          "pinyin": "Wǒmen zuótiān qù diànyǐngyuàn le."
+        },
+        {
+          "vietnamese": "Bộ phim này rất thú vị.",
+          "vocabulary": [
+            {
+              "hanzi": "有趣",
+              "pinyin": "yǒuqù",
+              "word_type": "tính từ",
+              "meaning": "thú vị"
+            }
+          ],
+          "hanzi": "这部电影很有趣。",
+          "pinyin": "Zhè bù diànyǐng hěn yǒuqù."
+        },
+        {
+          "vietnamese": "Tôi đang xem một bộ phim hành động.",
+          "vocabulary": [
+            {
+              "hanzi": "动作片",
+              "pinyin": "dòngzuòpiàn",
+              "word_type": "danh từ",
+              "meaning": "phim hành động"
+            }
+          ],
+          "hanzi": "我在看一部动作片。",
+          "pinyin": "Wǒ zài kàn yí bù dòngzuòpiàn."
+        },
+        {
+          "vietnamese": "Cô ấy thích phim hài.",
+          "vocabulary": [
+            {
+              "hanzi": "喜剧片",
+              "pinyin": "xǐjùpiàn",
+              "word_type": "danh từ",
+              "meaning": "phim hài"
+            }
+          ],
+          "hanzi": "她喜欢喜剧片。",
+          "pinyin": "Tā xǐhuan xǐjùpiàn."
+        },
+        {
+          "vietnamese": "Anh ấy đã mua hai vé xem phim.",
+          "vocabulary": [
+            {
+              "hanzi": "电影票",
+              "pinyin": "diànyǐngpiào",
+              "word_type": "danh từ",
+              "meaning": "vé xem phim"
+            }
+          ],
+          "hanzi": "他买了两张电影票。",
+          "pinyin": "Tā mǎile liǎng zhāng diànyǐngpiào."
+        },
+        {
+          "vietnamese": "Bộ phim bắt đầu lúc 7 giờ tối.",
+          "vocabulary": [
+            {
+              "hanzi": "开始",
+              "pinyin": "kāishǐ",
+              "word_type": "động từ",
+              "meaning": "bắt đầu"
+            }
+          ],
+          "hanzi": "电影晚上七点开始。",
+          "pinyin": "Diànyǐng wǎnshang qī diǎn kāishǐ."
+        },
+        {
+          "vietnamese": "Tôi thích nhân vật chính.",
+          "vocabulary": [
+            {
+              "hanzi": "主角",
+              "pinyin": "zhǔjué",
+              "word_type": "danh từ",
+              "meaning": "nhân vật chính"
+            }
+          ],
+          "hanzi": "我喜欢主角。",
+          "pinyin": "Wǒ xǐhuan zhǔjué."
+        },
+        {
+          "vietnamese": "Chúng tôi đang xem trailer của bộ phim mới.",
+          "vocabulary": [
+            {
+              "hanzi": "预告片",
+              "pinyin": "yùgàopiàn",
+              "word_type": "danh từ",
+              "meaning": "trailer"
+            }
+          ],
+          "hanzi": "我们在看新电影的预告片。",
+          "pinyin": "Wǒmen zài kàn xīn diànyǐng de yùgàopiàn."
+        },
+        {
+          "vietnamese": "Bộ phim này dựa trên một câu chuyện có thật.",
+          "vocabulary": [
+            {
+              "hanzi": "根据…改编",
+              "pinyin": "gēnjù…gǎibiān",
+              "word_type": "cụm từ",
+              "meaning": "dựa trên…"
+            },
+            {
+              "hanzi": "真实故事",
+              "pinyin": "zhēnshí gùshi",
+              "word_type": "danh từ",
+              "meaning": "câu chuyện có thật"
+            }
+          ],
+          "hanzi": "这部电影是根据真实故事改编的。",
+          "pinyin": "Zhè bù diànyǐng shì gēnjù zhēnshí gùshi gǎibiān de."
+        },
+        {
+          "vietnamese": "Tôi thường xem phim vào cuối tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "周末",
+              "pinyin": "zhōumò",
+              "word_type": "danh từ",
+              "meaning": "cuối tuần"
+            }
+          ],
+          "hanzi": "我通常在周末看电影。",
+          "pinyin": "Wǒ tōngcháng zài zhōumò kàn diànyǐng."
+        },
+        {
+          "vietnamese": "Tôi đã xem bộ phim đó vào tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "上星期",
+              "pinyin": "shàng xīngqī",
+              "word_type": "danh từ",
+              "meaning": "tuần trước"
+            }
+          ],
+          "hanzi": "我上星期看了那部电影。",
+          "pinyin": "Wǒ shàng xīngqī kànle nà bù diànyǐng."
+        },
+        {
+          "vietnamese": "Chúng tôi đang chờ bộ phim bắt đầu.",
+          "vocabulary": [
+            {
+              "hanzi": "等",
+              "pinyin": "děng",
+              "word_type": "động từ",
+              "meaning": "chờ"
+            }
+          ],
+          "hanzi": "我们在等电影开始。",
+          "pinyin": "Wǒmen zài děng diànyǐng kāishǐ."
+        },
+        {
+          "vietnamese": "Bộ phim có kỹ xảo tuyệt vời.",
+          "vocabulary": [
+            {
+              "hanzi": "特效",
+              "pinyin": "tèxiào",
+              "word_type": "danh từ",
+              "meaning": "kỹ xảo"
+            }
+          ],
+          "hanzi": "这部电影特效很棒。",
+          "pinyin": "Zhè bù diànyǐng tèxiào hěn bàng."
+        },
+        {
+          "vietnamese": "Diễn viên chính diễn rất xuất sắc.",
+          "vocabulary": [
+            {
+              "hanzi": "主演",
+              "pinyin": "zhǔyǎn",
+              "word_type": "danh từ",
+              "meaning": "diễn viên chính"
+            },
+            {
+              "hanzi": "出色",
+              "pinyin": "chūsè",
+              "word_type": "tính từ",
+              "meaning": "xuất sắc"
+            }
+          ],
+          "hanzi": "主演演得很出色。",
+          "pinyin": "Zhǔyǎn yǎn de hěn chūsè."
+        },
+        {
+          "vietnamese": "Tôi thích phim hành động vì chúng rất hấp dẫn.",
+          "vocabulary": [
+            {
+              "hanzi": "刺激",
+              "pinyin": "cìjī",
+              "word_type": "tính từ",
+              "meaning": "hấp dẫn, kích thích"
+            }
+          ],
+          "hanzi": "我喜欢动作片，因为它们很刺激。",
+          "pinyin": "Wǒ xǐhuan dòngzuòpiàn, yīnwèi tāmen hěn cìjī."
+        },
+        {
+          "vietnamese": "Bộ phim này nổi tiếng vì cốt truyện độc đáo.",
+          "vocabulary": [
+            {
+              "hanzi": "剧情",
+              "pinyin": "jùqíng",
+              "word_type": "danh từ",
+              "meaning": "cốt truyện"
+            },
+            {
+              "hanzi": "独特",
+              "pinyin": "dútè",
+              "word_type": "tính từ",
+              "meaning": "độc đáo"
+            }
+          ],
+          "hanzi": "这部电影因独特的剧情而出名。",
+          "pinyin": "Zhè bù diànyǐng yīn dútè de jùqíng ér chūmíng."
+        },
+        {
+          "vietnamese": "Chúng tôi quyết định xem phim sau bữa tối.",
+          "vocabulary": [
+            {
+              "hanzi": "决定",
+              "pinyin": "juédìng",
+              "word_type": "động từ",
+              "meaning": "quyết định"
+            }
+          ],
+          "hanzi": "我们决定晚饭后看电影。",
+          "pinyin": "Wǒmen juédìng wǎnfàn hòu kàn diànyǐng."
+        },
+        {
+          "vietnamese": "Bộ phim khiến tôi cười rất nhiều.",
+          "vocabulary": [
+            {
+              "hanzi": "让…笑",
+              "pinyin": "ràng…xiào",
+              "word_type": "cụm từ",
+              "meaning": "khiến…cười"
+            }
+          ],
+          "hanzi": "这部电影让我笑了很多。",
+          "pinyin": "Zhè bù diànyǐng ràng wǒ xiàole hěn duō."
+        },
+        {
+          "vietnamese": "Mặc dù bộ phim khá dài nhưng tôi không hề thấy chán.",
+          "vocabulary": [
+            {
+              "hanzi": "长",
+              "pinyin": "cháng",
+              "word_type": "tính từ",
+              "meaning": "dài"
+            },
+            {
+              "hanzi": "无聊",
+              "pinyin": "wúliáo",
+              "word_type": "tính từ",
+              "meaning": "chán"
+            }
+          ],
+          "hanzi": "虽然电影很长，但我一点也不觉得无聊。",
+          "pinyin": "Suīrán diànyǐng hěn cháng, dàn wǒ yìdiǎn yě bù juéde wúliáo."
+        },
+        {
+          "vietnamese": "Tôi đã xem bộ phim này ba lần.",
+          "vocabulary": [
+            {
+              "hanzi": "三次",
+              "pinyin": "sān cì",
+              "word_type": "cụm từ",
+              "meaning": "ba lần"
+            }
+          ],
+          "hanzi": "我看过这部电影三次。",
+          "pinyin": "Wǒ kànguo zhè bù diànyǐng sān cì."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang xem một bộ phim tài liệu.",
+          "vocabulary": [
+            {
+              "hanzi": "纪录片",
+              "pinyin": "jìlùpiàn",
+              "word_type": "danh từ",
+              "meaning": "phim tài liệu"
+            }
+          ],
+          "hanzi": "我现在正在看一部纪录片。",
+          "pinyin": "Wǒ xiànzài zhèngzài kàn yí bù jìlùpiàn."
+        },
+        {
+          "vietnamese": "Tôi đã xem rất nhiều bộ phim trong năm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "今年",
+              "pinyin": "jīnnián",
+              "word_type": "danh từ",
+              "meaning": "năm nay"
+            }
+          ],
+          "hanzi": "今年我看了很多电影。",
+          "pinyin": "Jīnnián wǒ kànle hěn duō diànyǐng."
+        },
+        {
+          "vietnamese": "Tôi thích xem phim ở rạp hơn ở nhà.",
+          "vocabulary": [
+            {
+              "hanzi": "比起…更…",
+              "pinyin": "bǐqǐ…gèng…",
+              "word_type": "cụm từ",
+              "meaning": "thích…hơn…"
+            }
+          ],
+          "hanzi": "比起在家看，我更喜欢在电影院看电影。",
+          "pinyin": "Bǐqǐ zài jiā kàn, wǒ gèng xǐhuan zài diànyǐngyuàn kàn diànyǐng."
+        },
+        {
+          "vietnamese": "Bộ phim đã giành được nhiều giải thưởng quốc tế.",
+          "vocabulary": [
+            {
+              "hanzi": "国际奖项",
+              "pinyin": "guójì jiǎngxiàng",
+              "word_type": "danh từ",
+              "meaning": "giải thưởng quốc tế"
+            }
+          ],
+          "hanzi": "这部电影获得了许多国际奖项。",
+          "pinyin": "Zhè bù diànyǐng huòdéle xǔduō guójì jiǎngxiàng."
+        },
+        {
+          "vietnamese": "Tôi đang tìm một bộ phim hay để xem tối nay.",
+          "vocabulary": [
+            {
+              "hanzi": "今晚",
+              "pinyin": "jīnwǎn",
+              "word_type": "danh từ",
+              "meaning": "tối nay"
+            }
+          ],
+          "hanzi": "我在找一部今晚看的好电影。",
+          "pinyin": "Wǒ zài zhǎo yí bù jīnwǎn kàn de hǎo diànyǐng."
+        },
+        {
+          "vietnamese": "Tôi đã xem liên tục nhiều tập của bộ phim này.",
+          "vocabulary": [
+            {
+              "hanzi": "集",
+              "pinyin": "jí",
+              "word_type": "lượng từ",
+              "meaning": "tập (phim)"
+            }
+          ],
+          "hanzi": "我连续看了这部剧的好几集。",
+          "pinyin": "Wǒ liánxù kànle zhè bù jù de hǎo jǐ jí."
+        },
+        {
+          "vietnamese": "Mặc dù tôi biết kết thúc nhưng tôi vẫn thích xem lại bộ phim.",
+          "vocabulary": [
+            {
+              "hanzi": "结局",
+              "pinyin": "jiéjú",
+              "word_type": "danh từ",
+              "meaning": "kết thúc"
+            },
+            {
+              "hanzi": "重看",
+              "pinyin": "chóng kàn",
+              "word_type": "động từ",
+              "meaning": "xem lại"
+            }
+          ],
+          "hanzi": "虽然我知道结局，但我还是喜欢重看这部电影。",
+          "pinyin": "Suīrán wǒ zhīdào jiéjú, dàn wǒ háishi xǐhuan chóng kàn zhè bù diànyǐng."
+        },
+        {
+          "vietnamese": "Tôi đã dành gần cả buổi tối để xem bộ phim này.",
+          "vocabulary": [
+            {
+              "hanzi": "一整晚",
+              "pinyin": "yì zhěngwǎn",
+              "word_type": "danh từ",
+              "meaning": "cả buổi tối"
+            }
+          ],
+          "hanzi": "我花了将近一整晚看这部电影。",
+          "pinyin": "Wǒ huāle jiāngjìn yì zhěngwǎn kàn zhè bù diànyǐng."
+        },
+        {
+          "vietnamese": "Một bộ phim hay không chỉ mang tính giải trí mà còn truyền tải những thông điệp ý nghĩa.",
+          "vocabulary": [
+            {
+              "hanzi": "娱乐性",
+              "pinyin": "yúlèxìng",
+              "word_type": "danh từ",
+              "meaning": "tính giải trí"
+            },
+            {
+              "hanzi": "传达",
+              "pinyin": "chuándá",
+              "word_type": "động từ",
+              "meaning": "truyền tải"
+            }
+          ],
+          "hanzi": "一部好电影不仅具有娱乐性，还能传达有意义的信息。",
+          "pinyin": "Yí bù hǎo diànyǐng bùjǐn jùyǒu yúlèxìng, hái néng chuándá yǒu yìyì de xìnxī."
+        }
+      ]
+    },
+    {
+      "lesson": 33,
+      "title": "第33课 · 音乐与乐器 (Dì sānshísān kè · Yīnyuè yǔ Yuèqì) — ÂM NHẠC VÀ NHẠC CỤ",
+      "sentences": [
+        {
+          "vietnamese": "Tôi thích nghe nhạc.",
+          "vocabulary": [
+            {
+              "hanzi": "听音乐",
+              "pinyin": "tīng yīnyuè",
+              "word_type": "cụm động từ",
+              "meaning": "nghe nhạc"
+            }
+          ],
+          "hanzi": "我喜欢听音乐。",
+          "pinyin": "Wǒ xǐhuan tīng yīnyuè."
+        },
+        {
+          "vietnamese": "Cô ấy chơi đàn piano rất giỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "弹钢琴",
+              "pinyin": "tán gāngqín",
+              "word_type": "cụm động từ",
+              "meaning": "chơi đàn piano"
+            },
+            {
+              "hanzi": "好",
+              "pinyin": "hǎo",
+              "word_type": "tính từ",
+              "meaning": "giỏi"
+            }
+          ],
+          "hanzi": "她钢琴弹得很好。",
+          "pinyin": "Tā gāngqín tán de hěn hǎo."
+        },
+        {
+          "vietnamese": "Tôi đang nghe bài hát yêu thích của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "歌",
+              "pinyin": "gē",
+              "word_type": "danh từ",
+              "meaning": "bài hát"
+            }
+          ],
+          "hanzi": "我在听我最喜欢的歌。",
+          "pinyin": "Wǒ zài tīng wǒ zuì xǐhuan de gē."
+        },
+        {
+          "vietnamese": "Anh ấy chơi guitar trong một ban nhạc.",
+          "vocabulary": [
+            {
+              "hanzi": "乐队",
+              "pinyin": "yuèduì",
+              "word_type": "danh từ",
+              "meaning": "ban nhạc"
+            }
+          ],
+          "hanzi": "他在一个乐队里弹吉他。",
+          "pinyin": "Tā zài yí ge yuèduì lǐ tán jítā."
+        },
+        {
+          "vietnamese": "Tôi thích nhạc pop.",
+          "vocabulary": [
+            {
+              "hanzi": "流行音乐",
+              "pinyin": "liúxíng yīnyuè",
+              "word_type": "danh từ",
+              "meaning": "nhạc pop"
+            }
+          ],
+          "hanzi": "我喜欢流行音乐。",
+          "pinyin": "Wǒ xǐhuan liúxíng yīnyuè."
+        },
+        {
+          "vietnamese": "Chúng tôi đang học một bài hát mới.",
+          "vocabulary": [
+            {
+              "hanzi": "首",
+              "pinyin": "shǒu",
+              "word_type": "lượng từ",
+              "meaning": "bài (hát)"
+            }
+          ],
+          "hanzi": "我们正在学一首新歌。",
+          "pinyin": "Wǒmen zhèngzài xué yì shǒu xīn gē."
+        },
+        {
+          "vietnamese": "Cô ấy có một giọng hát rất hay.",
+          "vocabulary": [
+            {
+              "hanzi": "歌声",
+              "pinyin": "gēshēng",
+              "word_type": "danh từ",
+              "meaning": "giọng hát"
+            },
+            {
+              "hanzi": "动听",
+              "pinyin": "dòngtīng",
+              "word_type": "tính từ",
+              "meaning": "hay, êm tai"
+            }
+          ],
+          "hanzi": "她的歌声很动听。",
+          "pinyin": "Tā de gēshēng hěn dòngtīng."
+        },
+        {
+          "vietnamese": "Tôi thường nghe nhạc khi học bài.",
+          "vocabulary": [
+            {
+              "hanzi": "学习",
+              "pinyin": "xuéxí",
+              "word_type": "động từ",
+              "meaning": "học bài"
+            }
+          ],
+          "hanzi": "我学习的时候经常听音乐。",
+          "pinyin": "Wǒ xuéxí de shíhou jīngcháng tīng yīnyuè."
+        },
+        {
+          "vietnamese": "Bài hát này rất nổi tiếng.",
+          "vocabulary": [
+            {
+              "hanzi": "有名",
+              "pinyin": "yǒumíng",
+              "word_type": "tính từ",
+              "meaning": "nổi tiếng"
+            }
+          ],
+          "hanzi": "这首歌很有名。",
+          "pinyin": "Zhè shǒu gē hěn yǒumíng."
+        },
+        {
+          "vietnamese": "Tôi muốn học chơi violin.",
+          "vocabulary": [
+            {
+              "hanzi": "拉小提琴",
+              "pinyin": "lā xiǎotíqín",
+              "word_type": "cụm động từ",
+              "meaning": "chơi violin"
+            }
+          ],
+          "hanzi": "我想学拉小提琴。",
+          "pinyin": "Wǒ xiǎng xué lā xiǎotíqín."
+        },
+        {
+          "vietnamese": "Anh ấy đang luyện tập chơi trống.",
+          "vocabulary": [
+            {
+              "hanzi": "打鼓",
+              "pinyin": "dǎgǔ",
+              "word_type": "động từ",
+              "meaning": "chơi trống"
+            }
+          ],
+          "hanzi": "他正在练习打鼓。",
+          "pinyin": "Tā zhèngzài liànxí dǎgǔ."
+        },
+        {
+          "vietnamese": "Tôi đã tham dự một buổi hòa nhạc vào tháng trước.",
+          "vocabulary": [
+            {
+              "hanzi": "音乐会",
+              "pinyin": "yīnyuèhuì",
+              "word_type": "danh từ",
+              "meaning": "buổi hòa nhạc"
+            }
+          ],
+          "hanzi": "我上个月参加了一场音乐会。",
+          "pinyin": "Wǒ shàng ge yuè cānjiāle yì chǎng yīnyuèhuì."
+        },
+        {
+          "vietnamese": "Cô ấy đang hát trên sân khấu.",
+          "vocabulary": [
+            {
+              "hanzi": "舞台",
+              "pinyin": "wǔtái",
+              "word_type": "danh từ",
+              "meaning": "sân khấu"
+            }
+          ],
+          "hanzi": "她正在舞台上唱歌。",
+          "pinyin": "Tā zhèngzài wǔtái shàng chànggē."
+        },
+        {
+          "vietnamese": "Chúng tôi đang nghe một bản nhạc cổ điển.",
+          "vocabulary": [
+            {
+              "hanzi": "古典乐曲",
+              "pinyin": "gǔdiǎn yuèqǔ",
+              "word_type": "danh từ",
+              "meaning": "nhạc cổ điển"
+            }
+          ],
+          "hanzi": "我们在听一首古典乐曲 。",
+          "pinyin": "Wǒmen zài tīng yì shǒu gǔdiǎn yuèqǔ ."
+        },
+        {
+          "vietnamese": "Tôi thích giai điệu của bài hát này.",
+          "vocabulary": [
+            {
+              "hanzi": "旋律",
+              "pinyin": "xuánlǜ",
+              "word_type": "danh từ",
+              "meaning": "giai điệu"
+            }
+          ],
+          "hanzi": "我喜欢这首歌的旋律。",
+          "pinyin": "Wǒ xǐhuan zhè shǒu gē de xuánlǜ."
+        },
+        {
+          "vietnamese": "Tôi nghe nhạc mỗi ngày vì nó giúp tôi thư giãn.",
+          "vocabulary": [
+            {
+              "hanzi": "放松",
+              "pinyin": "fàngsōng",
+              "word_type": "động từ",
+              "meaning": "thư giãn"
+            }
+          ],
+          "hanzi": "我每天听音乐，因为它能让我放松。",
+          "pinyin": "Wǒ měitiān tīng yīnyuè, yīnwèi tā néng ràng wǒ fàngsōng."
+        },
+        {
+          "vietnamese": "Anh ấy luyện tập guitar hàng ngày để cải thiện kỹ năng.",
+          "vocabulary": [
+            {
+              "hanzi": "技巧",
+              "pinyin": "jìqiǎo",
+              "word_type": "danh từ",
+              "meaning": "kỹ năng, kỹ thuật"
+            }
+          ],
+          "hanzi": "他每天练习弹 吉他来提技巧。",
+          "pinyin": "Tā měitiān liànxí tán jítā lái tígāo jìqiǎo."
+        },
+        {
+          "vietnamese": "Chúng tôi đã hát cùng nhau trong buổi tiệc sinh nhật.",
+          "vocabulary": [
+            {
+              "hanzi": "生日派对",
+              "pinyin": "shēngrì pàiduì",
+              "word_type": "danh từ",
+              "meaning": "tiệc sinh nhật"
+            }
+          ],
+          "hanzi": "我们在生日派对上一起唱歌了。",
+          "pinyin": "Wǒmen zài shēngrì pàiduì shàng yìqǐ chànggē le."
+        },
+        {
+          "vietnamese": "Bài hát này có lời ca rất ý nghĩa.",
+          "vocabulary": [
+            {
+              "hanzi": "歌词",
+              "pinyin": "gēcí",
+              "word_type": "danh từ",
+              "meaning": "lời bài hát"
+            }
+          ],
+          "hanzi": "这首歌的歌词很有意义。",
+          "pinyin": "Zhè shǒu gē de gēcí hěn yǒu yìyì."
+        },
+        {
+          "vietnamese": "Mặc dù bài hát cũ nhưng nó vẫn rất phổ biến.",
+          "vocabulary": [
+            {
+              "hanzi": "流行",
+              "pinyin": "liúxíng",
+              "word_type": "tính từ",
+              "meaning": "phổ biến"
+            }
+          ],
+          "hanzi": "虽然这首歌很旧，但它仍然很流行。",
+          "pinyin": "Suīrán zhè shǒu gē hěn jiù, dàn tā réngrán hěn liúxíng."
+        },
+        {
+          "vietnamese": "Tôi đã chơi piano được hơn sáu năm.",
+          "vocabulary": [
+            {
+              "hanzi": "六年多",
+              "pinyin": "liù nián duō",
+              "word_type": "cụm từ",
+              "meaning": "hơn sáu năm"
+            }
+          ],
+          "hanzi": "我已经弹钢琴六年多了。",
+          "pinyin": "Wǒ yǐjīng tán gāngqín liù nián duō le."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang học một bản nhạc mới.",
+          "vocabulary": [
+            {
+              "hanzi": "曲子",
+              "pinyin": "qǔzi",
+              "word_type": "danh từ",
+              "meaning": "bản nhạc"
+            }
+          ],
+          "hanzi": "我现在正在学一首新曲子。",
+          "pinyin": "Wǒ xiànzài zhèngzài xué yì shǒu xīn qǔzi."
+        },
+        {
+          "vietnamese": "Tôi đã nghe bài hát này nhiều lần trong tuần này.",
+          "vocabulary": [
+            {
+              "hanzi": "这星期",
+              "pinyin": "zhè xīngqī",
+              "word_type": "danh từ",
+              "meaning": "tuần này"
+            }
+          ],
+          "hanzi": "这星期我听了这首歌很多次。",
+          "pinyin": "Zhè xīngqī wǒ tīngle zhè shǒu gē hěn duō cì."
+        },
+        {
+          "vietnamese": "Tôi thích âm nhạc vì nó giúp cải thiện tâm trạng của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "心情",
+              "pinyin": "xīnqíng",
+              "word_type": "danh từ",
+              "meaning": "tâm trạng"
+            }
+          ],
+          "hanzi": "我喜欢音乐，因为它能改善我的心情。",
+          "pinyin": "Wǒ xǐhuan yīnyuè, yīnwèi tā néng gǎishàn wǒ de xīnqíng."
+        },
+        {
+          "vietnamese": "Ca sĩ đó đã phát hành một album mới vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "歌手",
+              "pinyin": "gēshǒu",
+              "word_type": "danh từ",
+              "meaning": "ca sĩ"
+            },
+            {
+              "hanzi": "专辑",
+              "pinyin": "zhuānjí",
+              "word_type": "danh từ",
+              "meaning": "album"
+            }
+          ],
+          "hanzi": "那位歌手去年发行了一张新专辑。",
+          "pinyin": "Nà wèi gēshǒu qùnián fāxíngle yì zhāng xīn zhuānjí."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng học đọc nhạc.",
+          "vocabulary": [
+            {
+              "hanzi": "识谱",
+              "pinyin": "shípǔ",
+              "word_type": "động từ",
+              "meaning": "đọc nhạc"
+            }
+          ],
+          "hanzi": "我正在努力学习识谱。",
+          "pinyin": "Wǒ zhèngzài nǔlì xuéxí shípǔ."
+        },
+        {
+          "vietnamese": "Tôi đã luyện tập đàn piano rất chăm chỉ trong vài tháng qua.",
+          "vocabulary": [
+            {
+              "hanzi": "努力地",
+              "pinyin": "nǔlì de",
+              "word_type": "phó từ",
+              "meaning": "chăm chỉ"
+            }
+          ],
+          "hanzi": "过去几个月我一直很努力地练习钢琴。",
+          "pinyin": "Guòqù jǐ ge yuè wǒ yìzhí hěn nǔlì de liànxí gāngqín."
+        },
+        {
+          "vietnamese": "Mặc dù tôi không phải nhạc sĩ chuyên nghiệp nhưng tôi rất yêu âm nhạc.",
+          "vocabulary": [
+            {
+              "hanzi": "音乐家",
+              "pinyin": "yīnyuèjiā",
+              "word_type": "danh từ",
+              "meaning": "nhạc sĩ"
+            },
+            {
+              "hanzi": "热爱",
+              "pinyin": "rè'ài",
+              "word_type": "động từ",
+              "meaning": "yêu, đam mê"
+            }
+          ],
+          "hanzi": "虽然我不是专业音乐家，但我非常热爱音乐。",
+          "pinyin": "Suīrán wǒ bú shì zhuānyè yīnyuèjiā, dàn wǒ fēicháng rè'ài yīnyuè."
+        },
+        {
+          "vietnamese": "Tôi đã dành gần hai giờ để luyện tập guitar tối qua.",
+          "vocabulary": [
+            {
+              "hanzi": "昨晚",
+              "pinyin": "zuówǎn",
+              "word_type": "danh từ",
+              "meaning": "tối qua"
+            }
+          ],
+          "hanzi": "昨晚我花了将近两个小时练习吉他。",
+          "pinyin": "Zuówǎn wǒ huāle jiāngjìn liǎng ge xiǎoshí liànxí jítā."
+        },
+        {
+          "vietnamese": "Âm nhạc không chỉ mang tính giải trí mà còn giúp kết nối mọi người với nhau.",
+          "vocabulary": [
+            {
+              "hanzi": "娱乐性",
+              "pinyin": "yúlèxìng",
+              "word_type": "danh từ",
+              "meaning": "tính giải trí"
+            },
+            {
+              "hanzi": "相互联系",
+              "pinyin": "xiānghù liánxì",
+              "word_type": "cụm động từ",
+              "meaning": "kết nối với nhau"
+            }
+          ],
+          "hanzi": "音乐不仅具有娱乐性，还能帮助人们相互联系。",
+          "pinyin": "Yīnyuè bùjǐn jùyǒu yúlèxìng, hái néng bāngzhù rénmen xiānghù liánxì."
+        }
+      ]
+    },
+    {
+      "lesson": 34,
+      "title": "第34课 · 书籍与阅读 (Dì sānshísì kè · Shūjí yǔ Yuèdú) — SÁCH VÀ VIỆC ĐỌC",
+      "sentences": [
+        {
+          "vietnamese": "Tôi thích đọc sách.",
+          "vocabulary": [
+            {
+              "hanzi": "看书",
+              "pinyin": "kàn shū",
+              "word_type": "động từ",
+              "meaning": "đọc sách"
+            }
+          ],
+          "hanzi": "我喜欢看书。",
+          "pinyin": "Wǒ xǐhuan kàn shū."
+        },
+        {
+          "vietnamese": "Tôi đang đọc một cuốn tiểu thuyết.",
+          "vocabulary": [
+            {
+              "hanzi": "小说",
+              "pinyin": "xiǎoshuō",
+              "word_type": "danh từ",
+              "meaning": "tiểu thuyết"
+            }
+          ],
+          "hanzi": "我在看一本小说。",
+          "pinyin": "Wǒ zài kàn yì běn xiǎoshuō."
+        },
+        {
+          "vietnamese": "Cuốn sách này rất thú vị.",
+          "vocabulary": [
+            {
+              "hanzi": "有意思",
+              "pinyin": "yǒu yìsi",
+              "word_type": "tính từ",
+              "meaning": "thú vị"
+            }
+          ],
+          "hanzi": "这本书很有意思。",
+          "pinyin": "Zhè běn shū hěn yǒu yìsi."
+        },
+        {
+          "vietnamese": "Tôi thường đọc trước khi đi ngủ.",
+          "vocabulary": [
+            {
+              "hanzi": "睡觉前",
+              "pinyin": "shuìjiào qián",
+              "word_type": "cụm từ",
+              "meaning": "trước khi đi ngủ"
+            }
+          ],
+          "hanzi": "我通常睡觉前看书。",
+          "pinyin": "Wǒ tōngcháng shuìjiào qián kàn shū."
+        },
+        {
+          "vietnamese": "Cô ấy thích đọc truyện trinh thám.",
+          "vocabulary": [
+            {
+              "hanzi": "侦探小说",
+              "pinyin": "zhēntàn xiǎoshuō",
+              "word_type": "danh từ",
+              "meaning": "truyện trinh thám"
+            }
+          ],
+          "hanzi": "她喜欢看侦探小说。",
+          "pinyin": "Tā xǐhuan kàn zhēntàn xiǎoshuō."
+        },
+        {
+          "vietnamese": "Tôi vừa mua một cuốn sách mới.",
+          "vocabulary": [
+            {
+              "hanzi": "买",
+              "pinyin": "mǎi",
+              "word_type": "động từ",
+              "meaning": "mua"
+            }
+          ],
+          "hanzi": "我刚买了一本新书。",
+          "pinyin": "Wǒ gāng mǎile yì běn xīn shū."
+        },
+        {
+          "vietnamese": "Anh ấy đang đọc báo.",
+          "vocabulary": [
+            {
+              "hanzi": "报纸",
+              "pinyin": "bàozhǐ",
+              "word_type": "danh từ",
+              "meaning": "báo"
+            }
+          ],
+          "hanzi": "他在看报纸。",
+          "pinyin": "Tā zài kàn bàozhǐ."
+        },
+        {
+          "vietnamese": "Tôi thường mượn sách từ thư viện.",
+          "vocabulary": [
+            {
+              "hanzi": "借书",
+              "pinyin": "jiè shū",
+              "word_type": "động từ",
+              "meaning": "mượn sách"
+            }
+          ],
+          "hanzi": "我经常从图书馆借书。",
+          "pinyin": "Wǒ jīngcháng cóng túshūguǎn jiè shū."
+        },
+        {
+          "vietnamese": "Cuốn sách này có nhiều thông tin hữu ích.",
+          "vocabulary": [
+            {
+              "hanzi": "有用的信息",
+              "pinyin": "yǒuyòng de xìnxī",
+              "word_type": "cụm danh từ",
+              "meaning": "thông tin hữu ích"
+            }
+          ],
+          "hanzi": "这本书包含很多有用的信息。",
+          "pinyin": "Zhè běn shū bāohán hěn duō yǒuyòng de xìnxī."
+        },
+        {
+          "vietnamese": "Tôi thích đọc sách bằng tiếng Anh.",
+          "vocabulary": [
+            {
+              "hanzi": "英文书",
+              "pinyin": "Yīngwén shū",
+              "word_type": "danh từ",
+              "meaning": "sách tiếng Anh"
+            }
+          ],
+          "hanzi": "我喜欢看英文书。",
+          "pinyin": "Wǒ xǐhuan kàn Yīngwén shū."
+        },
+        {
+          "vietnamese": "Tôi đang tìm một cuốn sách hay.",
+          "vocabulary": [
+            {
+              "hanzi": "找",
+              "pinyin": "zhǎo",
+              "word_type": "động từ",
+              "meaning": "tìm"
+            }
+          ],
+          "hanzi": "我在找一本好书。",
+          "pinyin": "Wǒ zài zhǎo yì běn hǎo shū."
+        },
+        {
+          "vietnamese": "Tôi đã đọc cuốn sách đó năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "去年",
+              "pinyin": "qùnián",
+              "word_type": "danh từ",
+              "meaning": "năm ngoái"
+            }
+          ],
+          "hanzi": "我去年看过那本书。",
+          "pinyin": "Wǒ qùnián kànguo nà běn shū."
+        },
+        {
+          "vietnamese": "Cô ấy đang đọc sách trong phòng khách.",
+          "vocabulary": [
+            {
+              "hanzi": "客厅",
+              "pinyin": "kètīng",
+              "word_type": "danh từ",
+              "meaning": "phòng khách"
+            }
+          ],
+          "hanzi": "她在客厅看书。",
+          "pinyin": "Tā zài kètīng kàn shū."
+        },
+        {
+          "vietnamese": "Tôi thích tác giả của cuốn sách này.",
+          "vocabulary": [
+            {
+              "hanzi": "作者",
+              "pinyin": "zuòzhě",
+              "word_type": "danh từ",
+              "meaning": "tác giả"
+            }
+          ],
+          "hanzi": "我喜欢这本书的作者。",
+          "pinyin": "Wǒ xǐhuan zhè běn shū de zuòzhě."
+        },
+        {
+          "vietnamese": "Cuốn sách này khá dễ đọc.",
+          "vocabulary": [
+            {
+              "hanzi": "容易读",
+              "pinyin": "róngyì dú",
+              "word_type": "cụm động từ",
+              "meaning": "dễ đọc"
+            }
+          ],
+          "hanzi": "这本书挺容易读的。",
+          "pinyin": "Zhè běn shū tǐng róngyì dú de."
+        },
+        {
+          "vietnamese": "Tôi đọc sách mỗi ngày để mở rộng vốn từ vựng.",
+          "vocabulary": [
+            {
+              "hanzi": "扩大词汇量",
+              "pinyin": "kuòdà cíhuìliàng",
+              "word_type": "cụm động từ",
+              "meaning": "mở rộng vốn từ vựng"
+            }
+          ],
+          "hanzi": "我每天阅读来扩大词汇量。",
+          "pinyin": "Wǒ měitiān yuèdú lái kuòdà cíhuìliàng."
+        },
+        {
+          "vietnamese": "Anh ấy đọc rất nhiều sách về kinh doanh.",
+          "vocabulary": [
+            {
+              "hanzi": "商业",
+              "pinyin": "shāngyè",
+              "word_type": "danh từ",
+              "meaning": "kinh doanh"
+            }
+          ],
+          "hanzi": "他看了很多关于商业的书。",
+          "pinyin": "Tā kànle hěn duō guānyú shāngyè de shū."
+        },
+        {
+          "vietnamese": "Tôi thích đọc sách hơn xem tivi.",
+          "vocabulary": [
+            {
+              "hanzi": "比起…更…",
+              "pinyin": "bǐqǐ…gèng…",
+              "word_type": "cụm từ",
+              "meaning": "thích…hơn…"
+            }
+          ],
+          "hanzi": "比起看电视，我更喜欢看书。",
+          "pinyin": "Bǐqǐ kàn diànshì, wǒ gèng xǐhuan kàn shū."
+        },
+        {
+          "vietnamese": "Cuốn sách này đã thay đổi cách suy nghĩ của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "改变想法",
+              "pinyin": "gǎibiàn xiǎngfǎ",
+              "word_type": "cụm động từ",
+              "meaning": "thay đổi cách suy nghĩ"
+            }
+          ],
+          "hanzi": "这本书改变了我的想法。",
+          "pinyin": "Zhè běn shū gǎibiànle wǒ de xiǎngfǎ."
+        },
+        {
+          "vietnamese": "Mặc dù cuốn sách khá dài nhưng tôi rất thích nó.",
+          "vocabulary": [
+            {
+              "hanzi": "长",
+              "pinyin": "cháng",
+              "word_type": "tính từ",
+              "meaning": "dài"
+            }
+          ],
+          "hanzi": "虽然这本书很长，但我很喜欢。",
+          "pinyin": "Suīrán zhè běn shū hěn cháng, dàn wǒ hěn xǐhuan."
+        },
+        {
+          "vietnamese": "Tôi đã đọc cuốn sách này hai lần.",
+          "vocabulary": [
+            {
+              "hanzi": "两次",
+              "pinyin": "liǎng cì",
+              "word_type": "cụm từ",
+              "meaning": "hai lần"
+            }
+          ],
+          "hanzi": "我看过这本书两次。",
+          "pinyin": "Wǒ kànguo zhè běn shū liǎng cì."
+        },
+        {
+          "vietnamese": "Hiện tại tôi đang đọc một cuốn sách về tâm lý học.",
+          "vocabulary": [
+            {
+              "hanzi": "心理学",
+              "pinyin": "xīnlǐxué",
+              "word_type": "danh từ",
+              "meaning": "tâm lý học"
+            }
+          ],
+          "hanzi": "我现在正在看一本关于心理学的书。",
+          "pinyin": "Wǒ xiànzài zhèngzài kàn yì běn guānyú xīnlǐxué de shū."
+        },
+        {
+          "vietnamese": "Tôi đã đọc rất nhiều sách trong năm nay.",
+          "vocabulary": [
+            {
+              "hanzi": "今年",
+              "pinyin": "jīnnián",
+              "word_type": "danh từ",
+              "meaning": "năm nay"
+            }
+          ],
+          "hanzi": "今年我看了很多书。",
+          "pinyin": "Jīnnián wǒ kànle hěn duō shū."
+        },
+        {
+          "vietnamese": "Tôi thích đọc vì nó giúp tôi học được những điều mới.",
+          "vocabulary": [
+            {
+              "hanzi": "学到",
+              "pinyin": "xuédào",
+              "word_type": "động từ",
+              "meaning": "học được"
+            }
+          ],
+          "hanzi": "我喜欢看书，因为它能让我学到新东西。",
+          "pinyin": "Wǒ xǐhuan kàn shū, yīnwèi tā néng ràng wǒ xuédào xīn dōngxi."
+        },
+        {
+          "vietnamese": "Tác giả đã xuất bản cuốn sách này vào năm 2022.",
+          "vocabulary": [
+            {
+              "hanzi": "出版",
+              "pinyin": "chūbǎn",
+              "word_type": "động từ",
+              "meaning": "xuất bản"
+            }
+          ],
+          "hanzi": "作者在2022年出版了这本书。",
+          "pinyin": "Zuòzhě zài èr líng èr èr nián chūbǎnle zhè běn shū."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng hình thành thói quen đọc sách mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "养成习惯",
+              "pinyin": "yǎngchéng xíguàn",
+              "word_type": "cụm động từ",
+              "meaning": "hình thành thói quen"
+            }
+          ],
+          "hanzi": "我正在努力养成每天看书的习惯。",
+          "pinyin": "Wǒ zhèngzài nǔlì yǎngchéng měitiān kàn shū de xíguàn."
+        },
+        {
+          "vietnamese": "Tôi đã đọc sách đều đặn trong vài tháng qua.",
+          "vocabulary": [
+            {
+              "hanzi": "有规律地",
+              "pinyin": "yǒu guīlǜ de",
+              "word_type": "phó từ",
+              "meaning": "một cách đều đặn"
+            }
+          ],
+          "hanzi": "过去几个月我一直有规律地看书。",
+          "pinyin": "Guòqù jǐ ge yuè wǒ yìzhí yǒu guīlǜ de kàn shū."
+        },
+        {
+          "vietnamese": "Mặc dù bận rộn nhưng tôi vẫn dành thời gian để đọc sách.",
+          "vocabulary": [
+            {
+              "hanzi": "抽时间",
+              "pinyin": "chōu shíjiān",
+              "word_type": "động từ",
+              "meaning": "dành thời gian"
+            }
+          ],
+          "hanzi": "虽然很忙，但我还是抽时间看书。",
+          "pinyin": "Suīrán hěn máng, dàn wǒ háishi chōu shíjiān kàn shū."
+        },
+        {
+          "vietnamese": "Tôi đã dành gần một giờ để đọc cuốn sách này tối qua.",
+          "vocabulary": [
+            {
+              "hanzi": "昨晚",
+              "pinyin": "zuówǎn",
+              "word_type": "danh từ",
+              "meaning": "tối qua"
+            }
+          ],
+          "hanzi": "昨晚我花了将近一个小时看这本书。",
+          "pinyin": "Zuówǎn wǒ huāle jiāngjìn yí ge xiǎoshí kàn zhè běn shū."
+        },
+        {
+          "vietnamese": "Đọc sách không chỉ giúp nâng cao kiến thức mà còn phát triển tư duy.",
+          "vocabulary": [
+            {
+              "hanzi": "知识",
+              "pinyin": "zhīshi",
+              "word_type": "danh từ",
+              "meaning": "kiến thức"
+            },
+            {
+              "hanzi": "思维能力",
+              "pinyin": "sīwéi nénglì",
+              "word_type": "danh từ",
+              "meaning": "tư duy"
+            }
+          ],
+          "hanzi": "看书不仅能提高知识，还能发展思维能力。",
+          "pinyin": "Kàn shū bùjǐn néng tígāo zhīshi, hái néng fāzhǎn sīwéi nénglì."
+        }
+      ]
+    },
+    {
+      "lesson": 35,
+      "title": "第35课 · 健康与症状 (Dì sānshíwǔ kè · Jiànkāng yǔ Zhèngzhuàng) — SỨC KHỎE VÀ TRIỆU CHỨNG BỆNH",
+      "sentences": [
+        {
+          "vietnamese": "Tôi bị đau đầu từ sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "头疼",
+              "pinyin": "tóuténg",
+              "word_type": "động từ",
+              "meaning": "đau đầu"
+            }
+          ],
+          "hanzi": "我从今天早上就开始头疼。",
+          "pinyin": "Wǒ cóng jīntiān zǎoshang jiù kāishǐ tóuténg."
+        },
+        {
+          "vietnamese": "Cô ấy đang bị sốt.",
+          "vocabulary": [
+            {
+              "hanzi": "发烧",
+              "pinyin": "fāshāo",
+              "word_type": "động từ",
+              "meaning": "bị sốt"
+            }
+          ],
+          "hanzi": "她在发烧。",
+          "pinyin": "Tā zài fāshāo."
+        },
+        {
+          "vietnamese": "Anh ấy thường tập thể dục để giữ sức khỏe.",
+          "vocabulary": [
+            {
+              "hanzi": "保持健康",
+              "pinyin": "bǎochí jiànkāng",
+              "word_type": "cụm động từ",
+              "meaning": "giữ sức khỏe"
+            }
+          ],
+          "hanzi": "他经常锻炼身体来保持健康。",
+          "pinyin": "Tā jīngcháng duànliàn shēntǐ lái bǎochí jiànkāng."
+        },
+        {
+          "vietnamese": "Tôi cảm thấy mệt sau khi làm việc cả ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "累",
+              "pinyin": "lèi",
+              "word_type": "tính từ",
+              "meaning": "mệt"
+            }
+          ],
+          "hanzi": "工作一整天后我感觉很累。",
+          "pinyin": "Gōngzuò yì zhěngtiān hòu wǒ gǎnjué hěn lèi."
+        },
+        {
+          "vietnamese": "Em trai tôi bị ho và đau họng.",
+          "vocabulary": [
+            {
+              "hanzi": "咳嗽",
+              "pinyin": "késou",
+              "word_type": "động từ",
+              "meaning": "ho"
+            },
+            {
+              "hanzi": "喉咙痛",
+              "pinyin": "hóulóng tòng",
+              "word_type": "cụm từ",
+              "meaning": "đau họng"
+            }
+          ],
+          "hanzi": "我弟弟咳嗽，喉咙也痛。",
+          "pinyin": "Wǒ dìdi késou, hóulóng yě tòng."
+        },
+        {
+          "vietnamese": "Hôm qua tôi bị đau bụng.",
+          "vocabulary": [
+            {
+              "hanzi": "肚子疼",
+              "pinyin": "dùzi téng",
+              "word_type": "cụm từ",
+              "meaning": "đau bụng"
+            }
+          ],
+          "hanzi": "我昨天肚子疼。",
+          "pinyin": "Wǒ zuótiān dùzi téng."
+        },
+        {
+          "vietnamese": "Bạn nên uống nhiều nước mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "应该",
+              "pinyin": "yīnggāi",
+              "word_type": "động từ khiếm khuyết",
+              "meaning": "nên"
+            }
+          ],
+          "hanzi": "你应该每天多喝水。",
+          "pinyin": "Nǐ yīnggāi měitiān duō hē shuǐ."
+        },
+        {
+          "vietnamese": "Bác sĩ khuyên tôi nghỉ ngơi nhiều hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "医生",
+              "pinyin": "yīshēng",
+              "word_type": "danh từ",
+              "meaning": "bác sĩ"
+            },
+            {
+              "hanzi": "建议",
+              "pinyin": "jiànyì",
+              "word_type": "động từ",
+              "meaning": "khuyên"
+            }
+          ],
+          "hanzi": "医生建议我多休息。",
+          "pinyin": "Yīshēng jiànyì wǒ duō xiūxi."
+        },
+        {
+          "vietnamese": "Cô ấy bị cảm lạnh tuần trước.",
+          "vocabulary": [
+            {
+              "hanzi": "感冒",
+              "pinyin": "gǎnmào",
+              "word_type": "động từ",
+              "meaning": "bị cảm lạnh"
+            }
+          ],
+          "hanzi": "她上星期感冒了。",
+          "pinyin": "Tā shàng xīngqī gǎnmào le."
+        },
+        {
+          "vietnamese": "Tôi đang đợi kết quả kiểm tra sức khỏe.",
+          "vocabulary": [
+            {
+              "hanzi": "体检",
+              "pinyin": "tǐjiǎn",
+              "word_type": "danh từ",
+              "meaning": "kiểm tra sức khỏe"
+            },
+            {
+              "hanzi": "结果",
+              "pinyin": "jiéguǒ",
+              "word_type": "danh từ",
+              "meaning": "kết quả"
+            }
+          ],
+          "hanzi": "我在等体检结果。",
+          "pinyin": "Wǒ zài děng tǐjiǎn jiéguǒ."
+        },
+        {
+          "vietnamese": "Mặc dù bị đau đầu, tôi vẫn đi làm.",
+          "vocabulary": [
+            {
+              "hanzi": "虽然…还是…",
+              "pinyin": "suīrán…háishi…",
+              "word_type": "cụm từ",
+              "meaning": "mặc dù…vẫn…"
+            }
+          ],
+          "hanzi": "虽然头疼，我还是去上班了。",
+          "pinyin": "Suīrán tóuténg, wǒ háishi qù shàngbān le."
+        },
+        {
+          "vietnamese": "Nếu bạn cảm thấy không khỏe, hãy đi khám bác sĩ.",
+          "vocabulary": [
+            {
+              "hanzi": "看医生",
+              "pinyin": "kàn yīshēng",
+              "word_type": "cụm động từ",
+              "meaning": "đi khám bác sĩ"
+            },
+            {
+              "hanzi": "如果",
+              "pinyin": "rúguǒ",
+              "word_type": "liên từ",
+              "meaning": "nếu"
+            }
+          ],
+          "hanzi": "如果你感觉不舒服，就去看医生吧。",
+          "pinyin": "Rúguǒ nǐ gǎnjué bù shūfu, jiù qù kàn yīshēng ba."
+        },
+        {
+          "vietnamese": "Tôi đã uống thuốc nhưng vẫn còn ho.",
+          "vocabulary": [
+            {
+              "hanzi": "吃药",
+              "pinyin": "chī yào",
+              "word_type": "động từ",
+              "meaning": "uống thuốc"
+            }
+          ],
+          "hanzi": "我吃了药，但还是咳嗽。",
+          "pinyin": "Wǒ chīle yào, dàn háishi késou."
+        },
+        {
+          "vietnamese": "Cô ấy không thể ngủ được vì bị đau răng.",
+          "vocabulary": [
+            {
+              "hanzi": "牙疼",
+              "pinyin": "yá téng",
+              "word_type": "danh từ",
+              "meaning": "đau răng"
+            },
+            {
+              "hanzi": "睡不着",
+              "pinyin": "shuì bu zháo",
+              "word_type": "động từ",
+              "meaning": "không ngủ được"
+            }
+          ],
+          "hanzi": "她因为牙疼睡不着。",
+          "pinyin": "Tā yīnwèi yá téng shuì bu zháo."
+        },
+        {
+          "vietnamese": "Anh ấy bị thương ở chân khi chơi bóng đá.",
+          "vocabulary": [
+            {
+              "hanzi": "伤",
+              "pinyin": "shāng",
+              "word_type": "động từ",
+              "meaning": "bị thương"
+            },
+            {
+              "hanzi": "腿",
+              "pinyin": "tuǐ",
+              "word_type": "danh từ",
+              "meaning": "chân"
+            }
+          ],
+          "hanzi": "他踢足球的时候伤了腿。",
+          "pinyin": "Tā tī zúqiú de shíhou shāngle tuǐ."
+        },
+        {
+          "vietnamese": "Tôi đang cố gắng ăn uống lành mạnh hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "吃得健康",
+              "pinyin": "chī de jiànkāng",
+              "word_type": "cụm từ",
+              "meaning": "ăn uống lành mạnh"
+            }
+          ],
+          "hanzi": "我正在努力吃得更健康一些。",
+          "pinyin": "Wǒ zhèngzài nǔlì chī de gèng jiànkāng yìxiē."
+        },
+        {
+          "vietnamese": "Sau khi nghỉ ngơi hai ngày, tôi cảm thấy khỏe hơn nhiều.",
+          "vocabulary": [
+            {
+              "hanzi": "休息",
+              "pinyin": "xiūxi",
+              "word_type": "động từ",
+              "meaning": "nghỉ ngơi"
+            }
+          ],
+          "hanzi": "休息两天后，我感觉好多了。",
+          "pinyin": "Xiūxi liǎng tiān hòu, wǒ gǎnjué hǎo duō le."
+        },
+        {
+          "vietnamese": "Cô ấy bị dị ứng với hải sản.",
+          "vocabulary": [
+            {
+              "hanzi": "海鲜",
+              "pinyin": "hǎixiān",
+              "word_type": "danh từ",
+              "meaning": "hải sản"
+            },
+            {
+              "hanzi": "过敏",
+              "pinyin": "guòmǐn",
+              "word_type": "động từ",
+              "meaning": "dị ứng"
+            }
+          ],
+          "hanzi": "她对海鲜过敏。",
+          "pinyin": "Tā duì hǎixiān guòmǐn."
+        },
+        {
+          "vietnamese": "Bác sĩ nói rằng tôi cần ngủ đủ giấc.",
+          "vocabulary": [
+            {
+              "hanzi": "睡够觉",
+              "pinyin": "shuì gòu jiào",
+              "word_type": "động từ",
+              "meaning": "ngủ đủ giấc"
+            }
+          ],
+          "hanzi": "医生说我需要睡够觉。",
+          "pinyin": "Yīshēng shuō wǒ xūyào shuì gòu jiào."
+        },
+        {
+          "vietnamese": "Tôi đã không đi làm vì bị sốt cao.",
+          "vocabulary": [
+            {
+              "hanzi": "高烧",
+              "pinyin": "gāoshāo",
+              "word_type": "danh từ",
+              "meaning": "sốt cao"
+            }
+          ],
+          "hanzi": "我因为发高烧没去上班。",
+          "pinyin": "Wǒ yīnwèi fā gāoshāo méi qù shàngbān."
+        },
+        {
+          "vietnamese": "Khi còn nhỏ, tôi thường bị cảm vào mùa đông.",
+          "vocabulary": [
+            {
+              "hanzi": "小时候",
+              "pinyin": "xiǎoshíhou",
+              "word_type": "danh từ",
+              "meaning": "khi còn nhỏ"
+            }
+          ],
+          "hanzi": "我小时候冬天经常感冒。",
+          "pinyin": "Wǒ xiǎoshíhou dōngtiān jīngcháng gǎnmào."
+        },
+        {
+          "vietnamese": "Mặc dù triệu chứng đã giảm, tôi vẫn tiếp tục điều trị.",
+          "vocabulary": [
+            {
+              "hanzi": "症状",
+              "pinyin": "zhèngzhuàng",
+              "word_type": "danh từ",
+              "meaning": "triệu chứng"
+            },
+            {
+              "hanzi": "治疗",
+              "pinyin": "zhìliáo",
+              "word_type": "danh từ/động từ",
+              "meaning": "điều trị"
+            }
+          ],
+          "hanzi": "虽然症状减轻了，但是我还是继续治疗。",
+          "pinyin": "Suīrán zhèngzhuàng jiǎnqīng le,dànshì wǒ háishi jìxù zhìliáo."
+        },
+        {
+          "vietnamese": "Nếu bạn không uống thuốc đúng giờ, bệnh có thể nặng hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "病情加重",
+              "pinyin": "bìngqíng jiāzhòng",
+              "word_type": "cụm từ",
+              "meaning": "bệnh nặng hơn"
+            }
+          ],
+          "hanzi": "如果你不按时吃药，病情可能会加重。",
+          "pinyin": "Rúguǒ nǐ bú ànshí chī yào, bìngqíng kěnéng huì jiāzhòng."
+        },
+        {
+          "vietnamese": "Tôi bị đau lưng vì ngồi trước máy tính quá lâu.",
+          "vocabulary": [
+            {
+              "hanzi": "腰疼",
+              "pinyin": "yāo téng",
+              "word_type": "danh từ",
+              "meaning": "đau lưng"
+            }
+          ],
+          "hanzi": "我因为长时间坐在电脑前而腰疼。",
+          "pinyin": "Wǒ yīnwèi cháng shíjiān zuò zài diànnǎo qián ér yāo téng."
+        },
+        {
+          "vietnamese": "Cô ấy cảm thấy chóng mặt nên đã đến bệnh viện.",
+          "vocabulary": [
+            {
+              "hanzi": "头晕",
+              "pinyin": "tóuyūn",
+              "word_type": "động từ",
+              "meaning": "chóng mặt"
+            },
+            {
+              "hanzi": "医院",
+              "pinyin": "yīyuàn",
+              "word_type": "danh từ",
+              "meaning": "bệnh viện"
+            }
+          ],
+          "hanzi": "她觉得头晕，就去医院了。",
+          "pinyin": "Tā juéde tóuyūn, jiù qù yīyuàn le."
+        },
+        {
+          "vietnamese": "Sau khi kiểm tra, bác sĩ phát hiện anh ấy bị viêm phổi.",
+          "vocabulary": [
+            {
+              "hanzi": "肺炎",
+              "pinyin": "fèiyán",
+              "word_type": "danh từ",
+              "meaning": "viêm phổi"
+            },
+            {
+              "hanzi": "发现",
+              "pinyin": "fāxiàn",
+              "word_type": "động từ",
+              "meaning": "phát hiện"
+            }
+          ],
+          "hanzi": "检查后，医生发现他得了肺炎。",
+          "pinyin": "Jiǎnchá hòu, yīshēng fāxiàn tā déle fèiyán."
+        },
+        {
+          "vietnamese": "Tôi đã hồi phục hoàn toàn sau ca phẫu thuật.",
+          "vocabulary": [
+            {
+              "hanzi": "手术",
+              "pinyin": "shǒushù",
+              "word_type": "danh từ",
+              "meaning": "ca phẫu thuật"
+            },
+            {
+              "hanzi": "康复",
+              "pinyin": "kāngfù",
+              "word_type": "động từ",
+              "meaning": "hồi phục"
+            }
+          ],
+          "hanzi": "手术后我完全康复了。",
+          "pinyin": "Shǒushù hòu wǒ wánquán kāngfù le."
+        },
+        {
+          "vietnamese": "Càng tập thể dục thường xuyên, bạn càng ít có nguy cơ mắc bệnh.",
+          "vocabulary": [
+            {
+              "hanzi": "越…越…",
+              "pinyin": "yuè…yuè…",
+              "word_type": "cụm từ",
+              "meaning": "càng…càng…"
+            },
+            {
+              "hanzi": "风险",
+              "pinyin": "fēngxiǎn",
+              "word_type": "danh từ",
+              "meaning": "nguy cơ"
+            }
+          ],
+          "hanzi": "你越经常锻炼，患病的风险就越小。",
+          "pinyin": "Nǐ yuè jīngcháng duànliàn, huànbìng de fēngxiǎn jiù yuè xiǎo."
+        },
+        {
+          "vietnamese": "Mặc dù đã uống thuốc, các triệu chứng không biến mất ngay lập tức.",
+          "vocabulary": [
+            {
+              "hanzi": "立刻",
+              "pinyin": "lìkè",
+              "word_type": "phó từ",
+              "meaning": "ngay lập tức"
+            },
+            {
+              "hanzi": "消失",
+              "pinyin": "xiāoshī",
+              "word_type": "động từ",
+              "meaning": "biến mất"
+            }
+          ],
+          "hanzi": "虽然吃了药，但症状没有立刻消失。",
+          "pinyin": "Suīrán chīle yào, dàn zhèngzhuàng méiyǒu lìkè xiāoshī."
+        },
+        {
+          "vietnamese": "Bác sĩ khuyên tôi thay đổi lối sống vì sức khỏe của tôi đang xấu đi.",
+          "vocabulary": [
+            {
+              "hanzi": "生活方式",
+              "pinyin": "shēnghuó fāngshì",
+              "word_type": "danh từ",
+              "meaning": "lối sống"
+            },
+            {
+              "hanzi": "越来越差",
+              "pinyin": "yuè lái yuè chà",
+              "word_type": "cụm từ",
+              "meaning": "ngày càng xấu đi"
+            }
+          ],
+          "hanzi": "医生建议我改变生活方式，因为我的健康越来越差。",
+          "pinyin": "Yīshēng jiànyì wǒ gǎibiàn shēnghuó fāngshì, yīnwèi wǒ de jiànkāng yuè lái yuè chà."
+        }
+      ]
+    },
+    {
+      "lesson": 36,
+      "title": "第36课 · 在医院/药店 (Dì sānshíliù kè · Zài Yīyuàn/Yàodiàn) — TẠI BỆNH VIỆN/HIỆU THUỐC",
+      "sentences": [
+        {
+          "vietnamese": "Hôm qua tôi bị đau đầu dữ dội nên tôi đã đến hiệu thuốc.",
+          "vocabulary": [
+            {
+              "hanzi": "厉害",
+              "pinyin": "lìhai",
+              "word_type": "tính từ",
+              "meaning": "dữ dội"
+            },
+            {
+              "hanzi": "药店",
+              "pinyin": "yàodiàn",
+              "word_type": "danh từ",
+              "meaning": "hiệu thuốc"
+            }
+          ],
+          "hanzi": "昨天我头疼得很厉害，所以我去了药店。",
+          "pinyin": "Zuótiān wǒ tóuténg de hěn lìhai, suǒyǐ wǒ qùle yàodiàn."
+        },
+        {
+          "vietnamese": "Bác sĩ khuyên anh ấy nên uống nhiều nước và nghỉ ngơi.",
+          "vocabulary": [
+            {
+              "hanzi": "建议",
+              "pinyin": "jiànyì",
+              "word_type": "động từ",
+              "meaning": "khuyên"
+            }
+          ],
+          "hanzi": "医生建议他多喝水，多休息。",
+          "pinyin": "Yīshēng jiànyì tā duō hē shuǐ, duō xiūxi."
+        },
+        {
+          "vietnamese": "Bạn đã uống thuốc cảm cúm mà tôi mua cho bạn chưa?",
+          "vocabulary": [
+            {
+              "hanzi": "感冒药",
+              "pinyin": "gǎnmàoyào",
+              "word_type": "danh từ",
+              "meaning": "thuốc cảm cúm"
+            }
+          ],
+          "hanzi": "我给你买的感冒药你吃了吗？",
+          "pinyin": "Wǒ gěi nǐ mǎi de gǎnmàoyào nǐ chīle ma?"
+        },
+        {
+          "vietnamese": "Cô ấy đang đợi ở phòng cấp cứu vì con trai cô ấy bị gãy tay.",
+          "vocabulary": [
+            {
+              "hanzi": "急诊室",
+              "pinyin": "jízhěnshì",
+              "word_type": "danh từ",
+              "meaning": "phòng cấp cứu"
+            },
+            {
+              "hanzi": "骨折",
+              "pinyin": "gǔzhé",
+              "word_type": "động từ",
+              "meaning": "gãy xương"
+            }
+          ],
+          "hanzi": "她在急诊室等着，因为她儿子的手臂骨折了。",
+          "pinyin": "Tā zài jízhěnshì děngzhe, yīnwèi tā érzi de shǒubì gǔzhé le."
+        },
+        {
+          "vietnamese": "Nếu bạn cảm thấy chóng mặt, bạn nên ngồi xuống ngay lập tức.",
+          "vocabulary": [
+            {
+              "hanzi": "马上",
+              "pinyin": "mǎshàng",
+              "word_type": "phó từ",
+              "meaning": "ngay lập tức"
+            }
+          ],
+          "hanzi": "如果你觉得头晕，应该马上坐下。",
+          "pinyin": "Rúguǒ nǐ juéde tóuyūn, yīnggāi mǎshàng zuòxià."
+        },
+        {
+          "vietnamese": "Đơn thuốc này cần được mang đến dược sĩ trước buổi trưa.",
+          "vocabulary": [
+            {
+              "hanzi": "处方",
+              "pinyin": "chǔfāng",
+              "word_type": "danh từ",
+              "meaning": "đơn thuốc"
+            },
+            {
+              "hanzi": "药剂师",
+              "pinyin": "yàojìshī",
+              "word_type": "danh từ",
+              "meaning": "dược sĩ"
+            }
+          ],
+          "hanzi": "这张处方需要在中午前交给药剂师。",
+          "pinyin": "Zhè zhāng chǔfāng xūyào zài zhōngwǔ qián jiāo gěi yàojìshī."
+        },
+        {
+          "vietnamese": "Bệnh nhân đã được phẫu thuật thành công vào sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "病人",
+              "pinyin": "bìngrén",
+              "word_type": "danh từ",
+              "meaning": "bệnh nhân"
+            }
+          ],
+          "hanzi": "病人今天早上成功做了手术。",
+          "pinyin": "Bìngrén jīntiān zǎoshang chénggōng zuò le shǒushù."
+        },
+        {
+          "vietnamese": "Tôi bị dị ứng với hải sản, nên tôi không thể ăn món này.",
+          "vocabulary": [
+            {
+              "hanzi": "海鲜",
+              "pinyin": "hǎixiān",
+              "word_type": "danh từ",
+              "meaning": "hải sản"
+            }
+          ],
+          "hanzi": "我对海鲜过敏，所以不能吃这道菜。",
+          "pinyin": "Wǒ duì hǎixiān guòmǐn, suǒyǐ bùnéng chī zhè dào cài."
+        },
+        {
+          "vietnamese": "Mặc dù anh ấy bị sốt cao, anh ấy vẫn đi làm.",
+          "vocabulary": [
+            {
+              "hanzi": "发高烧",
+              "pinyin": "fā gāoshāo",
+              "word_type": "động từ",
+              "meaning": "bị sốt cao"
+            }
+          ],
+          "hanzi": "虽然他发高烧，但还是去上班了。",
+          "pinyin": "Suīrán tā fā gāoshāo, dàn háishi qù shàngbān le."
+        },
+        {
+          "vietnamese": "Bạn có biết phòng khám nha khoa gần nhất ở đâu không?",
+          "vocabulary": [
+            {
+              "hanzi": "牙科诊所",
+              "pinyin": "yákē zhěnsuǒ",
+              "word_type": "danh từ",
+              "meaning": "phòng khám nha khoa"
+            }
+          ],
+          "hanzi": "你知道最近的牙科诊所在哪里吗？",
+          "pinyin": "Nǐ zhīdào zuì jìn de yákē zhěnsuǒ zài nǎlǐ ma?"
+        },
+        {
+          "vietnamese": "Y tá sẽ đo huyết áp của bạn trước khi bạn gặp bác sĩ.",
+          "vocabulary": [
+            {
+              "hanzi": "量血压",
+              "pinyin": "liáng xuèyā",
+              "word_type": "cụm động từ",
+              "meaning": "đo huyết áp"
+            }
+          ],
+          "hanzi": "护士会在你见医生之前给你量血压。",
+          "pinyin": "Hùshi huì zài nǐ jiàn yīshēng zhīqián gěi nǐ liáng xuèyā."
+        },
+        {
+          "vietnamese": "Thuốc giảm đau này có thể gây buồn ngủ.",
+          "vocabulary": [
+            {
+              "hanzi": "止痛药",
+              "pinyin": "zhǐtòngyào",
+              "word_type": "danh từ",
+              "meaning": "thuốc giảm đau"
+            },
+            {
+              "hanzi": "困倦",
+              "pinyin": "kùnjuàn",
+              "word_type": "tính từ",
+              "meaning": "buồn ngủ"
+            }
+          ],
+          "hanzi": "这种止痛药可能会引起困倦。",
+          "pinyin": "Zhè zhǒng zhǐtòngyào kěnéng huì yǐnqǐ kùnjuàn."
+        },
+        {
+          "vietnamese": "Khi tôi đến bệnh viện, họ đang chuyển bệnh nhân sang phòng khác.",
+          "vocabulary": [
+            {
+              "hanzi": "转",
+              "pinyin": "zhuǎn",
+              "word_type": "động từ",
+              "meaning": "chuyển"
+            }
+          ],
+          "hanzi": "我到医院的时候，他们正在把病人转到另一个房间。",
+          "pinyin": "Wǒ dào yīyuàn de shíhou, tāmen zhèngzài bǎ bìngrén zhuǎndào lìng yí ge fángjiān."
+        },
+        {
+          "vietnamese": "Ông của tôi phải kiểm tra sức khỏe định kỳ mỗi sáu tháng.",
+          "vocabulary": [
+            {
+              "hanzi": "定期体检",
+              "pinyin": "dìngqī tǐjiǎn",
+              "word_type": "cụm danh từ",
+              "meaning": "kiểm tra sức khỏe định kỳ"
+            }
+          ],
+          "hanzi": "我爷爷每六个月要做一次定期体检。",
+          "pinyin": "Wǒ yéye měi liù ge yuè yào zuò yí cì dìngqī tǐjiǎn."
+        },
+        {
+          "vietnamese": "Cô ấy không thể nói được vì cô ấy bị đau họng tồi tệ.",
+          "vocabulary": [
+            {
+              "hanzi": "喉咙痛",
+              "pinyin": "hóulóng tòng",
+              "word_type": "danh từ",
+              "meaning": "đau họng"
+            }
+          ],
+          "hanzi": "她因为喉咙痛得厉害说不出话来。",
+          "pinyin": "Tā yīnwèi hóulóng tòng de lìhai shuō bu chū huà lái."
+        },
+        {
+          "vietnamese": "Bạn nên gọi xe cấp cứu nếu tình trạng trở nên tồi tệ hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "救护车",
+              "pinyin": "jiùhùchē",
+              "word_type": "danh từ",
+              "meaning": "xe cấp cứu"
+            },
+            {
+              "hanzi": "情况",
+              "pinyin": "qíngkuàng",
+              "word_type": "danh từ",
+              "meaning": "tình trạng"
+            }
+          ],
+          "hanzi": "如果情况变得更糟，你应该叫救护车。",
+          "pinyin": "Rúguǒ qíngkuàng biàn de gèng zāo, nǐ yīnggāi jiào jiùhùchē."
+        },
+        {
+          "vietnamese": "Vết thương của anh ấy đang chảy máu, nhưng nó không quá nghiêm trọng.",
+          "vocabulary": [
+            {
+              "hanzi": "伤口",
+              "pinyin": "shāngkǒu",
+              "word_type": "danh từ",
+              "meaning": "vết thương"
+            },
+            {
+              "hanzi": "流血",
+              "pinyin": "liúxiě",
+              "word_type": "động từ",
+              "meaning": "chảy máu"
+            }
+          ],
+          "hanzi": "他的伤口在流血，但不太严重。",
+          "pinyin": "Tā de shāngkǒu zài liúxiě, dàn bú tài yánzhòng."
+        },
+        {
+          "vietnamese": "Bác sĩ đã chẩn đoán cô ấy mắc bệnh tiểu đường vào năm ngoái.",
+          "vocabulary": [
+            {
+              "hanzi": "诊断",
+              "pinyin": "zhěnduàn",
+              "word_type": "động từ",
+              "meaning": "chẩn đoán"
+            },
+            {
+              "hanzi": "糖尿病",
+              "pinyin": "tángniàobìng",
+              "word_type": "danh từ",
+              "meaning": "bệnh tiểu đường"
+            }
+          ],
+          "hanzi": "医生去年诊断她得了糖尿病。",
+          "pinyin": "Yīshēng qùnián zhěnduàn tā déle tángniàobìng."
+        },
+        {
+          "vietnamese": "Chúng tôi sẽ đi thăm dì của tôi ở bệnh viện vào ngày mai.",
+          "vocabulary": [
+            {
+              "hanzi": "看望",
+              "pinyin": "kànwàng",
+              "word_type": "động từ",
+              "meaning": "đi thăm"
+            }
+          ],
+          "hanzi": "我们明天要去医院看望我阿姨。",
+          "pinyin": "Wǒmen míngtiān yào qù yīyuàn kànwàng wǒ āyí."
+        },
+        {
+          "vietnamese": "Sau khi uống thuốc kháng sinh, tôi cảm thấy tốt hơn nhiều.",
+          "vocabulary": [
+            {
+              "hanzi": "抗生素",
+              "pinyin": "kàngshēngsù",
+              "word_type": "danh từ",
+              "meaning": "thuốc kháng sinh"
+            }
+          ],
+          "hanzi": "吃了抗生素后，我感觉好多了。",
+          "pinyin": "Chīle kàngshēngsù hòu, wǒ gǎnjué hǎo duō le."
+        },
+        {
+          "vietnamese": "Anh ấy bị ho dai dẳng trong suốt hai tuần qua.",
+          "vocabulary": [
+            {
+              "hanzi": "不停地咳嗽",
+              "pinyin": "bùtíng de késou",
+              "word_type": "cụm từ",
+              "meaning": "ho dai dẳng"
+            }
+          ],
+          "hanzi": "过去两周他一直不停地咳嗽。",
+          "pinyin": "Guòqù liǎng zhōu tā yìzhí bùtíng de késou."
+        },
+        {
+          "vietnamese": "Việc tiêm vắc-xin rất quan trọng để bảo vệ bạn khỏi virus.",
+          "vocabulary": [
+            {
+              "hanzi": "接种疫苗",
+              "pinyin": "jiēzhòng yìmiáo",
+              "word_type": "cụm động từ",
+              "meaning": "tiêm vắc-xin"
+            },
+            {
+              "hanzi": "病毒",
+              "pinyin": "bìngdú",
+              "word_type": "danh từ",
+              "meaning": "virus"
+            }
+          ],
+          "hanzi": "接种疫苗对保护你免受病毒侵害非常重要。",
+          "pinyin": "Jiēzhòng yìmiáo duì bǎohù nǐ miǎnshòu bìngdú qīnhài fēicháng zhòngyào."
+        },
+        {
+          "vietnamese": "Hiệu thuốc đóng cửa vào lúc 9 giờ tối, vì vậy hãy nhanh lên.",
+          "vocabulary": [
+            {
+              "hanzi": "关门",
+              "pinyin": "guānmén",
+              "word_type": "động từ",
+              "meaning": "đóng cửa"
+            }
+          ],
+          "hanzi": "药店晚上九点关门，所以快点吧。",
+          "pinyin": "Yàodiàn wǎnshang jiǔ diǎn guānmén, suǒyǐ kuài diǎn ba."
+        },
+        {
+          "vietnamese": "Nếu cô ấy không ăn kiêng, sức khỏe của cô ấy sẽ suy giảm.",
+          "vocabulary": [
+            {
+              "hanzi": "控制饮食",
+              "pinyin": "kòngzhì yǐnshí",
+              "word_type": "cụm động từ",
+              "meaning": "ăn kiêng"
+            },
+            {
+              "hanzi": "下降",
+              "pinyin": "xiàjiàng",
+              "word_type": "động từ",
+              "meaning": "suy giảm"
+            }
+          ],
+          "hanzi": "如果她不控制饮食，健康状况会下降。",
+          "pinyin": "Rúguǒ tā bù kòngzhì yǐnshí, jiànkāng zhuàngkuàng huì xiàjiàng."
+        },
+        {
+          "vietnamese": "Xin lỗi, bạn có bán băng gạc ở đây không?",
+          "vocabulary": [
+            {
+              "hanzi": "纱布",
+              "pinyin": "shābù",
+              "word_type": "danh từ",
+              "meaning": "băng gạc"
+            }
+          ],
+          "hanzi": "请问，这里有卖纱布吗？",
+          "pinyin": "Qǐngwèn, zhèlǐ yǒu mài shābù ma?"
+        },
+        {
+          "vietnamese": "Tôi cảm thấy buồn nôn sau khi ăn thức ăn ở nhà hàng đó.",
+          "vocabulary": [
+            {
+              "hanzi": "恶心",
+              "pinyin": "ěxin",
+              "word_type": "tính từ",
+              "meaning": "buồn nôn"
+            }
+          ],
+          "hanzi": "吃了那家餐厅的食物后，我感到恶心。",
+          "pinyin": "Chīle nà jiā cāntīng de shíwù hòu, wǒ gǎndào ěxin."
+        },
+        {
+          "vietnamese": "Cơn đau ở ngực của anh ấy đã giảm bớt nhờ vào thuốc.",
+          "vocabulary": [
+            {
+              "hanzi": "胸口",
+              "pinyin": "xiōngkǒu",
+              "word_type": "danh từ",
+              "meaning": "ngực"
+            },
+            {
+              "hanzi": "多亏",
+              "pinyin": "duōkuī",
+              "word_type": "giới từ",
+              "meaning": "nhờ vào"
+            }
+          ],
+          "hanzi": "多亏了药物，他胸口的疼痛减轻了。",
+          "pinyin": "Duōkuī le yàowù, tā xiōngkǒu de téngtòng jiǎnqīng le."
+        },
+        {
+          "vietnamese": "Bệnh viện này được trang bị những thiết bị y tế hiện đại nhất.",
+          "vocabulary": [
+            {
+              "hanzi": "配备",
+              "pinyin": "pèibèi",
+              "word_type": "động từ",
+              "meaning": "trang bị"
+            },
+            {
+              "hanzi": "医疗设备",
+              "pinyin": "yīliáo shèbèi",
+              "word_type": "danh từ",
+              "meaning": "thiết bị y tế"
+            }
+          ],
+          "hanzi": "这家医院配备了最先进的医疗设备。",
+          "pinyin": "Zhè jiā yīyuàn pèibèile zuì xiānjìn de yīliáo shèbèi."
+        },
+        {
+          "vietnamese": "Bạn có bảo hiểm y tế để chi trả cho ca phẫu thuật này không?",
+          "vocabulary": [
+            {
+              "hanzi": "医疗保险",
+              "pinyin": "yīliáo bǎoxiǎn",
+              "word_type": "danh từ",
+              "meaning": "bảo hiểm y tế"
+            },
+            {
+              "hanzi": "支付",
+              "pinyin": "zhīfù",
+              "word_type": "động từ",
+              "meaning": "chi trả"
+            }
+          ],
+          "hanzi": "你有医疗保险来支付这次手术的费用 吗？",
+          "pinyin": "Nǐ yǒu yīliáo bǎoxiǎn lái zhīfù zhè cì shǒushù de fèiyòng ma?"
+        },
+        {
+          "vietnamese": "Cô ấy đã hồi phục hoàn toàn sau vụ tai nạn.",
+          "vocabulary": [
+            {
+              "hanzi": "事故",
+              "pinyin": "shìgù",
+              "word_type": "danh từ",
+              "meaning": "vụ tai nạn"
+            }
+          ],
+          "hanzi": "事故后她完全康复了。",
+          "pinyin": "Shìgù hòu tā wánquán kāngfù le."
+        }
+      ]
+    },
+    {
+      "lesson": 37,
+      "title": "第37课 · 身体部位 (Dì sānshíqī kè · Shēntǐ Bùwèi) — CÁC BỘ PHẬN CƠ THỂ",
+      "sentences": [
+        {
+          "vietnamese": "Tóc của cô ấy dài và đen nhánh.",
+          "vocabulary": [
+            {
+              "hanzi": "乌黑发亮",
+              "pinyin": "wūhēi fāliàng",
+              "word_type": "thành ngữ",
+              "meaning": "đen nhánh"
+            }
+          ],
+          "hanzi": "她的头发又长又乌黑发亮。",
+          "pinyin": "Tā de tóufa yòu cháng yòu wūhēi fāliàng."
+        },
+        {
+          "vietnamese": "Đôi mắt của đứa trẻ màu xanh biếc, trông rất đẹp.",
+          "vocabulary": [
+            {
+              "hanzi": "深蓝色",
+              "pinyin": "shēnlánsè",
+              "word_type": "tính từ",
+              "meaning": "xanh biếc"
+            }
+          ],
+          "hanzi": "这个孩子的眼睛是深蓝色的，看起来很漂亮。",
+          "pinyin": "Zhège háizi de yǎnjing shì shēnlánsè de, kàn qǐlai hěn piàoliang."
+        },
+        {
+          "vietnamese": "Anh ấy bị gãy chân khi đang chơi bóng đá ngày hôm qua.",
+          "vocabulary": [
+            {
+              "hanzi": "摔断腿",
+              "pinyin": "shuāiduàn tuǐ",
+              "word_type": "cụm động từ",
+              "meaning": "gãy chân"
+            }
+          ],
+          "hanzi": "他昨天踢足球的时候摔断了腿。",
+          "pinyin": "Tā zuótiān tī zúqiú de shíhou shuāiduànle tuǐ."
+        },
+        {
+          "vietnamese": "Bạn nên rửa tay bằng xà phòng trước khi ăn.",
+          "vocabulary": [
+            {
+              "hanzi": "肥皂",
+              "pinyin": "féizào",
+              "word_type": "danh từ",
+              "meaning": "xà phòng"
+            },
+            {
+              "hanzi": "洗手",
+              "pinyin": "xǐshǒu",
+              "word_type": "động từ",
+              "meaning": "rửa tay"
+            }
+          ],
+          "hanzi": "吃饭前你应该用肥皂洗手。",
+          "pinyin": "Chīfàn qián nǐ yīnggāi yòng féizào xǐshǒu."
+        },
+        {
+          "vietnamese": "Cô ấy đang xoa bóp đôi vai mỏi mệt của mình sau một ngày dài.",
+          "vocabulary": [
+            {
+              "hanzi": "按摩",
+              "pinyin": "ànmó",
+              "word_type": "động từ",
+              "meaning": "xoa bóp"
+            },
+            {
+              "hanzi": "肩膀",
+              "pinyin": "jiānbǎng",
+              "word_type": "danh từ",
+              "meaning": "vai"
+            }
+          ],
+          "hanzi": "忙了一整天后，她正在按摩自己疲惫的肩膀。",
+          "pinyin": "Mángle yì zhěngtiān hòu, tā zhèngzài ànmó zìjǐ píbèi de jiānbǎng."
+        },
+        {
+          "vietnamese": "Trái tim của con người đập khoảng 100.000 lần mỗi ngày.",
+          "vocabulary": [
+            {
+              "hanzi": "心脏",
+              "pinyin": "xīnzàng",
+              "word_type": "danh từ",
+              "meaning": "trái tim"
+            },
+            {
+              "hanzi": "跳动",
+              "pinyin": "tiàodòng",
+              "word_type": "động từ",
+              "meaning": "đập"
+            }
+          ],
+          "hanzi": "人的心脏每天大约跳动十万次。",
+          "pinyin": "Rén de xīnzàng měitiān dàyuē tiàodòng shíwàn cì."
+        },
+        {
+          "vietnamese": "Anh ấy giơ tay phải lên để đặt câu hỏi.",
+          "vocabulary": [
+            {
+              "hanzi": "举起",
+              "pinyin": "jǔqǐ",
+              "word_type": "động từ",
+              "meaning": "giơ lên"
+            },
+            {
+              "hanzi": "右手",
+              "pinyin": "yòushǒu",
+              "word_type": "danh từ",
+              "meaning": "tay phải"
+            }
+          ],
+          "hanzi": "他举起右手提问。",
+          "pinyin": "Tā jǔqǐ yòushǒu tíwèn."
+        },
+        {
+          "vietnamese": "Mũi của tôi bị nghẹt vì tôi đang bị cảm lạnh.",
+          "vocabulary": [
+            {
+              "hanzi": "鼻子",
+              "pinyin": "bízi",
+              "word_type": "danh từ",
+              "meaning": "mũi"
+            },
+            {
+              "hanzi": "堵住",
+              "pinyin": "dǔzhù",
+              "word_type": "động từ",
+              "meaning": "bị nghẹt"
+            }
+          ],
+          "hanzi": "我因为感冒, 鼻子堵住了。",
+          "pinyin": "Wǒ yīnwèi gǎnmào bízi dǔzhù le."
+        },
+        {
+          "vietnamese": "Cô ấy mỉm cười và để lộ hàm răng trắng tinh.",
+          "vocabulary": [
+            {
+              "hanzi": "露出",
+              "pinyin": "lòuchū",
+              "word_type": "động từ",
+              "meaning": "để lộ"
+            },
+            {
+              "hanzi": "牙齿",
+              "pinyin": "yáchǐ",
+              "word_type": "danh từ",
+              "meaning": "răng"
+            }
+          ],
+          "hanzi": "她微笑着，露出洁白的牙齿。",
+          "pinyin": "Tā wéixiàozhe, lòuchū jiébái de yáchǐ."
+        },
+        {
+          "vietnamese": "Bạn không nên mang vác vật nặng để bảo vệ lưng của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "搬运重物",
+              "pinyin": "bānyùn zhòngwù",
+              "word_type": "động từ",
+              "meaning": "mang vác vật nặng"
+            },
+            {
+              "hanzi": "背部",
+              "pinyin": "bèibù",
+              "word_type": "danh từ",
+              "meaning": "lưng"
+            }
+          ],
+          "hanzi": "你不应该搬运重物，以保护你的背部。",
+          "pinyin": "Nǐ bù yīnggāi bānyùn zhòngwù, yǐ bǎohù nǐ de bèibù."
+        },
+        {
+          "vietnamese": "Anh ấy xăm một hình con rồng trên cánh tay trái.",
+          "vocabulary": [
+            {
+              "hanzi": "纹身",
+              "pinyin": "wénshēn",
+              "word_type": "động từ",
+              "meaning": "xăm hình"
+            },
+            {
+              "hanzi": "左臂",
+              "pinyin": "zuǒbì",
+              "word_type": "danh từ",
+              "meaning": "cánh tay trái"
+            }
+          ],
+          "hanzi": "他在左臂上纹了一条龙。",
+          "pinyin": "Tā zài zuǒbì shàng wénle yì tiáo lóng."
+        },
+        {
+          "vietnamese": "Máu chảy từ vết cắt nhỏ trên ngón tay của tôi.",
+          "vocabulary": [
+            {
+              "hanzi": "手指",
+              "pinyin": "shǒuzhǐ",
+              "word_type": "danh từ",
+              "meaning": "ngón tay"
+            }
+          ],
+          "hanzi": "我手指上的小伤口在流血。",
+          "pinyin": "Wǒ shǒuzhǐ shàng de xiǎo shāngkǒu zài liúxiě."
+        },
+        {
+          "vietnamese": "Cô ấy quay đầu lại khi nghe thấy ai đó gọi tên mình.",
+          "vocabulary": [
+            {
+              "hanzi": "转头",
+              "pinyin": "zhuǎntóu",
+              "word_type": "động từ",
+              "meaning": "quay đầu"
+            }
+          ],
+          "hanzi": "她听到有人叫她的名字时转过头来。",
+          "pinyin": "Tā tīngdào yǒurén jiào tā de míngzi shí zhuǎnguò tóu lái."
+        },
+        {
+          "vietnamese": "Đầu gối của anh ấy bị đau mỗi khi thời tiết trở lạnh.",
+          "vocabulary": [
+            {
+              "hanzi": "膝盖",
+              "pinyin": "xīgài",
+              "word_type": "danh từ",
+              "meaning": "đầu gối"
+            }
+          ],
+          "hanzi": "天气变冷的时候他的膝盖就会疼。",
+          "pinyin": "Tiānqì biàn lěng de shíhou tā de xīgài jiù huì téng."
+        },
+        {
+          "vietnamese": "Bạn nên bảo vệ làn da của mình khỏi ánh nắng mặt trời.",
+          "vocabulary": [
+            {
+              "hanzi": "阳光",
+              "pinyin": "yángguāng",
+              "word_type": "danh từ",
+              "meaning": "ánh nắng mặt trời"
+            }
+          ],
+          "hanzi": "你应该保护自己的皮肤，避免受到阳光的伤害。",
+          "pinyin": "Nǐ yīnggāi bǎohù zìjǐ de pífū, bìmiǎn shòudào yángguāng de shānghài."
+        },
+        {
+          "vietnamese": "Lưỡi của con người có thể cảm nhận được năm vị cơ bản.",
+          "vocabulary": [
+            {
+              "hanzi": "舌头",
+              "pinyin": "shétou",
+              "word_type": "danh từ",
+              "meaning": "lưỡi"
+            },
+            {
+              "hanzi": "味道",
+              "pinyin": "wèidao",
+              "word_type": "danh từ",
+              "meaning": "vị"
+            }
+          ],
+          "hanzi": "人的舌头可以感受到五种基本味道。",
+          "pinyin": "Rén de shétou kěyǐ gǎnshòudào wǔ zhǒng jīběn wèidao."
+        },
+        {
+          "vietnamese": "Não bộ là cơ quan phức tạp nhất trong cơ thể chúng ta.",
+          "vocabulary": [
+            {
+              "hanzi": "大脑",
+              "pinyin": "dànǎo",
+              "word_type": "danh từ",
+              "meaning": "não bộ"
+            },
+            {
+              "hanzi": "器官",
+              "pinyin": "qìguān",
+              "word_type": "danh từ",
+              "meaning": "cơ quan"
+            }
+          ],
+          "hanzi": "大脑是我们身体中最复杂的器官。",
+          "pinyin": "Dànǎo shì wǒmen shēntǐ zhōng zuì fùzá de qìguān."
+        },
+        {
+          "vietnamese": "Móng tay của cô ấy được sơn một màu đỏ rực rỡ.",
+          "vocabulary": [
+            {
+              "hanzi": "指甲",
+              "pinyin": "zhǐjiǎ",
+              "word_type": "danh từ",
+              "meaning": "móng tay"
+            },
+            {
+              "hanzi": "鲜艳",
+              "pinyin": "xiānyàn",
+              "word_type": "tính từ",
+              "meaning": "rực rỡ"
+            }
+          ],
+          "hanzi": "她的指甲被涂成了鲜艳的红色。",
+          "pinyin": "Tā de zhǐjiǎ bèi túchéngle xiānyàn de hóngsè."
+        },
+        {
+          "vietnamese": "Cổ của anh ấy bị cứng sau khi ngủ sai tư thế.",
+          "vocabulary": [
+            {
+              "hanzi": "脖子",
+              "pinyin": "bózi",
+              "word_type": "danh từ",
+              "meaning": "cổ"
+            },
+            {
+              "hanzi": "僵硬",
+              "pinyin": "jiāngyìng",
+              "word_type": "tính từ",
+              "meaning": "bị cứng"
+            }
+          ],
+          "hanzi": "睡姿不对后，他的脖子变得僵硬了。",
+          "pinyin": "Shuìzī bú duì hòu tā de bózi biàn de jiāngyìng le."
+        },
+        {
+          "vietnamese": "Đôi môi của cô ấy nứt nẻ vì thời tiết hanh khô.",
+          "vocabulary": [
+            {
+              "hanzi": "嘴唇",
+              "pinyin": "zuǐchún",
+              "word_type": "danh từ",
+              "meaning": "môi"
+            },
+            {
+              "hanzi": "裂开",
+              "pinyin": "lièkāi",
+              "word_type": "động từ",
+              "meaning": "nứt nẻ"
+            }
+          ],
+          "hanzi": "因为天气干燥，她的嘴唇裂开了。",
+          "pinyin": "Yīnwèi tiānqì gānzào, tā de zuǐchún lièkāi le."
+        },
+        {
+          "vietnamese": "Anh ấy thở dài và xoa bụng sau một bữa ăn no.",
+          "vocabulary": [
+            {
+              "hanzi": "叹气",
+              "pinyin": "tànqì",
+              "word_type": "động từ",
+              "meaning": "thở dài"
+            },
+            {
+              "hanzi": "肚子",
+              "pinyin": "dùzi",
+              "word_type": "danh từ",
+              "meaning": "bụng"
+            }
+          ],
+          "hanzi": "吃饱后他叹了口气，摸了摸肚子。",
+          "pinyin": "Chībǎo hòu tā tànle kǒu qì, mōle mō dùzi."
+        },
+        {
+          "vietnamese": "Bàn chân của cô ấy sưng lên vì đi bộ quá nhiều.",
+          "vocabulary": [
+            {
+              "hanzi": "脚",
+              "pinyin": "jiǎo",
+              "word_type": "danh từ",
+              "meaning": "bàn chân"
+            },
+            {
+              "hanzi": "肿",
+              "pinyin": "zhǒng",
+              "word_type": "động từ",
+              "meaning": "sưng"
+            }
+          ],
+          "hanzi": "走路走太多了. ，她的脚肿了起来。",
+          "pinyin": "Zǒulù zǒu tài duō le, tā de jiǎo zhǒngle qǐlai."
+        },
+        {
+          "vietnamese": "Tai của con chó vểnh lên khi nó nghe thấy tiếng bước chân.",
+          "vocabulary": [
+            {
+              "hanzi": "耳朵",
+              "pinyin": "ěrduo",
+              "word_type": "danh từ",
+              "meaning": "tai"
+            },
+            {
+              "hanzi": "竖起来",
+              "pinyin": "shù qǐlai",
+              "word_type": "động từ",
+              "meaning": "vểnh lên"
+            }
+          ],
+          "hanzi": "听到脚步声时，狗的耳朵竖了起来。",
+          "pinyin": "Tīngdào jiǎobùshēng shí, gǒu de ěrduo shùle qǐlai."
+        },
+        {
+          "vietnamese": "Mồ hôi túa ra trên trán của anh ấy sau khi chạy bộ.",
+          "vocabulary": [
+            {
+              "hanzi": "额头",
+              "pinyin": "étóu",
+              "word_type": "danh từ",
+              "meaning": "trán"
+            },
+            {
+              "hanzi": "汗水",
+              "pinyin": "hànshuǐ",
+              "word_type": "danh từ",
+              "meaning": "mồ hôi"
+            }
+          ],
+          "hanzi": "跑步后他额头上冒出了汗水。",
+          "pinyin": "Pǎobù hòu tā étóu shàng màochūle hànshuǐ."
+        },
+        {
+          "vietnamese": "Gan đóng vai trò quan trọng trong việc lọc độc tố.",
+          "vocabulary": [
+            {
+              "hanzi": "肝脏",
+              "pinyin": "gānzàng",
+              "word_type": "danh từ",
+              "meaning": "gan"
+            },
+            {
+              "hanzi": "毒素",
+              "pinyin": "dúsù",
+              "word_type": "danh từ",
+              "meaning": "độc tố"
+            }
+          ],
+          "hanzi": "肝脏在过滤毒素方面起着重要作用。",
+          "pinyin": "Gānzàng zài guòlǜ dúsù fāngmiàn qǐzhe zhòngyào zuòyòng."
+        },
+        {
+          "vietnamese": "Cô ấy bị gãy xương sườn trong một vụ tai nạn ô tô.",
+          "vocabulary": [
+            {
+              "hanzi": "肋骨",
+              "pinyin": "lèigǔ",
+              "word_type": "danh từ",
+              "meaning": "xương sườn"
+            },
+            {
+              "hanzi": "车祸",
+              "pinyin": "chēhuò",
+              "word_type": "danh từ",
+              "meaning": "tai nạn ô tô"
+            }
+          ],
+          "hanzi": "她在一次车祸中摔断了肋骨。",
+          "pinyin": "Tā zài yí cì chēhuò zhōng shuāiduànle lèigǔ."
+        },
+        {
+          "vietnamese": "Những cơ bắp ở chân anh ấy rất săn chắc.",
+          "vocabulary": [
+            {
+              "hanzi": "肌肉",
+              "pinyin": "jīròu",
+              "word_type": "danh từ",
+              "meaning": "cơ bắp"
+            },
+            {
+              "hanzi": "结实",
+              "pinyin": "jiēshi",
+              "word_type": "tính từ",
+              "meaning": "săn chắc"
+            }
+          ],
+          "hanzi": "他腿上的肌肉很结实。",
+          "pinyin": "Tā tuǐ shàng de jīròu hěn jiēshi."
+        },
+        {
+          "vietnamese": "Phổi của chúng ta cung cấp oxy cho máu.",
+          "vocabulary": [
+            {
+              "hanzi": "肺",
+              "pinyin": "fèi",
+              "word_type": "danh từ",
+              "meaning": "phổi"
+            },
+            {
+              "hanzi": "氧气",
+              "pinyin": "yǎngqì",
+              "word_type": "danh từ",
+              "meaning": "oxy"
+            }
+          ],
+          "hanzi": "我们的肺给血液提供氧气。",
+          "pinyin": "Wǒmen de fèi gěi xuèyè tígōng yǎngqì."
+        },
+        {
+          "vietnamese": "Cằm của anh ấy có một vết sẹo nhỏ từ khi còn bé.",
+          "vocabulary": [
+            {
+              "hanzi": "下巴",
+              "pinyin": "xiàba",
+              "word_type": "danh từ",
+              "meaning": "cằm"
+            },
+            {
+              "hanzi": "疤痕",
+              "pinyin": "bāhén",
+              "word_type": "danh từ",
+              "meaning": "vết sẹo"
+            }
+          ],
+          "hanzi": "他的下巴上有一个从小就有的疤痕。",
+          "pinyin": "Tā de xiàba shàng yǒu yí ge cóngxiǎo jiù yǒu de bāhén."
+        },
+        {
+          "vietnamese": "Cô ấy đeo một chiếc nhẫn vàng trên ngón áp út.",
+          "vocabulary": [
+            {
+              "hanzi": "无名指",
+              "pinyin": "wúmíngzhǐ",
+              "word_type": "danh từ",
+              "meaning": "ngón áp út"
+            },
+            {
+              "hanzi": "戒指",
+              "pinyin": "jièzhi",
+              "word_type": "danh từ",
+              "meaning": "nhẫn"
+            }
+          ],
+          "hanzi": "她无名指上戴着一枚金戒指。",
+          "pinyin": "Tā wúmíngzhǐ shàng dàizhe yì méi jīn jièzhi."
+        }
+      ]
+    },
+    {
+      "lesson": 38,
+      "title": "第38课 · 节日与庆典 (Dì sānshíbā kè · Jiérì yǔ Qìngdiǎn) — CÁC NGÀY LỄ HỘI",
+      "sentences": [
+        {
+          "vietnamese": "Chúng tôi luôn tổ chức tiệc sinh nhật cho con gái vào tháng Năm.",
+          "vocabulary": [
+            {
+              "hanzi": "举办生日派对",
+              "pinyin": "jǔbàn shēngrì pàiduì",
+              "word_type": "cụm từ",
+              "meaning": "tổ chức tiệc sinh nhật"
+            }
+          ],
+          "hanzi": "我们总是在五月为女儿举办生日派对。",
+          "pinyin": "Wǒmen zǒngshì zài wǔ yuè wèi nǚ'ér jǔbàn shēngrì pàiduì."
+        },
+        {
+          "vietnamese": "Tết là kỳ nghỉ lễ quan trọng nhất ở Việt Nam.",
+          "vocabulary": [
+            {
+              "hanzi": "春节",
+              "pinyin": "Chūnjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Tết Nguyên Đán"
+            },
+            {
+              "hanzi": "节日",
+              "pinyin": "jiérì",
+              "word_type": "danh từ",
+              "meaning": "ngày lễ"
+            }
+          ],
+          "hanzi": "春节是越南最重要的节日。",
+          "pinyin": "Chūnjié shì Yuènán zuì zhòngyào de jiérì."
+        },
+        {
+          "vietnamese": "Bạn dự định làm gì vào đêm Giao thừa năm nay?",
+          "vocabulary": [
+            {
+              "hanzi": "除夕夜",
+              "pinyin": "chúxī yè",
+              "word_type": "danh từ",
+              "meaning": "đêm Giao thừa"
+            }
+          ],
+          "hanzi": "今年除夕夜你打算做什么？",
+          "pinyin": "Jīnnián chúxī yè nǐ dǎsuàn zuò shénme?"
+        },
+        {
+          "vietnamese": "Giáng sinh là thời điểm để gia đình quây quần bên nhau.",
+          "vocabulary": [
+            {
+              "hanzi": "圣诞节",
+              "pinyin": "Shèngdànjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Giáng sinh"
+            },
+            {
+              "hanzi": "团聚",
+              "pinyin": "tuánjù",
+              "word_type": "động từ",
+              "meaning": "quây quần"
+            }
+          ],
+          "hanzi": "圣诞节是家人团聚的时刻。",
+          "pinyin": "Shèngdànjié shì jiārén tuánjù de shíkè."
+        },
+        {
+          "vietnamese": "Họ đã trang trí nhà cửa bằng rất nhiều đèn màu rực rỡ.",
+          "vocabulary": [
+            {
+              "hanzi": "五颜六色的灯",
+              "pinyin": "wǔyánliùsè de dēng",
+              "word_type": "cụm từ",
+              "meaning": "đèn màu rực rỡ"
+            }
+          ],
+          "hanzi": "他们用很多五颜六色的灯装饰了房子。",
+          "pinyin": "Tāmen yòng hěn duō wǔyánliùsè de dēng zhuāngshìle fángzi."
+        },
+        {
+          "vietnamese": "Cô ấy đã nhận được rất nhiều quà trong ngày kỷ niệm ngày cưới.",
+          "vocabulary": [
+            {
+              "hanzi": "结婚纪念日",
+              "pinyin": "jiéhūn jìniànrì",
+              "word_type": "danh từ",
+              "meaning": "kỷ niệm ngày cưới"
+            }
+          ],
+          "hanzi": "她在结婚纪念日收到了很多礼物。",
+          "pinyin": "Tā zài jiéhūn jìniànrì shōudàole hěn duō lǐwù."
+        },
+        {
+          "vietnamese": "Vào ngày Valentine, mọi người thường tặng hoa hồng và socola.",
+          "vocabulary": [
+            {
+              "hanzi": "情人节",
+              "pinyin": "Qíngrénjié",
+              "word_type": "danh từ riêng",
+              "meaning": "ngày Valentine"
+            },
+            {
+              "hanzi": "玫瑰花",
+              "pinyin": "méiguihuā",
+              "word_type": "danh từ",
+              "meaning": "hoa hồng"
+            }
+          ],
+          "hanzi": "在情人节，人们通常送玫瑰花和巧克力。",
+          "pinyin": "Zài Qíngrénjié, rénmen tōngcháng sòng méiguihuā hé qiǎokèlì."
+        },
+        {
+          "vietnamese": "Lễ hội pháo hoa quốc tế thu hút hàng ngàn du khách mỗi năm.",
+          "vocabulary": [
+            {
+              "hanzi": "烟花节",
+              "pinyin": "Yānhuājié",
+              "word_type": "danh từ",
+              "meaning": "lễ hội pháo hoa"
+            }
+          ],
+          "hanzi": "国际烟花节每年吸引成千上万的游客。",
+          "pinyin": "Guójì Yānhuājié měinián xīyǐn chéngqiānshàngwàn de yóukè."
+        },
+        {
+          "vietnamese": "Mọi người thường mặc trang phục truyền thống trong dịp lễ này.",
+          "vocabulary": [
+            {
+              "hanzi": "传统服装",
+              "pinyin": "chuántǒng fúzhuāng",
+              "word_type": "danh từ",
+              "meaning": "trang phục truyền thống"
+            }
+          ],
+          "hanzi": "人们在这个节日通常穿传统服装。",
+          "pinyin": "Rénmen zài zhège jiérì tōngcháng chuān chuántǒng fúzhuāng."
+        },
+        {
+          "vietnamese": "Bạn có biết ngày Quốc khánh của nước bạn là ngày nào không?",
+          "vocabulary": [
+            {
+              "hanzi": "国庆节",
+              "pinyin": "guóqìngjié",
+              "word_type": "danh từ",
+              "meaning": "Quốc khánh"
+            }
+          ],
+          "hanzi": "你知道你们国家的国庆节是在几月几号吗？",
+          "pinyin": "Nǐ zhīdào nǐmen guójiā de guóqìngjié shì zài jǐ yuè jǐ hào ma?"
+        },
+        {
+          "vietnamese": "Lễ Tạ ơn là dịp để bày tỏ lòng biết ơn đối với những gì chúng ta có.",
+          "vocabulary": [
+            {
+              "hanzi": "感恩节",
+              "pinyin": "Gǎn'ēnjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Lễ Tạ ơn"
+            },
+            {
+              "hanzi": "感激",
+              "pinyin": "gǎnjī",
+              "word_type": "động từ",
+              "meaning": "biết ơn"
+            }
+          ],
+          "hanzi": "感恩节是表达对我们所拥有的一切感激之情的时刻。",
+          "pinyin": "Gǎn'ēnjié shì biǎodá duì wǒmen suǒ yōngyǒu de yíqiè gǎnjī zhī qíng de shíkè."
+        },
+        {
+          "vietnamese": "Trẻ em rất thích đi xin kẹo vào đêm Halloween.",
+          "vocabulary": [
+            {
+              "hanzi": "万圣节",
+              "pinyin": "Wànshèngjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Halloween"
+            },
+            {
+              "hanzi": "要糖果",
+              "pinyin": "yào tángguǒ",
+              "word_type": "động từ",
+              "meaning": "xin kẹo"
+            }
+          ],
+          "hanzi": "孩子们非常喜欢在万圣节之夜去要糖果。",
+          "pinyin": "Háizimen fēicháng xǐhuan zài Wànshèngjié zhī yè qù yào tángguǒ."
+        },
+        {
+          "vietnamese": "Một bữa tiệc chia tay sẽ được tổ chức cho anh ấy vào thứ Sáu tuần tới.",
+          "vocabulary": [
+            {
+              "hanzi": "欢送会",
+              "pinyin": "huānsònghuì",
+              "word_type": "danh từ",
+              "meaning": "tiệc chia tay"
+            }
+          ],
+          "hanzi": "下星期五将为他举办一个欢送会。",
+          "pinyin": "Xià xīngqīwǔ jiāng wèi tā jǔbàn yí ge huānsònghuì."
+        },
+        {
+          "vietnamese": "Bánh chưng là món ăn không thể thiếu trong dịp Tết cổ truyền.",
+          "vocabulary": [
+            {
+              "hanzi": "不可缺少",
+              "pinyin": "bùkě quēshǎo",
+              "word_type": "tính từ",
+              "meaning": "không thể thiếu"
+            }
+          ],
+          "hanzi": "越南的方粽是传统春节不可缺少的食物。",
+          "pinyin": "Yuènán de fāngzòng shì chuántǒng Chūnjié bùkě quēshǎo de shíwù."
+        },
+        {
+          "vietnamese": "Lễ Phục sinh thường rơi vào khoảng tháng Ba hoặc tháng Tư.",
+          "vocabulary": [
+            {
+              "hanzi": "复活节",
+              "pinyin": "Fùhuójié",
+              "word_type": "danh từ riêng",
+              "meaning": "Lễ Phục sinh"
+            }
+          ],
+          "hanzi": "复活节通常在三月或四月。",
+          "pinyin": "Fùhuójié tōngcháng zài sān yuè huò sì yuè."
+        },
+        {
+          "vietnamese": "Chúng tôi đã nâng ly chúc mừng sức khỏe của mọi người.",
+          "vocabulary": [
+            {
+              "hanzi": "举杯",
+              "pinyin": "jǔbēi",
+              "word_type": "động từ",
+              "meaning": "nâng ly"
+            }
+          ],
+          "hanzi": "我们举杯祝大家身体健康。",
+          "pinyin": "Wǒmen jǔbēi zhù dàjiā shēntǐ jiànkāng."
+        },
+        {
+          "vietnamese": "Cuộc diễu hành trên phố rất sôi động và đầy màu sắc.",
+          "vocabulary": [
+            {
+              "hanzi": "游行",
+              "pinyin": "yóuxíng",
+              "word_type": "danh từ",
+              "meaning": "cuộc diễu hành"
+            },
+            {
+              "hanzi": "热闹",
+              "pinyin": "rènao",
+              "word_type": "tính từ",
+              "meaning": "sôi động"
+            }
+          ],
+          "hanzi": "街上的游行非常热闹，色彩缤纷。",
+          "pinyin": "Jiē shàng de yóuxíng fēicháng rènao, sècǎi bīnfēn."
+        },
+        {
+          "vietnamese": "Anh ấy đã mua một chiếc bánh kem khổng lồ cho bữa tiệc.",
+          "vocabulary": [
+            {
+              "hanzi": "巨大",
+              "pinyin": "jùdà",
+              "word_type": "tính từ",
+              "meaning": "khổng lồ"
+            }
+          ],
+          "hanzi": "他为派对买了一个巨大的蛋糕。",
+          "pinyin": "Tā wèi pàiduì mǎile yí ge jùdà de dàngāo."
+        },
+        {
+          "vietnamese": "Lễ hội mùa xuân bắt đầu bằng một màn múa lân truyền thống.",
+          "vocabulary": [
+            {
+              "hanzi": "舞狮",
+              "pinyin": "wǔshī",
+              "word_type": "danh từ",
+              "meaning": "múa lân"
+            }
+          ],
+          "hanzi": "春节庆典以传统的舞狮表演开始。",
+          "pinyin": "Chūnjié qìngdiǎn yǐ chuántǒng de wǔshī biǎoyǎn kāishǐ."
+        },
+        {
+          "vietnamese": "Gia đình tôi thường đi du lịch vào kỳ nghỉ hè mỗi năm.",
+          "vocabulary": [
+            {
+              "hanzi": "暑假",
+              "pinyin": "shǔjià",
+              "word_type": "danh từ",
+              "meaning": "kỳ nghỉ hè"
+            }
+          ],
+          "hanzi": "我家每年暑假都会去旅游。",
+          "pinyin": "Wǒ jiā měinián shǔjià dōu huì qù lǚyóu."
+        },
+        {
+          "vietnamese": "Ngày của Mẹ là một cơ hội tuyệt vời để nói lời cảm ơn đến mẹ.",
+          "vocabulary": [
+            {
+              "hanzi": "母亲节",
+              "pinyin": "Mǔqīnjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Ngày của Mẹ"
+            },
+            {
+              "hanzi": "绝佳机会",
+              "pinyin": "juéjiā jīhuì",
+              "word_type": "cụm từ",
+              "meaning": "cơ hội tuyệt vời"
+            }
+          ],
+          "hanzi": "母亲节是向妈妈表达感谢的绝佳机会。",
+          "pinyin": "Mǔqīnjié shì xiàng māma biǎodá gǎnxiè de juéjiā jīhuì."
+        },
+        {
+          "vietnamese": "Lễ hội đèn lồng ở Hội An thực sự rất ngoạn mục.",
+          "vocabulary": [
+            {
+              "hanzi": "灯笼节",
+              "pinyin": "dēnglóngjié",
+              "word_type": "danh từ",
+              "meaning": "lễ hội đèn lồng"
+            },
+            {
+              "hanzi": "壮观",
+              "pinyin": "zhuàngguān",
+              "word_type": "tính từ",
+              "meaning": "ngoạn mục"
+            }
+          ],
+          "hanzi": "会安的灯笼节真的非常壮观。",
+          "pinyin": "Huì'ān de dēnglóngjié zhēnde fēicháng zhuàngguān."
+        },
+        {
+          "vietnamese": "Có một buổi hòa nhạc lớn để chào mừng năm mới ở trung tâm thành phố.",
+          "vocabulary": [
+            {
+              "hanzi": "庆祝",
+              "pinyin": "qìngzhù",
+              "word_type": "động từ",
+              "meaning": "chào mừng"
+            }
+          ],
+          "hanzi": "市中心有一场盛大的音乐会来庆祝新年。",
+          "pinyin": "Shì zhōngxīn yǒu yì chǎng shèngdà de yīnyuèhuì lái qìngzhù xīnnián."
+        },
+        {
+          "vietnamese": "Mọi người trao nhau những lời chúc tốt đẹp nhất.",
+          "vocabulary": [
+            {
+              "hanzi": "祝福",
+              "pinyin": "zhùfú",
+              "word_type": "danh từ",
+              "meaning": "lời chúc"
+            }
+          ],
+          "hanzi": "人们互相送上最美好的祝福。",
+          "pinyin": "Rénmen hùxiāng sòngshàng zuì měihǎo de zhùfú."
+        },
+        {
+          "vietnamese": "Bạn có thích tham gia các trò chơi dân gian trong lễ hội không?",
+          "vocabulary": [
+            {
+              "hanzi": "民间游戏",
+              "pinyin": "mínjiān yóuxì",
+              "word_type": "danh từ",
+              "meaning": "trò chơi dân gian"
+            }
+          ],
+          "hanzi": "你喜欢参加节日里的民间游戏吗？",
+          "pinyin": "Nǐ xǐhuan cānjiā jiérì lǐ de mínjiān yóuxì ma?"
+        },
+        {
+          "vietnamese": "Ngày Nhà giáo là ngày để tôn vinh sự cống hiến của các thầy cô.",
+          "vocabulary": [
+            {
+              "hanzi": "教师节",
+              "pinyin": "Jiàoshījié",
+              "word_type": "danh từ riêng",
+              "meaning": "Ngày Nhà giáo"
+            },
+            {
+              "hanzi": "奉献",
+              "pinyin": "fèngxiàn",
+              "word_type": "danh từ/động từ",
+              "meaning": "cống hiến"
+            }
+          ],
+          "hanzi": "教师节是表彰老师奉献精神的日子。",
+          "pinyin": "Jiàoshījié shì biǎozhāng lǎoshī fèngxiàn jīngshén de rìzi."
+        },
+        {
+          "vietnamese": "Đêm Trung thu, trẻ em xách đèn lồng đi dạo khắp xóm.",
+          "vocabulary": [
+            {
+              "hanzi": "中秋节",
+              "pinyin": "Zhōngqiūjié",
+              "word_type": "danh từ riêng",
+              "meaning": "Tết Trung thu"
+            },
+            {
+              "hanzi": "提灯笼",
+              "pinyin": "tí dēnglong",
+              "word_type": "động từ",
+              "meaning": "xách đèn lồng"
+            }
+          ],
+          "hanzi": "中秋节晚上，孩子们提着灯笼在小区里走来走去。",
+          "pinyin": "Zhōngqiūjié wǎnshang, háizimen tízhe dēnglong zài xiǎoqū lǐ zǒulái zǒuqù."
+        },
+        {
+          "vietnamese": "Đám cưới của họ được tổ chức trong một khu vườn lãng mạn.",
+          "vocabulary": [
+            {
+              "hanzi": "婚礼",
+              "pinyin": "hūnlǐ",
+              "word_type": "danh từ",
+              "meaning": "đám cưới"
+            },
+            {
+              "hanzi": "浪漫",
+              "pinyin": "làngmàn",
+              "word_type": "tính từ",
+              "meaning": "lãng mạn"
+            }
+          ],
+          "hanzi": "他们的婚礼在一个浪漫的花园里举行。",
+          "pinyin": "Tāmen de hūnlǐ zài yí ge làngmàn de huāyuán lǐ jǔxíng."
+        },
+        {
+          "vietnamese": "Chúng tôi đã đốt lửa trại và hát hò cả đêm.",
+          "vocabulary": [
+            {
+              "hanzi": "篝火",
+              "pinyin": "gōuhuǒ",
+              "word_type": "danh từ",
+              "meaning": "lửa trại"
+            }
+          ],
+          "hanzi": "我们点了篝火，唱了一整晚的歌。",
+          "pinyin": "Wǒmen diǎnle gōuhuǒ, chàngle yì zhěngwǎn de gē."
+        },
+        {
+          "vietnamese": "Lễ tốt nghiệp đánh dấu một cột mốc quan trọng trong cuộc đời sinh viên.",
+          "vocabulary": [
+            {
+              "hanzi": "毕业典礼",
+              "pinyin": "bìyè diǎnlǐ",
+              "word_type": "cụm danh từ",
+              "meaning": "lễ tốt nghiệp"
+            },
+            {
+              "hanzi": "里程碑",
+              "pinyin": "lǐchéngbēi",
+              "word_type": "danh từ",
+              "meaning": "cột mốc"
+            }
+          ],
+          "hanzi": "毕业典礼标志着大学生活中的一个重要里程碑。",
+          "pinyin": "Bìyè diǎnlǐ biāozhìzhe dàxué shēnghuó zhōng de yí gè zhòngyào lǐchéngbēi."
+        }
+      ]
+    },
+    {
+      "lesson": 39,
+      "title": "第39课 · 宠物与动物 (Dì sānshíjiǔ kè · Chǒngwù yǔ Dòngwù) — THÚ CƯNG VÀ ĐỘNG VẬT",
+      "sentences": [
+        {
+          "vietnamese": "Chú chó của tôi luôn vẫy đuôi mỗi khi tôi về nhà.",
+          "vocabulary": [
+            {
+              "hanzi": "摇尾巴",
+              "pinyin": "yáo wěiba",
+              "word_type": "động từ",
+              "meaning": "vẫy đuôi"
+            }
+          ],
+          "hanzi": "我一回家，我的狗就摇尾巴。",
+          "pinyin": "Wǒ yì huíjiā, wǒ de gǒu jiù yáo wěiba."
+        },
+        {
+          "vietnamese": "Nuôi thú cưng đòi hỏi rất nhiều thời gian và sự kiên nhẫn.",
+          "vocabulary": [
+            {
+              "hanzi": "养宠物",
+              "pinyin": "yǎng chǒngwù",
+              "word_type": "cụm động từ",
+              "meaning": "nuôi thú cưng"
+            }
+          ],
+          "hanzi": "养宠物需要很多时间和耐心。",
+          "pinyin": "Yǎng chǒngwù xūyào hěn duō shíjiān hé nàixīn."
+        },
+        {
+          "vietnamese": "Con mèo của cô ấy thích nằm sưởi nắng bên cửa sổ.",
+          "vocabulary": [
+            {
+              "hanzi": "晒太阳",
+              "pinyin": "shài tàiyáng",
+              "word_type": "động từ",
+              "meaning": "sưởi nắng"
+            }
+          ],
+          "hanzi": "她的猫喜欢在窗边晒太阳。",
+          "pinyin": "Tā de māo xǐhuan zài chuāngbiān shài tàiyáng."
+        },
+        {
+          "vietnamese": "Nhiều loài động vật hoang dã đang đối mặt với nguy cơ tuyệt chủng.",
+          "vocabulary": [
+            {
+              "hanzi": "野生动物",
+              "pinyin": "yěshēng dòngwù",
+              "word_type": "cụm danh từ",
+              "meaning": "động vật hoang dã"
+            },
+            {
+              "hanzi": "灭绝",
+              "pinyin": "mièjué",
+              "word_type": "danh từ",
+              "meaning": "tuyệt chủng"
+            }
+          ],
+          "hanzi": "许多野生动物正面临灭绝的威胁 。",
+          "pinyin": "Xǔduō yěshēng dòngwù zhèng miànlín mièjué de wēixié."
+        },
+        {
+          "vietnamese": "Bác sĩ thú y đã tiêm phòng dại cho cún con sáng nay.",
+          "vocabulary": [
+            {
+              "hanzi": "兽医",
+              "pinyin": "shòuyī",
+              "word_type": "danh từ",
+              "meaning": "bác sĩ thú y"
+            },
+            {
+              "hanzi": "打疫苗",
+              "pinyin": "dǎ yìmiáo",
+              "word_type": "động từ",
+              "meaning": "tiêm phòng"
+            }
+          ],
+          "hanzi": "兽医今天早上给小狗打了狂犬病疫苗。",
+          "pinyin": "Shòuyī jīntiān zǎoshang gěi xiǎo gǒu dǎle kuángquǎnbìng yìmiáo."
+        },
+        {
+          "vietnamese": "Chim hót líu lo trên cành cây vào mỗi buổi sáng mùa xuân.",
+          "vocabulary": [
+            {
+              "hanzi": "树枝",
+              "pinyin": "shùzhī",
+              "word_type": "danh từ",
+              "meaning": "cành cây"
+            }
+          ],
+          "hanzi": "每个春天的早晨，鸟儿都在树枝上叽叽喳喳地唱歌。",
+          "pinyin": "Měi ge chūntiān de zǎochén, niǎor dōu zài shùzhī shàng jījīzhāzhā de chànggē."
+        },
+        {
+          "vietnamese": "Anh ấy đã nhận nuôi một chú mèo hoang từ trạm cứu hộ động vật.",
+          "vocabulary": [
+            {
+              "hanzi": "领养",
+              "pinyin": "lǐngyǎng",
+              "word_type": "động từ",
+              "meaning": "nhận nuôi"
+            },
+            {
+              "hanzi": "动物收容所",
+              "pinyin": "dòngwù shōuróngsuǒ",
+              "word_type": "cụm danh từ",
+              "meaning": "trạm cứu hộ động vật"
+            }
+          ],
+          "hanzi": "他从动物收容所领养了一只流浪猫。",
+          "pinyin": "Tā cóng dòngwù shōuróngsuǒ lǐngyǎngle yì zhī liúlàng māo."
+        },
+        {
+          "vietnamese": "Những con cá heo bơi lội tung tăng quanh mũi thuyền.",
+          "vocabulary": [
+            {
+              "hanzi": "海豚",
+              "pinyin": "hǎitún",
+              "word_type": "danh từ",
+              "meaning": "cá heo"
+            }
+          ],
+          "hanzi": "海豚在船头周围欢快地游动。",
+          "pinyin": "Hǎitún zài chuántóu zhōuwéi huānkuài de yóudòng."
+        },
+        {
+          "vietnamese": "Đừng cho động vật ăn khi bạn đi thăm sở thú.",
+          "vocabulary": [
+            {
+              "hanzi": "动物园",
+              "pinyin": "dòngwùyuán",
+              "word_type": "danh từ",
+              "meaning": "sở thú"
+            },
+            {
+              "hanzi": "喂食",
+              "pinyin": "wèishí",
+              "word_type": "động từ",
+              "meaning": "cho ăn"
+            }
+          ],
+          "hanzi": "你去动物园的时候不要给动物喂食。",
+          "pinyin": "Nǐ qù dòngwùyuán de shíhou búyào gěi dòngwù wèishí."
+        },
+        {
+          "vietnamese": "Gia đình tôi có một bể cá cảnh lớn trong phòng khách.",
+          "vocabulary": [
+            {
+              "hanzi": "鱼缸",
+              "pinyin": "yúgāng",
+              "word_type": "danh từ",
+              "meaning": "bể cá cảnh"
+            }
+          ],
+          "hanzi": "我家客厅里有一个大鱼缸。",
+          "pinyin": "Wǒ jiā kètīng lǐ yǒu yí ge dà yúgāng."
+        },
+        {
+          "vietnamese": "Chó là loài động vật trung thành nhất đối với con người.",
+          "vocabulary": [
+            {
+              "hanzi": "忠诚",
+              "pinyin": "zhōngchéng",
+              "word_type": "tính từ",
+              "meaning": "trung thành"
+            }
+          ],
+          "hanzi": "狗是对人类最忠诚的动物。",
+          "pinyin": "Gǒu shì duì rénlèi zuì zhōngchéng de dòngwù."
+        },
+        {
+          "vietnamese": "Con vẹt của anh ấy có thể nhại lại bất cứ từ nào bạn nói.",
+          "vocabulary": [
+            {
+              "hanzi": "鹦鹉",
+              "pinyin": "yīngwǔ",
+              "word_type": "danh từ",
+              "meaning": "vẹt"
+            },
+            {
+              "hanzi": "模仿",
+              "pinyin": "mófǎng",
+              "word_type": "động từ",
+              "meaning": "nhại lại"
+            }
+          ],
+          "hanzi": "他的鹦鹉能模仿你说的任何话。",
+          "pinyin": "Tā de yīngwǔ néng mófǎng nǐ shuō de rènhé huà."
+        },
+        {
+          "vietnamese": "Sư tử thường được mệnh danh là chúa tể sơn lâm.",
+          "vocabulary": [
+            {
+              "hanzi": "狮子",
+              "pinyin": "shīzi",
+              "word_type": "danh từ",
+              "meaning": "sư tử"
+            },
+            {
+              "hanzi": "百兽之王",
+              "pinyin": "bǎishòu zhī wáng",
+              "word_type": "danh từ",
+              "meaning": "chúa tể sơn lâm"
+            }
+          ],
+          "hanzi": "狮子常被称为百兽之王 。",
+          "pinyin": "Shīzi cháng bèi chēngwéi bǎishòu zhī wáng."
+        },
+        {
+          "vietnamese": "Bạn phải dắt chó đi dạo mỗi ngày để giúp nó khỏe mạnh.",
+          "vocabulary": [
+            {
+              "hanzi": "遛狗",
+              "pinyin": "liù gǒu",
+              "word_type": "động từ",
+              "meaning": "dắt chó đi dạo"
+            }
+          ],
+          "hanzi": "你必须每天遛狗，让它保持健康。",
+          "pinyin": "Nǐ bìxū měitiān liù gǒu, ràng tā bǎochí jiànkāng."
+        },
+        {
+          "vietnamese": "Con thỏ của cô ấy rất thích ăn cà rốt tươi.",
+          "vocabulary": [
+            {
+              "hanzi": "兔子",
+              "pinyin": "tùzi",
+              "word_type": "danh từ",
+              "meaning": "thỏ"
+            },
+            {
+              "hanzi": "胡萝卜",
+              "pinyin": "húluóbo",
+              "word_type": "danh từ",
+              "meaning": "cà rốt"
+            }
+          ],
+          "hanzi": "她的兔子很喜欢吃新鲜胡萝卜。",
+          "pinyin": "Tā de tùzi hěn xǐhuan chī xīnxiān húluóbo."
+        },
+        {
+          "vietnamese": "Khỉ là loài động vật rất thông minh và tinh nghịch.",
+          "vocabulary": [
+            {
+              "hanzi": "猴子",
+              "pinyin": "hóuzi",
+              "word_type": "danh từ",
+              "meaning": "khỉ"
+            },
+            {
+              "hanzi": "调皮",
+              "pinyin": "tiáopí",
+              "word_type": "tính từ",
+              "meaning": "tinh nghịch"
+            }
+          ],
+          "hanzi": "猴子是非常聪明又调皮的动物。",
+          "pinyin": "Hóuzi shì fēicháng cōngming yòu tiáopí de dòngwù."
+        },
+        {
+          "vietnamese": "Bảo vệ môi trường sống của động vật là trách nhiệm của chúng ta.",
+          "vocabulary": [
+            {
+              "hanzi": "栖息地",
+              "pinyin": "qīxīdì",
+              "word_type": "danh từ",
+              "meaning": "môi trường sống"
+            }
+          ],
+          "hanzi": "保护动物的栖息地是我们的责任。",
+          "pinyin": "Bǎohù dòngwù de qīxīdì shì wǒmen de zérèn."
+        },
+        {
+          "vietnamese": "Anh ấy mua một chiếc lồng mới cho con chim hoàng yến của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "金丝雀",
+              "pinyin": "jīnsīquè",
+              "word_type": "danh từ",
+              "meaning": "chim hoàng yến"
+            },
+            {
+              "hanzi": "笼子",
+              "pinyin": "lóngzi",
+              "word_type": "danh từ",
+              "meaning": "lồng"
+            }
+          ],
+          "hanzi": "他给自己的金丝雀买了一个新笼子。",
+          "pinyin": "Tā gěi zìjǐ de jīnsīquè mǎile yí ge xīn lóngzi."
+        },
+        {
+          "vietnamese": "Rùa biển có thể sống đến hơn một trăm tuổi.",
+          "vocabulary": [
+            {
+              "hanzi": "海龟",
+              "pinyin": "hǎiguī",
+              "word_type": "danh từ",
+              "meaning": "rùa biển"
+            }
+          ],
+          "hanzi": "海龟可以活到一百多岁。",
+          "pinyin": "Hǎiguī kěyǐ huódào yìbǎi duō suì."
+        },
+        {
+          "vietnamese": "Bộ lông của con cáo màu đỏ cam và rất mượt mà.",
+          "vocabulary": [
+            {
+              "hanzi": "狐狸",
+              "pinyin": "húli",
+              "word_type": "danh từ",
+              "meaning": "con cáo"
+            },
+            {
+              "hanzi": "光滑",
+              "pinyin": "guānghuá",
+              "word_type": "tính từ",
+              "meaning": "mượt mà"
+            }
+          ],
+          "hanzi": "狐狸的毛是橙红色的，非常柔软。",
+          "pinyin": "Húli de máo shì chénghóngsè de, fēicháng róuruǎn."
+        },
+        {
+          "vietnamese": "Con ngựa phi nước đại qua cánh đồng cỏ rộng lớn.",
+          "vocabulary": [
+            {
+              "hanzi": "马",
+              "pinyin": "mǎ",
+              "word_type": "danh từ",
+              "meaning": "ngựa"
+            },
+            {
+              "hanzi": "飞奔",
+              "pinyin": "fēibēn",
+              "word_type": "động từ",
+              "meaning": "phi nước đại"
+            }
+          ],
+          "hanzi": "马在广阔的草原上飞奔。",
+          "pinyin": "Mǎ zài guǎngkuò de cǎoyuán shàng fēibēn."
+        },
+        {
+          "vietnamese": "Mèo thường bắt chuột để bảo vệ kho thóc của nông dân.",
+          "vocabulary": [
+            {
+              "hanzi": "抓老鼠",
+              "pinyin": "zhuā lǎoshǔ",
+              "word_type": "động từ",
+              "meaning": "bắt chuột"
+            },
+            {
+              "hanzi": "谷仓",
+              "pinyin": "gǔcāng",
+              "word_type": "danh từ",
+              "meaning": "kho thóc"
+            }
+          ],
+          "hanzi": "猫经常抓老鼠来保护农民的谷仓。",
+          "pinyin": "Māo jīngcháng zhuā lǎoshǔ lái bǎohù nóngmín de gǔcāng."
+        },
+        {
+          "vietnamese": "Trẻ em rất thích xem xiếc thú vào dịp cuối tuần.",
+          "vocabulary": [
+            {
+              "hanzi": "动物马戏",
+              "pinyin": "dòngwù mǎxì",
+              "word_type": "danh từ",
+              "meaning": "xiếc thú"
+            }
+          ],
+          "hanzi": "孩子们非常喜欢在周末看动物马戏表演。",
+          "pinyin": "Háizimen fēicháng xǐhuan zài zhōumò kàn dòngwù mǎxì biǎoyǎn."
+        },
+        {
+          "vietnamese": "Gấu trúc chủ yếu ăn lá trúc và sống ở vùng núi cao.",
+          "vocabulary": [
+            {
+              "hanzi": "熊猫",
+              "pinyin": "xióngmāo",
+              "word_type": "danh từ",
+              "meaning": "gấu trúc"
+            },
+            {
+              "hanzi": "竹叶",
+              "pinyin": "zhúyè",
+              "word_type": "danh từ",
+              "meaning": "lá trúc"
+            }
+          ],
+          "hanzi": "熊猫主要吃竹叶，生活在高山地区。",
+          "pinyin": "Xióngmāo zhǔyào chī zhúyè, shēnghuó zài gāoshān dìqū."
+        },
+        {
+          "vietnamese": "Tôi bị dị ứng với lông chó nên tôi không thể nuôi chúng.",
+          "vocabulary": [
+            {
+              "hanzi": "狗毛",
+              "pinyin": "gǒumáo",
+              "word_type": "danh từ",
+              "meaning": "lông chó"
+            }
+          ],
+          "hanzi": "我对狗毛过敏，所以不能养狗。",
+          "pinyin": "Wǒ duì gǒumáo guòmǐn, suǒyǐ bùnéng yǎng gǒu."
+        },
+        {
+          "vietnamese": "Đàn chim di cư về phương nam để tránh mùa đông giá rét.",
+          "vocabulary": [
+            {
+              "hanzi": "迁徙",
+              "pinyin": "qiānxǐ",
+              "word_type": "động từ",
+              "meaning": "di cư"
+            },
+            {
+              "hanzi": "严寒",
+              "pinyin": "yánhán",
+              "word_type": "tính từ",
+              "meaning": "giá rét"
+            }
+          ],
+          "hanzi": "鸟群为了躲避严寒，迁徙到南方。",
+          "pinyin": "Niǎoqún wèile duǒbì yánhán, qiānxǐ dào nánfāng."
+        },
+        {
+          "vietnamese": "Hổ là loài thú săn mồi dũng mãnh trong rừng rậm.",
+          "vocabulary": [
+            {
+              "hanzi": "老虎",
+              "pinyin": "lǎohǔ",
+              "word_type": "danh từ",
+              "meaning": "hổ"
+            },
+            {
+              "hanzi": "猎食者",
+              "pinyin": "lièshízhě",
+              "word_type": "danh từ",
+              "meaning": "thú săn mồi"
+            }
+          ],
+          "hanzi": "老虎是丛林中凶猛的猎食者。",
+          "pinyin": "Lǎohǔ shì cónglín zhōng xiōngměng de lièshízhě."
+        },
+        {
+          "vietnamese": "Cô ấy dùng lược chải lông rụng cho chú chó cưng của mình.",
+          "vocabulary": [
+            {
+              "hanzi": "梳子",
+              "pinyin": "shūzi",
+              "word_type": "danh từ",
+              "meaning": "lược"
+            }
+          ],
+          "hanzi": "她用梳子给她的宠物狗梳掉身上的掉毛。",
+          "pinyin": "Tā yòng shūzi gěi tā de chǒngwù gǒu shūdiào shēnshang de diàomáo."
+        },
+        {
+          "vietnamese": "Bò sữa cung cấp nguồn sữa tươi dồi dào cho con người.",
+          "vocabulary": [
+            {
+              "hanzi": "奶牛",
+              "pinyin": "nǎiniú",
+              "word_type": "danh từ",
+              "meaning": "bò sữa"
+            },
+            {
+              "hanzi": "丰富",
+              "pinyin": "fēngfù",
+              "word_type": "tính từ",
+              "meaning": "dồi dào"
+            }
+          ],
+          "hanzi": "奶牛为人类提供丰富的鲜奶。",
+          "pinyin": "Nǎiniú wèi rénlèi tígōng fēngfù de xiānnǎi."
+        },
+        {
+          "vietnamese": "Những con ong chăm chỉ đi hút mật từ những bông hoa nở rộ.",
+          "vocabulary": [
+            {
+              "hanzi": "蜜蜂",
+              "pinyin": "mìfēng",
+              "word_type": "danh từ",
+              "meaning": "con ong"
+            },
+            {
+              "hanzi": "采蜜",
+              "pinyin": "cǎimì",
+              "word_type": "động từ",
+              "meaning": "hút mật"
+            }
+          ],
+          "hanzi": "勤劳的蜜蜂从盛开的花朵中采蜜。",
+          "pinyin": "Qínláo de mìfēng cóng shèngkāi de huāduǒ zhōng cǎimì."
+        }
+      ]
+    },
+    {
+      "lesson": 40,
+      "title": "第40课 · 自然与环境 (Dì sìshí kè · Zìrán yǔ Huánjìng) — THIÊN NHIÊN VÀ MÔI TRƯỜNG",
+      "sentences": [
+        {
+          "vietnamese": "Trồng thêm cây xanh là một cách hiệu quả để giảm ô nhiễm không khí.",
+          "vocabulary": [
+            {
+              "hanzi": "空气污染",
+              "pinyin": "kōngqì wūrǎn",
+              "word_type": "cụm danh từ",
+              "meaning": "ô nhiễm không khí"
+            }
+          ],
+          "hanzi": "多种树是减少空气污染的有效方法。",
+          "pinyin": "Duō zhòng shù shì jiǎnshǎo kōngqì wūrǎn de yǒuxiào fāngfǎ."
+        },
+        {
+          "vietnamese": "Chúng ta nên hạn chế sử dụng túi ni lông để bảo vệ môi trường.",
+          "vocabulary": [
+            {
+              "hanzi": "限制",
+              "pinyin": "xiànzhì",
+              "word_type": "động từ",
+              "meaning": "hạn chế"
+            },
+            {
+              "hanzi": "塑料袋",
+              "pinyin": "sùliàodài",
+              "word_type": "cụm danh từ",
+              "meaning": "túi ni lông"
+            }
+          ],
+          "hanzi": "我们应该限制使用塑料袋来保护环境。",
+          "pinyin": "Wǒmen yīnggāi xiànzhì shǐyòng sùliàodài lái bǎohù huánjìng."
+        },
+        {
+          "vietnamese": "Nhiệt độ toàn cầu đang tăng lên do biến đổi khí hậu.",
+          "vocabulary": [
+            {
+              "hanzi": "全球气温",
+              "pinyin": "quánqiú qìwēn",
+              "word_type": "cụm danh từ",
+              "meaning": "nhiệt độ toàn cầu"
+            },
+            {
+              "hanzi": "气候变化",
+              "pinyin": "qìhòu biànhuà",
+              "word_type": "cụm danh từ",
+              "meaning": "biến đổi khí hậu"
+            }
+          ],
+          "hanzi": "由于气候变化，全球气温正在上升。",
+          "pinyin": "Yóuyú qìhòu biànhuà, quánqiú qìwēn zhèngzài shàngshēng."
+        },
+        {
+          "vietnamese": "Rừng nhiệt đới Amazon được coi là lá phổi xanh của Trái Đất.",
+          "vocabulary": [
+            {
+              "hanzi": "热带雨林",
+              "pinyin": "rèdài yǔlín",
+              "word_type": "cụm danh từ",
+              "meaning": "rừng nhiệt đới"
+            },
+            {
+              "hanzi": "绿色之肺",
+              "pinyin": "lǜsè zhī fèi",
+              "word_type": "cụm danh từ",
+              "meaning": "lá phổi xanh"
+            }
+          ],
+          "hanzi": "亚马逊热带雨林被认为是“地球的绿色之肺。",
+          "pinyin": "Yàmǎxùn rèdài yǔlín bèi rènwéi shì “dìqiú de lǜsè zhī fèi."
+        },
+        {
+          "vietnamese": "Chính phủ đã ban hành nhiều luật để bảo vệ động vật hoang dã.",
+          "vocabulary": [
+            {
+              "hanzi": "颁布",
+              "pinyin": "bānbù",
+              "word_type": "động từ",
+              "meaning": "ban hành"
+            },
+            {
+              "hanzi": "法律",
+              "pinyin": "fǎlǜ",
+              "word_type": "danh từ",
+              "meaning": "luật"
+            }
+          ],
+          "hanzi": "政府颁布了许多法律来保护野生动物。",
+          "pinyin": "Zhèngfǔ bānbùle xǔduō fǎlǜ lái bǎohù yěshēng dòngwù."
+        },
+        {
+          "vietnamese": "Năng lượng mặt trời là một nguồn năng lượng sạch và có thể tái tạo.",
+          "vocabulary": [
+            {
+              "hanzi": "太阳能",
+              "pinyin": "tàiyángnéng",
+              "word_type": "danh từ",
+              "meaning": "năng lượng mặt trời"
+            },
+            {
+              "hanzi": "可再生",
+              "pinyin": "kě zàishēng",
+              "word_type": "tính từ",
+              "meaning": "có thể tái tạo"
+            }
+          ],
+          "hanzi": "太阳能是一种清洁、可再生的能源。",
+          "pinyin": "Tàiyángnéng shì yì zhǒng qīngjié, kě zàishēng de néngyuán."
+        },
+        {
+          "vietnamese": "Lũ lụt nghiêm trọng đã phá hủy hàng trăm ngôi nhà ở ngôi làng đó.",
+          "vocabulary": [
+            {
+              "hanzi": "洪水",
+              "pinyin": "hóngshuǐ",
+              "word_type": "danh từ",
+              "meaning": "lũ lụt"
+            },
+            {
+              "hanzi": "摧毁",
+              "pinyin": "cuīhuǐ",
+              "word_type": "động từ",
+              "meaning": "phá hủy"
+            }
+          ],
+          "hanzi": "严重的洪水摧毁了那个村庄的数百座房屋。",
+          "pinyin": "Yánzhòng de hóngshuǐ cuīhuǐle nàge cūnzhuāng de shùbǎi zuò fángwū."
+        },
+        {
+          "vietnamese": "Việc xả rác bừa bãi ra biển gây hại cho hệ sinh thái đại dương.",
+          "vocabulary": [
+            {
+              "hanzi": "倾倒垃圾",
+              "pinyin": "qīngdào lājī",
+              "word_type": "cụm động từ",
+              "meaning": "xả rác"
+            },
+            {
+              "hanzi": "海洋生态系统",
+              "pinyin": "hǎiyáng shēngtài xìtǒng",
+              "word_type": "cụm danh từ",
+              "meaning": "hệ sinh thái đại dương"
+            }
+          ],
+          "hanzi": "随意向海洋倾倒垃圾会危害海洋生态系统。",
+          "pinyin": "Suíyì xiàng hǎiyáng qīngdào lājī huì wēihài hǎiyáng shēngtài xìtǒng."
+        },
+        {
+          "vietnamese": "Họ đang tổ chức một chiến dịch dọn dẹp bãi biển vào chủ nhật này.",
+          "vocabulary": [
+            {
+              "hanzi": "清洁活动",
+              "pinyin": "qīngjié huódòng",
+              "word_type": "cụm danh từ",
+              "meaning": "chiến dịch dọn dẹp"
+            }
+          ],
+          "hanzi": "他们这个星期天正在组织一次海滩清洁活动 。",
+          "pinyin": "Tāmen zhège xīngqītiān zhèngzài zǔzhī yí cì hǎitān qīngjié huódòng."
+        },
+        {
+          "vietnamese": "Chúng ta cần tiết kiệm nước ngọt vì nó không phải là vô tận.",
+          "vocabulary": [
+            {
+              "hanzi": "淡水",
+              "pinyin": "dànshuǐ",
+              "word_type": "danh từ",
+              "meaning": "nước ngọt"
+            },
+            {
+              "hanzi": "无限",
+              "pinyin": "wúxiàn",
+              "word_type": "tính từ",
+              "meaning": "vô tận"
+            }
+          ],
+          "hanzi": "我们需要节约淡水，因为它不是无限的。",
+          "pinyin": "Wǒmen xūyào jiéyuē dànshuǐ, yīnwèi tā bú shì wúxiàn de."
+        },
+        {
+          "vietnamese": "Hạn hán kéo dài làm cho cây trồng chết khô trên cánh đồng.",
+          "vocabulary": [
+            {
+              "hanzi": "干旱",
+              "pinyin": "gānhàn",
+              "word_type": "danh từ",
+              "meaning": "hạn hán"
+            },
+            {
+              "hanzi": "庄稼",
+              "pinyin": "zhuāngjia",
+              "word_type": "danh từ",
+              "meaning": "cây trồng"
+            }
+          ],
+          "hanzi": "长期干旱使田里的庄稼枯死了。",
+          "pinyin": "Chángqī gānhàn shǐ tián lǐ de zhuāngjia kūsǐ le."
+        },
+        {
+          "vietnamese": "Nước thải từ các nhà máy phải được xử lý trước khi xả ra sông.",
+          "vocabulary": [
+            {
+              "hanzi": "废水",
+              "pinyin": "fèishuǐ",
+              "word_type": "danh từ",
+              "meaning": "nước thải"
+            },
+            {
+              "hanzi": "处理",
+              "pinyin": "chǔlǐ",
+              "word_type": "động từ",
+              "meaning": "xử lý"
+            }
+          ],
+          "hanzi": "工厂的废水必须经过处理才能排入河流。",
+          "pinyin": "Gōngchǎng de fèishuǐ bìxū jīngguò chǔlǐ cái néng páirù héliú."
+        },
+        {
+          "vietnamese": "Tái chế giấy giúp cứu được hàng triệu cái cây mỗi năm.",
+          "vocabulary": [
+            {
+              "hanzi": "回收",
+              "pinyin": "huíshōu",
+              "word_type": "động từ",
+              "meaning": "tái chế"
+            }
+          ],
+          "hanzi": "回收纸张每年能拯救数百万棵树。",
+          "pinyin": "Huíshōu zhǐzhāng měinián néng zhěngjiù shùbǎiwàn kē shù."
+        },
+        {
+          "vietnamese": "Ô nhiễm tiếng ồn ở các thành phố lớn ảnh hưởng xấu đến sức khỏe.",
+          "vocabulary": [
+            {
+              "hanzi": "噪音污染",
+              "pinyin": "zàoyīn wūrǎn",
+              "word_type": "cụm danh từ",
+              "meaning": "ô nhiễm tiếng ồn"
+            }
+          ],
+          "hanzi": "大城市的噪音污染对健康有不良影响。",
+          "pinyin": "Dà chéngshì de zàoyīn wūrǎn duì jiànkāng yǒu bùliáng yǐngxiǎng."
+        },
+        {
+          "vietnamese": "Băng tan ở hai cực đang làm mực nước biển dâng cao.",
+          "vocabulary": [
+            {
+              "hanzi": "冰川融化",
+              "pinyin": "bīngchuān rónghuà",
+              "word_type": "cụm động từ",
+              "meaning": "băng tan"
+            },
+            {
+              "hanzi": "海平面上升",
+              "pinyin": "hǎipíngmiàn shàngshēng",
+              "word_type": "cụm động từ",
+              "meaning": "mực nước biển dâng cao"
+            }
+          ],
+          "hanzi": "两极冰川的融化正在导致海平面上升。",
+          "pinyin": "Liǎngjí bīngchuān de rónghuà zhèngzài dǎozhì hǎipíngmiàn shàngshēng."
+        },
+        {
+          "vietnamese": "Khu bảo tồn thiên nhiên này là nơi sinh sống của nhiều loài chim quý hiếm.",
+          "vocabulary": [
+            {
+              "hanzi": "自然保护区",
+              "pinyin": "zìrán bǎohùqū",
+              "word_type": "cụm danh từ",
+              "meaning": "khu bảo tồn thiên nhiên"
+            },
+            {
+              "hanzi": "珍稀",
+              "pinyin": "zhēnxī",
+              "word_type": "tính từ",
+              "meaning": "quý hiếm"
+            }
+          ],
+          "hanzi": "这个自然保护区是许多珍稀鸟类的栖息地。",
+          "pinyin": "Zhège zìrán bǎohùqū shì xǔduō zhēnxī niǎolèi de qīxīdì."
+        },
+        {
+          "vietnamese": "Họ khuyến khích người dân sử dụng phương tiện giao thông công cộng.",
+          "vocabulary": [
+            {
+              "hanzi": "公共交通工具",
+              "pinyin": "gōnggòng jiāotōng gōngjù",
+              "word_type": "cụm danh từ",
+              "meaning": "phương tiện giao thông công cộng"
+            }
+          ],
+          "hanzi": "他们鼓励居民使用公共交通工具。",
+          "pinyin": "Tāmen gǔlì jūmín shǐyòng gōnggòng jiāotōng gōngjù."
+        },
+        {
+          "vietnamese": "Lốc xoáy đã cuốn trôi mọi thứ trên đường đi của nó.",
+          "vocabulary": [
+            {
+              "hanzi": "龙卷风",
+              "pinyin": "lóngjuǎnfēng",
+              "word_type": "danh từ",
+              "meaning": "lốc xoáy"
+            }
+          ],
+          "hanzi": "龙卷风卷走了它路径上的一切东西。",
+          "pinyin": "Lóngjuǎnfēng juǎnzǒule tā lùjìng shàng de yíqiè dōngxi."
+        },
+        {
+          "vietnamese": "Khí thải từ các phương tiện giao thông là nguyên nhân chính gây ra sương mù.",
+          "vocabulary": [
+            {
+              "hanzi": "废气",
+              "pinyin": "fèiqì",
+              "word_type": "danh từ",
+              "meaning": "khí thải"
+            },
+            {
+              "hanzi": "雾霾",
+              "pinyin": "wùmái",
+              "word_type": "danh từ",
+              "meaning": "bụt mịn/khói mù"
+            }
+          ],
+          "hanzi": "交通工具排放的废气是造成雾霾的主要原因。",
+          "pinyin": "Jiāotōng gōngjù páifàng de fèiqì shì zàochéng wùmái de zhǔyào yuányīn."
+        },
+        {
+          "vietnamese": "Cộng đồng của chúng ta đang cố gắng giảm thiểu lượng rác thải nhựa.",
+          "vocabulary": [
+            {
+              "hanzi": "塑料垃圾",
+              "pinyin": "sùliào lājī",
+              "word_type": "cụm danh từ",
+              "meaning": "rác thải nhựa"
+            }
+          ],
+          "hanzi": "我们的社区正在努力减少塑料垃圾。",
+          "pinyin": "Wǒmen de shèqū zhèngzài nǔlì jiǎnshǎo sùliào lājī."
+        },
+        {
+          "vietnamese": "Rừng ngập mặn đóng vai trò quan trọng trong việc chắn sóng và bão.",
+          "vocabulary": [
+            {
+              "hanzi": "红树林",
+              "pinyin": "hóngshùlín",
+              "word_type": "danh từ",
+              "meaning": "rừng ngập mặn"
+            },
+            {
+              "hanzi": "阻挡",
+              "pinyin": "zǔdǎng",
+              "word_type": "động từ",
+              "meaning": "chắn"
+            }
+          ],
+          "hanzi": "红树林在阻挡海浪和风暴方面发挥着重要作用。",
+          "pinyin": "Hóngshùlín zài zǔdǎng hǎilàng hé fēngbào fāngmiàn fāhuīzhe zhòngyào zuòyòng."
+        },
+        {
+          "vietnamese": "Chúng ta nên tắt đèn khi rời khỏi phòng để tiết kiệm điện.",
+          "vocabulary": [
+            {
+              "hanzi": "关灯",
+              "pinyin": "guān dēng",
+              "word_type": "động từ",
+              "meaning": "tắt đèn"
+            },
+            {
+              "hanzi": "节约用电",
+              "pinyin": "jiéyuē yòngdiàn",
+              "word_type": "cụm động từ",
+              "meaning": "tiết kiệm điện"
+            }
+          ],
+          "hanzi": "离开房间时我们应该关灯以节约用电。",
+          "pinyin": "Líkāi fángjiān shí wǒmen yīnggāi guān dēng yǐ jiéyuē yòngdiàn."
+        },
+        {
+          "vietnamese": "Bảo vệ tầng ozon là một nhiệm vụ cấp bách của toàn nhân loại.",
+          "vocabulary": [
+            {
+              "hanzi": "臭氧层",
+              "pinyin": "chòuyǎngcéng",
+              "word_type": "danh từ",
+              "meaning": "tầng ozon"
+            },
+            {
+              "hanzi": "紧迫",
+              "pinyin": "jǐnpò",
+              "word_type": "tính từ",
+              "meaning": "cấp bách"
+            }
+          ],
+          "hanzi": "保护臭氧层是全人类的一项紧迫任务 。",
+          "pinyin": "Bǎohù chòuyǎngcéng shì quán rénlèi de yí xiàng jǐnpò rènwu."
+        },
+        {
+          "vietnamese": "Sự đa dạng sinh học trong khu rừng này đang bị đe dọa nghiêm trọng.",
+          "vocabulary": [
+            {
+              "hanzi": "生物多样性",
+              "pinyin": "shēngwù duōyàngxìng",
+              "word_type": "danh từ",
+              "meaning": "đa dạng sinh học"
+            },
+            {
+              "hanzi": "威胁",
+              "pinyin": "wēixié",
+              "word_type": "động từ",
+              "meaning": "đe dọa"
+            }
+          ],
+          "hanzi": "这片森林的生物多样性正受到严重威胁。",
+          "pinyin": "Zhè piàn sēnlín de shēngwù duōyàngxìng zhèng shòudào yánzhòng wēixié."
+        },
+        {
+          "vietnamese": "Nhiều người thích đi cắm trại ở vùng núi để tận hưởng không khí trong lành.",
+          "vocabulary": [
+            {
+              "hanzi": "野营",
+              "pinyin": "yěyíng",
+              "word_type": "động từ",
+              "meaning": "đi cắm trại"
+            },
+            {
+              "hanzi": "新鲜空气",
+              "pinyin": "xīnxiān kōngqì",
+              "word_type": "danh từ",
+              "meaning": "không khí trong lành"
+            }
+          ],
+          "hanzi": "很多人喜欢去山区野营，享受新鲜空气。",
+          "pinyin": "Hěn duō rén xǐhuan qù shānqū yěyíng, xiǎngshòu xīnxiān kōngqì."
+        },
+        {
+          "vietnamese": "Động đất có thể gây ra sóng thần tàn phá các vùng ven biển.",
+          "vocabulary": [
+            {
+              "hanzi": "地震",
+              "pinyin": "dìzhèn",
+              "word_type": "danh từ",
+              "meaning": "động đất"
+            },
+            {
+              "hanzi": "海啸",
+              "pinyin": "hǎixiào",
+              "word_type": "danh từ",
+              "meaning": "sóng thần"
+            }
+          ],
+          "hanzi": "地震可能引发摧毁沿海地区的海啸。",
+          "pinyin": "Dìzhèn kěnéng yǐnfā cuīhuǐ yánhǎi dìqū de hǎixiào."
+        },
+        {
+          "vietnamese": "Chất thải hóa học đã làm ô nhiễm nghiêm trọng nguồn nước ngầm.",
+          "vocabulary": [
+            {
+              "hanzi": "化学废物",
+              "pinyin": "huàxué fèiwù",
+              "word_type": "cụm danh từ",
+              "meaning": "chất thải hóa học"
+            },
+            {
+              "hanzi": "地下水",
+              "pinyin": "dìxiàshuǐ",
+              "word_type": "danh từ",
+              "meaning": "nước ngầm"
+            }
+          ],
+          "hanzi": "化学废物严重污染了地下水。",
+          "pinyin": "Huàxué fèiwù yánzhòng wūrǎnle dìxiàshuǐ."
+        },
+        {
+          "vietnamese": "Công viên quốc gia cung cấp một không gian tuyệt vời cho các hoạt động ngoài trời.",
+          "vocabulary": [
+            {
+              "hanzi": "国家公园",
+              "pinyin": "guójiā gōngyuán",
+              "word_type": "danh từ",
+              "meaning": "công viên quốc gia"
+            },
+            {
+              "hanzi": "户外活动",
+              "pinyin": "hùwài huódòng",
+              "word_type": "cụm danh từ",
+              "meaning": "hoạt động ngoài trời"
+            }
+          ],
+          "hanzi": "国家公园为户外活动提供了绝佳的空间。",
+          "pinyin": "Guójiā gōngyuán wèi hùwài huódòng tígōngle juéjiā de kōngjiān."
+        },
+        {
+          "vietnamese": "Chặt phá rừng bừa bãi dẫn đến sạt lở đất trong mùa mưa bão.",
+          "vocabulary": [
+            {
+              "hanzi": "滥砍滥伐",
+              "pinyin": "lànkǎn lànfá",
+              "word_type": "cụm động từ",
+              "meaning": "chặt phá rừng bừa bãi"
+            },
+            {
+              "hanzi": "山体滑坡",
+              "pinyin": "shāntǐ huápō",
+              "word_type": "danh từ",
+              "meaning": "sạt lở đất"
+            }
+          ],
+          "hanzi": "滥砍滥伐导致雨季发生山体滑坡。",
+          "pinyin": "Lànkǎn lànfá dǎozhì yǔjì fāshēng shāntǐ huápō."
+        },
+        {
+          "vietnamese": "Mỗi cá nhân đều có thể góp phần làm cho hành tinh này xanh sạch hơn.",
+          "vocabulary": [
+            {
+              "hanzi": "星球",
+              "pinyin": "xīngqiú",
+              "word_type": "danh từ",
+              "meaning": "hành tinh"
+            },
+            {
+              "hanzi": "贡献",
+              "pinyin": "gòngxiàn",
+              "word_type": "động từ",
+              "meaning": "góp phần"
+            }
+          ],
+          "hanzi": "每个人都可以为让这个星球变得更绿色、更干净贡献一份力量。",
+          "pinyin": "Měi ge rén dōu kěyǐ wèi ràng zhège xīngqiú biàn de gèng lǜsè, gèng gānjìng gòngxiàn yí fèn lìliàng."
+        }
+      ]
+    }
+  ]
+}
