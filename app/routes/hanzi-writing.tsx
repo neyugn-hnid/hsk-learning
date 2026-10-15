@@ -1,7 +1,8 @@
 import type { Route } from "./+types/hanzi-writing";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useFetcher } from "react-router";
-import { BookOpen, ChevronDown, ChevronLeft, ChevronRight, Check, Map as MapIcon, Volume2 } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, ChevronDown, Menu, Map as MapIcon, RotateCcw, Volume2, X } from "lucide-react";
 import { SiteLayout } from "~/components/Layout";
 import { requireUser } from "~/lib/auth.server";
 import { prisma } from "~/lib/db.server";
@@ -18,6 +19,7 @@ type WritingWord = {
 };
 
 type PracticeMode = "hanzi" | "meaning" | "quiz" | "sentence";
+type SourceTab = "roadmap" | "hsk30";
 
 type SentencePracticeItem = {
   lesson: number;
@@ -26,6 +28,10 @@ type SentencePracticeItem = {
   pinyin: string;
   vocabulary: { hanzi: string; pinyin: string; meaning: string }[];
 };
+
+type WordModal =
+  | { type: "next-topic"; nextValue: string; nextTitle: string }
+  | { type: "level-complete"; level: string };
 
 type WritingItem = {
   id: string;
@@ -46,7 +52,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       orderBy: [{ level: "asc" }, { orderNo: "asc" }],
     }),
     prisma.lesson.findMany({
-      where: { status: "PUBLISHED", source: { in: ["HSK20", "HSK30"] } },
+      where: { status: "PUBLISHED", source: "HSK30" },
       select: {
         id: true,
         title: true,
@@ -173,16 +179,23 @@ function normalizeMeaning(value: string) {
     .trim();
 }
 
-function compareHskLevels(first: string, second: string) {
-  const firstNumber = Number(first.match(/\d+/)?.[0] || Number.POSITIVE_INFINITY);
-  const secondNumber = Number(second.match(/\d+/)?.[0] || Number.POSITIVE_INFINITY);
-  return firstNumber - secondNumber || first.localeCompare(second);
+function compareLevels(first: string, second: string) {
+  const firstNumber = Number(first.match(/\d+(?:\.\d+)?/)?.[0] || Number.POSITIVE_INFINITY);
+  const secondNumber = Number(second.match(/\d+(?:\.\d+)?/)?.[0] || Number.POSITIVE_INFINITY);
+  return firstNumber - secondNumber || first.localeCompare(second, "vi");
+}
+
+function formatHskLevel(value: string) {
+  const normalized = value.trim();
+  const number = normalized.match(/^HSK\s*(\d+(?:\.\d+)?)$/i)?.[1] || normalized.match(/^\d+(?:\.\d+)?$/)?.[0];
+  return number ? `HSK ${number}` : normalized;
 }
 
 type SourceOption = {
   value: string;
   label: string;
   count: number;
+  level: string;
 };
 
 function SourceSelect({
@@ -196,8 +209,8 @@ function SourceSelect({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const selected = groups.flatMap((group) => group.options).find((option) => option.value === value);
-  const selectedGroup = groups.find((group) => group.options.some((option) => option.value === value));
+  const levelLabel = groups[0]?.label || "Chọn cấp độ";
+  const LevelIcon = groups[0]?.icon;
 
   useEffect(() => {
     if (!open) return;
@@ -215,31 +228,27 @@ function SourceSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((isOpen) => !isOpen)}
-        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-2.5 text-left shadow-sm outline-none transition ${
-          open ? "border-red-400 ring-4 ring-red-100" : "border-slate-200 hover:border-slate-300"
+        className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-xl border-0 bg-transparent px-2.5 py-2 text-left outline-none transition ${
+          open ? "bg-red-50 text-red-700" : "hover:bg-slate-50"
         }`}
       >
         <span className="flex min-w-0 items-center gap-3">
-          {selectedGroup ? <selectedGroup.icon size={19} className="shrink-0 text-red-500" /> : null}
+          {LevelIcon ? <LevelIcon size={19} className="shrink-0 text-red-500" /> : null}
           <span className="min-w-0">
-            <span className="block truncate text-sm font-black text-slate-800">{selected?.label || "Chọn nguồn dữ liệu"}</span>
-            <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-wide text-slate-400">{selectedGroup?.label || "Nguồn dữ liệu"}</span>
+            <span className="block truncate text-sm font-black text-slate-800">{formatHskLevel(levelLabel)}</span>
+            <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-wide text-slate-400">Chọn chủ đề</span>
           </span>
         </span>
         <ChevronDown size={18} className={`shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open ? (
-        <div role="listbox" className="absolute left-0 right-0 top-full z-[100] mt-2 max-h-[min(20rem,calc(100vh-8rem))] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/10">
+        <div role="listbox" className="mt-1 rounded-xl bg-slate-50/80 p-1">
           {groups.map((group) => {
             const GroupIcon = group.icon;
             if (group.options.length === 0) return null;
             return (
               <div key={group.label} className="not-first:mt-2">
-                <div className="flex items-center gap-2 px-3 pb-1.5 pt-2 text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">
-                  <GroupIcon size={13} />
-                  {group.label}
-                </div>
                 {group.options.map((option) => {
                   const isSelected = option.value === value;
                   return (
@@ -250,14 +259,12 @@ function SourceSelect({
                       aria-selected={isSelected}
                       onClick={() => {
                         onChange(option.value);
-                        setOpen(false);
                       }}
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition ${
+                      className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-sm transition ${
                         isSelected ? "bg-red-50 font-black text-red-700" : "font-semibold text-slate-700 hover:bg-slate-50"
                       }`}
                     >
                       <span>{option.label}</span>
-                      <span className={`text-[11px] font-bold ${isSelected ? "text-red-400" : "text-slate-400"}`}>{option.count} từ</span>
                     </button>
                   );
                 })}
@@ -279,68 +286,55 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
     [],
   );
   const selections = useMemo(() => {
-    const roadmapLevels = [...new Set(
-      items.filter((item) => item.source === "roadmap").map((item) => item.level),
-    )].sort(compareHskLevels);
-    const lessonLevels = [...new Set(
-      items
-        .filter((item) => item.source === "lesson")
-        .map((item) => `${item.sourceType}:${item.level}`),
-    )].sort((first, second) => compareHskLevels(first.split(":")[1], second.split(":")[1]));
+    const roadmapItems = items
+      .filter((item) => item.source === "roadmap")
+      .sort((first, second) => (
+        compareLevels(first.level, second.level)
+        || first.orderNo - second.orderNo
+        || first.title.localeCompare(second.title, "vi")
+      ));
+    const lessonItems = items
+      .filter((item) => item.source === "lesson" && item.sourceType === "HSK30")
+      .sort((first, second) => (
+        compareLevels(first.level, second.level)
+        || first.orderNo - second.orderNo
+        || first.title.localeCompare(second.title, "vi")
+      ));
 
     return {
-      roadmapLevels,
-      lessonLevels,
+      roadmapItems,
+      lessonItems,
     };
   }, [items]);
   const sourceGroups = useMemo(() => [
     {
       label: "Lộ trình",
       icon: MapIcon,
-      options: selections.roadmapLevels.map((level) => ({
-        value: `roadmap:${level}`,
-        label: level,
-        count: uniqueWritingWords(
-          items
-            .filter((item) => item.source === "roadmap" && item.level === level)
-            .flatMap((item) => item.vocabulary),
-        ).length,
+      options: selections.roadmapItems.map((item) => ({
+        value: `roadmap:${item.id}`,
+        label: item.title,
+        count: item.vocabulary.length,
+        level: item.level,
       })),
-    },
-    {
-      label: "HSK 2.0",
-      icon: BookOpen,
-      options: selections.lessonLevels
-        .filter((value) => value.startsWith("HSK20:"))
-        .map((value) => {
-          const level = value.replace("HSK20:", "");
-          return {
-            value: `lesson:${value}`,
-            label: level,
-            count: items.filter((item) => item.source === "lesson" && item.sourceType === "HSK20" && item.level === level).reduce((total, item) => total + item.vocabulary.length, 0),
-          };
-        }),
     },
     {
       label: "HSK 3.0",
       icon: BookOpen,
-      options: selections.lessonLevels
-        .filter((value) => value.startsWith("HSK30:"))
-        .map((value) => {
-          const level = value.replace("HSK30:", "");
-          return {
-            value: `lesson:${value}`,
-            label: level,
-            count: items.filter((item) => item.source === "lesson" && item.sourceType === "HSK30" && item.level === level).reduce((total, item) => total + item.vocabulary.length, 0),
-          };
-        }),
+      options: selections.lessonItems.map((item) => ({
+        value: `lesson:${item.id}`,
+        label: `${formatHskLevel(item.level)} · ${item.title}`,
+        count: item.vocabulary.length,
+        level: item.level,
+      })),
     },
   ], [items, selections]);
-  const firstSelection = selections.roadmapLevels[0]
-    ? `roadmap:${selections.roadmapLevels[0]}`
-    : selections.lessonLevels[0]
-      ? `lesson:${selections.lessonLevels[0]}`
+  const firstSelection = selections.roadmapItems[0]
+    ? `roadmap:${selections.roadmapItems[0].id}`
+    : selections.lessonItems[0]
+      ? `lesson:${selections.lessonItems[0].id}`
       : "";
+  const [sourceTab, setSourceTab] = useState<SourceTab>("roadmap");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedSource, setSelectedSource] = useState(firstSelection);
   const [wordIndex, setWordIndex] = useState(0);
   const [answer, setAnswer] = useState("");
@@ -351,15 +345,40 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   const [sentenceIndex, setSentenceIndex] = useState(loaderData.sentenceProgress.sentenceIndex);
   const [sentenceAnswer, setSentenceAnswer] = useState("");
   const [sentenceCorrect, setSentenceCorrect] = useState<boolean | null>(null);
+  const [sentenceSubmitted, setSentenceSubmitted] = useState(false);
   const [sentenceResults, setSentenceResults] = useState<{ hanzi: string; vietnamese: string; correct: boolean }[]>(loaderData.sentenceProgress.results as { hanzi: string; vietnamese: string; correct: boolean }[]);
+  const [wordModal, setWordModal] = useState<WordModal | null>(null);
+  const sentenceSubmittedRef = useRef(false);
+  const submittedSentenceIndexRef = useRef<number | null>(null);
+  const sentenceInputRef = useRef<HTMLInputElement>(null);
+  const answerInputRef = useRef<HTMLInputElement>(null);
+
+  const selectSourceTab = (tab: SourceTab) => {
+    setSourceTab(tab);
+    const group = sourceGroups[tab === "roadmap" ? 0 : 1];
+    if (group?.options[0]) setSelectedSource(group.options[0].value);
+  };
+
+  const restartWordTopic = () => {
+    setWordIndex(0);
+    setAnswer("");
+    setIsCorrect(null);
+    setWordModal(null);
+  };
+
+  const continueToNextTopic = () => {
+    if (!wordModal || wordModal.type !== "next-topic") return;
+    setSelectedSource(wordModal.nextValue);
+    setWordModal(null);
+  };
 
   const words = useMemo(() => {
     return uniqueWritingWords(
       items
         .filter((item) => {
           const itemSelection = item.source === "roadmap"
-            ? `roadmap:${item.level}`
-            : `lesson:${item.sourceType}:${item.level}`;
+            ? `roadmap:${item.id}`
+            : `lesson:${item.id}`;
           return itemSelection === selectedSource;
         })
         .flatMap((item) => item.vocabulary),
@@ -402,9 +421,24 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   }, [wordIndex]);
 
   useEffect(() => {
+    sentenceSubmittedRef.current = false;
+    submittedSentenceIndexRef.current = null;
+    setSentenceSubmitted(false);
     setSentenceAnswer("");
     setSentenceCorrect(null);
   }, [sentenceIndex]);
+
+  useEffect(() => {
+    if (practiceMode !== "sentence" || sentenceSubmitted || sentenceCorrect !== null) return;
+    const timeout = window.setTimeout(() => sentenceInputRef.current?.focus(), 0);
+    return () => window.clearTimeout(timeout);
+  }, [practiceMode, sentenceCorrect, sentenceIndex, sentenceSubmitted]);
+
+  useEffect(() => {
+    if (practiceMode === "sentence" || practiceMode === "quiz" || isCorrect !== null || wordModal) return;
+    const timeout = window.setTimeout(() => answerInputRef.current?.focus(), 0);
+    return () => window.clearTimeout(timeout);
+  }, [isCorrect, practiceMode, selectedSource, wordIndex, wordModal]);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -447,8 +481,14 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
   };
 
   const checkSentenceAnswer = () => {
-    if (!currentSentence || !sentenceAnswer.trim()) return;
-    const correct = normalizeSentence(sentenceAnswer) === normalizeSentence(currentSentence.hanzi);
+    if (!currentSentence || !sentenceAnswer.trim() || sentenceSubmittedRef.current || submittedSentenceIndexRef.current === sentenceIndex || sentenceSubmitted || sentenceCorrect !== null) return;
+    sentenceSubmittedRef.current = true;
+    submittedSentenceIndexRef.current = sentenceIndex;
+    setSentenceSubmitted(true);
+    const submittedAnswer = sentenceAnswer.trim();
+    const correct = normalizeSentence(submittedAnswer) === normalizeSentence(currentSentence.hanzi);
+    setSentenceAnswer("");
+    if (sentenceInputRef.current) sentenceInputRef.current.value = "";
     setSentenceCorrect(correct);
     if (correct) sound.playCorrect();
     else sound.playIncorrect();
@@ -456,19 +496,26 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
       { hanzi: currentSentence.hanzi, vietnamese: currentSentence.vietnamese, correct },
       ...prev,
     ]);
+
+    const nextIndex = sentenceIndex + 1;
+    if (nextIndex < sentenceItems.length) {
+      window.setTimeout(() => setSentenceIndex(nextIndex), 300);
+    }
   };
 
   const checkAnswer = () => {
-    if (!currentWord || !answer.trim()) return;
+    if (!currentWord || !answer.trim() || isCorrect !== null) return;
+    const submittedAnswer = answer.trim();
     const correct = practiceMode === "hanzi"
-      ? answer.trim() === currentWord.chinese
+      ? submittedAnswer === currentWord.chinese
       : (() => {
-          const normalizedAnswer = normalizeMeaning(answer);
+          const normalizedAnswer = normalizeMeaning(submittedAnswer);
           const normalizedExpected = normalizeMeaning(currentWord.meaningVi);
           return normalizedAnswer === normalizedExpected
             || normalizedExpected.includes(normalizedAnswer)
             || normalizedAnswer.includes(normalizedExpected);
         })();
+    setAnswer("");
     setIsCorrect(correct);
     if (correct) {
       sound.playCorrect();
@@ -479,10 +526,25 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
       { chinese: currentWord.chinese, pinyin: currentWord.pinyin, meaningVi: currentWord.meaningVi, correct },
       ...prev,
     ]);
+    if (wordIndex >= currentWords.length - 1) {
+      const currentGroup = sourceGroups.find((group) => group.options.some((option) => option.value === selectedSource));
+      const currentOptionIndex = currentGroup?.options.findIndex((option) => option.value === selectedSource) ?? -1;
+      const currentOption = currentGroup?.options[currentOptionIndex];
+      const nextOption = currentGroup?.options
+        .slice(currentOptionIndex + 1)
+        .find((option) => option.level === currentOption?.level);
+
+      if (nextOption) {
+        setWordModal({ type: "next-topic", nextValue: nextOption.value, nextTitle: nextOption.label });
+      } else {
+        setWordModal({ type: "level-complete", level: formatHskLevel(currentOption?.level || "") });
+      }
+      return;
+    }
     if (wordIndex < currentWords.length - 1) {
       window.setTimeout(() => {
         setWordIndex((index) => index + 1);
-      }, 500);
+      }, 300);
     }
   };
 
@@ -502,24 +564,163 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
     if (wordIndex < currentWords.length - 1) {
       window.setTimeout(() => {
         setWordIndex((index) => index + 1);
-      }, 500);
+      }, 300);
     }
   };
 
   return (
-    <SiteLayout user={user}>
-      <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="relative z-[60] mb-6 grid gap-5 sm:flex sm:items-end sm:justify-between sm:gap-6">
-          <div className="min-w-0">
-            <p className="font-sans text-[11px] font-black uppercase tracking-[0.16em] text-red-600 sm:text-xs sm:tracking-[0.2em]">Lộ trình HSK</p>
-            <h1 className="mt-1 font-sans text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Luyện chữ Hán</h1>
-            <p className="mt-1 max-w-xl font-sans text-sm font-medium leading-5 text-slate-500">Ôn chữ Hán từ lộ trình và bài học HSK 2.0, 3.0.</p>
+    <SiteLayout user={user} lockScroll>
+      <main className="h-[calc(100vh-4rem)] w-full overflow-hidden">
+        {wordModal && typeof document !== "undefined" ? createPortal((
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/45 px-4 backdrop-blur-sm">
+            <div className="w-full max-w-md overflow-hidden rounded-[2rem] border border-slate-200 bg-[#fffdf8] shadow-2xl">
+              {wordModal.type === "next-topic" ? (
+                <>
+                  <div className="border-b border-red-100 bg-red-50/70 px-6 py-5 sm:px-8">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-100 text-red-600">
+                        <CheckCircle2 size={24} />
+                      </span>
+                      <div className="min-w-0 text-left">
+                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-red-600">Chủ đề đã hoàn thành</p>
+                        <p className="mt-1 truncate text-sm font-black text-slate-800">{wordModal.nextTitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="px-6 py-6 text-left sm:px-8">
+                    <h2 className="text-xl font-black tracking-tight text-slate-900">Tiếp tục luyện tập?</h2>
+                    <p className="mt-2 text-sm font-medium leading-6 text-slate-500">Bạn muốn làm lại chủ đề này hay chuyển sang chủ đề tiếp theo?</p>
+                  <div className="mt-6 grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={restartWordTopic}
+                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2 text-sm font-black text-slate-600 transition hover:bg-white hover:border-slate-300"
+                    >
+                      <RotateCcw size={16} />
+                      Không
+                    </button>
+                    <button
+                      type="button"
+                      onClick={continueToNextTopic}
+                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-2 text-sm font-black text-white transition hover:bg-red-700"
+                    >
+                      Có <ArrowRight size={16} />
+                    </button>
+                  </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="border-b border-emerald-100 bg-emerald-50/70 px-6 py-6 text-center sm:px-8">
+                    <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+                      <CheckCircle2 size={26} />
+                    </span>
+                    <p className="mt-3 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-600">{wordModal.level}</p>
+                  </div>
+                  <div className="px-6 py-6 text-center sm:px-8">
+                    <h2 className="text-xl font-black tracking-tight text-slate-900">Bạn đã hoàn thành!</h2>
+                    <p className="mt-2 text-sm font-medium leading-6 text-slate-500">Bạn đã hoàn thành toàn bộ chủ đề trong cấp độ này.</p>
+                    <button
+                      type="button"
+                      onClick={restartWordTopic}
+                      className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-black text-white transition hover:bg-emerald-700"
+                    >
+                      <RotateCcw size={16} />
+                      Làm lại cấp độ
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-          <div className="w-full min-w-0 sm:w-auto sm:max-w-[22rem] sm:flex-1 lg:max-w-xs">
-            <label className="mb-1.5 block font-sans text-xs font-bold text-slate-500">
-              Chọn nguồn dữ liệu
-            </label>
-            <SourceSelect value={selectedSource} groups={sourceGroups} onChange={setSelectedSource} />
+        ), document.body) : null}
+        <div className="grid h-full min-h-0 gap-6 lg:grid-cols-[22rem_minmax(0,1fr)] lg:items-start lg:gap-0">
+          {sidebarOpen ? (
+            <button
+              type="button"
+              aria-label="Đóng sidebar"
+              onClick={() => setSidebarOpen(false)}
+              className="fixed inset-0 z-[65] bg-slate-900/20 lg:hidden"
+            />
+          ) : null}
+          <aside className={`no-scrollbar fixed bottom-0 left-0 top-16 z-[70] w-[min(22rem,88vw)] overflow-y-auto border-y border-r border-slate-200 bg-[#fffdf8] px-5 py-6 shadow-2xl transition-transform duration-300 lg:sticky lg:top-0 lg:order-1 lg:h-full lg:w-auto lg:translate-x-0 lg:border-l-0 lg:shadow-[8px_0_24px_rgba(15,23,42,0.04)] ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+            <div className="border-b border-slate-200/80 pb-5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h2 className="mt-1 font-sans text-lg font-black tracking-tight text-slate-800">Nguồn luyện tập</h2>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Đóng sidebar"
+                  onClick={() => setSidebarOpen(false)}
+                  className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 lg:hidden"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <p className="mt-1 text-xs font-medium leading-5 text-slate-400">Chọn cấp độ rồi mở chủ đề muốn luyện.</p>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-1 rounded-2xl border border-slate-200/80 bg-slate-100/80 p-1">
+              {([
+                ["roadmap", "Lộ trình"],
+                ["hsk30", "HSK 3.0"],
+              ] as const).map(([tab, label]) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => selectSourceTab(tab)}
+                  className={`rounded-lg px-2 py-2 text-xs font-black transition ${
+                    sourceTab === tab ? "bg-white text-red-600 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 grid gap-5">
+              {sourceGroups
+                .filter((_, index) => (sourceTab === "roadmap" ? index === 0 : index === 1))
+                .map((group) => {
+                const levels = [...new Set(group.options.map((option) => option.level))].sort(compareLevels);
+                return (
+                  <div key={group.label} className="grid gap-3">
+                    {levels.map((level) => (
+                      <div key={`${group.label}-${level}`} className="min-w-0">
+                        <SourceSelect
+                          value={selectedSource}
+                          groups={[{
+                            ...group,
+                            label: level,
+                            options: group.options.filter((option) => option.level === level),
+                          }]}
+                          onChange={(value) => {
+                            setSelectedSource(value);
+                            setSidebarOpen(false);
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          </aside>
+
+          <section className="no-scrollbar order-2 flex h-full min-h-0 min-w-0 flex-col overflow-hidden px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+        <div className="relative z-[50] mb-6">
+          <div className="flex min-w-0 items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h1 className="mt-1 font-sans text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Luyện chữ Hán</h1>
+              <p className="mt-1 max-w-xl font-sans text-sm font-medium leading-5 text-slate-500">Ôn chữ Hán từ lộ trình và bài học HSK 3.0.</p>
+            </div>
+            <button
+              type="button"
+              aria-label="Mở sidebar nguồn luyện tập"
+              onClick={() => setSidebarOpen(true)}
+              className="mt-1 shrink-0 rounded-xl border border-slate-200 bg-white p-2.5 text-slate-600 shadow-sm hover:border-red-200 hover:text-red-600 lg:hidden"
+            >
+              <Menu size={20} />
+            </button>
           </div>
         </div>
 
@@ -596,13 +797,22 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
 
                   <div className="mt-5">
                     <input
+                      ref={sentenceInputRef}
                       value={sentenceAnswer}
+                      readOnly={sentenceCorrect !== null || sentenceSubmitted}
+                      disabled={sentenceCorrect !== null || sentenceSubmitted}
                       onChange={(event) => {
+                        if (sentenceSubmittedRef.current || sentenceSubmitted || sentenceCorrect !== null) return;
                         setSentenceAnswer(event.target.value);
                         setSentenceCorrect(null);
                       }}
                       onKeyDown={(event) => {
-                        if (event.key === "Enter") checkSentenceAnswer();
+                        if (event.key === "Enter" && !event.repeat) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          if (sentenceSubmittedRef.current || sentenceSubmitted) return;
+                          checkSentenceAnswer();
+                        }
                       }}
                       placeholder="Nhập câu chữ Hán..."
                       aria-label="Nhập câu chữ Hán"
@@ -619,33 +829,6 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                         {sentenceCorrect ? "Chính xác!" : `Đáp án: ${currentSentence.hanzi}`}
                       </p>
                     ) : null}
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2.5">
-                    <button
-                      type="button"
-                      onClick={() => setSentenceIndex((index) => Math.max(0, index - 1))}
-                      disabled={sentenceIndex === 0}
-                      className="flex min-h-10 min-w-0 flex-1 items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
-                    >
-                      <ChevronLeft size={16} /> <span>Trước</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={checkSentenceAnswer}
-                      aria-label="Kiểm tra câu dịch"
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700 sm:h-12 sm:w-12"
-                    >
-                      <Check size={20} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setSentenceIndex((index) => Math.min(index + 1, sentenceItems.length - 1))}
-                      disabled={sentenceIndex >= sentenceItems.length - 1}
-                      className="flex min-h-10 min-w-0 flex-1 flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
-                    >
-                      <ChevronRight size={16} /> <span>Tiếp</span>
-                    </button>
                   </div>
 
                   <div className="mt-4 flex items-center justify-center gap-2 font-sans text-xs font-bold text-slate-400">
@@ -708,13 +891,20 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                 ) : (
                   <div className="mt-5">
                     <input
+                      ref={answerInputRef}
                       value={answer}
+                      disabled={isCorrect !== null || Boolean(wordModal)}
                       onChange={(event) => {
+                        if (isCorrect !== null) return;
                         setAnswer(event.target.value);
                         setIsCorrect(null);
                       }}
                       onKeyDown={(event) => {
-                        if (event.key === "Enter") checkAnswer();
+                        if (event.key === "Enter") {
+                          event.preventDefault();
+                          if (isCorrect !== null) return;
+                          checkAnswer();
+                        }
                       }}
                       placeholder={practiceMode === "hanzi" ? "Nhập chữ Hán..." : "Nhập nghĩa tiếng Việt..."}
                       aria-label={practiceMode === "hanzi" ? "Nhập chữ Hán" : "Nhập nghĩa tiếng Việt"}
@@ -734,33 +924,6 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
                   </div>
                 )}
 
-                <div className="mt-5 flex items-center justify-center gap-1.5 sm:gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => goToWord(wordIndex - 1)}
-                    disabled={wordIndex === 0}
-                    className="flex min-h-10 min-w-0 flex-1 cursor-pointer items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
-                  >
-                    <ChevronLeft size={16} /> <span>Trước</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={checkAnswer}
-                    className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/20 transition-all hover:bg-red-700 disabled:opacity-50 sm:h-12 sm:w-12"
-                    aria-label="Kiểm tra đáp án"
-                  >
-                    <Check size={20} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => goToWord(wordIndex + 1)}
-                    disabled={wordIndex >= currentWords.length - 1}
-                    className="flex min-h-10 min-w-0 flex-1 cursor-pointer flex-row-reverse items-center justify-center gap-1 rounded-2xl border border-slate-200 bg-white px-2 py-2 font-sans text-xs font-bold text-slate-700 shadow-2xs transition-all hover:bg-slate-50 disabled:opacity-50 sm:min-h-12 sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
-                  >
-                    <ChevronRight size={16} /> <span>Tiếp</span>
-                  </button>
-                </div>
-
                 <div className="mt-4 flex items-center justify-center gap-2 font-sans text-xs font-bold text-slate-400">
                   Từ {wordIndex + 1} / {currentWords.length}
                 </div>
@@ -771,7 +934,7 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
           </div>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
+        <div className="mt-6 flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="font-sans text-sm font-black uppercase tracking-wide text-slate-700">Nhật ký luyện tập</h2>
             <span className="font-sans text-xs font-bold text-slate-400">
@@ -781,43 +944,50 @@ export default function HanziWriting({ loaderData }: Route.ComponentProps) {
             </span>
           </div>
           {practiceMode === "sentence" ? sentenceResults.length > 0 ? (
-            <ul className="grid max-h-[17rem] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
+            <ul className="no-scrollbar grid min-h-0 flex-1 content-start auto-rows-[70px] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-4">
               {sentenceResults.map((result, index) => (
                 <li
                   key={index}
-                  className={`flex items-center gap-2 rounded-xl border px-3 py-2 font-sans text-sm ${
+                  className={`relative h-[70px] min-w-0 overflow-hidden rounded-xl border px-3 py-1.5 font-sans text-sm ${
                     result.correct ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-red-200 bg-red-50 text-red-700"
                   }`}
                 >
-                  <span className="font-hanzi text-xl font-black">{result.hanzi}</span>
-                  <span className="min-w-0 flex-1 truncate text-xs font-bold">{result.vietnamese}</span>
-                  <span className="text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
+                  <div className="flex min-w-0 items-center gap-2 pr-10">
+                    <span className="block min-w-0 truncate font-hanzi text-lg font-black leading-6">{result.hanzi}</span>
+                  </div>
+                  <p className="mt-1 line-clamp-2 break-words pr-1 text-xs font-bold leading-3.5">{result.vietnamese}</p>
+                  <span className="absolute right-3 top-3 whitespace-nowrap text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
                 </li>
               ))}
             </ul>
           ) : (
             <p className="font-sans text-sm font-semibold text-slate-400">Chưa có câu nào được kiểm tra.</p>
           ) : results.length > 0 ? (
-            <ul className="grid max-h-[17rem] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-3">
+            <ul
+              className="no-scrollbar grid min-h-0 flex-1 grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-5"
+              style={{ alignContent: "start", gridAutoRows: "64px" }}
+            >
               {results.map((result, index) => (
                 <li
                   key={index}
-                  className={`flex items-center gap-2 rounded-xl border px-3 py-2 font-sans text-sm ${
+                  className={`h-16 min-h-16 max-h-16 min-w-0 self-start overflow-hidden flex items-center gap-2 rounded-xl border px-3 py-2.5 font-sans text-sm ${
                     result.correct ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-red-200 bg-red-50 text-red-700"
                   }`}
                 >
-                  <span className="font-hanzi text-xl font-black">{result.chinese}</span>
-                  <span className="min-w-0 flex flex-col leading-tight">
-                    <span className="font-bold">{result.pinyin}</span>
+                  <span className="shrink-0 font-hanzi text-xl font-black">{result.chinese}</span>
+                  <span className="min-w-0 flex-1 overflow-hidden flex flex-col leading-tight">
+                    <span className="block truncate font-bold">{result.pinyin}</span>
                     <span className="truncate text-xs opacity-70">{result.meaningVi}</span>
                   </span>
-                  <span className="ml-auto text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
+                  <span className="ml-auto shrink-0 whitespace-nowrap text-xs font-black uppercase">{result.correct ? "Đúng" : "Sai"}</span>
                 </li>
               ))}
             </ul>
           ) : (
             <p className="font-sans text-sm font-semibold text-slate-400">Chưa có từ nào được kiểm tra.</p>
           )}
+        </div>
+          </section>
         </div>
       </main>
     </SiteLayout>

@@ -33,10 +33,12 @@ export function SiteLayout({
   children,
   user,
   hideFooter = false,
+  lockScroll = false,
 }: {
   children: React.ReactNode;
   user?: any;
   hideFooter?: boolean;
+  lockScroll?: boolean;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [roadmapModalOpen, setRoadmapModalOpen] = useState(false);
@@ -94,7 +96,7 @@ export function SiteLayout({
   }, [menuOpen]);
 
   return (
-    <div className="flex min-h-screen min-w-0 max-w-full flex-col overflow-x-hidden pb-24 text-slate-900 selection:bg-amber-100 selection:text-amber-900 bg-[#FDFBF7]">
+    <div className={`${lockScroll ? "h-screen overflow-hidden" : "min-h-screen overflow-x-hidden pb-24"} flex min-w-0 max-w-full flex-col text-slate-900 selection:bg-amber-100 selection:text-amber-900 bg-[#FDFBF7]`}>
       {/* Top header bar */}
       <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md transition-all">
         <div className="flex h-16 min-w-0 w-full items-center justify-between gap-2 overflow-visible px-3 sm:gap-6 sm:px-6 lg:px-8 xl:px-10">
